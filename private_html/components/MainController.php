@@ -279,15 +279,6 @@ class MainController extends Controller
             ],
             "<li class='m-menu__section'><h4 class='m-menu__section-text'>" . Yii::t('words', $menuName) . "</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
             [
-                'label' => '<i class="m-menu__link-icon fa fa-calendar-alt"></i><span class="m-menu__link-text">' . Yii::t('words', 'Clinic Program') . '</span>',
-                'items' => [
-                    ['label' => Yii::t('words', 'Manage Days'), 'url' => ['/clinic/index'], 'visible' => $permissions || Yii::$app->user->can('clinicIndex')],
-                    ['label' => Yii::t('words', 'Create New Day'), 'url' => ['/clinic/create'], 'visible' => $permissions || Yii::$app->user->can('clinicCreate')],
-                    ['label' => Yii::t('words', 'Import csv'), 'url' => ['/clinic/import-csv-program'], 'visible' => $permissions || Yii::$app->user->can('clinicImportCsvProgram')],
-                    ['label' => Yii::t('words', 'Import excel'), 'url' => ['/clinic/import-excel-program'], 'visible' => $permissions || Yii::$app->user->can('clinicImportExcelProgram')],
-                ]
-            ],
-            [
                 'label' => '<i class="m-menu__link-icon fa fa-bars"></i><span class="m-menu__link-text">' . Yii::t('words', 'Menus') . '</span>',
                 'url' => ['/menu/index'],
                 'visible' => $permissions || Yii::$app->user->can('menuIndex')
@@ -296,11 +287,8 @@ class MainController extends Controller
                 'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
                 'items' => [
                     ['label' => Yii::t('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || Yii::$app->user->can('slideIndex')],
-                    ['label' => Yii::t('words', 'Online Services'), 'url' => ['/online/index'], 'visible' => $permissions || Yii::$app->user->can('onlineIndex')],
                     ['label' => Yii::t('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || Yii::$app->user->can('pageIndex')],
-                    ['label' => Yii::t('words', 'People'), 'url' => ['/person/index'], 'visible' => $permissions || Yii::$app->user->can('personIndex')],
                     ['label' => Yii::t('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions || Yii::$app->user->can('postIndex')],
-                    ['label' => Yii::t('words', 'Insurances'), 'url' => ['/insurance/index'], 'visible' => $permissions || Yii::$app->user->can('insuranceIndex')],
                 ]
             ],
             [
@@ -318,21 +306,6 @@ class MainController extends Controller
             [
                 'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . Yii::t('words', 'Messages') . '</span>',
                 'items' => $contactLinks,
-            ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های پذیرش</span>' . $reception_count,
-                'url' => ['/reception/index'],
-                'visible' => $permissions || Yii::$app->user->can('receptionIndex'),
-            ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های مشاوره</span>' . $advice_count,
-                'url' => ['/advice/index'],
-                'visible' => $permissions || Yii::$app->user->can('adviceIndex'),
-            ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-calendar"></i><span class="m-menu__link-text">درخواست های همکاری</span>' . $cooperation_count,
-                'url' => ['/cooperation/index'],
-                'visible' => $permissions || Yii::$app->user->can('cooperationIndex')
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',
