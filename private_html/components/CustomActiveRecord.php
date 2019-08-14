@@ -134,6 +134,17 @@ abstract class CustomActiveRecord extends ActiveRecord
     const FORM_FIELD_TYPE_PASSWORD = 15;
 
     /**
+     * configure attributes options for render in crud form
+     * example: [
+     *      'attribute name' => [
+     *          'type' => self::FORM_FIELD_TYPE_TEXT,
+     *          'label' => false, 
+     *          'options' => [
+     *              'placeholder' => $this->getAttributeLabel('name')
+     *          ]
+     *      ],
+     * ]
+     *
      * @return array
      */
     public function formAttributes()
