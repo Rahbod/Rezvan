@@ -50,6 +50,15 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 
         ]);
     }
+
+    /**
+    * @return array that render in crud form
+    */
+    public function formAttributes()
+    {
+        return [];
+    }
+
 <?php if ($generator->db !== 'db'): ?>
 
     /**

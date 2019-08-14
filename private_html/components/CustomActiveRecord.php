@@ -141,13 +141,16 @@ abstract class CustomActiveRecord extends ActiveRecord
         return [];
     }
 
+    /** @var int $tabindex */
+    public static $tabindex = 1;
+
     /**
      * @param $form ActiveForm
      * @param string $template
      * @param string $allContainerCssClass
+     * @param string $method name that used from model to render attributes
      * @return string
      */
-    public static $tabindex = 1;
     public function formRenderer($form, $template = '{field}', $allContainerCssClass = '', $method = 'formAttributes')
     {
         $output = '';
