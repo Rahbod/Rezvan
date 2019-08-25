@@ -17,6 +17,8 @@ use yii\helpers\Url;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
+    <?= $model->formRenderer($form) ?>
+
     <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
         'url' => Url::to(['upload-image']),
         'removeUrl' => Url::to(['delete-image']),

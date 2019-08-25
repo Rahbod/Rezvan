@@ -98,21 +98,7 @@ class SiteController extends AuthController
     public function actionIndex()
     {
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-        $inpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_INPATIENT])->orderBy(['id' => SORT_ASC])->all();
-        $outpatientInsurances = Insurance::find()->valid()->andWhere(['type' => Insurance::TYPE_OUTPATIENT])->orderBy(['id' => SORT_ASC])->all();
-        $posts = Post::find()->valid()->andWhere(['<=', Post::columnGetString('publish_date'), time()])->orderBy([Post::columnGetString('publish_date') => SORT_DESC])->all();
-        $galleryCategories = Category::find()->valid()->andWhere([
-            'type' => Category::TYPE_CATEGORY,
-            Category::columnGetString('category_type') => Category::CATEGORY_TYPE_PICTURE_GALLERY,
-            Category::columnGetString('show_in_home') => 1,
-        ])->orderBy([Category::columnGetString('show_always') => SORT_DESC])->addOrderBy('RAND()')->limit(5)->all();
-        ArrayHelper::multisort($galleryCategories, function ($model) {
-            return $model->sort;
-        });
-
-        $onlineServices = OnlineService::find()->valid()->all();
-
-        return $this->render('index', compact('slides', 'inpatientInsurances', 'outpatientInsurances', 'posts', 'galleryCategories', 'onlineServices'));
+        return $this->render('index', compact('slides'));
     }
 
     public function actionChangeLang($language = false, $controller = false, $action = false)

@@ -262,16 +262,6 @@ class MainController extends Controller
         $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || Yii::$app->user->can('messageComplaints')];
         $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || Yii::$app->user->can('messageDepartment')];
 
-        // requests count
-        $total_count=0;
-        $advice_count = Advice::find()->andWhere(['type' => Advice::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
-        $advice_count = $advice_count > 0 ? '<span class="m-badge m-badge--danger">' . $advice_count . '</span>' : '';
-        $cooperation_count = Cooperation::find()->andWhere(['type' => Cooperation::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
-        $cooperation_count = $cooperation_count > 0 ? '<span class="m-badge m-badge--danger">' . $cooperation_count . '</span>' : '';
-
-        $reception_count = Reception::find()->andWhere(['type' => Reception::$typeName, 'status' => UserRequest::STATUS_PENDING])->count();
-        $reception_count = $reception_count > 0 ? '<span class="m-badge m-badge--danger">' . $reception_count . '</span>' : '';
-
         return [
             [
                 'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . Yii::t('words', 'Dashboard') . '</span>',
