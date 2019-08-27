@@ -398,4 +398,11 @@ return [
     'Available Apartments' => 'ساختمان های در دسترس',
     'Investments' => 'سرمایه گذاری',
     'Other constructions' => 'دیگر سازه ها',
+    'Banner block' => 'بنر اصلی',
+    'Image block' => 'تصویر',
+    'Video block' => 'ویدئو',
+    'Map view block' => 'نقشه',
+    'Nearby access block' => 'دسترسی های نزدیک',
+    'Units block' => 'واحدها',
+    'Related projects block' => 'پروژه های مرتبط',
 ];
