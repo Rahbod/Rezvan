@@ -3,9 +3,13 @@
 namespace app\components;
 
 use app\models\Advice;
+use app\models\Category;
 use app\models\Cooperation;
 use app\models\Department;
+use app\models\Field;
+use app\models\Model;
 use app\models\Reception;
+use app\models\Role;
 use app\models\UserRequest;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -26,6 +30,7 @@ class MainController extends Controller
     public $headerClass;
     public $theme;
     public $tmpDir = 'uploads/temp';
+    public $models;
 
     public function init()
     {
@@ -35,6 +40,8 @@ class MainController extends Controller
             Yii::$app->language = Yii::$app->session->get('language');
         else if (isset(Yii::$app->request->cookies['language']))
             Yii::$app->language = Yii::$app->request->cookies['language']->value;
+
+        $this->initializeRequirements();
     }
 
     /**
@@ -328,6 +335,22 @@ class MainController extends Controller
                 'visible' => Yii::$app->user->isGuest
             ]
         ];
+    }
+
+    private function initializeRequirements()
+    {
+        $cache = Yii::$app->cache;
+
+        // cache users
+        $expire = 30 * 24 * 3600;
+
+        // cache models
+        $this->models = $cache->getOrSet('models', function () {
+            $arr = [];
+            foreach (Model::find()->all() as $model)
+                $arr[$model->name] = $model->id;
+            return $arr;
+        }, $expire);
     }
 }
 

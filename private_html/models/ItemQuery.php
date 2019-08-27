@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use function app\components\dd;
 use app\components\MultiLangActiveQuery;
 
 /**
@@ -19,6 +18,7 @@ class ItemQuery extends MultiLangActiveQuery
     {
         $this->_modelName = $modelClass::$modelName;
         $this->_typeName = $modelClass::$typeName;
+        self::$languageCondition = $modelClass::$multiLanguage;
         parent::__construct($modelClass, $config);
     }
 
@@ -29,7 +29,7 @@ class ItemQuery extends MultiLangActiveQuery
     public function all($db = null)
     {
         $this->andWhere([
-            'modelID' => Model::findOne(['name' => $this->_modelName])->id
+            'modelID' => \Yii::$app->controller->models[$this->_modelName]
         ]);
 
         if ($this->_typeName) {
@@ -44,7 +44,7 @@ class ItemQuery extends MultiLangActiveQuery
     public function count($q = '*', $db = null)
     {
         $this->andWhere([
-            'modelID' => Model::findOne(['name' => $this->_modelName])->id
+            'modelID' => \Yii::$app->controller->models[$this->_modelName]
         ]);
 
         if ($this->_typeName) {
@@ -63,7 +63,7 @@ class ItemQuery extends MultiLangActiveQuery
     public function one($db = null)
     {
         $this->andWhere([
-            'modelID' => Model::findOne(['name' => $this->_modelName])->id
+            'modelID' => \Yii::$app->controller->models[$this->_modelName]
         ]);
 
         if ($this->_typeName) {

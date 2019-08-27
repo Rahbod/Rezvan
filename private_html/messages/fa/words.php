@@ -395,4 +395,7 @@ return [
     'No Result!' => 'نتیجه ای یافت نشد!',
     'Menu' => 'منوها',
     'Short Title' => 'عنوان کوتاه',
+    'Available Apartments' => 'ساختمان های در دسترس',
+    'Investments' => 'سرمایه گذاری',
+    'Other constructions' => 'دیگر سازه ها',
 ];

@@ -35,6 +35,11 @@ class Item extends MultiLangActiveRecord
     const STATUS_DISABLED = 0;
     const STATUS_PUBLISHED = 1;
 
+    /**
+     * TRUE if for each language wants insert record, FALSE insert one record for all languages
+     * @var bool
+     */
+    public static $multiLanguage = true;
     public static $modelName = null;
     public static $typeName = null;
 
