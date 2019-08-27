@@ -8,19 +8,19 @@ use Yii;
  * This is the model class for table "item".
  *
  */
-class Project extends Item
+abstract class Project extends Item
 {
     const TYPE_AVAILABLE_APARTMENT = 1;
     const TYPE_INVESTMENT = 2;
     const TYPE_OTHER_CONSTRUCTION = 3;
 
-    public static $multiLanguage = true;
+    public static $multiLanguage = false;
     public static $modelName = 'project';
 
     public static $typeLabels = [
         self::TYPE_AVAILABLE_APARTMENT => 'Available Apartments',
         self::TYPE_INVESTMENT => 'Investments',
-        self::TYPE_OTHER_CONSTRUCTION=> 'Other constructions'
+        self::TYPE_OTHER_CONSTRUCTION => 'Other constructions'
     ];
 
     /**
@@ -36,6 +36,14 @@ class Project extends Item
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             // define common fields in project types
+            'subtitle' => ['CHAR', ''],
+            'begin_date' => ['CHAR', ''],
+            'construction_time' => ['CHAR', ''],
+            'location' => ['CHAR', ''],
+            'area_size' => ['INTEGER', ''],
+            'unit_count' => ['INTEGER', ''],
+            'free_count' => ['INTEGER', ''],
+            'sold_count' => ['INTEGER', ''],
         ]);
     }
 
@@ -47,6 +55,8 @@ class Project extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => Yii::$app->controller->models[self::$modelName]],
+            [['subtitle', 'begin_date', 'construction_time', 'location'], 'string'],
+            [['area_size', 'unit_count', 'free_count', 'sold_count'], 'integer']
         ]);
     }
 
@@ -56,7 +66,14 @@ class Project extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-
+            'subtitle' => Yii::t('words', 'Subtitle'),
+            'begin_date' => Yii::t('words', 'Begin date'),
+            'construction_time' => Yii::t('words', 'Construction time'),
+            'location' => Yii::t('words', 'Location'),
+            'area_size' => Yii::t('words', 'Area size'),
+            'unit_count' => Yii::t('words', 'Unit count'),
+            'free_count' => Yii::t('words', 'Free count'),
+            'sold_count' => Yii::t('words', 'Sold count'),
         ]);
     }
 

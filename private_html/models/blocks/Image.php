@@ -1,22 +1,24 @@
 <?php
 
-namespace app\models;
+namespace app\models\blocks;
 
+use app\models\Block;
 use Yii;
 
 /**
  * This is the model class for table "item".
  *
+ * @property string image
  */
-class Investment extends Project
+class Image extends Block implements BlockInterface
 {
-    public static $typeName = self::TYPE_INVESTMENT;
+    public static $typeName = self::TYPE_IMAGE;
 
     public function init()
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            // define fields that only for investments
+            'image' => ['CHAR', ''],
         ]);
     }
 
@@ -28,6 +30,8 @@ class Investment extends Project
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
+            ['image', 'required'],
+            ['image', 'string'],
         ]);
     }
 
@@ -37,7 +41,12 @@ class Investment extends Project
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-
+            'image' => Yii::t('words', 'Image')
         ]);
+    }
+
+    public function render()
+    {
+        // TODO: Implement render() method.
     }
 }

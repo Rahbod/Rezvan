@@ -66,6 +66,6 @@ class Slide extends Item
      */
     public static function find()
     {
-        return new SlideQuery(get_called_class());
+        return new ItemQuery(get_called_class());
     }
 }

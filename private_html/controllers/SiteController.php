@@ -4,15 +4,11 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\models\projects\Apartment;
 use function app\components\dd;
-use app\components\Helper;
-use app\components\SmsSender;
-use app\models\Category;
-use app\models\Insurance;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\models\Message;
-use app\models\OnlineService;
 use app\models\Page;
 use app\models\PageSearch;
 use app\models\Post;
@@ -20,7 +16,6 @@ use app\models\PostSearch;
 use app\models\Slide;
 use Yii;
 use yii\filters\AccessControl;
-use yii\helpers\ArrayHelper;
 use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\ContactForm;
@@ -312,5 +307,6 @@ class SiteController extends AuthController
 
     public function actionTest()
     {
+        dd(Apartment::find()->count());
     }
 }

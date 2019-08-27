@@ -1,16 +1,16 @@
 /*
 Navicat MariaDB Data Transfer
 
-Source Server         : MyMaria
-Source Server Version : 100312
+Source Server         : mariadb
+Source Server Version : 100208
 Source Host           : localhost:3307
 Source Database       : rezvan
 
 Target Server Type    : MariaDB
-Target Server Version : 100312
+Target Server Version : 100208
 File Encoding         : 65001
 
-Date: 2019-08-14 10:04:42
+Date: 2019-08-27 21:46:10
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -171,11 +171,12 @@ CREATE TABLE `category` (
   KEY `Status` (`status`) USING BTREE,
   KEY `lft` (`left`,`right`) USING BTREE,
   FULLTEXT KEY `name_2` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Nested records to store tree structures.\r\nIt includes categories, tags, persons.\r\n! This table is based on what Yii has designed.\r\nIf nothing exists, we will use "Nested sets" structure.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Nested records to store tree structures.\r\nIt includes categories, tags, persons.\r\n! This table is based on what Yii has designed.\r\nIf nothing exists, we will use "Nested sets" structure.';
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
+INSERT INTO `category` VALUES ('1', null, 'dep', 'مدیریت', 0x0407003B0000000000040013000B0023001200D3001B00F300240010012F001001736F727461725F6E616D65656E5F6E616D6561725F737461747573656E5F73746174757373686F775F616C7761797373686F775F696E5F686F6D650221214D616E6167656D656E7421312131, null, '1566741351', '1', '1', '2', '0', '1');
 
 -- ----------------------------
 -- Table structure for catitem
@@ -222,11 +223,12 @@ CREATE TABLE `item` (
   FULLTEXT KEY `name_2` (`name`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`modelID`) REFERENCES `model` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores list of items.';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores list of items.';
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
+INSERT INTO `item` VALUES ('1', '1', '1', null, 'تست', 0x040300170000000300050053020E007302696D61676561725F737461747573656E5F7374617475732163333534316438656166323237303662663032636164623935643462326364612E6A706721312131, null, '1566741391', '1');
 
 -- ----------------------------
 -- Table structure for log
@@ -289,7 +291,7 @@ CREATE TABLE `model` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `Alias` (`alias`) USING BTREE,
   KEY `Name` (`name`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of model
@@ -297,8 +299,9 @@ CREATE TABLE `model` (
 INSERT INTO `model` VALUES ('1', 'slide', 'اسلاید', null);
 INSERT INTO `model` VALUES ('2', 'post', 'مطلب', null);
 INSERT INTO `model` VALUES ('3', 'page', 'صفحات', null);
-INSERT INTO `model` VALUES ('4', 'gallery', 'گالری', null);
-INSERT INTO `model` VALUES ('5', 'project', 'پروژه', null);
+INSERT INTO `model` VALUES ('4', 'project', 'پروژه', null);
+INSERT INTO `model` VALUES ('5', 'unit', 'واحد', null);
+INSERT INTO `model` VALUES ('6', 'block', 'بلاک', null);
 
 -- ----------------------------
 -- Table structure for ugroup
@@ -344,7 +347,7 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'Admin', 'admin', '$2y$13$zIo/.6Xu4BulBKKE5lg12.zIUV5piyNB2Fujx6Qpk4Sv0gW45472K', 'superAdmin', 0x0401000700000003007570646174656421323031392D30342D31352031353A34373A3230, '2018-02-13 21:46:22', '1');
+INSERT INTO `user` VALUES ('1', 'Admin', 'admin', '$2y$13$LzbDws024iCbvece6kIsSOuoiVQj.6cETL7bgrRuKgZpa.Dul/dqW', 'admin', 0x0401000700000003007570646174656421323031392D30342D31352031353A34373A3230, '2018-02-13 21:46:22', '1');
 INSERT INTO `user` VALUES ('8', 'Rahbod', 'rahbod', '$2y$13$LzbDws024iCbvece6kIsSOuoiVQj.6cETL7bgrRuKgZpa.Dul/dqW', 'superAdmin', null, '2018-02-13 21:46:22', '1');
 
 -- ----------------------------
