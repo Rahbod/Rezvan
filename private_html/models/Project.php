@@ -54,7 +54,7 @@ abstract class Project extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['modelID', 'default', 'value' => Yii::$app->controller->models[self::$modelName]],
+            ['modelID', 'default', 'value' => Yii::$app->controller->getModel(self::$modelName)],
             [['subtitle', 'begin_date', 'construction_time', 'location'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count'], 'integer']
         ]);

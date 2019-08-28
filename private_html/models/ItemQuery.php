@@ -29,7 +29,7 @@ class ItemQuery extends MultiLangActiveQuery
     public function all($db = null)
     {
         $this->andWhere([
-            'modelID' => \Yii::$app->controller->models[$this->_modelName]
+            'modelID' => \Yii::$app->controller->getModel($this->_modelName)
         ]);
 
         if ($this->_typeName) {
@@ -44,7 +44,7 @@ class ItemQuery extends MultiLangActiveQuery
     public function count($q = '*', $db = null)
     {
         $this->andWhere([
-            'modelID' => \Yii::$app->controller->models[$this->_modelName]
+            'modelID' => \Yii::$app->controller->getModel($this->_modelName)
         ]);
 
         if ($this->_typeName) {
@@ -63,7 +63,7 @@ class ItemQuery extends MultiLangActiveQuery
     public function one($db = null)
     {
         $this->andWhere([
-            'modelID' => \Yii::$app->controller->models[$this->_modelName]
+            'modelID' => \Yii::$app->controller->getModel($this->_modelName)
         ]);
 
         if ($this->_typeName) {

@@ -50,7 +50,7 @@ abstract class Block extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['modelID', 'default', 'value' => Yii::$app->controller->models[self::$modelName]],
+            ['modelID', 'default', 'value' => Yii::$app->controller->getModel(self::$modelName)],
             [['itemID'], 'required'],
             [['itemID', 'sort'], 'integer'],
         ]);

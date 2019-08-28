@@ -203,6 +203,14 @@ class MainController extends Controller
     }
 
     /**
+     * @return mixed
+     */
+    public function getModel($name)
+    {
+        return isset($this->models[$name])?$this->models[$name]:null;
+    }
+
+    /**
      * Prepare input array to show in jsTree widget
      * @param array $array
      * @param null|array $selected
