@@ -1,8 +1,9 @@
 <?php
 
+use app\components\customWidgets\CustomGridView;
 use yii\helpers\Html;
-use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\projects\ApartmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Apartment') ?></span>
@@ -46,16 +48,43 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
+                        'id',
+                        'userID',
+                        'modelID',
+                        'type',
+                        'name',
                         //'dyna',
                         //'extra:ntext',
                         //'created',
                         //'status',
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{view} {update} {delete} {block} {unit}',
+                            'buttons' => [
+                                'block' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-bars" ></span >', ['block/index?id=' . $model['id']],
+                                        [
+                                            'class' => '',
+                                            'title' => "افزودن بلوک",
+                                            'aria-label' => "block",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                                'unit' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-building" ></span >', ['unit/index?item-id=' . $model['id']],
+                                        [
+                                            'class' => '',
+                                            'title' => "افزودن واحد",
+                                            'aria-label' => "unit",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                            ]
+                        ]
                     ],
                 ]); ?>
             </div>
