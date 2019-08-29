@@ -205,7 +205,7 @@ class MainController extends Controller
      */
     public function getModel($name)
     {
-        return isset($this->models[$name])?$this->models[$name]:null;
+        return isset($this->models[$name]) ? $this->models[$name] : null;
     }
 
     /**
@@ -280,12 +280,23 @@ class MainController extends Controller
                 'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . Yii::t('words', 'Dashboard') . '</span>',
                 'url' => ['/admin']
             ],
+
             "<li class='m-menu__section'><h4 class='m-menu__section-text'>" . Yii::t('words', $menuName) . "</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",
             [
                 'label' => '<i class="m-menu__link-icon fa fa-bars"></i><span class="m-menu__link-text">' . Yii::t('words', 'Menus') . '</span>',
                 'url' => ['/menu/index'],
                 'visible' => $permissions || Yii::$app->user->can('menuIndex')
             ],
+
+            [
+                'label' => '<i class="m-menu__link-icon fas fa-building"></i><span class="m-menu__link-text">پروژه ها</span>',
+                'items' => [
+                    ['label' => 'آپارتمان', 'url' => ['/apartment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                    ['label' => 'سرمایه گذاری', 'url' => ['/investment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                    ['label' => 'دیگر', 'url' => ['/other-construction/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                ]
+            ],
+
             [
                 'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . Yii::t('words', 'Items') . '</span>',
                 'items' => [
@@ -318,14 +329,7 @@ class MainController extends Controller
                     ['label' => 'مدیریت نقش های کاربری', 'url' => ['/role/index'], 'visible' => $permissions || Yii::$app->user->can('roleIndex')],
                 ]
             ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">پروژه ها</span>',
-                'items' => [
-                    ['label' => 'آپارتمان', 'url' => ['/apartment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
-                    ['label' => 'سرمایه گذاری', 'url' => ['/investment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
-                    ['label' => 'دیگر', 'url' => ['/other-construction/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
-                ]
-            ],
+
             [
                 'label' => '<i class="m-menu__link-icon fa fa-language"></i><span class="m-menu__link-text">مدیریت ترجمه ها</span>',
                 'url' => ['/admin/translate'],

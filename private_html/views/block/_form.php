@@ -16,7 +16,6 @@ use app\components\customWidgets\CustomActiveForm;
 ]); ?>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
-               <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
 
         <?= $model->formRenderer($form, '{field}', 'formAttributes'); ?>
 
