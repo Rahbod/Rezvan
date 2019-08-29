@@ -33,7 +33,7 @@ class MainController extends Controller
     public function init()
     {
         parent::init();
-        Yii::$app->name = Yii::t('words', 'Payambaran Hospital');
+        Yii::$app->name = Yii::t('words', 'Rezvan');
         if (Yii::$app->session->has('language'))
             Yii::$app->language = Yii::$app->session->get('language');
         else if (isset(Yii::$app->request->cookies['language']))

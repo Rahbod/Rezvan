@@ -113,7 +113,20 @@ class Project extends Item
             'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'subtitle' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'begin_date' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'begin_date' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+//                'options' => [
+//                    'options' => array(
+//                        'format' => 'yyyy/mm/dd',
+//                        'viewformat' => 'yyyy/mm/dd',
+//                        'placement' => 'right',
+//                    ),
+//                    'htmlOptions' => [
+//                        'class' => 'form-control m-input m-input--solid',
+//                        'autocomplete' => 'off'
+//                    ]
+//                ]
+            ],
             'location' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'unit_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
