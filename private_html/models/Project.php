@@ -123,7 +123,8 @@ class Project extends Item
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
-                'path' => MainController::$tempDir,
+                'temp' => MainController::$tempDir,
+                'path' => ApartmentController::$imgDir,
                 'filesOptions' => ApartmentController::$imageOptions,
                 'options' => [
                     'url' => Url::to(['upload-image']),
