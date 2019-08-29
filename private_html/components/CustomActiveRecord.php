@@ -251,8 +251,7 @@ abstract class CustomActiveRecord extends ActiveRecord
                     (isset($field['label'])?Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options):'');
             case static::FORM_FIELD_TYPE_DROP_ZONE:
                 unset($options['tabindex']);
-                if (!$model->isNewRecord)
-                    $options['options']['storedFiles'] = new UploadedFiles($field['path'], $model->$attribute, $field['filesOptions']);
+                $options['options']['storedFiles'] = new UploadedFiles($model->isNewRecord?$field['temp']:$field['path'], $model->$attribute, $field['filesOptions']);
                 return $form->field($model, $attribute)->widget(DropZone::className(), $options);
             case static::FORM_FIELD_TYPE_CHECKBOX:
                 return $form->field($model, $attribute)->checkbox($options);
