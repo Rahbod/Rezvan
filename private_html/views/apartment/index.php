@@ -62,10 +62,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             'template' => '{view} {update} {delete} {block} {unit}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
-                                    return Html::a('<span class="fas fa-bars" ></span >', ['block/index?id=' . $model['id']],
+                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
                                         [
                                             'class' => '',
-                                            'title' => "افزودن بلوک",
+                                            'title' => "لیست بلوک ها",
                                             'aria-label' => "block",
                                             'data-pjax' => 0
 
@@ -73,10 +73,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 },
                                 'unit' => function ($url, $model, $key) {
-                                    return Html::a('<span class="far fa-building" ></span >', ['unit/index?item-id=' . $model['id']],
+                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index?item-id=' . $model['id']],
                                         [
                                             'class' => '',
-                                            'title' => "افزودن واحد",
+                                            'title' => "لیست واحدها",
                                             'aria-label' => "unit",
                                             'data-pjax' => 0
 
