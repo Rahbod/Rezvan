@@ -37,7 +37,7 @@ use app\components\customWidgets\CustomActiveForm;
 <?php endif;?>
 
 <?php if($model instanceof \app\components\CustomActiveRecord):?>
-<?php echo '        <?= $model->formRenderer($form, \'{field}\', \'formAttributes\'); ?>'."\n\n"; ?>
+<?php echo '        <?= $model->formRenderer($form); ?>'."\n\n"; ?>
 <?php else:?>
 <?php foreach ($generator->getColumnNames() as $attribute) {
     if (in_array($attribute, $safeAttributes)) {
