@@ -49,7 +49,7 @@ use app\components\customWidgets\CustomActiveForm;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= "<?= " ?>Html::submitButton(<?= $generator->generateString('Save') ?>, ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary">Cancel</button>
+            <button type="reset" class="btn btn-secondary"><?= "<?= " . $generator->generateString('Cancel') ?>?></button>
         </div>
     </div>
 <?= "<?php " ?>CustomActiveForm::end(); ?>

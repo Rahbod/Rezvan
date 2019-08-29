@@ -60,7 +60,7 @@ class Project extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
-            [['subtitle', 'begin_date', 'construction_time', 'location','image'], 'string'],
+            [['subtitle', 'begin_date', 'construction_time', 'location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count'], 'integer']
         ]);
     }
@@ -113,7 +113,20 @@ class Project extends Item
             'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'subtitle' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'begin_date' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'begin_date' => [
+                'type' => self::FORM_FIELD_TYPE_DATE,
+                'options' => [
+                    'options' => array(
+                        'format' => 'yyyy/mm/dd',
+                        'viewformat' => 'yyyy/mm/dd',
+                        'placement' => 'right',
+                    ),
+                    'htmlOptions' => [
+                        'class' => 'form-control m-input m-input--solid',
+                        'autocomplete' => 'off'
+                    ]
+                ]
+            ],
             'location' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'unit_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
@@ -131,7 +144,7 @@ class Project extends Item
                     'removeUrl' => Url::to(['delete-image']),
                     'sortable' => false, // sortable flag
                     'sortableOptions' => [], // sortable options
-                    'htmlOptions' => ['class' => '','id' => Html::getInputId(new self(), 'image')],
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'image')],
                     'options' => [
                         'createImageThumbnails' => true,
                         'addRemoveLinks' => true,
@@ -141,7 +154,7 @@ class Project extends Item
                         'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 1,
-                        'maxFileSize' =>0.5,
+                        'maxFileSize' => 0.5,
                     ],
                 ]
             ],

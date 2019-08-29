@@ -13,7 +13,7 @@ use app\components\Setting;
 
 $config = [
     'id' => 'basic',
-    'name' => 'Payambaran',
+    'name' => 'Rezvan',
     'basePath' => dirname(__DIR__),
     'language' => Setting::get('language'),
     'timeZone' => Setting::get('timeZone'),
