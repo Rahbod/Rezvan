@@ -51,8 +51,7 @@ class Item extends MultiLangActiveRecord
     {
         parent::init();
         preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
-        if (!$matches)
-        {
+        if (!$matches) {
             $this->status = 1;
             $this->en_status = 1;
             $this->ar_status = 1;
@@ -67,6 +66,13 @@ class Item extends MultiLangActiveRecord
         return 'item';
     }
 
+    public function formAttributes()
+    {
+        return [
+            'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'status' => ['type' => self::FORM_FIELD_TYPE_SWITCH],
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -157,9 +163,8 @@ class Item extends MultiLangActiveRecord
         if (is_null($status))
             return $statusLabels;
 
-        if($html)
-        {
-            switch ($status){
+        if ($html) {
+            switch ($status) {
                 case self::STATUS_PUBLISHED:
                     $class = 'success';
                     $icon = '<i class="fa fa-check-circle"></i>';
@@ -220,7 +225,7 @@ class Item extends MultiLangActiveRecord
             // multiple categories
 //            $lastTags = $this->categories ? ArrayHelper::map($this->categories, 'id', 'name') : [];
             if (!is_array($this->formCategories)) $this->formCategories = [$this->formCategories];
-            if(!$this->isNewRecord)
+            if (!$this->isNewRecord)
                 Catitem::deleteAll(['itemID' => $this->id]);
             foreach ($this->formCategories as $id) {
                 $model = new Catitem();
@@ -331,7 +336,7 @@ class Item extends MultiLangActiveRecord
             if (Yii::$app->language == 'fa')
                 return $this->name;
             else
-                return $this->{Yii::$app->language . '_name'}?:$this->name;
+                return $this->{Yii::$app->language . '_name'} ?: $this->name;
         }
         return $this->name;
     }

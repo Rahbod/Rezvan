@@ -28,6 +28,9 @@ class DefaultController extends Controller
      */
     public $generator;
 
+    public function getModel($name){
+        return null;
+    }
 
     /**
      * {@inheritdoc}
