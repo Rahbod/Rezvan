@@ -60,7 +60,7 @@ class Project extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
-            [['subtitle', 'begin_date', 'construction_time', 'location','image'], 'string'],
+            [['subtitle', 'begin_date', 'construction_time', 'location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count'], 'integer']
         ]);
     }
@@ -119,7 +119,9 @@ class Project extends Item
             'unit_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'free_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'sold_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'status' => ['type' => self::FORM_FIELD_TYPE_SWITCH],
+            'status' => [
+                'type' => self::FORM_FIELD_TYPE_SELECT,
+                'items'=>self::getStatusFilter()],
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
@@ -131,7 +133,7 @@ class Project extends Item
                     'removeUrl' => Url::to(['delete-image']),
                     'sortable' => false, // sortable flag
                     'sortableOptions' => [], // sortable options
-                    'htmlOptions' => ['class' => '','id' => Html::getInputId(new self(), 'image')],
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'image')],
                     'options' => [
                         'createImageThumbnails' => true,
                         'addRemoveLinks' => true,
@@ -141,7 +143,7 @@ class Project extends Item
                         'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 1,
-                        'maxFileSize' =>0.5,
+                        'maxFileSize' => 0.5,
                     ],
                 ]
             ],

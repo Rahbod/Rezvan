@@ -396,7 +396,7 @@ return [
     'Menu' => 'منوها',
     'Short Title' => 'عنوان کوتاه',
     'Available Apartments' => 'ساختمان های در دسترس',
-    'Investments' => 'سرمایه گذاری',
+//    'Investments' => 'سرمایه گذاری',
     'Other constructions' => 'دیگر سازه ها',
     'Banner block' => 'بنر اصلی',
     'Image block' => 'تصویر',
@@ -437,4 +437,12 @@ return [
     'Gas station distance' => 'فاصله تا پمپ بنزین',
     'Bank distance' => 'فاصله تا بانک',
     'Restaurant distance' => 'فاصله تا رستوران',
+
+    'Create Apartment' => 'ایجاد پروژه',
+    'Create Investment' => 'ایجاد پروژه',
+    'Create Construction' => 'ایجاد پروژه',
+
+    'Apartments'=>'پروژه ها',
+    'Investments'=>'پروژه ها',
+    'Constructions'=>'پروژه ها',
 ];
