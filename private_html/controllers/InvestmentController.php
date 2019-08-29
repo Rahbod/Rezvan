@@ -2,15 +2,15 @@
 
 namespace app\controllers;
 
+use app\components\AuthController;
+use app\models\projects\Investment;
+use app\models\projects\InvestmentSearch;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\projects\Investment;
-use app\models\projects\InvestmentSearch;
-use app\components\AuthController;
-use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -20,19 +20,16 @@ use yii\widgets\ActiveForm;
 class InvestmentController extends AuthController
 {
     public static $imgDir = 'uploads/investment';
-    public static $thumbDir = 'uploads/investment/thumbs';
+//    public static $thumbDir = 'uploads/investment/thumbs';
 
-//    public static $imageOptions = ['thumbnail' => [
-//        'width' => 100,
-//        'height' => 100
-//    ]];
-//
-    public static $imageOptions = [];
-
+    public static $imageOptions = ['thumbnail' => [
+        'width' => 100,
+        'height' => 100
+    ]];
 
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -97,7 +94,7 @@ class InvestmentController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             $image = new UploadedFiles(self::$tempDir, $model->image, self::$imageOptions);
 
@@ -106,7 +103,7 @@ class InvestmentController extends AuthController
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -133,7 +130,7 @@ class InvestmentController extends AuthController
         }
         $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $old = $model->image;
 
             $model->load(Yii::$app->request->post());
@@ -142,7 +139,7 @@ class InvestmentController extends AuthController
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -165,7 +162,7 @@ class InvestmentController extends AuthController
         $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $image->removeAll(true);
 
-        $thumb = new UploadedFiles(self::$thumbDir, $model->image, self::$imageOptions);
+        $thumb = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $thumb->removeAll(true);
         $model->delete();
         return $this->redirect(['index']);
@@ -186,6 +183,7 @@ class InvestmentController extends AuthController
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
+
     public function actions()
     {
         return [

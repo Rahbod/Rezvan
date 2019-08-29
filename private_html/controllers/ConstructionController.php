@@ -20,10 +20,10 @@ use yii\widgets\ActiveForm;
 class ConstructionController extends AuthController
 {
     public static $imgDir = 'uploads/construction';
-    public static $thumbDir = 'uploads/construction/thumbs';
-
-    public static $imageOptions = [];
-
+    public static $imageOptions = ['thumbnail' => [
+        'width' => 100,
+        'height' => 100
+    ]];
 
     /**
      * for set admin theme
@@ -160,7 +160,7 @@ class ConstructionController extends AuthController
         $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $image->removeAll(true);
 
-        $thumb = new UploadedFiles(self::$thumbDir, $model->image, self::$imageOptions);
+        $thumb = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $thumb->removeAll(true);
         $model->delete();
 

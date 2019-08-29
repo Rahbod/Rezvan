@@ -20,14 +20,11 @@ use yii\widgets\ActiveForm;
 class ApartmentController extends AuthController
 {
     public static $imgDir = 'uploads/apartment';
-    public static $thumbDir = 'uploads/apartment/thumbs';
 
-//    public static $imageOptions = ['thumbnail' => [
-//        'width' => 100,
-//        'height' => 100
-//    ]];
-//
-    public static $imageOptions = [];
+    public static $imageOptions = ['thumbnail' => [
+        'width' => 100,
+        'height' => 100
+    ]];
 
     /**
      * for set admin theme
@@ -161,7 +158,7 @@ class ApartmentController extends AuthController
         $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $image->removeAll(true);
 
-        $thumb = new UploadedFiles(self::$thumbDir, $model->image, self::$imageOptions);
+        $thumb = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $thumb->removeAll(true);
         $model->delete();
 
