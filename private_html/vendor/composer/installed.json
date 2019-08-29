@@ -2613,7 +2613,7 @@
         },
         "time": "2017-04-17T07:07:23+00:00",
         "type": "library",
-        "installation-source": "dist",
+        "installation-source": "source",
         "autoload": {
             "classmap": [
                 "jdatetime.class.php"

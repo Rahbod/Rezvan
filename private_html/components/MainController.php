@@ -3,20 +3,17 @@
 namespace app\components;
 
 use app\models\Advice;
-use app\models\Category;
 use app\models\Cooperation;
 use app\models\Department;
 use app\models\Field;
 use app\models\Model;
 use app\models\Reception;
-use app\models\Role;
+use app\models\User;
 use app\models\UserRequest;
 use Yii;
-use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\web\Controller;
-use app\models\User;
 
 /**
  * Class MainController
@@ -30,6 +27,7 @@ class MainController extends Controller
     public $headerClass;
     public $theme;
     public $tmpDir = 'uploads/temp';
+    public static $tempDir = 'uploads/temp';
     public $models;
 
     public function init()
@@ -310,6 +308,14 @@ class MainController extends Controller
                     ['label' => 'مدیریت کاربران', 'url' => ['/user/index'], 'visible' => $permissions || Yii::$app->user->can('userIndex')],
                     ['label' => 'افزودن کاربر', 'url' => ['/user/create'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
                     ['label' => 'مدیریت نقش های کاربری', 'url' => ['/role/index'], 'visible' => $permissions || Yii::$app->user->can('roleIndex')],
+                ]
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">پروژه ها</span>',
+                'items' => [
+                    ['label' => 'آپارتمان', 'url' => ['/apartment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                    ['label' => 'سرمایه گذاری', 'url' => ['/investment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                    ['label' => 'دیگر', 'url' => ['/other-construction/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
                 ]
             ],
             [

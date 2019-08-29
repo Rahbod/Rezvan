@@ -11,7 +11,7 @@ use Yii;
  * @property int $sort
  *
  */
-abstract class Block extends Item
+class Block extends Item
 {
     const TYPE_BANNER = 1;
     const TYPE_IMAGE = 2;
@@ -50,7 +50,7 @@ abstract class Block extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['modelID', 'default', 'value' => Yii::$app->controller->models[self::$modelName]],
+            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['itemID'], 'required'],
             [['itemID', 'sort'], 'integer'],
         ]);

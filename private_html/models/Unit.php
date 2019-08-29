@@ -51,7 +51,8 @@ class Unit extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['modelID', 'default', 'value' => Yii::$app->controller->models[self::$modelName]],
+            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null
+            ],
             [['itemID'], 'required'],
             [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort'], 'integer'],
             [['location', 'services'], 'string']

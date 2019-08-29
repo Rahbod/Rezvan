@@ -4,11 +4,11 @@ namespace app\models\projects;
 
 //use app\models\Project;
 use app\models\Project;
-use Yii;
 
 /**
  * This is the model class for table "item".
  *
+ * @property mixed|null image
  */
 class Apartment extends Project implements ProjectInterface
 {
@@ -21,7 +21,6 @@ class Apartment extends Project implements ProjectInterface
             // define fields that only for apartment
         ]);
     }
-
 
     /**
      * {@inheritdoc}
@@ -58,4 +57,6 @@ class Apartment extends Project implements ProjectInterface
     {
         // TODO: Implement renderView() method.
     }
+
+
 }
