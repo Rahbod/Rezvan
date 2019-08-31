@@ -78,7 +78,7 @@ class BlockController extends AuthController
     public function actionCreate()
     {
         $model = new Block();
-        if (app()->request->isAjax and app()->request->isPjax) {
+        if (app()->request->isAjax) {
             $type = app()->request->getBodyParam('type');
             $modelName = Block::$typeModels[$type];
             /** @var Block $model */

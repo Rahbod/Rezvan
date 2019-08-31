@@ -52,6 +52,7 @@ $this->registerJs('
         'enablePushState' => false,
         'enableReplaceState' => true,
         'timeout' => 0,
+        'formSelector' => false,
     ]) ?>
     <!--begin::Form-->
     <?= $this->render('_form', [

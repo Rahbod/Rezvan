@@ -11,6 +11,14 @@ if(Yii::$app->session->hasFlash($flashName)):
     $alert = Yii::$app->session->getFlash($flashName, null, true);
     $type = $alert['type'];
     $message = $alert['message'];
+
+    $this->registerJs('
+        setTimeout(function(){
+            $(\'.m-alert\').fadeOut(function(){
+                $(\'.m-alert\').remove();
+            });
+        }, 5000);
+    ');
 ?>
     <div class="m-alert m-alert--icon alert alert-<?= $type ?> m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert">
         <div class="m-alert__icon">

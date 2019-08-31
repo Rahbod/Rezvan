@@ -18,12 +18,20 @@ use app\components\customWidgets\CustomActiveForm;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-        <?= $form->field($model, 'type')->dropDownList(Block::getTypeLabels(), [
-            'id' => 'type-trigger',
-            'data-url' => app()->request->url,
-            'disabled' => !$model->isNewRecord,
-            'readonly' => !$model->isNewRecord,
-        ]); ?>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group m-form__group field-block-name">
+                    <?= Html::label($model->getAttributeLabel('type'),'type', ['class' => 'col-form-label control-label']) ?>
+                    <?= Html::dropDownList('type', $model->type, Block::getTypeLabels(), [
+                        'id' => 'type-trigger',
+                        'class' => 'form-control m-input m-input--solid',
+                        'data-url' => app()->request->url,
+                        'disabled' => !$model->isNewRecord,
+                        'readonly' => !$model->isNewRecord,
+                    ]); ?>
+                </div>
+            </div>
+        </div>
 
         <div class="row">
             <?= $model->formRenderer($form, '{field}', 'col-sm-4'); ?>
