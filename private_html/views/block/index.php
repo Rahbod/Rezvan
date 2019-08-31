@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air" data-pjax="false">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Block') ?></span>

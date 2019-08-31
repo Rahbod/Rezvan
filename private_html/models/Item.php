@@ -69,10 +69,11 @@ class Item extends MultiLangActiveRecord
     public function formAttributes()
     {
         return [
-            'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'name' => self::FORM_FIELD_TYPE_TEXT,
             'status' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items'=>self::getStatusFilter()],
+                'items' => self::getStatusFilter()
+            ],
         ];
     }
 

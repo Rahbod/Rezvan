@@ -34,6 +34,16 @@ class Block extends Item
         self::TYPE_RELATED_PROJECTS => 'Related projects block',
     ];
 
+    public static $typeModels = [
+        self::TYPE_BANNER => 'app\models\blocks\Banner',
+        self::TYPE_IMAGE => 'app\models\blocks\Image',
+        self::TYPE_VIDEO => 'app\models\blocks\Video',
+        self::TYPE_MAP_VIEW => 'app\models\blocks\Map',
+        self::TYPE_NEARBY_ACCESS => 'app\models\blocks\NearbyAccess',
+        self::TYPE_UNITS_BLOCK => 'app\models\blocks\Units',
+        self::TYPE_RELATED_PROJECTS => 'app\models\blocks\RelatedProjects',
+    ];
+
     public function init()
     {
         parent::init();
@@ -43,6 +53,13 @@ class Block extends Item
         ]);
     }
 
+
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+            self::FORM_SEPARATOR
+        ]);
+    }
 
     /**
      * {@inheritdoc}

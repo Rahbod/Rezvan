@@ -110,9 +110,8 @@ class Project extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
-            'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'subtitle' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT],
+            'subtitle' => self::FORM_FIELD_TYPE_TEXT,
+            'construction_time' => self::FORM_FIELD_TYPE_TEXT,
             'begin_date' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
 //                'options' => [
@@ -127,14 +126,11 @@ class Project extends Item
 //                    ]
 //                ]
             ],
-            'location' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'unit_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'free_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'sold_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'status' => [
-                'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items'=>self::getStatusFilter()],
+            'location' => self::FORM_FIELD_TYPE_TEXT,
+            'area_size' => self::FORM_FIELD_TYPE_TEXT,
+            'unit_count' => self::FORM_FIELD_TYPE_TEXT,
+            'free_count' => self::FORM_FIELD_TYPE_TEXT,
+            'sold_count' => self::FORM_FIELD_TYPE_TEXT,
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',

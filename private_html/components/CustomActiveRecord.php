@@ -170,6 +170,8 @@ abstract class CustomActiveRecord extends ActiveRecord
             $fields = $this->{$method}();
             $i = 1;
             foreach ($fields as $name => $field) {
+                if(!is_array($field))
+                    $field = ['type' => $field];
 
                 if (isset($field['visible'])) {
                     if ($field['visible'] instanceof \Closure)

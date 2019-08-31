@@ -98,6 +98,13 @@ class NearbyAccess extends Block implements BlockInterface
         ]);
     }
 
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+            'shrine_link' => self::FORM_FIELD_TYPE_TEXT
+        ]);
+    }
+
     public function render()
     {
         // TODO: Implement render() method.
