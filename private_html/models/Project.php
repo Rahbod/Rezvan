@@ -110,7 +110,6 @@ class Project extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
-            'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'subtitle' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'begin_date' => [
@@ -132,9 +131,6 @@ class Project extends Item
             'unit_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'free_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'sold_count' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'status' => [
-                'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items'=>self::getStatusFilter()],
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
