@@ -59,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         //'status',
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{view} {update} {delete} {block} {unit}',
+                            'template' => '{block} {unit} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
                                     return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 },
                                 'unit' => function ($url, $model, $key) {
-                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index?item-id=' . $model['id']],
+                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index?id=' . $model['itemID']],
                                         [
                                             'class' => '',
                                             'title' => "لیست واحدها",

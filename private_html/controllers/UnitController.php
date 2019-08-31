@@ -44,9 +44,11 @@ class UnitController extends AuthController
      * Lists all Unit models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
+        Yii::$app->session->set('itemID', $id);
         $searchModel = new UnitSearch();
+        $searchModel->itemID = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -76,6 +78,7 @@ class UnitController extends AuthController
     public function actionCreate()
     {
         $model = new Unit();
+        $model->itemID = Yii::$app->session->get('itemID');
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -87,7 +90,7 @@ class UnitController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index', 'id' => $model->itemID]);
             }else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -118,7 +121,7 @@ class UnitController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index', 'id' => $model->itemID]);
             }else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }

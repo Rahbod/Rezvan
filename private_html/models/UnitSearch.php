@@ -17,7 +17,7 @@ class UnitSearch extends Unit
     public function rules()
     {
         return [
-            [['id', 'userID', 'modelID', 'status'], 'integer'],
+            [['id', 'userID', 'modelID', 'status','itemID'], 'integer'],
             [['type'], 'number'],
             [['name', 'dyna', 'extra', 'created'], 'safe'],
         ];
@@ -64,12 +64,11 @@ class UnitSearch extends Unit
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
+            self::columnGetString('itemID') => $this->itemID
+
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra])
-            ->andFilterWhere(['like', 'created', $this->created]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }
