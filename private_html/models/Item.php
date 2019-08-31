@@ -70,7 +70,10 @@ class Item extends MultiLangActiveRecord
     {
         return [
             'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'status' => ['type' => self::FORM_FIELD_TYPE_SWITCH],
+            'status' => [
+                'type' => self::FORM_FIELD_TYPE_SELECT,
+                'items' => self::getStatusFilter()
+            ],
         ];
     }
 
