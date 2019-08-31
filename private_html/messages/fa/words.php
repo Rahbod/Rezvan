@@ -447,4 +447,7 @@ return [
     'Constructions' => 'پروژه ها',
     'Other Constructions' => 'پروژه ها',
     'Create Other Construction' => 'ایجاد پروژه',
+
+    'Blocks'=>'بلوک ها',
+    'Create Block'=>'ایجاد بلوک'
 ];
