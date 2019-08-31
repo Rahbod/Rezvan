@@ -9,7 +9,7 @@ use app\models\Unit;
 /**
  * SearchUnit represents the model behind the search form of `app\models\Unit`.
  */
-class SearchUnit extends Unit
+class UnitSearch extends Unit
 {
     /**
      * {@inheritdoc}

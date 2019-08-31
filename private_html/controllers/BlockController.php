@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Block;
-use app\models\SearchBlock;
+use app\models\BlockSearch;
 use app\components\AuthController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -17,8 +17,8 @@ use yii\widgets\ActiveForm;
 class BlockController extends AuthController
 {
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -44,9 +44,11 @@ class BlockController extends AuthController
      * Lists all Block models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($id)
     {
-        $searchModel = new SearchBlock();
+        Yii::$app->session->set('itemID', $id);
+        $searchModel = new BlockSearch();
+        $searchModel->itemID = $id;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -76,6 +78,7 @@ class BlockController extends AuthController
     public function actionCreate()
     {
         $model = new Block();
+        $model->itemID = Yii::$app->session->get('itemID');
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -83,12 +86,12 @@ class BlockController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else
+                return $this->redirect(['index', 'id' => $model->itemID]);
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
@@ -114,12 +117,12 @@ class BlockController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else
+                return $this->redirect(['index', 'id' => $model->itemID]);
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 

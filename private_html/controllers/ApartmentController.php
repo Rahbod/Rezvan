@@ -154,12 +154,8 @@ class ApartmentController extends AuthController
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-
         $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $image->removeAll(true);
-
-        $thumb = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
-        $thumb->removeAll(true);
         $model->delete();
 
         return $this->redirect(['index']);
