@@ -8,8 +8,8 @@ use yii\helpers\Html;
 $this->title = Yii::t('words', 'Update Block: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Blocks'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Blocks'), 'url' => ['index', 'id' => $model->itemID]];
+$this->params['breadcrumbs'][] = $model->name;
 $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
 ?>
 

@@ -16,6 +16,9 @@ use yii\widgets\ActiveForm;
  */
 class BlockController extends AuthController
 {
+    public static $imgDir = 'uploads/block';
+    public static $imageOptions = [];
+
     /**
      * for set admin theme
      */
@@ -78,7 +81,7 @@ class BlockController extends AuthController
     public function actionCreate()
     {
         $model = new Block();
-        if (app()->request->isAjax) {
+        if (app()->request->isAjax || app()->request->post()) {
             $type = app()->request->getBodyParam('type');
             $modelName = Block::$typeModels[$type];
             /** @var Block $model */
@@ -96,6 +99,7 @@ class BlockController extends AuthController
 
         if (app()->request->post() and !app()->request->isPjax) {
             $model->load(app()->request->post());
+
             if ($model->save()) {
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);

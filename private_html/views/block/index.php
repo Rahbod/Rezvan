@@ -1,8 +1,12 @@
 <?php
 
+use app\components\customWidgets\CustomActionColumn;
+use app\models\Block;
+use richardfan\sortable\SortableGridView;
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\BlockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air" data-pjax="false">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air"
+                           data-pjax="false">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Block') ?></span>
@@ -41,21 +47,37 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                <?= CustomGridView::widget([
+                <?= SortableGridView::widget([
+                    'sortUrl' => ['sort-item'],
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
+                        [
+                            'header' => '',
+                            'value' => function(){
+                                return '<i class="handle"></i>';
+                            },
+                            'format' => 'raw',
+                            'contentOptions' => ['class' => 'handle-container'],
+                            'headerOptions' => ['class' => 'handle-container'],
+                        ],
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
+                        'name',
+                        [
+                            'attribute' => 'type',
+                            'value' => function ($model) {
+                                /** @var $model Block */
+                                return $model->getTypeLabel();
+                            }
+                        ],
                         //'dyna',
                         //'extra:ntext',
                         //'created',
                         //'status',
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => CustomActionColumn::className(),
+                            'template' => '{update} {delete}'
+                        ]
                     ],
                 ]); ?>
             </div>
