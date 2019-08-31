@@ -55,7 +55,34 @@ $this->params['breadcrumbs'][] = $this->title;
                         //'extra:ntext',
                         //'created',
                         //'status',
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{block} {unit} {update} {delete}',
+                            'buttons' => [
+                                'block' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
+                                        [
+                                            'class' => '',
+                                            'title' => "لیست بلوک ها",
+                                            'aria-label' => "block",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                                'unit' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index?id=' . $model['itemID']],
+                                        [
+                                            'class' => '',
+                                            'title' => "لیست واحدها",
+                                            'aria-label' => "unit",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                            ]
+                        ]
                     ],
                 ]); ?>
             </div>

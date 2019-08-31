@@ -442,7 +442,12 @@ return [
     'Create Investment' => 'ایجاد پروژه',
     'Create Construction' => 'ایجاد پروژه',
 
-    'Apartments'=>'پروژه ها',
-    'Investments'=>'پروژه ها',
-    'Constructions'=>'پروژه ها',
+    'Apartments' => 'پروژه ها',
+    'Investments' => 'پروژه ها',
+    'Constructions' => 'پروژه ها',
+    'Other Constructions' => 'پروژه ها',
+    'Create Other Construction' => 'ایجاد پروژه',
+
+    'Blocks'=>'بلوک ها',
+    'Create Block'=>'ایجاد بلوک'
 ];

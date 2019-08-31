@@ -1,7 +1,8 @@
 <?php
 
-use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\projects\OtherConstruction */
@@ -14,17 +15,20 @@ use app\components\customWidgets\CustomActiveForm;
     'enableClientValidation' => true,
     'validateOnSubmit' => true,
 ]); ?>
-    <div class="m-portlet__body">
-        <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+<div class="m-portlet__body">
+    <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-        <?= $model->formRenderer($form, '{field}', 'formAttributes'); ?>
+    <div class="row">
+        <?= $model->formRenderer($form, '{field}', 'col-lg-4'); ?>
+    </div>
+</div>
+<div class="m-portlet__foot m-portlet__foot--fit">
+    <div class="m-form__actions">
+        <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+        <a href="<?= Url::to(['index']) ?>" data-pjax="false" class="btn btn-danger">
+            <?php echo Yii::t('words', 'Cancel') ?></a>
+        <button type="reset" class="btn btn-secondary"><?php echo Yii::t('words', 'Reset') ?></button>
 
     </div>
-    <div class="m-portlet__foot m-portlet__foot--fit">
-        <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?php echo Yii::t('words', 'Cancel') ?></button>
-
-        </div>
-    </div>
+</div>
 <?php CustomActiveForm::end(); ?>
