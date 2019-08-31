@@ -293,7 +293,7 @@ class MainController extends Controller
                 'items' => [
                     ['label' => 'آپارتمان', 'url' => ['/apartment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
                     ['label' => 'سرمایه گذاری', 'url' => ['/investment/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
-                    ['label' => 'دیگر', 'url' => ['/other-construction/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
+                    ['label' => 'دیگر', 'url' => ['/construction/index'], 'visible' => $permissions || Yii::$app->user->can('userCreate')],
                 ]
             ],
 
