@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use function app\components\dd;
 use app\components\Helper;
 use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;

@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use function app\components\dd;
 use app\models\Department;
 use app\models\DepartmentSearch;
 use Yii;

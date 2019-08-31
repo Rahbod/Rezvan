@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Block;
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 
@@ -16,6 +17,8 @@ use app\components\customWidgets\CustomActiveForm;
 ]); ?>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+
+        <?= $form->field($model, 'type')->dropDownList(Block::getTypeLabels());?>
 
         <?= $model->formRenderer($form, '{field}', 'formAttributes'); ?>
 

@@ -5,7 +5,6 @@ namespace app\controllers;
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
 use app\models\projects\Apartment;
-use function app\components\dd;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\models\Message;

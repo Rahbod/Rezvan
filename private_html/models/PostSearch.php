@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use function app\components\dd;
 use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

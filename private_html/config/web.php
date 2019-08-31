@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\Html;
 use \yii\web\Request;
 
 Yii::setAlias('@webapp', rtrim(str_replace("public_html", "", (new Request)->getBaseUrl()),'/'));
@@ -9,6 +10,7 @@ $baseUrl = (new Request)->getBaseUrl();
 $params = require_once __DIR__ . '/params.php';
 $db = require_once __DIR__ . '/db.php';
 require_once(__DIR__ . '/../components/Setting.php');
+require_once(__DIR__ . '/../helper.php');
 use app\components\Setting;
 
 $config = [
@@ -162,5 +164,7 @@ if (YII_ENV_DEV) {
         ],
     ];
 }
+
+
 
 return $config;

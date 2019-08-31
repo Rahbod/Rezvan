@@ -2,7 +2,6 @@
 
 namespace app\models;
 
-use function app\components\dd;
 use app\components\MultiLangActiveQuery;
 use creocoder\nestedsets\NestedSetsQueryBehavior;
 use app\components\DynamicActiveQuery;
