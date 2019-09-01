@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Unit */
 
-$this->title = Yii::t('words', 'Update Unit: {name}', [
+$this->title = Yii::t('words', 'Update unit: {name}', [
     'name' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Units'), 'url' => ['index', 'id' => $model->itemID]];

@@ -44,6 +44,14 @@ class Map extends Block implements BlockInterface
         ]);
     }
 
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+           'location_link'=>self::FORM_FIELD_TYPE_TEXT
+        ]);
+    }
+
+
     public function render()
     {
         // TODO: Implement render() method.

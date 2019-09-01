@@ -82,10 +82,10 @@ class Unit extends Item
             'floor_number' => Yii::t('words', 'Floor number'),
             'area_size' => Yii::t('words', 'Area size'),
             'location' => Yii::t('words', 'Location'),
-            'services' => Yii::t('words', 'Services'),
-            'air_conditioner' => Yii::t('words', 'Air Conditioner'),
+//            'services' => Yii::t('words', 'Services'),
+            'air_conditioner' => Yii::t('words', 'Air conditioner'),
             'wc' => Yii::t('words', 'WC'),
-            'bath_room' => Yii::t('words', 'Bath Room'),
+            'bath_room' => Yii::t('words', 'Bath room'),
             'Parking' => Yii::t('words', 'Parking'),
             'radiator' => Yii::t('words', 'Radiator'),
             'sold' => Yii::t('words', 'Sold'),
@@ -127,7 +127,10 @@ class Unit extends Item
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getStatusFilter()
             ],
-            'project_blocks' => self::FORM_FIELD_TYPE_SWITCH,
+//            'project_blocks' => [
+//                'type' => self::FORM_FIELD_TYPE_SELECT,
+//                'items' => self::getStatusFilter()
+//            ],
             [['name', 'sold', 'radiator', 'parking', 'bath_room',
                 'wc', 'air_conditioner', 'floor_number', 'unit_number',
                 'area_size', 'location'], self::FORM_FIELD_TYPE_TEXT],

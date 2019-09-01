@@ -66,7 +66,7 @@ class NearbyAccess extends Block implements BlockInterface
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
-            [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link', 'airport_link', 'gas_link','restaurant_link'], 'string'],
+            [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link', 'airport_link', 'gas_link', 'restaurant_link'], 'string'],
             [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance', 'airport_distance', 'gas_distance', 'restaurant_distance'], 'integer']
         ]);
     }
@@ -100,10 +100,15 @@ class NearbyAccess extends Block implements BlockInterface
 
     public function formAttributes()
     {
-        return array_merge(parent::formAttributes(),[
-            'shrine_link' => self::FORM_FIELD_TYPE_TEXT
+        return array_merge(parent::formAttributes(), [
+            [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link',
+                'airport_link', 'gas_link', 'bank_link', 'restaurant_link'], self::FORM_FIELD_TYPE_TEXT],
+            [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance',
+                'airport_distance', 'gas_distance', 'bank_distance', 'restaurant_distance'], self::FORM_FIELD_TYPE_TEXT],
+
         ]);
     }
+
 
     public function render()
     {

@@ -4,7 +4,6 @@ namespace app\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Unit;
 
 /**
  * SearchUnit represents the model behind the search form of `app\models\Unit`.
@@ -18,9 +17,9 @@ class UnitSearch extends Unit
     public function rules()
     {
         return [
-            [['id', 'userID', 'modelID', 'status','itemID'], 'integer'],
-            [['type','sold','area_size'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['id', 'status'], 'integer'],
+            [['type', 'sold', 'area_size'], 'number'],
+            [['name', 'dyna', 'extra', 'created', 'project_blocks'], 'safe'],
         ];
     }
 

@@ -438,23 +438,30 @@ return [
     'Bank distance' => 'فاصله تا بانک',
     'Restaurant distance' => 'فاصله تا رستوران',
 
-    'Create Apartment' => 'ایجاد پروژه',
-    'Create Investment' => 'ایجاد پروژه',
-    'Create Construction' => 'ایجاد پروژه',
-    'Create Other Construction' => 'ایجاد پروژه',
-    'Create Unit' => 'ایجاد پروژه',
-    'Create Block' => 'ایجاد بلوک',
+    'Create apartment' => 'ایجاد پروژه',
+    'Create investment' => 'ایجاد پروژه',
+    'Create construction' => 'ایجاد پروژه',
+    'Create other construction' => 'ایجاد پروژه',
+    'Create unit' => 'ایجاد پروژه',
+    'Create block' => 'ایجاد بلوک',
 
 
     'Apartments' => 'پروژه ها',
     'Investments' => 'پروژه ها',
     'Constructions' => 'پروژه ها',
-    'Other Constructions' => 'پروژه ها',
 
+    'Blocks' => 'بلوک ها',
 
-    'Blocks'=>'بلوک ها',
-    'Use project blocks'=>'استفاده از بلاک های پیشفرض پروژه',
-    'Units'=>'واحدها',
-    'Update Unit: {name}'=>'ویرایش واحد: {name}',
+    //    unit : create
+    'Use project blocks' => 'استفاده از بلاک های پیشفرض پروژه',
+    'Units' => 'واحدها',
+    'Update unit: {name}' => 'ویرایش واحد: {name}',
     'Sold' => 'فروخته شده',
+    'Radiator' => 'رادیاتور',
+    'Parking' => 'پارکینگ',
+    'Bath room' => 'حمام',
+    'WC' => 'سرویس بهداشتی',
+    'Air conditioner' => 'خنک کننده هوا',
+
+
 ];
