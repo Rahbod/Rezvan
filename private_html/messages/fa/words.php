@@ -452,7 +452,9 @@ return [
     'Other Constructions' => 'پروژه ها',
 
 
-    'Blocks' => 'بلوک ها',
+    'Blocks'=>'بلوک ها',
+    'Use project blocks'=>'استفاده از بلاک های پیشفرض پروژه',
+    'Units'=>'واحدها',
+    'Update Unit: {name}'=>'ویرایش واحد: {name}',
     'Sold' => 'فروخته شده',
-    'Units' => 'واحدها',
 ];

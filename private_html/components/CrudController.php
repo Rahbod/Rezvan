@@ -1,29 +1,32 @@
 <?php
 
-namespace app\controllers;
+
+namespace app\components;
 
 use Yii;
-use app\models\Block;
-use app\models\BlockSearch;
-use app\components\AuthController;
-use yii\web\NotFoundHttpException;
+use DeepCopy\Exception\PropertyException;
+use devgroup\dropzone\UploadedFiles;
+use yii\db\ActiveRecord;
 use yii\filters\VerbFilter;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * BlockController implements the CRUD actions for Block model.
+ * Trait CrudController
+ * @package app\components
+ *
+ * @property $modelName static
  */
-class BlockController extends AuthController
+trait CrudController
 {
-    public static $imgDir = 'uploads/block';
-    public static $imageOptions = [];
-
     /**
      * for set admin theme
      */
     public function init()
     {
+        if (!isset(static::$modelName))
+            throw new PropertyException("Undefined modelName property in " . self::className() . " class.", 500);
         $this->setTheme('default');
         parent::init();
     }
@@ -44,14 +47,14 @@ class BlockController extends AuthController
     }
 
     /**
-     * Lists all Block models.
+     * Lists all Slide models.
      * @return mixed
      */
-    public function actionIndex($id)
+    public function actionIndex()
     {
-        app()->session->set('itemID', $id);
-        $searchModel = new BlockSearch();
-        $searchModel->itemID = $id;
+        $searchModelName = self::$modelName . "Search";
+        $searchModel = new $searchModelName();
+
         $dataProvider = $searchModel->search(app()->request->queryParams);
 
         return $this->render('index', [
@@ -61,7 +64,7 @@ class BlockController extends AuthController
     }
 
     /**
-     * Displays a single Block model.
+     * Displays a single Slide model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -74,22 +77,14 @@ class BlockController extends AuthController
     }
 
     /**
-     * Creates a new Block model.
+     * Creates a new Slide model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Block();
-        if (app()->request->isAjax || app()->request->post()) {
-            $type = app()->request->getBodyParam('type');
-            $modelName = Block::$typeModels[$type];
-            /** @var Block $model */
-            $model = new $modelName();
-            $model->type = $type;
-        }
-
-        $model->itemID = app()->session->get('itemID');
+        /** @var DynamicActiveRecord $model */
+        $model = new self::$modelName();
 
         if (app()->request->isAjax and !app()->request->isPjax) {
             $model->load(app()->request->post());
@@ -97,12 +92,13 @@ class BlockController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (app()->request->post() and !app()->request->isPjax) {
+        if (app()->request->post()) {
             $model->load(app()->request->post());
-
+            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             if ($model->save()) {
+                $image->move($this->imageDir);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['index', 'id' => $model->itemID]);
+                return $this->redirect(['view', 'id' => $model->id]);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -112,8 +108,9 @@ class BlockController extends AuthController
         ]);
     }
 
+
     /**
-     * Updates an existing Block model.
+     * Updates an existing Slide model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -129,50 +126,52 @@ class BlockController extends AuthController
             return ActiveForm::validate($model);
         }
 
+        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+
         if (app()->request->post()) {
+            $oldImage = $model->image;
             $model->load(app()->request->post());
             if ($model->save()) {
+                $image->update($oldImage, $model->image, $this->tmpDir);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['index', 'id' => $model->itemID]);
+                return $this->redirect(['view', 'id' => $model->id]);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
             'model' => $model,
+            'image' => $image,
         ]);
     }
 
     /**
-     * Deletes an existing Block model.
+     * Deletes an existing Slide model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
-     * @return mixed
+     * @return ActiveRecord
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        /** @var ActiveRecord $model */
+        $model = $this->findModel($id);
+        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+        $image->removeAll(true);
+        $model->delete();
 
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Block model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Block the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
     protected function findModel($id)
     {
-        if (($model = Block::findOne($id)) !== null) {
-            $modelName = Block::$typeModels[$model->type];
-            /** @var Block $modelName */
-            $model = $modelName::findOne($id);
+        $modelClass = self::$modelName;
+        if (($model = $modelClass::findOne($id)) !== null) {
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(\Yii::t('words', 'The requested page does not exist.'));
     }
 }

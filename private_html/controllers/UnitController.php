@@ -46,10 +46,10 @@ class UnitController extends AuthController
      */
     public function actionIndex($id)
     {
-        Yii::$app->session->set('itemID', $id);
+        app()->session->set('itemID', $id);
         $searchModel = new UnitSearch();
         $searchModel->itemID = $id;
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(app()->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -78,21 +78,21 @@ class UnitController extends AuthController
     public function actionCreate()
     {
         $model = new Unit();
-        $model->itemID = Yii::$app->session->get('itemID');
+        $model->itemID = app()->session->get('itemID');
 
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
+        if (app()->request->isAjax and !app()->request->isPjax) {
+            $model->load(app()->request->post());
+            app()->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
-            $model->load(Yii::$app->request->post());
+        if (app()->request->post()){
+            $model->load(app()->request->post());
             if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -111,19 +111,19 @@ class UnitController extends AuthController
     {
         $model = $this->findModel($id);
 
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
+        if (app()->request->isAjax and !app()->request->isPjax) {
+            $model->load(app()->request->post());
+            app()->response->format = Response::FORMAT_JSON;
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
-            $model->load(Yii::$app->request->post());
+        if (app()->request->post()){
+            $model->load(app()->request->post());
             if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [

@@ -35,6 +35,31 @@ class ApartmentController extends AuthController
         parent::init();
     }
 
+
+
+    public function actions()
+    {
+        return [
+            'upload-image' => [
+                'class' => UploadAction::className(),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'modelName' => 'Apartment',
+                'model' => new Apartment(),
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-image' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$imgDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Apartment(),
+                'attribute' => 'image',
+                'options' => static::$imageOptions
+            ],
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -176,28 +201,4 @@ class ApartmentController extends AuthController
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
-
-    public function actions()
-    {
-        return [
-            'upload-image' => [
-                'class' => UploadAction::className(),
-                'rename' => UploadAction::RENAME_UNIQUE,
-                'modelName' => 'Apartment',
-                'model' => new Apartment(),
-                'validateOptions' => array(
-                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
-                )
-            ],
-            'delete-image' => [
-                'class' => RemoveAction::className(),
-                'upload' => self::$imgDir,
-                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new Apartment(),
-                'attribute' => 'image',
-                'options' => static::$imageOptions
-            ],
-        ];
-    }
-
 }

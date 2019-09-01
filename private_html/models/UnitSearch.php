@@ -8,6 +8,7 @@ use app\models\Unit;
 
 /**
  * SearchUnit represents the model behind the search form of `app\models\Unit`.
+ * @property mixed|null project_blocks
  */
 class UnitSearch extends Unit
 {
@@ -67,6 +68,8 @@ class UnitSearch extends Unit
             self::columnGetString('itemID') => $this->itemID,
             self::columnGetString('sold') => $this->itemID,
             self::columnGetString('area_size') => $this->itemID,
+            self::columnGetString('project_blocks') => $this->project_blocks, // dynamic field
+
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

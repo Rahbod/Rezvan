@@ -42,7 +42,7 @@ class Slide extends Item
         return array_merge(parent::rules(), [
             [['image'], 'required'],
             [['link'], 'string'],
-            [['en_name','ar_name'], 'string'],
+            [['en_name', 'ar_name'], 'string'],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -52,7 +52,7 @@ class Slide extends Item
      */
     public function attributeLabels()
     {
-        return array_merge(parent::attributeLabels(),[
+        return array_merge(parent::attributeLabels(), [
             'en_name' => Yii::t('words', 'En Name'),
             'ar_name' => Yii::t('words', 'Ar Name'),
             'link' => Yii::t('words', 'Link'),
@@ -67,5 +67,12 @@ class Slide extends Item
     public static function find()
     {
         return new ItemQuery(get_called_class());
+    }
+
+    public function formAttributes()
+    {
+        return [
+
+        ];
     }
 }

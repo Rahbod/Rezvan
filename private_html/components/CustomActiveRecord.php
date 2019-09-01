@@ -138,7 +138,7 @@ abstract class CustomActiveRecord extends ActiveRecord
      * example: [
      *      'attribute name' => [
      *          'type' => self::FORM_FIELD_TYPE_TEXT,
-     *          'label' => false, 
+     *          'label' => false,
      *          'options' => [
      *              'placeholder' => $this->getAttributeLabel('name')
      *          ]
@@ -169,54 +169,18 @@ abstract class CustomActiveRecord extends ActiveRecord
         if (method_exists($this, $method)) {
             $fields = $this->{$method}();
             $i = 1;
+
             foreach ($fields as $name => $field) {
-                if(!is_array($field))
-                    $field = ['type' => $field];
-
-                if (isset($field['visible'])) {
-                    if ($field['visible'] instanceof \Closure)
-                        $visible = $field['visible']($this);
+                if (is_int($name)) {
+                    $names = $field[0];
+                    $field = $field[1];
+                    if (is_array($names))
+                        foreach ($names as $name)
+                            $output .= $this->fieldRenderer($form, $template, $name, $field, $allContainerCssClass, $i);
                     else
-                        $visible = $field['visible'];
-
-                    if (!$visible)
-                        continue;
-                }
-
-                $labelEx = true;
-                $label = '';
-                if ($field['type'] !== static::FORM_SEPARATOR && isset($field['label'])) {
-                    if ($field['label'] instanceof \Closure)
-                        $label = $field['label']($this);
-                    else
-                        $label = $field['label'];
-
-                    $labelEx = $label === true;
-
-                    unset($field['label']);
-                }
-
-                $containerOptions = isset($field['containerOptions']) ? $field['containerOptions'] : [];
-                unset($field['containerOptions']);
-                $containerCssClass = isset($field['containerCssClass']) ? $field['containerCssClass'] : '';
-                unset($field['containerCssClass']);
-
-                $field['attribute'] = $name;
-                static::$tabindex = $i;
-                $field['tabindex'] = isset($field['tabindex']) ? $field['tabindex'] : $i;
-                $obj = $this->fieldRenderer($form, $field);
-                if (!$labelEx) {
-                    if (strpos($template, '{label}') === false)
-                        $obj->label($label);
-                    else {
-                        $output .= strtr($template, ['{label}' => $label]);
-                        $obj->label(false);
-                    }
-                }
-
-                Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
-                $fieldHtml = Html::tag('div', $obj, $containerOptions);
-                $output .= strtr($template, ['{field}' => $fieldHtml]);
+                        $output .= $this->fieldRenderer($form, $template, $names, $field, $allContainerCssClass, $i);
+                } else
+                    $output .= $this->fieldRenderer($form, $template, $name, $field, $allContainerCssClass, $i);
                 $i++;
             }
         }
@@ -226,6 +190,8 @@ abstract class CustomActiveRecord extends ActiveRecord
 
     /**
      * @param $form ActiveForm
+     * @param $template
+     * @param $name
      * @param $field array
      * sample: [
      *      'model' => $model, // optional, if not set be $this
@@ -233,10 +199,47 @@ abstract class CustomActiveRecord extends ActiveRecord
      *      'type' => static::FORM_FIELD_TYPE_...,
      *      'options' => [...], // field htmlOptions
      * ]
+     * @param $allContainerCssClass
+     * @param $index
      * @return \yii\widgets\ActiveField|string
      */
-    public function fieldRenderer($form, $field)
+    public function fieldRenderer($form, $template, $name, $field, $allContainerCssClass, $index)
     {
+        if (!is_array($field))
+            $field = ['type' => $field];
+
+        if (isset($field['visible'])) {
+            if ($field['visible'] instanceof \Closure)
+                $visible = $field['visible']($this);
+            else
+                $visible = $field['visible'];
+
+            if (!$visible)
+                return null;
+        }
+
+        $labelEx = true;
+        $label = '';
+        if ($field['type'] !== static::FORM_SEPARATOR && isset($field['label'])) {
+            if ($field['label'] instanceof \Closure)
+                $label = $field['label']($this);
+            else
+                $label = $field['label'];
+
+            $labelEx = $label === true;
+
+            unset($field['label']);
+        }
+
+        $containerOptions = isset($field['containerOptions']) ? $field['containerOptions'] : [];
+        unset($field['containerOptions']);
+        $containerCssClass = isset($field['containerCssClass']) ? $field['containerCssClass'] : '';
+        unset($field['containerCssClass']);
+
+        $field['attribute'] = $name;
+        static::$tabindex = $index;
+        $field['tabindex'] = isset($field['tabindex']) ? $field['tabindex'] : $index;
+
         $model = isset($field['model']) ? $field['model'] : $this;
         $options = isset($field['options']) ? $field['options'] : [];
         $fieldOptions = isset($field['fieldOptions']) ? $field['fieldOptions'] : [];
@@ -249,43 +252,71 @@ abstract class CustomActiveRecord extends ActiveRecord
         switch ($type) {
             case static::FORM_SEPARATOR:
                 Html::addCssClass($options, 'm-form__heading');
-                return Html::tag('hr') .
-                    (isset($field['label'])?Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options):'');
+                $obj = Html::tag('hr') .
+                    (isset($field['label']) ? Html::tag('div', Html::tag('h3', $field['label'], ['class' => 'm-form__heading-title']), $options) : '');
+                break;
             case static::FORM_FIELD_TYPE_DROP_ZONE:
                 unset($options['tabindex']);
-                $options['storedFiles'] = new UploadedFiles($model->isNewRecord?$field['temp']:$field['path'], $model->$attribute, $field['filesOptions']);
-                return $form->field($model, $attribute)->widget(DropZone::className(), $options);
+                $options['storedFiles'] = new UploadedFiles($model->isNewRecord ? $field['temp'] : $field['path'], $model->$attribute, $field['filesOptions']);
+                $obj = $form->field($model, $attribute)->widget(DropZone::className(), $options);
+                break;
             case static::FORM_FIELD_TYPE_CHECKBOX:
-                return $form->field($model, $attribute)->checkbox($options);
+                $obj = $form->field($model, $attribute)->checkbox($options);
+                break;
             case static::FORM_FIELD_TYPE_RADIO:
-                return $form->field($model, $attribute)->radio($options);
+                $obj = $form->field($model, $attribute)->radio($options);
+                break;
             case static::FORM_FIELD_TYPE_CHECKBOX_LIST:
-                return $form->field($model, $attribute)->checkboxList($items, $options);
+                $obj = $form->field($model, $attribute)->checkboxList($items, $options);
+                break;
             case static::FORM_FIELD_TYPE_RADIO_LIST:
-                return $form->field($model, $attribute)->radioList($items, $options);
+                $obj = $form->field($model, $attribute)->radioList($items, $options);
+                break;
             case static::FORM_FIELD_TYPE_SELECT:
-                return $form->field($model, $attribute)->dropDownList($items, $options);
+                $obj = $form->field($model, $attribute)->dropDownList($items, $options);
+                break;
             case static::FORM_FIELD_TYPE_SWITCH:
                 if (!isset($fieldOptions['template']))
                     $fieldOptions['template'] = '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}';
-                return $form->field($model, $attribute, $fieldOptions)->checkbox([], false);
+                $obj = $form->field($model, $attribute, $fieldOptions)->checkbox([], false);
+                break;
             case static::FORM_FIELD_TYPE_TEXT_EDITOR:
-                return $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
+                $obj = $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
+                break;
             case static::FORM_FIELD_TYPE_TEXT_AREA:
-                return $form->field($model, $attribute, $fieldOptions)->textarea($options);
+                $obj = $form->field($model, $attribute, $fieldOptions)->textarea($options);
+                break;
             case static::FORM_FIELD_TYPE_PASSWORD:
-                return $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
+                $obj = $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
+                break;
             case static::FORM_FIELD_TYPE_DATE:
                 $options['htmlOptions']['tabindex'] = $options['tabindex'];
                 unset($options['tabindex']);
-                return $form->field($model, $attribute)->widget(jalaliDatePicker::className(), $options);
+                $obj = $form->field($model, $attribute)->widget(jalaliDatePicker::className(), $options);
+                break;
             case static::FORM_FIELD_TYPE_TAG:
             case static::FORM_FIELD_TYPE_TIME:
             case static::FORM_FIELD_TYPE_DATETIME:
             case static::FORM_FIELD_TYPE_TEXT:
             default:
-                return $form->field($model, $attribute, $fieldOptions)->textInput($options);
+                $obj = $form->field($model, $attribute, $fieldOptions)->textInput($options);
+                break;
         }
+
+        $output = '';
+        if (!$labelEx) {
+            if (strpos($template, '{label}') === false)
+                $obj->label($label);
+            else {
+                $obj->label(false);
+                $output .= strtr($template, ['{label}' => $label]);
+            }
+        }
+
+        Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
+        $fieldHtml = Html::tag('div', $obj, $containerOptions);
+        $output .= strtr($template, ['{field}' => $fieldHtml]);
+        return $output;
     }
 
     public static function encodeUrl($url)
