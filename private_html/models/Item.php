@@ -68,13 +68,28 @@ class Item extends MultiLangActiveRecord
 
     public function formAttributes()
     {
-        return [
-            'name' => self::FORM_FIELD_TYPE_TEXT,
-            'status' => [
-                'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items' => self::getStatusFilter()
-            ],
-        ];
+        // add name and status fields for defined languages
+        if (!static::$multiLanguage) {
+            $langs = static::$langArray;
+            unset($langs['fa']);
+            $langs = array_keys($langs);
+            $names = ['name'];
+            $statuses = ['status'];
+            foreach ($langs as $lang) {
+                $names[] = "{$lang}_name";
+                $statuses[] = "{$lang}_status";
+            }
+            $fields = [
+                [$names, static::FORM_FIELD_TYPE_TEXT],
+                [$statuses, static::FORM_FIELD_TYPE_SWITCH]
+            ];
+        } else
+            $fields = [
+                'name' => static::FORM_FIELD_TYPE_TEXT,
+                'status' => static::FORM_FIELD_TYPE_SWITCH,
+            ];
+
+        return $fields;
     }
 
     /**

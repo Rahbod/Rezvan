@@ -3,30 +3,28 @@
 namespace app\controllers;
 
 use Yii;
-use app\components\CrudController;
+use app\components\CrudControllerTrait;
 use app\components\Setting;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
-use devgroup\dropzone\UploadedFiles;
 use app\models\Slide;
-use app\models\SlideSearch;
 use app\components\AuthController;
 use yii\helpers\Html;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 
 /**
  * SlideController implements the CRUD actions for Slide model.
  */
 class SlideController extends AuthController
 {
-    use CrudController; // add crud functions [index, create, update, delete]
+    use CrudControllerTrait; // add crud functions [index, create, update, delete]
 
+    // crud controller trait properties
     public static $modelName = 'app\models\Slide';
+    public static $routeAfterSave = 'index';
+    // end
 
-    public $imageDir = 'uploads/slide';
-    private $imageOptions = [];
+    public static $imgDir = 'uploads/slide';
+    public static $imageOptions = [];
 
     public function getSystemActions()
     {
@@ -36,11 +34,12 @@ class SlideController extends AuthController
         ];
     }
 
-    public function uploaderAttributes(){
+    public function uploaderAttributes()
+    {
         return [
             'image' => [
-                'dir' => $this->imageDir,
-                'options' => $this->imageOptions,
+                'dir' => static::$imgDir,
+                'options' => static::$imageOptions,
             ]
         ];
     }
@@ -61,7 +60,7 @@ class SlideController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new Slide(),
                 'attribute' => 'image',
-                'upload' => $this->imageDir
+                'upload' => static::$imgDir
             ]
         ];
     }

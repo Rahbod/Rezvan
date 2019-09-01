@@ -5,7 +5,8 @@ use yii\helpers\Html;
 /**
  * @return \yii\console\Application|\yii\web\Application
  */
-function app(){
+function app()
+{
     return Yii::$app;
 }
 
@@ -22,4 +23,13 @@ function dd($vars)
     }
     echo Html::endTag('pre');
     exit();
+}
+
+/**
+ * @param $url
+ * @return string
+ */
+function encodeUrl($url)
+{
+    return str_replace(array(' ', '/', '\\'), '-', $url);
 }

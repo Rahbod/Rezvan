@@ -24,42 +24,6 @@ use yii\helpers\Url;
             <?= $model->formRenderer($form, '{field}', 'col-lg-4'); ?>
         </div>
 
-        <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
-            'url' => Url::to(['upload-image']),
-            'removeUrl' => Url::to(['delete-image']),
-            'storedFiles' => isset($image) ? $image : [],
-            'sortable' => false, // sortable flag
-            'sortableOptions' => [], // sortable options
-            'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'image')],
-            'options' => [
-                'createImageThumbnails' => true,
-                'addRemoveLinks' => true,
-                'dictRemoveFile' => 'حذف',
-                'addViewLinks' => true,
-                'dictViewFile' => '',
-                'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
-                'acceptedFiles' => 'png, jpeg, jpg',
-                'maxFiles' => 1,
-                'maxFileSize' => 0.5,
-            ],
-        ]) ?>
-
-        <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
-
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'en_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'ar_status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-        </div>
-
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
