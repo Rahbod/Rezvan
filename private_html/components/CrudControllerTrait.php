@@ -18,7 +18,7 @@ use yii\widgets\ActiveForm;
  *
  * @property $modelName static
  */
-trait CrudController
+trait CrudControllerTrait
 {
     /**
      * for set admin theme
@@ -94,11 +94,13 @@ trait CrudController
 
         if (app()->request->post()) {
             $model->load(app()->request->post());
-            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
             if ($model->save()) {
-                $image->move($this->imageDir);
+                $this->saveUploaderAttributes($model);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                $route = isset(static::$routeAfterSave) ? static::$routeAfterSave : ['index'];
+                if ($route instanceof \Closure)
+                    $route = call_user_func($route, $model);
+                return $this->redirect($route);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -107,7 +109,6 @@ trait CrudController
             'model' => $model,
         ]);
     }
-
 
     /**
      * Updates an existing Slide model.
@@ -126,22 +127,22 @@ trait CrudController
             return ActiveForm::validate($model);
         }
 
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-
         if (app()->request->post()) {
-            $oldImage = $model->image;
+            $oldUploaderValues = $this->getOldUploaderValues($model);
             $model->load(app()->request->post());
             if ($model->save()) {
-                $image->update($oldImage, $model->image, $this->tmpDir);
+                $this->editUploaderAttributes($model,$oldUploaderValues);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                $route = isset(static::$routeAfterSave) ? static::$routeAfterSave : ['index'];
+                if ($route instanceof \Closure)
+                    $route = call_user_func($route, $model);
+                return $this->redirect($route);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
-            'model' => $model,
-            'image' => $image,
+            'model' => $model
         ]);
     }
 
@@ -158,8 +159,7 @@ trait CrudController
     {
         /** @var ActiveRecord $model */
         $model = $this->findModel($id);
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-        $image->removeAll(true);
+        $this->deleteUploaderAttributes($model);
         $model->delete();
 
         return $this->redirect(['index']);
@@ -174,4 +174,62 @@ trait CrudController
 
         throw new NotFoundHttpException(\Yii::t('words', 'The requested page does not exist.'));
     }
+
+    /******************************************** DropZone Field types functions **************************************/
+
+    /**
+     * @param $model ActiveRecord
+     */
+    public function saveUploaderAttributes($model)
+    {
+        if (!method_exists($this, 'uploaderAttributes'))
+            return;
+        $fields = $this->uploaderAttributes();
+        foreach ($fields as $attribute => $options)
+            (new UploadedFiles(MainController::$tempDir, $model->$attribute, $options['options']))->move($options['dir']);
+    }
+
+    /**
+     * @param $model ActiveRecord
+     * @return array
+     */
+    public function getOldUploaderValues($model)
+    {
+        if (!method_exists($this, 'uploaderAttributes'))
+            return [];
+        $fields = $this->uploaderAttributes();
+        $values = [];
+        foreach ($fields as $attribute => $options)
+            $values[$attribute] = $model->$attribute;
+        return $values;
+    }
+
+    /**
+     * @param $model ActiveRecord
+     * @param $oldValues
+     */
+    public function editUploaderAttributes($model, $oldValues)
+    {
+        if (!method_exists($this, 'uploaderAttributes'))
+            return;
+        $fields = $this->uploaderAttributes();
+        foreach ($fields as $attribute => $options)
+            (new UploadedFiles($options['dir'], $model->$attribute, $options['options']))
+                ->update($oldValues[$attribute], $model->$attribute, MainController::$tempDir);
+    }
+
+    /**
+     * @param $model ActiveRecord
+     */
+    public function deleteUploaderAttributes($model)
+    {
+        if (!method_exists($this, 'uploaderAttributes'))
+            return;
+        $fields = $this->uploaderAttributes();
+        foreach ($fields as $attribute => $options)
+            (new UploadedFiles($options['dir'], $model->$attribute, $options['options']))
+                ->removeAll(true);
+    }
+
+    /********************************************** End DropZone Field types ******************************************/
 }

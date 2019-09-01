@@ -2,7 +2,12 @@
 
 namespace app\models;
 
+use app\components\MainController;
+use app\controllers\ApartmentController;
+use app\controllers\SlideController;
 use Yii;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "item".
@@ -71,8 +76,32 @@ class Slide extends Item
 
     public function formAttributes()
     {
-        return [
-
-        ];
+        return array_merge(parent::formAttributes(), [
+            'image' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-12',
+                'temp' => MainController::$tempDir,
+                'path' => SlideController::$imgDir,
+                'filesOptions' => SlideController::$imageOptions,
+                'options' => [
+                    'url' => Url::to(['upload-image']),
+                    'removeUrl' => Url::to(['delete-image']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'image')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
+        ]);
     }
 }

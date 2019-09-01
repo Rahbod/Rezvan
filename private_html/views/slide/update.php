@@ -30,8 +30,7 @@ $this->params['breadcrumbs'][] = Yii::t('words', 'Update');
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [
-    'model' => $model,
-    'image' => $image,
+        'model' => $model
     ]) ?>
     <!--end::Form-->
 </div>
