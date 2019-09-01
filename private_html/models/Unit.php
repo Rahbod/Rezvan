@@ -35,9 +35,15 @@ class Unit extends Item
             'itemID' => ['INTEGER', ''],
             'unit_number' => ['INTEGER', ''],
             'floor_number' => ['INTEGER', ''],
+            'air_conditioner' => ['INTEGER', ''],
+            'wc' => ['INTEGER', ''],
+            'bath_room' => ['INTEGER', ''],
+            'parking' => ['INTEGER', ''],
+            'radiator' => ['INTEGER', ''],
             'area_size' => ['INTEGER', ''],
             'location' => ['CHAR', ''],
             'services' => ['CHAR', ''],
+            'sold' => ['INTEGER', ''],
 
             // unit sort field
             'sort' => ['INTEGER', '']
@@ -54,7 +60,10 @@ class Unit extends Item
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null
             ],
             [['itemID'], 'required'],
-            [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort'], 'integer'],
+            [
+                ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
+                    'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold']
+                , 'integer'],
             [['location', 'services'], 'string']
         ]);
     }
@@ -72,6 +81,12 @@ class Unit extends Item
             'area_size' => Yii::t('words', 'Area size'),
             'location' => Yii::t('words', 'Location'),
             'services' => Yii::t('words', 'Services'),
+            'air_conditioner' => Yii::t('words', 'Air Conditioner'),
+            'wc' => Yii::t('words', 'WC'),
+            'bath_room' => Yii::t('words', 'Bath Room'),
+            'Parking' => Yii::t('words', 'Parking'),
+            'radiator' => Yii::t('words', 'Radiator'),
+            'sold' => Yii::t('words', 'Sold'),
         ]);
     }
 
@@ -101,4 +116,18 @@ class Unit extends Item
             'itemID' => $this->itemID,
         ])->max(self::columnGetString('sort'));
     }
+
+    public function formAttributes()
+    {
+        return [
+            'status' => [
+                'type' => self::FORM_FIELD_TYPE_SELECT,
+                'items' => self::getStatusFilter()
+            ],
+            [['name', 'sold', 'radiator', 'parking', 'bath_room',
+                'wc', 'air_conditioner', 'floor_number', 'unit_number',
+                'area_size', 'location'], self::FORM_FIELD_TYPE_TEXT],
+        ];
+    }
+
 }

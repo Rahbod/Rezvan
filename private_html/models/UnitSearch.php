@@ -18,7 +18,7 @@ class UnitSearch extends Unit
     {
         return [
             [['id', 'userID', 'modelID', 'status','itemID'], 'integer'],
-            [['type'], 'number'],
+            [['type','sold','area_size'], 'number'],
             [['name', 'dyna', 'extra', 'created'], 'safe'],
         ];
     }
@@ -64,8 +64,9 @@ class UnitSearch extends Unit
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
-            self::columnGetString('itemID') => $this->itemID
-
+            self::columnGetString('itemID') => $this->itemID,
+            self::columnGetString('sold') => $this->itemID,
+            self::columnGetString('area_size') => $this->itemID,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name]);

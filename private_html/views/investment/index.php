@@ -1,8 +1,9 @@
 <?php
 
+use app\components\customWidgets\CustomGridView;
 use yii\helpers\Html;
-use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\projects\InvestmentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Investment') ?></span>
@@ -46,11 +48,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
+                        'id',
+                        'userID',
+                        'modelID',
+                        'type',
+                        'name',
                         //'dyna',
                         //'extra:ntext',
                         //'created',
@@ -60,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'template' => '{block} {unit} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
-                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
+                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index', 'id' => $model['id']],
                                         [
                                             'class' => '',
                                             'title' => "لیست بلوک ها",
@@ -71,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 },
                                 'unit' => function ($url, $model, $key) {
-                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index?id=' . $model['itemID']],
+                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index', 'id' => $model['id']],
                                         [
                                             'class' => '',
                                             'title' => "لیست واحدها",

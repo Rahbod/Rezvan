@@ -1,11 +1,15 @@
 <?php
 
+use app\components\customWidgets\CustomGridView;
 use yii\helpers\Html;
-use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UnitSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->registerCss('
+,');
 
 $this->title = Yii::t('words', 'Units');
 $this->params['breadcrumbs'][] = $this->title;
@@ -27,7 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Unit') ?></span>
@@ -46,21 +51,23 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
+                        'id',
+                        'userID',
+                        'modelID',
+                        'type',
+                        'name',
+                        'sold',
+                        'area_size',
                         //'dyna',
                         //'extra:ntext',
                         //'created',
                         //'status',
-                        [
-                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                        ['class' => 'app\components\customWidgets\CustomActionColumn',
                             'template' => '{block} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
-                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
+                                    return Html::a('<span class="fas fa-bars text-warning" ></span >',
+                                        ['block/index', 'id'=> $model['id']],
                                         [
                                             'class' => '',
                                             'title' => "لیست بلوک ها",
