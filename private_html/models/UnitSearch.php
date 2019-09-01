@@ -19,8 +19,8 @@ class UnitSearch extends Unit
     {
         return [
             [['id', 'userID', 'modelID', 'status','itemID'], 'integer'],
-            [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created', 'project_blocks'], 'safe'],
+            [['type','sold','area_size'], 'number'],
+            [['name', 'dyna', 'extra', 'created'], 'safe'],
         ];
     }
 
@@ -65,8 +65,10 @@ class UnitSearch extends Unit
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
+            self::columnGetString('itemID') => $this->itemID,
+            self::columnGetString('sold') => $this->itemID,
+            self::columnGetString('area_size') => $this->itemID,
             self::columnGetString('project_blocks') => $this->project_blocks, // dynamic field
-            self::columnGetString('itemID') => $this->itemID // dynamic field
 
         ]);
 

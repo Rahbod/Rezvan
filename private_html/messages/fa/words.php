@@ -441,16 +441,20 @@ return [
     'Create Apartment' => 'ایجاد پروژه',
     'Create Investment' => 'ایجاد پروژه',
     'Create Construction' => 'ایجاد پروژه',
+    'Create Other Construction' => 'ایجاد پروژه',
+    'Create Unit' => 'ایجاد پروژه',
+    'Create Block' => 'ایجاد بلوک',
+
 
     'Apartments' => 'پروژه ها',
     'Investments' => 'پروژه ها',
     'Constructions' => 'پروژه ها',
     'Other Constructions' => 'پروژه ها',
-    'Create Other Construction' => 'ایجاد پروژه',
+
 
     'Blocks'=>'بلوک ها',
-    'Create Block'=>'ایجاد بلوک',
     'Use project blocks'=>'استفاده از بلاک های پیشفرض پروژه',
     'Units'=>'واحدها',
     'Update Unit: {name}'=>'ویرایش واحد: {name}',
+    'Sold' => 'فروخته شده',
 ];

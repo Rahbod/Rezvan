@@ -3,7 +3,6 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
-
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UnitSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -57,6 +56,8 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter' => [1=>'بله',0=>'خیر']
                         ],
+                        'sold',
+                        'area-size',
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
                             'template' => '{block} {update} {delete}',
