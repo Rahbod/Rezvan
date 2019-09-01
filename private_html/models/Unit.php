@@ -38,6 +38,7 @@ class Unit extends Item
             'area_size' => ['INTEGER', ''],
             'location' => ['CHAR', ''],
             'services' => ['CHAR', ''],
+            'project_blocks' => ['INTEGER', ''],
 
             // unit sort field
             'sort' => ['INTEGER', '']
@@ -51,9 +52,9 @@ class Unit extends Item
     public function rules()
     {
         return array_merge(parent::rules(), [
-            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null
-            ],
+            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['itemID'], 'required'],
+            [['project_blocks'], 'default', 'value' => 0],
             [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort'], 'integer'],
             [['location', 'services'], 'string']
         ]);
@@ -72,6 +73,7 @@ class Unit extends Item
             'area_size' => Yii::t('words', 'Area size'),
             'location' => Yii::t('words', 'Location'),
             'services' => Yii::t('words', 'Services'),
+            'project_blocks' => Yii::t('words', 'Use project blocks'),
         ]);
     }
 
@@ -100,5 +102,12 @@ class Unit extends Item
         return self::find()->where([
             'itemID' => $this->itemID,
         ])->max(self::columnGetString('sort'));
+    }
+
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(), [
+            'project_blocks' => self::FORM_FIELD_TYPE_SWITCH
+        ]);
     }
 }

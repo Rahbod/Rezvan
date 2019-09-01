@@ -18,6 +18,8 @@ use yii\helpers\Url;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
+    <?= $form->errorSummary($model) ?>
+
     <div class="row">
         <?= $model->formRenderer($form, '{field}', 'col-lg-4'); ?>
     </div>

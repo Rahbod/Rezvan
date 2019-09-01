@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\UnitSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= Yii::t('words', 'Create Unit') ?></span>
@@ -46,29 +48,29 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                       'id',
-                       'userID',
-                       'modelID',
-                       'type',
-                       'name',
-                        //'dyna',
-                        //'extra:ntext',
-                        //'created',
-                        //'status',
+                        'name',
+                        [
+                            'attribute' => 'project_blocks',
+                            'value' => function($model){
+                                return $model->project_blocks?"<i class='fa fa-check text-success'></i>":"<i class='fa fa-times text-danger'></i>";
+                            },
+                            'format' => 'raw',
+                            'filter' => [1=>'بله',0=>'خیر']
+                        ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
                             'template' => '{block} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
-                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
-                                        [
-                                            'class' => '',
-                                            'title' => "لیست بلوک ها",
-                                            'aria-label' => "block",
-                                            'data-pjax' => 0
-
-                                        ]
-                                    );
+                                    if (!$model->project_blocks)
+                                        return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']], [
+                                                'class' => '',
+                                                'title' => "لیست بلوک ها",
+                                                'aria-label' => "block",
+                                                'data-pjax' => 0,
+                                            ]
+                                        );
+                                    return '';
                                 },
                             ]
                         ]

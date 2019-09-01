@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'template' => '{block} {unit} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
-                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index?id=' . $model['id']],
+                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index', 'id' => $model->id],
                                         [
                                             'class' => '',
                                             'title' => "لیست بلوک ها",
@@ -73,7 +73,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     );
                                 },
                                 'unit' => function ($url, $model, $key) {
-                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index?id=' . $model['itemID']],
+                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index', 'id' => $model->id],
                                         [
                                             'class' => '',
                                             'title' => "لیست واحدها",

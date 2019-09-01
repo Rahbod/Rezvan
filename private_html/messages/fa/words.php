@@ -449,5 +449,8 @@ return [
     'Create Other Construction' => 'ایجاد پروژه',
 
     'Blocks'=>'بلوک ها',
-    'Create Block'=>'ایجاد بلوک'
+    'Create Block'=>'ایجاد بلوک',
+    'Use project blocks'=>'استفاده از بلاک های پیشفرض پروژه',
+    'Units'=>'واحدها',
+    'Update Unit: {name}'=>'ویرایش واحد: {name}',
 ];

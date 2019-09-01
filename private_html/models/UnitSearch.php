@@ -8,6 +8,7 @@ use app\models\Unit;
 
 /**
  * SearchUnit represents the model behind the search form of `app\models\Unit`.
+ * @property mixed|null project_blocks
  */
 class UnitSearch extends Unit
 {
@@ -19,7 +20,7 @@ class UnitSearch extends Unit
         return [
             [['id', 'userID', 'modelID', 'status','itemID'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'project_blocks'], 'safe'],
         ];
     }
 
@@ -64,7 +65,8 @@ class UnitSearch extends Unit
             'modelID' => $this->modelID,
             'type' => $this->type,
             'status' => $this->status,
-            self::columnGetString('itemID') => $this->itemID
+            self::columnGetString('project_blocks') => $this->project_blocks, // dynamic field
+            self::columnGetString('itemID') => $this->itemID // dynamic field
 
         ]);
 
