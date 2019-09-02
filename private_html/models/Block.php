@@ -68,7 +68,7 @@ class Block extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
-            [['itemID'], 'required'],
+            [['itemID', 'type'], 'required'],
             [['itemID', 'sort'], 'integer'],
         ]);
     }

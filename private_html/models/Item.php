@@ -135,7 +135,7 @@ class Item extends MultiLangActiveRecord
             'extra' => Yii::t('words', 'Extra'),
             'created' => Yii::t('words', 'Created'),
             'status' => Yii::t('words', 'Status'),
-            'gallery' => Yii::t('words', 'Picture Gallery'),
+            'gallery' => Yii::t('words', 'Picture gallery'),
             'formCategories' => Yii::t('words', 'Category'),
             'formTags' => Yii::t('words', 'Tags'),
         ]);

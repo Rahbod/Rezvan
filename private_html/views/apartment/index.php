@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Apartment') ?></span>
+							<span><?= Yii::t('words', 'Create apartment') ?></span>
 						</span>
                         </a>
                     </li>
@@ -49,9 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'id',
-                        'userID',
-                        'modelID',
-                        'type',
+//                        'type',
                         'name',
                         //'dyna',
                         //'extra:ntext',

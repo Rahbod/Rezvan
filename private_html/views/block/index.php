@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            data-pjax="false">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Block') ?></span>
+							<span><?= Yii::t('words', 'Create block') ?></span>
 						</span>
                         </a>
                     </li>

@@ -47,6 +47,7 @@ class UnitController extends AuthController
     public function actionIndex($id)
     {
         app()->session->set('itemID', $id);
+
         $searchModel = new UnitSearch();
         $searchModel->itemID = $id;
         $dataProvider = $searchModel->search(app()->request->queryParams);
@@ -77,6 +78,7 @@ class UnitController extends AuthController
      */
     public function actionCreate()
     {
+//        dd(app()->request);
         $model = new Unit();
         $model->itemID = app()->session->get('itemID');
 

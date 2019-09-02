@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Block */
 
-$this->title = Yii::t('words', 'Update Block: {name}', [
+$this->title = Yii::t('words', 'Update block: {name}', [
     'name' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Blocks'), 'url' => ['index', 'id' => $model->itemID]];

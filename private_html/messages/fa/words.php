@@ -418,6 +418,12 @@ return [
     'Unit number' => 'شماره واحد',
     'Floor number' => 'شماره طبقه',
     'Services' => 'امکانات',
+    'Bed room' => 'تعداد خواب',
+    'Price' => 'قیمت',
+    'Location link' => 'لینک ادرس',
+    'Map view'=> 'نمایش نقشه',
+    'Banner'=> 'بنر',
+    'Nearby access'=> 'نزدیکترین ها',
 
     'Shrine link' => 'لینک حرم',
     'Shopping link' => 'لینک واحدهای تجاری نزدیک',
@@ -425,7 +431,7 @@ return [
     'Metro link' => 'لینک ایستگاه مترو',
     'Laundry link' => 'لینک خشکشویی نزدیک',
     'Airport link' => 'لینک فرودگاه',
-    'Gas station link' => 'لینک پمپ بنزین های نزدیک',
+    'Gas link' => 'لینک پمپ بنزین های نزدیک',
     'Bank link' => 'لینک بانک های نزدیک',
     'Restaurant link' => 'لینک رستوران های نزدیک',
     'Shrine distance' => 'فاصله تا حرم',
@@ -438,23 +444,38 @@ return [
     'Bank distance' => 'فاصله تا بانک',
     'Restaurant distance' => 'فاصله تا رستوران',
 
-    'Create Apartment' => 'ایجاد پروژه',
-    'Create Investment' => 'ایجاد پروژه',
-    'Create Construction' => 'ایجاد پروژه',
-    'Create Other Construction' => 'ایجاد پروژه',
-    'Create Unit' => 'ایجاد پروژه',
-    'Create Block' => 'ایجاد بلوک',
+    'Create apartment' => 'ایجاد پروژه',
+    'Create investment' => 'ایجاد پروژه',
+    'Create construction' => 'ایجاد پروژه',
+    'Create other construction' => 'ایجاد پروژه',
+    'Create unit' => 'ایجاد واحد',
+    'Create block' => 'ایجاد بلوک',
 
 
     'Apartments' => 'پروژه ها',
     'Investments' => 'پروژه ها',
     'Constructions' => 'پروژه ها',
-    'Other Constructions' => 'پروژه ها',
 
+    'Blocks' => 'بلوک ها',
 
-    'Blocks'=>'بلوک ها',
-    'Use project blocks'=>'استفاده از بلاک های پیشفرض پروژه',
-    'Units'=>'واحدها',
-    'Update Unit: {name}'=>'ویرایش واحد: {name}',
+    //    unit : create
+    'Use project blocks' => 'استفاده از بلاک های پیشفرض پروژه',
+    'Units' => 'واحدها',
+    'Update unit: {name}' => 'ویرایش واحد: {name}',
     'Sold' => 'فروخته شده',
+    'Radiator' => 'رادیاتور',
+    'Parking' => 'پارکینگ',
+    'Bath room' => 'حمام',
+    'WC' => 'سرویس بهداشتی',
+    'Air conditioner' => 'خنک کننده هوا',
+
+    //    apartment : update
+    'Update apartment: {name}' => 'ویرایش پروژه: {name}',
+
+    //    investment : update
+    'Update investment: {name}' => 'ویرایش پروژه: {name}',
+
+    //    construction : update
+    'Update other construction: {name}' => 'ویرایش سازه ها: {name}',
+
 ];

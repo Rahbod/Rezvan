@@ -82,11 +82,13 @@ class BlockController extends AuthController
     {
         $model = new Block();
         if (app()->request->isAjax || app()->request->post()) {
-            $type = app()->request->getBodyParam('type');
-            $modelName = Block::$typeModels[$type];
-            /** @var Block $model */
-            $model = new $modelName();
-            $model->type = $type;
+            if (app()->request->getBodyParam('type')) {
+                $type = app()->request->getBodyParam('type');
+                $modelName = Block::$typeModels[$type];
+                /** @var Block $model */
+                $model = new $modelName();
+                $model->type = $type;
+            }
         }
 
         $model->itemID = app()->session->get('itemID');

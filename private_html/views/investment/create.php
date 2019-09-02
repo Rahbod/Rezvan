@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\projects\Investment */
 
-$this->title = Yii::t('words', 'Create Investment');
+$this->title = Yii::t('words', 'Create investment');
 $this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Investments').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

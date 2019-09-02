@@ -62,10 +62,10 @@ class Unit extends Item
             [['itemID'], 'required'],
             [
                 ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
-                    'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold']
+                    'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold','bed_room']
                 , 'integer'],
             [['project_blocks'], 'default', 'value' => 0],
-            [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort'], 'integer'],
+            [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort','price'], 'integer'],
             [['location', 'services'], 'string']
         ]);
     }
@@ -82,14 +82,16 @@ class Unit extends Item
             'floor_number' => Yii::t('words', 'Floor number'),
             'area_size' => Yii::t('words', 'Area size'),
             'location' => Yii::t('words', 'Location'),
-            'services' => Yii::t('words', 'Services'),
-            'air_conditioner' => Yii::t('words', 'Air Conditioner'),
+//            'services' => Yii::t('words', 'Services'),
+            'air_conditioner' => Yii::t('words', 'Air conditioner'),
             'wc' => Yii::t('words', 'WC'),
-            'bath_room' => Yii::t('words', 'Bath Room'),
+            'bath_room' => Yii::t('words', 'Bath room'),
             'Parking' => Yii::t('words', 'Parking'),
             'radiator' => Yii::t('words', 'Radiator'),
             'sold' => Yii::t('words', 'Sold'),
             'project_blocks' => Yii::t('words', 'Use project blocks'),
+            'bed_room' => Yii::t('words', 'Bed room'),
+            'price' => Yii::t('words', 'Price'),
         ]);
     }
 
@@ -127,10 +129,16 @@ class Unit extends Item
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getStatusFilter()
             ],
-            'project_blocks' => self::FORM_FIELD_TYPE_SWITCH,
+//            'parent'=>self::FORM_FIELD_TYPE_TEXT,
+//            'unit_per_floor_number'=>self::FORM_FIELD_TYPE_TEXT,
+
+//            'project_blocks' => [
+//                'type' => self::FORM_FIELD_TYPE_SELECT,
+//                'items' => self::getStatusFilter()
+//            ],
             [['name', 'sold', 'radiator', 'parking', 'bath_room',
                 'wc', 'air_conditioner', 'floor_number', 'unit_number',
-                'area_size', 'location'], self::FORM_FIELD_TYPE_TEXT],
+                'area_size','bed_room','price'], self::FORM_FIELD_TYPE_TEXT],
         ];
     }
 }

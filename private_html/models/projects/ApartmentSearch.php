@@ -16,7 +16,7 @@ class ApartmentSearch extends Apartment
     public function rules()
     {
         return [
-            [['id', 'userID', 'modelID', 'status'], 'integer'],
+            [['id', 'status'], 'integer'],
             [['type'], 'number'],
             [['name', 'dyna', 'extra', 'created'], 'safe'],
         ];
@@ -70,16 +70,13 @@ class ApartmentSearch extends Apartment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'userID' => $this->userID,
-            'modelID' => $this->modelID,
-            'type' => $this->type,
+//            'type' => $this->type,
             'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra])
-            ->andFilterWhere(['like', 'created', $this->created]);
+            ->andFilterWhere(['like', 'extra', $this->extra]);
 
         return $dataProvider;
     }
