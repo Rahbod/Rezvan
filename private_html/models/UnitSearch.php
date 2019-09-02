@@ -19,7 +19,7 @@ class UnitSearch extends Unit
         return [
             [['id', 'status'], 'integer'],
             [['type', 'sold', 'area_size'], 'number'],
-            [['name', 'dyna', 'extra', 'created', 'project_blocks'], 'safe'],
+            [['name', 'dyna', 'extra', 'created', 'project_blocks','itemID'], 'safe'],
         ];
     }
 

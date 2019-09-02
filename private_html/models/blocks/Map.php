@@ -17,7 +17,7 @@ class Map extends Block implements BlockInterface
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'link' => ['CHAR', '']
+            'location_link' => ['CHAR', '']
         ]);
     }
 
@@ -29,8 +29,8 @@ class Map extends Block implements BlockInterface
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
-            ['link', 'required'],
-            ['link', 'string'],
+            ['location_link', 'required'],
+            ['location_link', 'string'],
         ]);
     }
 
@@ -40,7 +40,7 @@ class Map extends Block implements BlockInterface
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'link' => Yii::t('words', 'Link')
+            'location_link' => Yii::t('words', 'Location link')
         ]);
     }
 

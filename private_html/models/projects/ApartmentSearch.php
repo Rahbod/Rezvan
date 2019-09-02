@@ -70,7 +70,7 @@ class ApartmentSearch extends Apartment
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'type' => $this->type,
+//            'type' => $this->type,
             'status' => $this->status,
         ]);
 

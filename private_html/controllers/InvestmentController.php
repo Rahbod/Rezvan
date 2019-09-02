@@ -161,9 +161,6 @@ class InvestmentController extends AuthController
 
         $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
         $image->removeAll(true);
-
-        $thumb = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
-        $thumb->removeAll(true);
         $model->delete();
         return $this->redirect(['index']);
     }

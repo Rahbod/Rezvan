@@ -17,6 +17,7 @@ class Video extends Block implements BlockInterface
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'link' => ['CHAR', ''],
 
         ]);
     }
@@ -29,6 +30,8 @@ class Video extends Block implements BlockInterface
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
+            ['link', 'required'],
+            ['link', 'string'],
         ]);
     }
 
@@ -38,7 +41,14 @@ class Video extends Block implements BlockInterface
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'link' => Yii::t('words', 'Link')
+        ]);
+    }
 
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+            'link'=>self::FORM_FIELD_TYPE_TEXT
         ]);
     }
 

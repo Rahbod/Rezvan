@@ -22,7 +22,7 @@ class Project extends Item
     public static $modelName = 'project';
 
     public static $typeLabels = [
-        self::TYPE_AVAILABLE_APARTMENT => 'Available Apartments',
+        self::TYPE_AVAILABLE_APARTMENT => 'Available apartments',
         self::TYPE_INVESTMENT => 'Investments',
         self::TYPE_OTHER_CONSTRUCTION => 'Other constructions'
     ];
@@ -40,13 +40,14 @@ class Project extends Item
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             // define common fields in project types
-            'subtitle' => ['CHAR', ''],
-            'image' => ['CHAR', ''],
             'begin_date' => ['CHAR', ''],
             'construction_time' => ['CHAR', ''],
             'location' => ['CHAR', ''],
+            'subtitle' => ['CHAR', ''],
+            'image' => ['CHAR', ''],
             'area_size' => ['INTEGER', ''],
             'unit_count' => ['INTEGER', ''],
+//            'unit_per_floor_count' => ['INTEGER', ''],
             'free_count' => ['INTEGER', ''],
             'sold_count' => ['INTEGER', ''],
         ]);

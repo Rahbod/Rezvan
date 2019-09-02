@@ -67,7 +67,8 @@ class NearbyAccess extends Block implements BlockInterface
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
             [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link', 'airport_link', 'gas_link', 'restaurant_link'], 'string'],
-            [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance', 'airport_distance', 'gas_distance', 'restaurant_distance'], 'integer']
+            [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance', 'airport_distance', 'gas_distance',
+                'restaurant_distance'], 'integer']
         ]);
     }
 

@@ -418,6 +418,12 @@ return [
     'Unit number' => 'شماره واحد',
     'Floor number' => 'شماره طبقه',
     'Services' => 'امکانات',
+    'Bed room' => 'تعداد خواب',
+    'Price' => 'قیمت',
+    'Location link' => 'لینک ادرس',
+    'Map view'=> 'نمایش نقشه',
+    'Banner'=> 'بنر',
+    'Nearby access'=> 'نزدیکترین ها',
 
     'Shrine link' => 'لینک حرم',
     'Shopping link' => 'لینک واحدهای تجاری نزدیک',
@@ -425,7 +431,7 @@ return [
     'Metro link' => 'لینک ایستگاه مترو',
     'Laundry link' => 'لینک خشکشویی نزدیک',
     'Airport link' => 'لینک فرودگاه',
-    'Gas station link' => 'لینک پمپ بنزین های نزدیک',
+    'Gas link' => 'لینک پمپ بنزین های نزدیک',
     'Bank link' => 'لینک بانک های نزدیک',
     'Restaurant link' => 'لینک رستوران های نزدیک',
     'Shrine distance' => 'فاصله تا حرم',
@@ -442,7 +448,7 @@ return [
     'Create investment' => 'ایجاد پروژه',
     'Create construction' => 'ایجاد پروژه',
     'Create other construction' => 'ایجاد پروژه',
-    'Create unit' => 'ایجاد پروژه',
+    'Create unit' => 'ایجاد واحد',
     'Create block' => 'ایجاد بلوک',
 
 
@@ -463,5 +469,13 @@ return [
     'WC' => 'سرویس بهداشتی',
     'Air conditioner' => 'خنک کننده هوا',
 
+    //    apartment : update
+    'Update apartment: {name}' => 'ویرایش پروژه: {name}',
+
+    //    investment : update
+    'Update investment: {name}' => 'ویرایش پروژه: {name}',
+
+    //    construction : update
+    'Update other construction: {name}' => 'ویرایش سازه ها: {name}',
 
 ];

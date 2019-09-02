@@ -24,7 +24,7 @@ use yii\widgets\ActiveForm;
 <!---->
 <!--    --><?//= $form->field($model, 'modelID') ?>
 
-    <?= $form->field($model, 'type') ?>
+<!--    --><?//= $form->field($model, 'type') ?>
 
     <?= $form->field($model, 'name') ?>
 
