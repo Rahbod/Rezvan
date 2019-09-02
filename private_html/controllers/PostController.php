@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\components\CrudControllerInterface;
+use app\components\CrudControllerTrait;
 use app\components\Helper;
 use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;
@@ -14,7 +16,6 @@ use app\components\AuthController;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -23,18 +24,9 @@ use yii\widgets\ActiveForm;
  */
 class PostController extends AuthController
 {
-    public $imageDir = 'uploads/post';
-    private $imageOptions = ['thumbnail' => ['width' => 340, 'height' => 130]];
-    private $galleryOptions = ['thumbnail' => ['width' => 100, 'height' => 100]];
-
-    /**
-     * for set admin theme
-     */
-    public function init()
-    {
-        $this->setTheme('default');
-        parent::init();
-    }
+    public static $imageDir = 'uploads/post';
+    public static $imageOptions = ['thumbnail' => ['width' => 340, 'height' => 130]];
+    public static $galleryOptions = ['thumbnail' => ['width' => 100, 'height' => 100]];
 
     public function getMenuActions()
     {
@@ -57,21 +49,6 @@ class PostController extends AuthController
         ];
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
-
     public function actions()
     {
         return [
@@ -88,8 +65,8 @@ class PostController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new Post(),
                 'attribute' => 'image',
-                'upload' => $this->imageDir,
-                'options' => $this->imageOptions
+                'upload' => self::$imageDir,
+                'options' => self::$imageOptions
             ],
             'upload-attachment' => [
                 'class' => UploadAction::className(),
@@ -105,9 +82,20 @@ class PostController extends AuthController
                 'storedMode' => RemoveAction::STORED_RECORD_MODE,
                 'model' => new Attachment(),
                 'attribute' => 'file',
-                'options' => $this->galleryOptions
+                'options' => self::$galleryOptions
             ],
         ];
+    }
+
+    /**
+     * for set admin theme
+     */
+    public function init()
+    {
+//        if (!isset(static::$modelName))
+//            throw new PropertyException("Undefined modelName property in " . self::className() . " class.", 500);
+        $this->setTheme('default');
+        parent::init();
     }
 
     /**
@@ -117,7 +105,6 @@ class PostController extends AuthController
     public function actionIndex()
     {
         $searchModel = new PostSearch();
-
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams, true);
 
         return $this->render('index', [
@@ -127,7 +114,7 @@ class PostController extends AuthController
     }
 
     /**
-     * Displays a single Post model.
+     * Displays a single Slide model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found

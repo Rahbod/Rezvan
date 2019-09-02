@@ -2,8 +2,11 @@
 
 namespace app\models;
 
+use app\components\MainController;
+use app\controllers\PostController;
 use Yii;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\helpers\Url;
 
 /**
@@ -73,5 +76,69 @@ class Page extends Item
     public function getUrl()
     {
         return Url::to(['/page/show', 'id' => $this->id, 'title' => encodeUrl($this->name)]);
+    }
+
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+            'image' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-12',
+                'temp' => MainController::$tempDir,
+                'path' => PostController::$imageDir,
+                'filesOptions' => PostController::$imageOptions,
+                'options' => [
+                    'url' => Url::to(['upload-image']),
+                    'removeUrl' => Url::to(['delete-image']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'image')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
+            'lang' => static::FORM_FIELD_TYPE_LANGUAGE_SELECT,
+            'body' => [
+                'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
+                'containerCssClass' => 'col-sm-12',
+                'options' => [
+                    'options' => ['rows' => 30]
+                ]
+            ],
+            'gallery' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-12',
+                'temp' => MainController::$tempDir,
+                'path' => Attachment::getAttachmentPath(),
+                'filesOptions' => PostController::$galleryOptions,
+                'options' => [
+                    'url' => Url::to(['upload-attachment']),
+                    'removeUrl' => Url::to(['delete-attachment']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'gallery')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 10,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
+        ]);
     }
 }

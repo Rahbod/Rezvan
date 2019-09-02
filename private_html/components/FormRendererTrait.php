@@ -142,6 +142,8 @@ trait FormRendererTrait
                 $obj = $form->field($model, $attribute, $fieldOptions)->checkbox([], false);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_EDITOR:
+                $options['options']['tabindex'] = $options['tabindex'];
+                unset($options['tabindex']);
                 $obj = $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_AREA:
@@ -149,6 +151,9 @@ trait FormRendererTrait
                 break;
             case static::FORM_FIELD_TYPE_PASSWORD:
                 $obj = $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
+                break;
+            case static::FORM_FIELD_TYPE_LANGUAGE_SELECT:
+                $obj = $form->field($model, $attribute, $fieldOptions)->dropDownList(MultiLangActiveRecord::$langArray, $options);
                 break;
             case static::FORM_FIELD_TYPE_DATE:
                 $options['htmlOptions']['tabindex'] = $options['tabindex'];

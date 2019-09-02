@@ -21,6 +21,7 @@ interface FormRendererDefinition
     const FORM_FIELD_TYPE_TIME = 13;
     const FORM_FIELD_TYPE_TAG = 14;
     const FORM_FIELD_TYPE_PASSWORD = 15;
+    const FORM_FIELD_TYPE_LANGUAGE_SELECT = 16;
 
     /**
      * configure attributes options for render in crud form

@@ -17,57 +17,9 @@ use yii\helpers\Url;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-    <?= $model->formRenderer($form) ?>
-
-    <?php echo $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
-        'url' => Url::to(['upload-image']),
-        'removeUrl' => Url::to(['delete-image']),
-        'storedFiles' => isset($image) ? $image : [],
-        'sortable' => false, // sortable flag
-        'sortableOptions' => [], // sortable options
-        'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId($model, 'image')],
-        'options' => [
-            'createImageThumbnails' => true,
-            'addRemoveLinks' => true,
-            'dictRemoveFile' => 'حذف',
-            'addViewLinks' => true,
-            'dictViewFile' => '',
-            'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
-            'acceptedFiles' => 'png, jpeg, jpg',
-            'maxFiles' => 1,
-            'maxFileSize' => 0.5,
-        ],
-    ])?>
-
-    <?= \app\components\MultiLangActiveRecord::renderSelectLangInput($form, $model) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'body')->widget(\app\components\customWidgets\CustomTinyMce::className(), [
-        'options' => ['rows' => 30],
-    ]); ?>
-
-    <?php echo $form->field($model, 'gallery')->widget(\devgroup\dropzone\DropZone::className(), [
-        'url' => Url::to(['upload-attachment']),
-        'removeUrl' => Url::to(['delete-attachment']),
-        'storedFiles' => isset($gallery) ? $gallery: [],
-        'sortable' => false, // sortable flag
-        'sortableOptions' => [], // sortable options
-        'htmlOptions' => ['class' => '', 'id' => Html::getInputId($model, 'gallery')],
-        'options' => [
-            'createImageThumbnails' => true,
-            'addRemoveLinks' => true,
-            'dictRemoveFile' => 'حذف',
-            'addViewLinks' => true,
-            'dictViewFile' => '',
-            'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
-            'acceptedFiles' => 'png, jpeg, jpg',
-            'maxFiles' => 10,
-            'maxFileSize' => 0.5,
-        ],
-    ])?>
-
-    <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+    <div class="row">
+        <?= $model->formRenderer($form,'{field}', 'col-sm-4') ?>
+    </div>
 
 </div>
 <div class="m-portlet__foot m-portlet__foot--fit">

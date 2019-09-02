@@ -23,9 +23,9 @@ use yii\widgets\ActiveForm;
  */
 class PageController extends AuthController
 {
-    public $imageDir = 'uploads/pages';
-    private $imageOptions = [];
-    private $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
+    public static $imageDir = 'uploads/pages';
+    public static $imageOptions = [];
+    public static $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
 
     /**
      * for set admin theme
@@ -78,8 +78,8 @@ class PageController extends AuthController
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
                 'model' => new Page(),
                 'attribute' => 'image',
-                'upload' => $this->imageDir,
-                'options' => $this->imageOptions
+                'upload' => self::$imageDir,
+                'options' => self::$imageOptions
             ],
             'upload-attachment' => [
                 'class' => UploadAction::className(),
@@ -93,7 +93,7 @@ class PageController extends AuthController
                 'storedMode' => RemoveAction::STORED_RECORD_MODE,
                 'model' => new Attachment(),
                 'attribute' => 'file',
-                'options' => $this->galleryOptions
+                'options' => self::$galleryOptions
             ],
         ];
     }

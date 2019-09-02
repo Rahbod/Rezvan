@@ -81,12 +81,18 @@ class Item extends MultiLangActiveRecord
             }
             $fields = [
                 [$names, static::FORM_FIELD_TYPE_TEXT],
-                [$statuses, static::FORM_FIELD_TYPE_SWITCH]
+                [$statuses, [
+                    'type' => static::FORM_FIELD_TYPE_SELECT,
+                    'items' => self::getStatusFilter()
+                ]]
             ];
         } else
             $fields = [
                 'name' => static::FORM_FIELD_TYPE_TEXT,
-                'status' => static::FORM_FIELD_TYPE_SWITCH,
+                'status' => [
+                    'type' => static::FORM_FIELD_TYPE_SELECT,
+                    'items' => self::getStatusFilter()
+                ],
             ];
 
         return $fields;

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\CrudControllerInterface;
 use Yii;
 use app\components\CrudControllerTrait;
 use app\components\Setting;
@@ -14,14 +15,27 @@ use yii\helpers\Html;
 /**
  * SlideController implements the CRUD actions for Slide model.
  */
-class SlideController extends AuthController
+class SlideController extends AuthController implements CrudControllerInterface
 {
     use CrudControllerTrait; // add crud functions [index, create, update, delete]
 
-    // crud controller trait properties
-    public static $modelName = 'app\models\Slide';
-    public static $routeAfterSave = 'index';
-    // end
+    /**
+     * @inheritDoc
+     */
+    public static function getModelName()
+    {
+        return  Slide::className();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public static function getRoutes()
+    {
+        return [
+            static::AFTER_SAVE_ROUTE => 'index'
+        ];
+    }
 
     public static $imgDir = 'uploads/slide';
     public static $imageOptions = [];

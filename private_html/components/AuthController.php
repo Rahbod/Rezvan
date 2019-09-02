@@ -86,7 +86,8 @@ abstract class AuthController extends MainController
                 }
             }
 
-            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
+            return $this->redirect(['/admin']);
+//            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
         }
     }
 }

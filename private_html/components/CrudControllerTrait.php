@@ -20,13 +20,14 @@ use yii\widgets\ActiveForm;
  */
 trait CrudControllerTrait
 {
+
     /**
      * for set admin theme
      */
     public function init()
     {
-        if (!isset(static::$modelName))
-            throw new PropertyException("Undefined modelName property in " . self::className() . " class.", 500);
+//        if (!isset(static::$modelName))
+//            throw new PropertyException("Undefined modelName property in " . self::className() . " class.", 500);
         $this->setTheme('default');
         parent::init();
     }
@@ -52,7 +53,7 @@ trait CrudControllerTrait
      */
     public function actionIndex()
     {
-        $searchModelName = self::$modelName . "Search";
+        $searchModelName = self::getModelName() . "Search";
         $searchModel = new $searchModelName();
 
         $dataProvider = $searchModel->search(app()->request->queryParams);
@@ -83,8 +84,9 @@ trait CrudControllerTrait
      */
     public function actionCreate()
     {
+        $modelClass = self::getModelName();
         /** @var DynamicActiveRecord $model */
-        $model = new self::$modelName();
+        $model = new $modelClass();
 
         if (app()->request->isAjax and !app()->request->isPjax) {
             $model->load(app()->request->post());
@@ -97,7 +99,7 @@ trait CrudControllerTrait
             if ($model->save()) {
                 $this->saveUploaderAttributes($model);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                $route = isset(static::$routeAfterSave) ? static::$routeAfterSave : ['index'];
+                $route = $this->getEventRoute(static::AFTER_SAVE_ROUTE);
                 if ($route instanceof \Closure)
                     $route = call_user_func($route, $model);
                 return $this->redirect($route);
@@ -131,9 +133,9 @@ trait CrudControllerTrait
             $oldUploaderValues = $this->getOldUploaderValues($model);
             $model->load(app()->request->post());
             if ($model->save()) {
-                $this->editUploaderAttributes($model,$oldUploaderValues);
+                $this->editUploaderAttributes($model, $oldUploaderValues);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                $route = isset(static::$routeAfterSave) ? static::$routeAfterSave : ['index'];
+                $route = $this->getEventRoute(static::AFTER_SAVE_ROUTE);
                 if ($route instanceof \Closure)
                     $route = call_user_func($route, $model);
                 return $this->redirect($route);
@@ -167,7 +169,7 @@ trait CrudControllerTrait
 
     protected function findModel($id)
     {
-        $modelClass = self::$modelName;
+        $modelClass = self::getModelName();
         if (($model = $modelClass::findOne($id)) !== null) {
             return $model;
         }
@@ -232,4 +234,10 @@ trait CrudControllerTrait
     }
 
     /********************************************** End DropZone Field types ******************************************/
+
+    public function getEventRoute($name)
+    {
+        $routes = static::getRoutes();
+        return $routes[$name];
+    }
 }
