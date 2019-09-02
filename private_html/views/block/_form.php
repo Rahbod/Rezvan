@@ -20,16 +20,18 @@ use yii\helpers\Url;
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12   ">
             <div class="form-group m-form__group field-block-name">
                 <?= Html::label($model->getAttributeLabel('type'), 'type', ['class' => 'col-form-label control-label']) ?>
                 <?= Html::dropDownList('type', $model->type, Block::getTypeLabels(), [
                     'id' => 'type-trigger',
                     'class' => 'form-control m-input m-input--solid',
+                    'prompt' => 'لطفا نوع بنر را انتخاب کنید',
                     'data-url' => app()->request->url,
                     'disabled' => !$model->isNewRecord,
                     'readonly' => !$model->isNewRecord,
                 ]); ?>
+                <?= $form->field($model, 'type', ['template' => '{error}'])->error() ?>
             </div>
         </div>
         <?= $model->formRenderer($form, '{field}', 'col-lg-4'); ?>

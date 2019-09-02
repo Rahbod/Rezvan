@@ -47,7 +47,7 @@ class Project extends Item
             'image' => ['CHAR', ''],
             'area_size' => ['INTEGER', ''],
             'unit_count' => ['INTEGER', ''],
-//            'unit_per_floor_count' => ['INTEGER', ''],
+            'unit_per_floor_count' => ['INTEGER', ''],
             'free_count' => ['INTEGER', ''],
             'sold_count' => ['INTEGER', ''],
         ]);

@@ -65,8 +65,8 @@ class UnitSearch extends Unit
             'type' => $this->type,
             'status' => $this->status,
             self::columnGetString('itemID') => $this->itemID,
-            self::columnGetString('sold') => $this->itemID,
-            self::columnGetString('area_size') => $this->itemID,
+            self::columnGetString('sold') => $this->sold,
+            self::columnGetString('area_size') => $this->area_size,
             self::columnGetString('project_blocks') => $this->project_blocks, // dynamic field
 
         ]);
