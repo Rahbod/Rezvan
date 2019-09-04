@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
         <div class="mb-4 text-center" style="display: block;overflow: hidden;width: 100%;">
-            <img class="rounded" style="max-width:90%;overflow: hidden;border: 1px solid #ddd" src="<?= Yii::getAlias("@web/{$this->context->imageDir}/$model->image") ?>">
+            <img class="rounded" style="max-width:90%;overflow: hidden;border: 1px solid #ddd" src="<?= alias("@web/{$this->context->imageDir}/$model->image") ?>">
         </div>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([

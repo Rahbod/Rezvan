@@ -101,16 +101,16 @@ class Log extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('words', 'base.id'),
-            'userID' => Yii::t('words', 'base.userID'), // User who did the action. Null is system actions
-            'code' => Yii::t('words', 'log.code'), // Action code. Codes are defined in excel file
-            'action' => Yii::t('words', 'log.action'), // 1: Insert 2: Update 3: Delete
-            'model' => Yii::t('words', 'log.model'), // Table of item. NULL is reserved.
-            'modelID' => Yii::t('words', 'log.modelID'), // Item ID, NULL is reserved for system activities.
-            'values' => Yii::t('words', 'log.values'), // JSON decoded values of old and new values. {'old':[], 'new':[]}
-            'date' => Yii::t('words', 'log.date'),
-            'time' => Yii::t('words', 'log.time'),
-            'modelName' => Yii::t('words', 'log.modelName'),
+            'id' => trans('words', 'base.id'),
+            'userID' => trans('words', 'base.userID'), // User who did the action. Null is system actions
+            'code' => trans('words', 'log.code'), // Action code. Codes are defined in excel file
+            'action' => trans('words', 'log.action'), // 1: Insert 2: Update 3: Delete
+            'model' => trans('words', 'log.model'), // Table of item. NULL is reserved.
+            'modelID' => trans('words', 'log.modelID'), // Item ID, NULL is reserved for system activities.
+            'values' => trans('words', 'log.values'), // JSON decoded values of old and new values. {'old':[], 'new':[]}
+            'date' => trans('words', 'log.date'),
+            'time' => trans('words', 'log.time'),
+            'modelName' => trans('words', 'log.modelName'),
         ];
     }
 

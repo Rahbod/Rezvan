@@ -145,14 +145,14 @@ class SiteController extends AuthController
                 $message->department_id = $model->department_id;
                 if ($message->save()) {
                     $model->contact(Yii::$app->params['adminEmail']);
-                    Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => Yii::t('words', 'message.successMsg')]);
+                    Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => trans('words', 'message.successMsg')]);
                     if ($return = Yii::$app->request->getBodyParam('return'))
                         return $this->redirect([$return]);
                     return $this->refresh();
                 } else
-                    Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
+                    Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => trans('words', 'message.dangerMsg')]);
             } else
-                Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => Yii::t('words', 'message.dangerMsg')]);
+                Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => trans('words', 'message.dangerMsg')]);
         }
 
         return $this->render($view, [

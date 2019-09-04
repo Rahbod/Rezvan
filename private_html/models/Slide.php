@@ -58,10 +58,10 @@ class Slide extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'en_name' => Yii::t('words', 'En Name'),
-            'ar_name' => Yii::t('words', 'Ar Name'),
-            'link' => Yii::t('words', 'Link'),
-            'image' => Yii::t('words', 'Image'),
+            'en_name' => trans('words', 'En Name'),
+            'ar_name' => trans('words', 'Ar Name'),
+            'link' => trans('words', 'Link'),
+            'image' => trans('words', 'Image'),
         ]);
     }
 

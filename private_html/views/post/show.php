@@ -66,7 +66,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                     <div class="card-body text-center">
                                         <a title="" href="#" class="card-link">
                                             <img class="card-img-top"
-                                                 src="<?= Yii::getAlias('@web/uploads/post/') . $model->image ?>"
+                                                 src="<?= alias('@web/uploads/post/') . $model->image ?>"
                                                  alt="">
                                             <h4 class="card-title"><?= $model->name ?></h4>
                                         </a>
@@ -76,16 +76,16 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                         <div class="clearfix">
                                             <p style="color: #7a7a7a;"><?= trans('words', 'News pictures') ?></p>
                                             <?php foreach ($model->gallery as $item):
-                                                if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
+                                                if (!$item->file OR !is_file(alias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
                                                 <div class="gallery__imageContainer">
                                                     <a class="simpleGallery__link html5lightbox"
                                                        data-transition="crossfade" data-group="mygroup"
-                                                       href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>">
+                                                       href="<?= alias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>">
                                                         <img class="gallery__images"
-                                                                src="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/thumbs/100x100/'. $item->file ?>">
+                                                                src="<?= alias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/thumbs/100x100/'. $item->file ?>">
                                                     </a>
                                                     <div class="-hoverBox">
-                                                        <a href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>"
+                                                        <a href="<?= alias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>"
                                                            data-transition="crossfade"
                                                            class="html5lightbox"
                                                            data-group="mygroup"
@@ -148,7 +148,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                 </div>
                                 <div class="news-image">
                                     <div class="news-image-inner">
-                                        <img src="<?= Yii::getAlias('@web/uploads/post/') . $item->image ?>">
+                                        <img src="<?= alias('@web/uploads/post/') . $item->image ?>">
                                     </div>
                                 </div>
                                 <div class="news-details">

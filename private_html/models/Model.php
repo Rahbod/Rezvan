@@ -44,10 +44,10 @@ class Model extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('words', 'ID'),
-            'name' => Yii::t('words', 'Name'),
-            'alias' => Yii::t('words', 'Alias'),
-            'extra' => Yii::t('words', 'Extra'),
+            'id' => trans('words', 'ID'),
+            'name' => trans('words', 'Name'),
+            'alias' => trans('words', 'Alias'),
+            'extra' => trans('words', 'Extra'),
         ];
     }
 

@@ -167,21 +167,21 @@ class Category extends MultiLangActiveRecord
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'id' => Yii::t('words', 'ID'),
-            'parentID' => Yii::t('words', 'Parent ID'),
-            'type' => Yii::t('words', 'Type'),
-            'category_type' => Yii::t('words', 'Category Type'),
-            'name' => Yii::t('words', 'Name'),
-            'dyna' => Yii::t('words', 'Dyna'),
-            'extra' => Yii::t('words', 'Extra'),
-            'created' => Yii::t('words', 'Created'),
-            'status' => Yii::t('words', 'Status'),
-            'left' => Yii::t('words', 'Left'),
-            'right' => Yii::t('words', 'Right'),
-            'depth' => Yii::t('words', 'Depth'),
-            'tree' => Yii::t('words', 'Tree'),
-            'en_name' => Yii::t('words', 'En Name'),
-            'ar_name' => Yii::t('words', 'Ar Name'),
+            'id' => trans('words', 'ID'),
+            'parentID' => trans('words', 'Parent ID'),
+            'type' => trans('words', 'Type'),
+            'category_type' => trans('words', 'Category Type'),
+            'name' => trans('words', 'Name'),
+            'dyna' => trans('words', 'Dyna'),
+            'extra' => trans('words', 'Extra'),
+            'created' => trans('words', 'Created'),
+            'status' => trans('words', 'Status'),
+            'left' => trans('words', 'Left'),
+            'right' => trans('words', 'Right'),
+            'depth' => trans('words', 'Depth'),
+            'tree' => trans('words', 'Tree'),
+            'en_name' => trans('words', 'En Name'),
+            'ar_name' => trans('words', 'Ar Name'),
             'show_in_home' => 'نمایش در صفحه اصلی',
             'show_always' => 'نمایش ویژه',
         ]);
@@ -230,11 +230,11 @@ class Category extends MultiLangActiveRecord
     public static function getCategoryTypeLabels()
     {
         $statusLabels = [
-            self::CATEGORY_TYPE_NEWS => Yii::t('words', 'News & Articles'),
-            self::CATEGORY_TYPE_PICTURE_GALLERY => Yii::t('words', 'Picture Gallery'),
-            self::CATEGORY_TYPE_VIDEO_GALLERY => Yii::t('words', 'Video Gallery'),
-            self::CATEGORY_TYPE_INSURANCE => Yii::t('words', 'Insurance'),
-            self::CATEGORY_TYPE_EXPERTISE => Yii::t('words', 'Expertise'),
+            self::CATEGORY_TYPE_NEWS => trans('words', 'News & Articles'),
+            self::CATEGORY_TYPE_PICTURE_GALLERY => trans('words', 'Picture Gallery'),
+            self::CATEGORY_TYPE_VIDEO_GALLERY => trans('words', 'Video Gallery'),
+            self::CATEGORY_TYPE_INSURANCE => trans('words', 'Insurance'),
+            self::CATEGORY_TYPE_EXPERTISE => trans('words', 'Expertise'),
         ];
         return $statusLabels;
     }
@@ -253,7 +253,7 @@ class Category extends MultiLangActiveRecord
         ];
         if (!$status)
             $status = $this->status;
-        return Yii::t('words', ucfirst($statusLabels[$status]));
+        return trans('words', ucfirst($statusLabels[$status]));
     }
 
     public static function getStatusLabels($status = null, $html = false)
@@ -283,7 +283,7 @@ class Category extends MultiLangActiveRecord
             }
             return "<span class='text-{$class}'>$icon</span>";
         }
-        return Yii::t('words', ucfirst($statusLabels[$status]));
+        return trans('words', ucfirst($statusLabels[$status]));
     }
 
     public static function getStatusFilter()

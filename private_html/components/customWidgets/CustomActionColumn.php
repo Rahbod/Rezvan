@@ -19,7 +19,7 @@ class CustomActionColumn extends ActionColumn
         $this->initDefaultButton('view', 'fas fa-eye text-info');
         $this->initDefaultButton('update', 'far fa-edit text-success');
         $this->initDefaultButton('delete', 'far fa-trash-alt text-danger', [
-            'data-confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
+            'data-confirm' => \trans('yii', 'Are you sure you want to delete this item?'),
             'data-method' => 'post',
         ]);
     }
@@ -30,7 +30,7 @@ class CustomActionColumn extends ActionColumn
             $this->buttons[$name] = function ($url, $model, $key) use ($name, $iconName, $additionalOptions) {
                 switch ($name) {
                     case 'view':
-                        $title = \Yii::t('yii', 'View');
+                        $title = \trans('yii', 'View');
                         break;
                     case 'update':
                         $title = \Yii::t('yii', 'Update');

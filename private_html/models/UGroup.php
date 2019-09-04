@@ -57,10 +57,10 @@ class UGroup extends CustomActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('words', 'base.id'),
-            'name' => Yii::t('words', 'base.name'),
-            'created' => Yii::t('words', 'base.created'),
-            'status' => Yii::t('words', 'base.status'),
+            'id' => trans('words', 'base.id'),
+            'name' => trans('words', 'base.name'),
+            'created' => trans('words', 'base.created'),
+            'status' => trans('words', 'base.status'),
         ];
     }
 
@@ -98,8 +98,8 @@ class UGroup extends CustomActiveRecord
     public static function getStatusLabels($status = null)
     {
         $statusLabels = [
-            0 => Yii::t('words', 'base.disable'),
-            1 => Yii::t('words', 'base.enable'),
+            0 => trans('words', 'base.disable'),
+            1 => trans('words', 'base.enable'),
         ];
         if (is_null($status))
             return $statusLabels;

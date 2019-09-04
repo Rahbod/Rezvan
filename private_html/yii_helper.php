@@ -1,4 +1,5 @@
 <?php
+require_once 'my_helper.php';
 
 use yii\helpers\Html;
 
@@ -47,25 +48,11 @@ function theme()
 }
 
 /**
- * @param $vars
+ * @param $alias
+ * @param bool $throwException
+ * @return bool|string
  */
-function dd($vars)
+function alias($alias, $throwException = true)
 {
-    $args = func_get_args();
-    echo Html::beginTag('pre', ['class' => 'xdebug-var-dump', 'dir' => 'ltr']);
-    foreach ($args as $arg) {
-        var_dump($arg);
-        echo "\n";
-    }
-    echo Html::endTag('pre');
-    exit();
-}
-
-/**
- * @param $url
- * @return string
- */
-function encodeUrl($url)
-{
-    return str_replace(array(' ', '/', '\\'), '-', $url);
+    return Yii::getAlias($alias, $throwException);
 }

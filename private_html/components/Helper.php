@@ -43,11 +43,11 @@ class Helper
     public static function parseDoctorStatus($status)
     {
         // f = Fellowship
-        $fellowshipLabel = \Yii::t('words', 'Fellowship');
+        $fellowshipLabel = \trans('words', 'Fellowship');
         // * = Absenteeism
-        $absenteeismLabel = \Yii::t('words', 'Absenteeism');
+        $absenteeismLabel = \trans('words', 'Absenteeism');
         // - = Alternative
-        $alternativeLabel = \Yii::t('words', 'Alternative');
+        $alternativeLabel = \trans('words', 'Alternative');
 
         if (strpos($status, '*') !== false)
             return "<span class='btn btn-danger text-white'>$absenteeismLabel</span>";

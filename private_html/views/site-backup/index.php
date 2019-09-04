@@ -27,10 +27,10 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
          data-items="1"
          data-autoHeight="true">
         <?php foreach ($slides as $slide):
-            if ($slide->image && is_file(Yii::getAlias('@webroot/uploads/slide/') . $slide->image)):?>
+            if ($slide->image && is_file(alias('@webroot/uploads/slide/') . $slide->image)):?>
                 <div class="slide-item relative">
                     <div class="image-container">
-                        <img src="<?= Yii::getAlias('@web/uploads/slide/') . $slide->image ?>"
+                        <img src="<?= alias('@web/uploads/slide/') . $slide->image ?>"
                              alt="<?= Html::encode($slide->name) ?>">
                     </div>
                 </div>

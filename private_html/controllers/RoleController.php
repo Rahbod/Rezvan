@@ -102,9 +102,9 @@ class RoleController extends AuthController
                     $auth->addChild($parent, $role);
                 }
 
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         $actions = $this->getAllActions();
@@ -114,7 +114,7 @@ class RoleController extends AuthController
         $roles = $auth->getRoles();
         unset($roles['superAdmin']);
         $roles = ArrayHelper::map($roles, 'name', function ($model) {
-            return ($model->description == 'Guest Role' ? Yii::t('words', 'Guest Role') : $model->description);
+            return ($model->description == 'Guest Role' ? trans('words', 'Guest Role') : $model->description);
         });
 
         return $this->render('create', [
@@ -183,10 +183,10 @@ class RoleController extends AuthController
                 }
                 $model->load(Yii::$app->request->post());
                 $model->save();
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->refresh();
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         $actions = $this->getAllActions();
@@ -221,9 +221,9 @@ class RoleController extends AuthController
         }
 
         if ($result === false)
-            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.deleteDangerMsg')]);
         else {
-            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.deleteSuccessMsg')]);
             $this->redirect(['/role/index']);
         }
     }

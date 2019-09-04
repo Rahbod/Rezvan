@@ -68,11 +68,11 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
     {
         if (static::$multiLanguage)
             return [
-                'lang' => Yii::t('words', 'Lang')
+                'lang' => trans('words', 'Lang')
             ];
         return [
-            'en_status' => Yii::t('words', 'En Status'),
-            'ar_status' => Yii::t('words', 'Ar Status'),
+            'en_status' => trans('words', 'En Status'),
+            'ar_status' => trans('words', 'Ar Status'),
         ];
     }
 }

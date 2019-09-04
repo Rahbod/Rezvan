@@ -79,8 +79,8 @@ class Block extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'itemID' => Yii::t('words', 'Project ID'),
-            'sort' => Yii::t('words', 'Sort'),
+            'itemID' => trans('words', 'Project ID'),
+            'sort' => trans('words', 'Sort'),
         ]);
     }
 
@@ -88,14 +88,14 @@ class Block extends Item
     {
         if (!$type)
             $type = $this->type;
-        return Yii::t('words', ucfirst(self::$typeLabels[$type]));
+        return trans('words', ucfirst(self::$typeLabels[$type]));
     }
 
     public static function getTypeLabels()
     {
         $lbs = [];
         foreach (self::$typeLabels as $key => $label)
-            $lbs[$key] = Yii::t('words', ucfirst($label));
+            $lbs[$key] = trans('words', ucfirst($label));
         return $lbs;
     }
 

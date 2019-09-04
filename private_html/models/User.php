@@ -148,7 +148,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function checkPassword($attribute)
     {
         if (!$this->validatePassword($this->oldPassword, $this->password))
-            $this->addError($attribute, Yii::t('words', 'user.wrongOldPassword'));
+            $this->addError($attribute, trans('words', 'user.wrongOldPassword'));
     }
 
     /**
@@ -157,31 +157,31 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('words', 'base.id'),
-            'name' => Yii::t('words', 'user.name'),
-            'username' => Yii::t('words', 'user.username'),
-            'password' => Yii::t('words', 'user.password'),
-            'repeatPassword' => Yii::t('words', 'user.repeatPassword'),
-            'oldPassword' => Yii::t('words', 'user.oldPassword'),
-            'newPassword' => Yii::t('words', 'user.newPassword'),
+            'id' => trans('words', 'base.id'),
+            'name' => trans('words', 'user.name'),
+            'username' => trans('words', 'user.username'),
+            'password' => trans('words', 'user.password'),
+            'repeatPassword' => trans('words', 'user.repeatPassword'),
+            'oldPassword' => trans('words', 'user.oldPassword'),
+            'newPassword' => trans('words', 'user.newPassword'),
             'dyna' => 'Dyna',
-            'created' => Yii::t('words', 'base.created'),
-            'status' => Yii::t('words', 'base.status'),
-            'roleID' => Yii::t('words', 'user.roleID'),
-            'email' => Yii::t('words', 'user.email'),
-            'phone' => Yii::t('words', 'user.phone'),
-            'text' => Yii::t('words', 'base.text'),
-            'image' => Yii::t('words', 'user.image'),
-            'groups' => Yii::t('words', 'user.groups'),
-            'group' => Yii::t('words', 'user.group'),
-            'nationalCode' => Yii::t('words', 'user.nationalCode'),
-            'memCode' => Yii::t('words', 'user.memCode'),
-            'gender' => Yii::t('words', 'user.gender'),
-            'address' => Yii::t('words', 'user.address'),
-            'birthDate' => Yii::t('words', 'user.birthDate'),
-            'verifyCode' => Yii::t('words', 'verifyCode'),
-            'verification_code' => Yii::t('words', 'Verification code'),
-            'reception_type' => Yii::t('words', 'Reception type permission'),
+            'created' => trans('words', 'base.created'),
+            'status' => trans('words', 'base.status'),
+            'roleID' => trans('words', 'user.roleID'),
+            'email' => trans('words', 'user.email'),
+            'phone' => trans('words', 'user.phone'),
+            'text' => trans('words', 'base.text'),
+            'image' => trans('words', 'user.image'),
+            'groups' => trans('words', 'user.groups'),
+            'group' => trans('words', 'user.group'),
+            'nationalCode' => trans('words', 'user.nationalCode'),
+            'memCode' => trans('words', 'user.memCode'),
+            'gender' => trans('words', 'user.gender'),
+            'address' => trans('words', 'user.address'),
+            'birthDate' => trans('words', 'user.birthDate'),
+            'verifyCode' => trans('words', 'verifyCode'),
+            'verification_code' => trans('words', 'Verification code'),
+            'reception_type' => trans('words', 'Reception type permission'),
         ];
     }
 
@@ -321,9 +321,9 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
     public function getAvatar()
     {
-        $path = Yii::getAlias('@web/themes/frontend/svg/default-user.svg');
-        if (!Yii::$app->user->isGuest && $this->image && is_file(Yii::getAlias('uploads/users/avatars/') . $this->image)) {
-            $path = Yii::getAlias('@web/uploads/users/avatars/');
+        $path = alias('@web/themes/frontend/svg/default-user.svg');
+        if (!Yii::$app->user->isGuest && $this->image && is_file(alias('uploads/users/avatars/') . $this->image)) {
+            $path = alias('@web/uploads/users/avatars/');
             $path .= $this->image;
         }
         return $path;
@@ -402,8 +402,8 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public static function getGenderLabels($gender = null)
     {
         $labels = [
-            0 => Yii::t('words', 'Male'),
-            1 => Yii::t('words', 'Female')
+            0 => trans('words', 'Male'),
+            1 => trans('words', 'Female')
         ];
         if (is_null($gender))
             return $labels;
@@ -413,9 +413,9 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public static function getStatusLabels($status = null)
     {
         $labels = [
-            self::STATUS_DELETED => Yii::t('words', 'base.deleted'),
-            self::STATUS_DISABLE => Yii::t('words', 'base.disable'),
-            self::STATUS_ENABLE => Yii::t('words', 'base.enable')
+            self::STATUS_DELETED => trans('words', 'base.deleted'),
+            self::STATUS_DISABLE => trans('words', 'base.disable'),
+            self::STATUS_ENABLE => trans('words', 'base.enable')
         ];
         if (is_null($status))
             return $labels;

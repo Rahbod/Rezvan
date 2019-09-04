@@ -51,11 +51,11 @@ class SmsSender
             $curl->setPostParams($params);
             return @$curl->post($url, false);
         } catch (\Exception $e) {
-            if (!is_dir(\Yii::getAlias('@app/logs/')))
-                mkdir(\Yii::getAlias('@app/logs/'), 0755, true);
+            if (!is_dir(\alias('@app/logs/')))
+                mkdir(\alias('@app/logs/'), 0755, true);
             $date = date('Y-m-d-H:i:s', time());
             $error = "$date : template: $template - {$e->getMessage()}\n";
-            @file_put_contents(\Yii::getAlias('@app/logs/sms_logs.log'), $error, FILE_APPEND);
+            @file_put_contents(\alias('@app/logs/sms_logs.log'), $error, FILE_APPEND);
             return false;
         }
     }

@@ -76,22 +76,22 @@ class Unit extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'itemID' => Yii::t('words', 'Project ID'),
-            'sort' => Yii::t('words', 'Sort'),
-            'unit_number' => Yii::t('words', 'Unit number'),
-            'floor_number' => Yii::t('words', 'Floor number'),
-            'area_size' => Yii::t('words', 'Area size'),
-            'location' => Yii::t('words', 'Location'),
-//            'services' => Yii::t('words', 'Services'),
-            'air_conditioner' => Yii::t('words', 'Air conditioner'),
-            'wc' => Yii::t('words', 'WC'),
-            'bath_room' => Yii::t('words', 'Bath room'),
-            'Parking' => Yii::t('words', 'Parking'),
-            'radiator' => Yii::t('words', 'Radiator'),
-            'sold' => Yii::t('words', 'Sold'),
-            'project_blocks' => Yii::t('words', 'Use project blocks'),
-            'bed_room' => Yii::t('words', 'Bed room'),
-            'price' => Yii::t('words', 'Price'),
+            'itemID' => trans('words', 'Project ID'),
+            'sort' => trans('words', 'Sort'),
+            'unit_number' => trans('words', 'Unit number'),
+            'floor_number' => trans('words', 'Floor number'),
+            'area_size' => trans('words', 'Area size'),
+            'location' => trans('words', 'Location'),
+//            'services' => trans('words', 'Services'),
+            'air_conditioner' => trans('words', 'Air conditioner'),
+            'wc' => trans('words', 'WC'),
+            'bath_room' => trans('words', 'Bath room'),
+            'Parking' => trans('words', 'Parking'),
+            'radiator' => trans('words', 'Radiator'),
+            'sold' => trans('words', 'Sold'),
+            'project_blocks' => trans('words', 'Use project blocks'),
+            'bed_room' => trans('words', 'Bed room'),
+            'price' => trans('words', 'Price'),
         ]);
     }
 

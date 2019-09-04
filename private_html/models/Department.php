@@ -46,8 +46,8 @@ class Department extends Category
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'en_name' => Yii::t('words', 'En Name'),
-            'ar_name' => Yii::t('words', 'Ar Name'),
+            'en_name' => trans('words', 'En Name'),
+            'ar_name' => trans('words', 'Ar Name'),
         ]);
     }
 

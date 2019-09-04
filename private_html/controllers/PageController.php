@@ -123,10 +123,10 @@ class PageController extends AuthController implements CrudControllerInterface
             if ($model->save()) {
                 $image->move($this->imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(isset($_GET['return']) ? $_GET['return'] : ['view', 'id' => $model->id]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -161,10 +161,10 @@ class PageController extends AuthController implements CrudControllerInterface
             if ($model->save()) {
                 $image->update($oldImage, $model->image, $this->tmpDir);
                 $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [

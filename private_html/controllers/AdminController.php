@@ -89,11 +89,11 @@ class AdminController extends AuthController
 
         $baseLang = 'fa';
         $currLang = Yii::$app->request->getQueryParam('lang');
-        $baseMessagePath = Yii::getAlias("@app/messages/{$baseLang}/words.php");
+        $baseMessagePath = alias("@app/messages/{$baseLang}/words.php");
         $basePhrases = include $baseMessagePath;
-        $destMessagePath = Yii::getAlias("@app/messages/{$currLang}/words.php");
-        if (!is_dir(Yii::getAlias("@app/messages/{$currLang}")))
-            mkdir(Yii::getAlias("@app/messages/{$currLang}/"), 0755, true);
+        $destMessagePath = alias("@app/messages/{$currLang}/words.php");
+        if (!is_dir(alias("@app/messages/{$currLang}")))
+            mkdir(alias("@app/messages/{$currLang}/"), 0755, true);
         if (!is_file($destMessagePath))
             file_put_contents($destMessagePath, "<?php\n\nreturn [];");
         $destPhrases = include $destMessagePath;
@@ -109,7 +109,7 @@ class AdminController extends AuthController
             }
             $newContent .= "\n];";
             file_put_contents($destMessagePath, $newContent);
-            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
             return $this->refresh();
         }
 

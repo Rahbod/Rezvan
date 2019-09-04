@@ -127,18 +127,18 @@ class Item extends MultiLangActiveRecord
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'id' => Yii::t('words', 'ID'),
-            'userID' => Yii::t('words', 'Creator'),
-            'modelID' => Yii::t('words', 'Model'),
-            'type' => Yii::t('words', 'Type'),
-            'name' => Yii::t('words', 'Name'),
-            'dyna' => Yii::t('words', 'All fields'),
-            'extra' => Yii::t('words', 'Extra'),
-            'created' => Yii::t('words', 'Created'),
-            'status' => Yii::t('words', 'Status'),
-            'gallery' => Yii::t('words', 'Picture gallery'),
-            'formCategories' => Yii::t('words', 'Category'),
-            'formTags' => Yii::t('words', 'Tags'),
+            'id' => trans('words', 'ID'),
+            'userID' => trans('words', 'Creator'),
+            'modelID' => trans('words', 'Model'),
+            'type' => trans('words', 'Type'),
+            'name' => trans('words', 'Name'),
+            'dyna' => trans('words', 'All fields'),
+            'extra' => trans('words', 'Extra'),
+            'created' => trans('words', 'Created'),
+            'status' => trans('words', 'Status'),
+            'gallery' => trans('words', 'Picture gallery'),
+            'formCategories' => trans('words', 'Category'),
+            'formTags' => trans('words', 'Tags'),
         ]);
     }
 
@@ -229,7 +229,7 @@ class Item extends MultiLangActiveRecord
             $lastGallery = $this->attachments ? ArrayHelper::map($this->attachments, 'id', 'file') : [];
             if (!is_array($this->gallery)) $this->gallery = [$this->gallery];
             foreach ($this->gallery as $key => $attachment) {
-                if (!in_array($attachment, $lastGallery) && is_file(Yii::getAlias('@webroot/uploads/temp') . DIRECTORY_SEPARATOR . $attachment)) {
+                if (!in_array($attachment, $lastGallery) && is_file(alias('@webroot/uploads/temp') . DIRECTORY_SEPARATOR . $attachment)) {
                     $model = new Attachment();
                     $model->userID = Yii::$app->user->id;
                     $model->status = Attachment::STATUS_ACTIVE;
@@ -237,7 +237,7 @@ class Item extends MultiLangActiveRecord
                     $model->file = $attachment;
                     $model->type = pathinfo($attachment, PATHINFO_EXTENSION);
                     $model->itemID = $this->id;
-                    $model->size = @filesize(Yii::getAlias('@webroot/uploads/temp') . DIRECTORY_SEPARATOR . $attachment);
+                    $model->size = @filesize(alias('@webroot/uploads/temp') . DIRECTORY_SEPARATOR . $attachment);
                     $model->path = Attachment::getAttachmentRelativePath();
                     if (!@$model->save())
                         $this->addErrors($model->errors);
