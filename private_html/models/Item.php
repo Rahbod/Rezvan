@@ -88,6 +88,7 @@ class Item extends MultiLangActiveRecord
             ];
         } else
             $fields = [
+                'lang' => static::FORM_FIELD_TYPE_LANGUAGE_SELECT,
                 'name' => static::FORM_FIELD_TYPE_TEXT,
                 'status' => [
                     'type' => static::FORM_FIELD_TYPE_SELECT,

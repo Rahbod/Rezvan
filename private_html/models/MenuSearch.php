@@ -75,6 +75,8 @@ class MenuSearch extends Menu
 
         $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
 
+
+        $dataProvider->pagination = false;
         return $dataProvider;
     }
 }

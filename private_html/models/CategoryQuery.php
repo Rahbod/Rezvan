@@ -26,6 +26,7 @@ class CategoryQuery extends MultiLangActiveQuery
     public function __construct($modelClass, array $config = [])
     {
         $this->_typeName = $modelClass::$typeName;
+        self::$languageCondition = $modelClass::$multiLanguage;
         parent::__construct($modelClass, $config);
     }
 
@@ -72,7 +73,7 @@ class CategoryQuery extends MultiLangActiveQuery
 
     public function valid()
     {
-        if (self::$languageCondition)
+        if (static::$languageCondition)
             $this->andWhere(['status' => Category::STATUS_PUBLISHED]);
         else {
             $lang = \Yii::$app->language;

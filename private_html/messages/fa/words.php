@@ -372,6 +372,8 @@ return [
     'Graduation date' => 'تاریخ اخذ مدرک',
     'Name and address' => 'نام و نشانی محل تحصیل',
     'Select cooperation type' => 'نوع همکاری را انتخاب کنید',
+    'Icon Class' => 'کلاس css آیکون',
+    'Reset' => 'پاکسازی فرم',
 
     'Employment place' => 'محل اشتغال',
     'Completion date' => 'تاریخ اتمام کار',

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use app\components\customWidgets\CustomActiveForm;
 use app\models\Menu;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Menu */
@@ -18,32 +19,10 @@ use app\models\Menu;
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-        <?= $form->errorSummary($model) ?>
 
         <div class="row">
-            <div class="col-sm-4">
-                <?= $form->field($model, 'lang')->dropDownList(Menu::$langArray, ['class' => 'form-control m-input m-input--solid']) ?>
-            </div>
-            <div class="col-sm-4">
-                <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-            </div>
-            <div class="col-sm-4">
-                <?= $form->field($model, 'parentID')->dropDownList(Menu::parentsList(), [
-                    'prompt' => 'بدون والد'
-                ]) ?>
-            </div>
+            <?= $model->formRenderer($form,'{field}', 'col-sm-4') ?>
         </div>
-
-        <div class="row">
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-            <div class="col-sm-4">
-                <?php echo $form->field($model, 'show_in_footer', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
-            </div>
-        </div>
-
-        <?php echo $form->field($model, 'content', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox(['id' => 'content-trigger'], false) ?>
 
         <div class="content-box" style="display: none">
 
@@ -68,12 +47,12 @@ use app\models\Menu;
                 <?= $form->field($model, 'external_link')->textInput() ?>
             </div>
         </div>
-
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
+            <a href="<?= Url::to(['index']) ?>" data-pjax="false" class="btn btn-danger">
+                <?php echo Yii::t('words', 'Cancel') ?></a>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

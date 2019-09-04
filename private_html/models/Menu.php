@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\MenuController;
+use app\controllers\PostController;
 use Yii;
 use yii\base\ViewContextInterface;
 use yii\helpers\Html;
@@ -19,11 +20,12 @@ use yii\widgets\ActiveForm;
  * @property string $action_name
  * @property string $external_link
  * @property string $show_in_footer
+ * @property string $icon_class
  *
  */
 class Menu extends Category
 {
-    public static $multiLanguage = true;
+    public static $multiLanguage = false;
 
     const MENU_TYPE_PAGE_LINK = 1;
     const MENU_TYPE_ACTION = 2;
@@ -49,12 +51,58 @@ class Menu extends Category
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'image' => ['CHAR', ''],
             'content' => ['INTEGER', ''],
             'menu_type' => ['INTEGER', ''],
             'page_id' => ['INTEGER', ''],
             'action_name' => ['CHAR', ''],
             'external_link' => ['CHAR', ''],
-            'show_in_footer' => ['INTEGER', '']
+            'show_in_footer' => ['INTEGER', ''],
+            'icon_class' => ['INTEGER', ''],
+        ]);
+    }
+
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+            'parentID' => [
+                'type' => static::FORM_FIELD_TYPE_SELECT,
+                'items' => Menu::parentsList(),
+                'options' => [
+                    'prompt' => 'بدون والد'
+                ]
+            ],
+            'icon_class' => static::FORM_FIELD_TYPE_TEXT,
+//            'show_in_footer' => static::FORM_FIELD_TYPE_SWITCH,
+            /*'image' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-12',
+                'temp' => MainController::$tempDir,
+                'path' => MenuController::$imageDir,
+                'filesOptions' => MenuController::$imageOptions,
+                'options' => [
+                    'url' => Url::to(['upload-image']),
+                    'removeUrl' => Url::to(['delete-image']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => 'single', 'id' => Html::getInputId(new self(), 'image')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود آیکون کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg, svg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],*/
+            'content' => [
+                'type' => static::FORM_FIELD_TYPE_SWITCH,
+                'options' => ['id' => 'content-trigger']
+            ],
         ]);
     }
 
@@ -67,7 +115,7 @@ class Menu extends Category
             ['type', 'default', 'value' => self::$typeName],
             [['menu_type', 'page_id'], 'integer'],
             [['external_link'], 'url'],
-            [['action_name', 'external_link'], 'string'],
+            [['action_name', 'external_link', 'image','icon_class'], 'string'],
             [['show_in_footer'], 'safe'],
             ['show_in_footer', 'default', 'value' => 0],
             ['content', 'default', 'value' => 0]
@@ -80,22 +128,24 @@ class Menu extends Category
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'image' => Yii::t('words', 'Icon'),
             'menu_type' => Yii::t('words', 'Menu Type'),
             'content' => Yii::t('words', 'Content'),
             'page_id' => Yii::t('words', 'Page Name'),
             'action_name' => Yii::t('words', 'Module Name'),
             'show_in_footer' => Yii::t('words', 'Show in footer'),
-            'external_link' => Yii::t('words', 'External Link')
+            'external_link' => Yii::t('words', 'External Link'),
+            'icon_class' => Yii::t('words', 'Icon Class'),
         ]);
     }
 
     /**
      * {@inheritdoc}
-     * @return CategoryQuery the active query used by this AR class.
+     * @return CategoryQuery|MenuQuery
      */
     public static function find()
     {
-        return new MenuQuery(get_called_class());
+        return new CategoryQuery(get_called_class());
     }
 
     public static function parentsList()

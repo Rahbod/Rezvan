@@ -13,6 +13,7 @@ use Yii;
 use app\models\Post;
 use app\models\PostSearch;
 use app\components\AuthController;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
@@ -22,8 +23,10 @@ use yii\widgets\ActiveForm;
 /**
  * PostController implements the CRUD actions for Post model.
  */
-class PostController extends AuthController
+class PostController extends AuthController implements CrudControllerInterface
 {
+    use CrudControllerTrait;
+
     public static $imageDir = 'uploads/post';
     public static $imageOptions = ['thumbnail' => ['width' => 340, 'height' => 130]];
     public static $galleryOptions = ['thumbnail' => ['width' => 100, 'height' => 100]];
@@ -88,17 +91,6 @@ class PostController extends AuthController
     }
 
     /**
-     * for set admin theme
-     */
-    public function init()
-    {
-//        if (!isset(static::$modelName))
-//            throw new PropertyException("Undefined modelName property in " . self::className() . " class.", 500);
-        $this->setTheme('default');
-        parent::init();
-    }
-
-    /**
      * Lists all Post models.
      * @return mixed
      */
@@ -110,19 +102,6 @@ class PostController extends AuthController
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Slide model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
         ]);
     }
 
@@ -231,22 +210,6 @@ class PostController extends AuthController
         return $this->redirect(['index']);
     }
 
-    /**
-     * Finds the Post model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Post the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Post::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
-    }
-
     public function actionShow($id)
     {
         $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
@@ -300,5 +263,13 @@ class PostController extends AuthController
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public static function getModelName()
+    {
+        return Post::className();
     }
 }

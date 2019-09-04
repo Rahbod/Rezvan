@@ -20,6 +20,16 @@ use yii\widgets\ActiveForm;
  */
 trait CrudControllerTrait
 {
+    /**
+     * @return string
+     */
+    abstract public function getModelName();
+
+    /**
+     * @return array
+     */
+    abstract public function getRoutes();
+
 
     /**
      * for set admin theme
@@ -53,7 +63,7 @@ trait CrudControllerTrait
      */
     public function actionIndex()
     {
-        $searchModelName = self::getModelName() . "Search";
+        $searchModelName = $this->getModelName() . "Search";
         $searchModel = new $searchModelName();
 
         $dataProvider = $searchModel->search(app()->request->queryParams);
@@ -84,7 +94,7 @@ trait CrudControllerTrait
      */
     public function actionCreate()
     {
-        $modelClass = self::getModelName();
+        $modelClass = $this->getModelName();
         /** @var DynamicActiveRecord $model */
         $model = new $modelClass();
 
@@ -169,7 +179,7 @@ trait CrudControllerTrait
 
     protected function findModel($id)
     {
-        $modelClass = self::getModelName();
+        $modelClass = $this->getModelName();
         if (($model = $modelClass::findOne($id)) !== null) {
             return $model;
         }
@@ -178,6 +188,13 @@ trait CrudControllerTrait
     }
 
     /******************************************** DropZone Field types functions **************************************/
+
+    /**
+     * @return array
+     */
+    public function uploaderAttributes(){
+        return [];
+    }
 
     /**
      * @param $model ActiveRecord
@@ -237,7 +254,7 @@ trait CrudControllerTrait
 
     public function getEventRoute($name)
     {
-        $routes = static::getRoutes();
+        $routes = $this->getRoutes();
         return $routes[$name];
     }
 }
