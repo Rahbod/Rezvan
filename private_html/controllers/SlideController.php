@@ -81,8 +81,8 @@ class SlideController extends AuthController implements CrudControllerInterface
 
     public function actionSetting()
     {
-        if (Yii::$app->request->post()) {
-            $postData = \Yii::$app->request->post('Setting');
+        if (app()->request->post()) {
+            $postData = app()->request->post('Setting');
 
             ## region validation post data
             $config = Setting::getAll();

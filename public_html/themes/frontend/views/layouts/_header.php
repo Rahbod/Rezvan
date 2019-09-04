@@ -1,6 +1,10 @@
 <?php
-$baseUrl = $this->theme->baseUrl;
+/** @var $this View */
+/** @var  $baseUrl */
 
+use yii\web\View;
+
+$baseUrl = $this->theme->baseUrl;
 ?>
 
 <header id="header" class="site-header header-style-1">
@@ -13,7 +17,7 @@ $baseUrl = $this->theme->baseUrl;
                             <h1 id="site-title" class="logo img-logo">
                                 <a href="#">
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="rezvan">
-                                    <span class="site-title">rezvan</span>
+                                    <span class="site-title"><?= app()->name ?>></span>
                                 </a>
                             </h1>
                         </div>

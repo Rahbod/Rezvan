@@ -6,6 +6,7 @@ use app\models\Advice;
 use app\models\Cooperation;
 use app\models\Department;
 use app\models\Field;
+use app\models\Menu;
 use app\models\Model;
 use app\models\Reception;
 use app\models\User;
@@ -30,6 +31,7 @@ class MainController extends Controller
     public $tmpDir = 'uploads/temp';
     public static $tempDir = 'uploads/temp';
     public $models;
+    public $menus;
 
     public function init()
     {
@@ -370,6 +372,16 @@ class MainController extends Controller
                 $arr[$model->name] = $model->id;
             return $arr;
         }, $expire);
+
+        // cache menus
+        $this->menus = $cache->getOrSet('menus', function () {
+            $arr = [];
+            foreach (Menu::find()->all() as $menu)
+                $arr[$menu->id] = $menu;
+            return $arr;
+        }, $expire);
+
+
     }
 
     /**
