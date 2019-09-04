@@ -24,10 +24,10 @@ use yii\helpers\Url;
 </div>
 <div class="m-portlet__foot m-portlet__foot--fit">
     <div class="m-form__actions">
-        <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
         <a href="<?= Url::to(['index']) ?>" data-pjax="false" class="btn btn-danger">
-            <?php echo Yii::t('words', 'Cancel') ?></a>
-        <button type="reset" class="btn btn-secondary"><?php echo Yii::t('words', 'Reset') ?></button>
+            <?php echo trans('words', 'Cancel') ?></a>
+        <button type="reset" class="btn btn-secondary"><?php echo trans('words', 'Reset') ?></button>
 
     </div>
 </div>

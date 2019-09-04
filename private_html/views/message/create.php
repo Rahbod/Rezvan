@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Message */
 
-$this->title = Yii::t('words', 'Create Message');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Messages').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->title = trans('words', 'Create Message');
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.trans('words', 'Messages').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

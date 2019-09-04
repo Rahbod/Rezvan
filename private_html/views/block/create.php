@@ -7,8 +7,8 @@ use yii\widgets\Pjax;
 /* @var $this yii\web\View */
 /* @var $model app\models\Block */
 
-$this->title = Yii::t('words', 'Create block');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">' . Yii::t('words', 'Blocks') . '</span>', 'url' => ['index', 'id' => $model->itemID], 'class' => 'm-nav__link'];
+$this->title = trans('words', 'Create block');
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">' . trans('words', 'Blocks') . '</span>', 'url' => ['index', 'id' => $model->itemID], 'class' => 'm-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs('

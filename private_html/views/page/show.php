@@ -68,7 +68,7 @@ if ($relatedMenu)
                     <?php if ($model->gallery):
                         $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'lightbox');
                         ?>
-                        <h4><?= Yii::t('words', 'pictures') ?></h4>
+                        <h4><?= trans('words', 'pictures') ?></h4>
                         <div class="mt-3 mb-5 page-gallery row">
                             <? foreach ($model->gallery as $item):
                                 if ($item->file && is_file(Yii::getAlias("@webroot/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file"))):?>

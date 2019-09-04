@@ -24,9 +24,9 @@ use yii\helpers\Url;
 </div>
 <div class="m-portlet__foot m-portlet__foot--fit">
     <div class="m-form__actions">
-        <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
         <a href="<?= Url::to(['index']) ?>" data-pjax="false" class="btn btn-danger">
-            <?php echo Yii::t('words', 'Cancel') ?></a>
+            <?php echo trans('words', 'Cancel') ?></a>
     </div>
 </div>
 <?php CustomActiveForm::end(); ?>

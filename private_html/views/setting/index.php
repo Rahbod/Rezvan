@@ -11,7 +11,7 @@ use app\components\customWidgets\CustomActiveForm;
 /* @var $this yii\web\View */
 /* @var $settings [] */
 
-$this->title = Yii::t('words', 'General Setting');
+$this->title = trans('words', 'General Setting');
 $this->params['breadcrumbs'][] = $this->title;
 
 $this->registerJs('
@@ -56,10 +56,10 @@ $this->registerJs('
 
         <div class="m-form__section m-form__section--first">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title"><?= Yii::t('words', 'General') ?></h3>
+                <h3 class="m-form__heading-title"><?= trans('words', 'General') ?></h3>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Time Zone'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Time Zone'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::dropDownList('Setting[timeZone]', $settings['timeZone'], Setting::$_timeZones, [
                         'class' => 'form-control m-input m-input__solid'
@@ -69,7 +69,7 @@ $this->registerJs('
 
 
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Tell') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Tell') ?></label>
 
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[tell]', $settings['tell'], [
@@ -80,7 +80,7 @@ $this->registerJs('
             </div>
 
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Fax') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Fax') ?></label>
 
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[fax]', $settings['fax'], [
@@ -91,7 +91,7 @@ $this->registerJs('
             </div>
 
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Email') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Email') ?></label>
 
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[email]', $settings['email'], [
@@ -102,7 +102,7 @@ $this->registerJs('
             </div>
 
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Address') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Address') ?></label>
 
                 <div class="col-lg-6">
                     <?php echo Html::textarea('Setting[address]', $settings['address'], [
@@ -113,7 +113,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'En Address') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'En Address') ?></label>
 
                 <div class="col-lg-6">
                     <?php echo Html::textarea('Setting[en_address]', $settings['en_address'], [
@@ -124,7 +124,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Ar Address') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Ar Address') ?></label>
 
                 <div class="col-lg-6">
                     <?php echo Html::textarea('Setting[ar_address]', $settings['ar_address'], [
@@ -139,10 +139,10 @@ $this->registerJs('
 
         <div class="m-form__section m-form__section--last">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title"><?= Yii::t('words', 'Map') ?></h3>
+                <h3 class="m-form__heading-title"><?= trans('words', 'Map') ?></h3>
             </div>
             <div class="form-group m-form__group row">
-                <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Status') ?></label>
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Status') ?></label>
 
                 <div class="col-lg-6">
                     <label class="switch">
@@ -158,7 +158,7 @@ $this->registerJs('
             </div>
             <div class="map-setting">
                 <div class="m-form__group form-group row">
-                    <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Latitude') ?></label>
+                    <label class="col-lg-2 col-form-label"><?= trans('words', 'Latitude') ?></label>
                     <div class="col-lg-6">
                         <?php echo Html::textInput('Setting[map][lat]', $settings['map']['lat'], [
                             'class' => 'form-control m-input m-input__solid text-left',
@@ -167,7 +167,7 @@ $this->registerJs('
                     </div>
                 </div>
                 <div class="m-form__group form-group row">
-                    <label class="col-lg-2 col-form-label"><?= Yii::t('words', 'Longitude') ?></label>
+                    <label class="col-lg-2 col-form-label"><?= trans('words', 'Longitude') ?></label>
                     <div class="col-lg-6">
                         <?php echo Html::textInput('Setting[map][lng]', $settings['map']['lng'], [
                             'class' => 'form-control m-input m-input__solid text-left',
@@ -179,10 +179,10 @@ $this->registerJs('
         </div>
         <div class="m-form__section m-form__section--last">
             <div class="m-form__heading">
-                <h3 class="m-form__heading-title"><?= Yii::t('words', 'Social Networks') ?></h3>
+                <h3 class="m-form__heading-title"><?= trans('words', 'Social Networks') ?></h3>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Twitter'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Twitter'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][twitter]', $settings['socialNetworks']['twitter'], [
                         'class' => 'form-control m-input m-input__solid text-right',
@@ -191,7 +191,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Facebook'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Facebook'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][facebook]', $settings['socialNetworks']['facebook'], [
                         'class' => 'form-control m-input m-input__solid text-right',
@@ -200,7 +200,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Google Plus'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Google Plus'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][googleplus]', $settings['socialNetworks']['googleplus'], [
                         'class' => 'form-control m-input m-input__solid text-right',
@@ -209,7 +209,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Linked-in'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Linked-in'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][linkedin]', $settings['socialNetworks']['linkedin'], [
                         'class' => 'form-control m-input m-input__solid text-right',
@@ -219,7 +219,7 @@ $this->registerJs('
             </div>
             
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Instagram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Instagram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][instagram]', $settings['socialNetworks']['instagram'], [
                         'class' => 'form-control m-input m-input__solid text-right',
@@ -228,7 +228,7 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(Yii::t('words', 'Telegram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Telegram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
                     <?php echo Html::textInput('Setting[socialNetworks][telegram]', $settings['socialNetworks']['telegram'], [
                         'class' => 'form-control m-input m-input__solid text-right',
@@ -240,8 +240,8 @@ $this->registerJs('
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <button type="reset" class="btn btn-secondary"><?= trans('words', 'Cancel') ?></button>
         </div>
     </div>
     <?php CustomActiveForm::end(); ?>

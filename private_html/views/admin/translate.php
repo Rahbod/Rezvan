@@ -12,7 +12,7 @@ use app\components\customWidgets\CustomActiveForm;
 /* @var $basePhrases [] */
 /* @var $destPhrases [] */
 
-$this->title = Yii::t('words', 'Translate Management');
+$this->title = trans('words', 'Translate Management');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -90,8 +90,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 endforeach;
                 ?>
                 <div class="m-form__actions">
-                    <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-                    <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel') ?></button>
+                    <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+                    <button type="reset" class="btn btn-secondary"><?= trans('words', 'Cancel') ?></button>
                 </div>
                 <?php CustomActiveForm::end(); ?>
             </div>

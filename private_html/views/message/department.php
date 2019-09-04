@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\MessageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Departments');
+$this->title = trans('words', 'Departments');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="message-index">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Department') ?></span>
+							<span><?= trans('words', 'Create Department') ?></span>
 						</span>
                         </a>
                     </li>
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'delete' => function ($url, $model) {
                                     return Html::a('<span class="far fa-trash-alt text-danger"></span>', ['delete-department', 'id' => $model->id], [
                                         'data-pjax' => '0',
-                                        'data-confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
+                                        'data-confirm' => \trans('yii', 'Are you sure you want to delete this item?'),
                                         'data-method' => 'post',
                                     ]);
                                 },

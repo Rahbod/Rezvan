@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\UnitSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Units');
+$this->title = trans('words', 'Units');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="unit-index">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create unit') ?></span>
+							<span><?= trans('words', 'Create unit') ?></span>
 						</span>
                         </a>
                     </li>

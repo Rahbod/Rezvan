@@ -1,7 +1,10 @@
 <?php
 /** @var $this View */
+
 /** @var  $baseUrl */
 
+use app\models\Menu;
+use yii\helpers\Url;
 use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
@@ -16,8 +19,8 @@ $baseUrl = $this->theme->baseUrl;
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
                                 <a href="#">
-                                    <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="rezvan">
-                                    <span class="site-title"><?= app()->name ?>></span>
+                                    <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
+                                    <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
                         </div>
@@ -51,9 +54,10 @@ $baseUrl = $this->theme->baseUrl;
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="lang-select"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="#">IR</a>
+                                                <a class="dropdown-item" href="<?= Url::to(["/en"]) ?>">EN</a>
+                                                <a class="dropdown-item" href="<?= Url::to(["/fa"]) ?>">FA</a>
                                             </div>
                                         </li>
                                     </ul>
@@ -62,7 +66,7 @@ $baseUrl = $this->theme->baseUrl;
                             <div id="main-navigation" class="search-container close collapse">
                                 <div class="search-box clearfix">
                                     <form role="search" method="get" class="search-form clearfix" action="#">
-                                        <input type="search" class="search-field" placeholder="Search" value="" name="s"
+                                        <input type="search" class="search-field" placeholder="<?= Yii::t() ?>" value="" name="s"
                                                title="Search:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
@@ -70,18 +74,12 @@ $baseUrl = $this->theme->baseUrl;
                                 </div>
                             </div>
                             <ul id="main-navigation" class="main-menu collapse">
-                                <li class="menu-item"><i class="sprite sprite-services-icon"></i><a
-                                            href="#">SERVICES</a></li>
-                                <li class="menu-item"><i class="sprite sprite-company-icon"></i><a href="#">COMPANY
-                                        REGISTRATION</a></li>
-                                <li class="menu-item"><i class="sprite sprite-project-icon"></i><a href="#">PROJECTS</a>
-                                </li>
-                                <li class="menu-item"><i class="sprite sprite-investment-icon"></i><a href="#">INVESTMENT
-                                        OPPORTUNITIES</a></li>
-                                <li class="menu-item"><i class="sprite sprite-about-icon"></i><a href="#">ABOUT US</a>
-                                </li>
-                                <li class="menu-item"><i class="sprite sprite-phone-icon"></i><a href="#">CONTACT US</a>
-                                </li>
+                                <?php
+                                /** @var Menu $menu */
+                                foreach (app()->controller->menus as $menu): ?>
+                                    <li class="menu-item"><i class="sprite <?= $menu->icon_class ?>"></i><a
+                                                href="<?= $menu->getUrl()?>"><?= $menu->getName() ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                             <!-- #main-navigation -->
                         </nav>

@@ -6,8 +6,8 @@ use app\components\customWidgets\CustomActiveForm;
 /* @var $this yii\web\View */
 /* @var $model app\models\User */
 
-$this->title = Yii::t('words', 'Change Password: {name}', ['name' => Yii::$app->user->identity->username]);
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Slides').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->title = trans('words', 'Change Password: {name}', ['name' => Yii::$app->user->identity->username]);
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.trans('words', 'Slides').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -43,8 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <button type="reset" class="btn btn-secondary"><?= trans('words', 'Cancel')?></button>
         </div>
     </div>
     <?php CustomActiveForm::end(); ?>

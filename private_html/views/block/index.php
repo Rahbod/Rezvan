@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\BlockSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Blocks');
+$this->title = trans('words', 'Blocks');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="block-index">
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            data-pjax="false">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create block') ?></span>
+							<span><?= trans('words', 'Create block') ?></span>
 						</span>
                         </a>
                     </li>

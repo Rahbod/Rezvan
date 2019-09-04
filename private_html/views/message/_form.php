@@ -32,8 +32,8 @@ use app\components\customWidgets\CustomActiveForm;
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel')?></button>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <button type="reset" class="btn btn-secondary"><?= trans('words', 'Cancel')?></button>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

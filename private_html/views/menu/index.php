@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\MenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Menus');
+$this->title = trans('words', 'Menus');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menu-index">
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Menu') ?></span>
+							<span><?= trans('words', 'Create Menu') ?></span>
 						</span>
                         </a>
                     </li>
@@ -73,9 +73,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             },
                         ],
                         [
-                            'header' => Yii::t('words', 'Link'),
+                            'header' => trans('words', 'Link'),
                             'value' => function($model){
-                                return $model->getUrl()!= "#"?Html::a(Yii::t('words', 'show'), $model->getUrl(), ['target' => '_blank']):'-';
+                                return $model->getUrl()!= "#"?Html::a(trans('words', 'show'), $model->getUrl(), ['target' => '_blank']):'-';
                             },
                             'format' => 'raw'
                         ],

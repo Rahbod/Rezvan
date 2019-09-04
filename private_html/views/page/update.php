@@ -7,12 +7,12 @@ use yii\helpers\Html;
 /* @var $image \devgroup\dropzone\UploadedFiles */
 /* @var $gallery \devgroup\dropzone\UploadedFiles */
 
-$this->title = Yii::t('words', 'Update Page: {name}', [
+$this->title = trans('words', 'Update Page: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => trans('words', 'Pages'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('words', 'Update');
+$this->params['breadcrumbs'][] = trans('words', 'Update');
 ?>
 
 

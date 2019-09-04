@@ -359,6 +359,9 @@ class Category extends MultiLangActiveRecord
             else
                 return $this->{Yii::$app->language . '_name'} ?: $this->name;
         }
+
+        if(app()->language == 'en')
+            $this->name = strtoupper($this->name);
         return $this->name;
     }
 }

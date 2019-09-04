@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Menu */
 
-$this->title = Yii::t('words', 'Update Menu: {name}', [
+$this->title = trans('words', 'Update Menu: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Menus'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => trans('words', 'Menus'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('words', 'Update');
+$this->params['breadcrumbs'][] = trans('words', 'Update');
 ?>
 
 
