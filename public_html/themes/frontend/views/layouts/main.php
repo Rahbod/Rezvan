@@ -5,8 +5,6 @@
 
 use app\themes\AppAsset;
 use yii\helpers\Html;
-use yii\bootstrap\BootstrapAsset;
-use yii\web\JqueryAsset;
 
 AppAsset::register($this);
 ?>
@@ -19,48 +17,55 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
-    <?php if (Yii::$app->language != 'en')
-        $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-rtl.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-rtl'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-4-classes.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-4-classes'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/css/font-awesome.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'font-awesome'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/css/owl.carousel.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'owl-carousel'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/css/owl.theme.default.min.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'owl-theme'); ?>
-    <?php $this->registerCssFile($this->theme->baseUrl . '/js/vendors/icomoon/style.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'icomoon'); ?>
-    <?php
-    $this->registerCssFile($this->theme->baseUrl . '/css/sidebar.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'sidebar');
-    $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme');
-    if (Yii::$app->language == 'en') {
-        $this->registerCssFile($this->theme->baseUrl . '/css/bootstrap-theme-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'bootstrap-theme-en');
-        $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme-ltr');
-        $this->registerCssFile($this->theme->baseUrl . '/css/sidebar-ltr.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'sidebar-ltr');
-        $this->registerCssFile($this->theme->baseUrl . '/css/fontiran.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num');
-    } else {
-        $this->registerCssFile($this->theme->baseUrl . '/css/fontiran-fa-num.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'fontiran-fa-num');
-        $this->registerCssFile($this->theme->baseUrl . '/css/responsive-theme.css', ['depends' => [BootstrapAsset::className()], 'media' => 'all'], 'responsive-theme');
-    }
-    ?>
-    <?php $this->registerJsFile($this->theme->baseUrl . '/js/bootstrap.min.js', ['depends' => [JqueryAsset::className()]], 'bootstrap'); ?>
-    <?php $this->registerJsFile($this->theme->baseUrl . '/js/jquery.nicescroll.min.js', ['depends' => [JqueryAsset::className()]], 'nicescroll'); ?>
-    <?php $this->registerJsFile($this->theme->baseUrl . '/js/owl.carousel.min.js', ['depends' => [JqueryAsset::className()]], 'owl-script'); ?>
-    <?php $this->registerJsFile($this->theme->baseUrl . '/js/jquery.script.js', ['depends' => [JqueryAsset::className()]], 'script'); ?>
-    <?php $this->registerJs('
-        $(".captcha a").trigger("click");
-    ', \yii\web\View::POS_LOAD, 'captcha-refresh'); ?>
-    <?php $this->head(); ?>
-</head>
-<body class="<?= Yii::$app->controller->bodyClass ?: '' ?>">
-<?php $this->beginBody(); ?>
-<?php echo $this->render('_header'); ?>
-<main>
-    <div class="content">
-        <?= $content ?>
-    </div>
-</main>
-<div class="screen-overlay"></div>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/font-awesome.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/css/style.css' ?>" rel="stylesheet">
+    <script src="<?= $this->theme->baseUrl ?>./js/jquery.min.js"></script>
+    <script src="<?= $this->theme->baseUrl ?>./js/custom.js"></script>
 
-<?php echo $this->render('_footer'); ?>
+
+</head>
+<?php
+
+$url = app()->request->url;
+$url_array = explode('/', $url);
+$pageName = end($url_array);
+
+
+if ($pageName == 'one-more') {
+    $bodyClass = 'more-one';
+    $headerClass = 'header-style-2';
+} else {
+    $bodyClass = 'home';
+    $headerClass = 'header-style-1';
+}
+
+?>
+
+<body class="<?= app()->controller->bodyClass ?>">
+<?php $this->beginBody(); ?>
+
+<?php if (app()->controller->innerPage)
+    echo $this->render('_inner_header');
+else
+    echo $this->render('_header');
+?>
+<main>
+    <?= $content ?>
+</main>
+
+<?php if (app()->controller->innerPage)
+    echo $this->render('_inner_footer');
+else
+    echo $this->render('_footer');
+?>
+
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
+
+<script src="<?= $this->theme->baseUrl . '/js/jquery.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
 
 </body>
 </html>

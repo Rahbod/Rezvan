@@ -23,8 +23,9 @@ use yii\web\Controller;
  */
 class MainController extends Controller
 {
-    public $bodyClass;
+    public $bodyClass='home';
     public $headerClass;
+    public $innerPage=false;
     public $theme;
     public $tmpDir = 'uploads/temp';
     public static $tempDir = 'uploads/temp';
