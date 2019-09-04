@@ -98,12 +98,46 @@ class Category extends MultiLangActiveRecord
         }
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'category_type' => ['CHAR', ''],
-            'en_name' => ['CHAR', ''],
-            'ar_name' => ['CHAR', ''],
             'sort' => ['INTEGER', ''],
             'show_in_home' => ['INTEGER', ''],
             'show_always' => ['INTEGER', ''],
+
+            'en_name' => ['CHAR', ''],
+            'ar_name' => ['CHAR', ''],
         ]);
+    }
+
+    public function formAttributes()
+    {
+        // add name and status fields for defined languages
+        if (!static::$multiLanguage) {
+            $langs = static::$langArray;
+            unset($langs['fa']);
+            $langs = array_keys($langs);
+            $names = ['name'];
+            $statuses = ['status'];
+            foreach ($langs as $lang) {
+                $names[] = "{$lang}_name";
+                $statuses[] = "{$lang}_status";
+            }
+            $fields = [
+                [$names, static::FORM_FIELD_TYPE_TEXT],
+                [$statuses, [
+                    'type' => static::FORM_FIELD_TYPE_SELECT,
+                    'items' => self::getStatusFilter()
+                ]]
+            ];
+        } else
+            $fields = [
+                'lang' => static::FORM_FIELD_TYPE_LANGUAGE_SELECT,
+                'name' => static::FORM_FIELD_TYPE_TEXT,
+                'status' => [
+                    'type' => static::FORM_FIELD_TYPE_SELECT,
+                    'items' => self::getStatusFilter()
+                ],
+            ];
+
+        return $fields;
     }
 
     /**

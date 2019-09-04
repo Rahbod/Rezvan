@@ -147,7 +147,6 @@ class Post extends Item
                     ],
                 ]
             ],
-            'lang' => static::FORM_FIELD_TYPE_LANGUAGE_SELECT,
             'type' => [
                 'type' => static::FORM_FIELD_TYPE_SELECT,
                 'items' => \app\models\Post::getTypeLabels()

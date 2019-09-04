@@ -370,4 +370,16 @@ class MainController extends Controller
             return $arr;
         }, $expire);
     }
+
+    /**
+     * Default route for all controllers that use Crud Controller Trait
+     *
+     * @return array
+     */
+    public static function getRoutes()
+    {
+        return [
+            'after_save_route' => 'index'
+        ];
+    }
 }

@@ -2,11 +2,17 @@
 
 namespace app\controllers;
 
+use app\components\CrudControllerInterface;
+use app\components\CrudControllerTrait;
+use app\models\Page;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
 use richardfan\sortable\SortableAction;
 use Yii;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\components\AuthController;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Json;
@@ -20,68 +26,62 @@ use yii\widgets\ActiveForm;
  */
 class MenuController extends AuthController
 {
-    /**
-     * for set admin theme
-     */
-    public function init()
-    {
-        $this->setTheme('default');
-        parent::init();
-    }
+    use CrudControllerTrait;
+
+    public static $imageDir = 'uploads/menu';
+    public static $imageOptions = [];
 
     /**
-     * {@inheritdoc}
+     * @return string
      */
-    public function behaviors()
+    public static function getModelName()
+    {
+        return  Menu::className();
+    }
+
+    public function getSystemActions()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
+            'upload-image',
+            'delete-image',
+        ];
+    }
+
+    public function uploaderAttributes()
+    {
+        return [
+            'image' => [
+                'dir' => self::$imageDir,
+                'options' => self::$imageOptions
+            ]
         ];
     }
 
     public function actions()
     {
         return [
+            'upload-image' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Menu(), 'image'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-image' => [
+                'class' => RemoveAction::className(),
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Menu(),
+                'attribute' => 'image',
+                'upload' => self::$imageDir,
+                'options' => self::$imageOptions
+            ],
             'sort-item' => [
                 'class' => SortableAction::className(),
                 'activeRecordClassName' => Menu::className(),
                 'orderColumn' => 'sort',
             ],
         ];
-    }
-
-    /**
-     * Lists all Menu models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new MenuSearch();
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-        $dataProvider->pagination = false;
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Menu model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
     }
 
     /**
@@ -111,6 +111,7 @@ class MenuController extends AuthController
                 $saveResult = $model->prependTo($parent);
             }
             if ($saveResult) {
+                $this->saveUploaderAttributes($model);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['index']);
             } else
@@ -142,6 +143,7 @@ class MenuController extends AuthController
         }
 
         if (Yii::$app->request->post()) {
+            $oldUploaderValues = $this->getOldUploaderValues($model);
             $model->load(Yii::$app->request->post());
 
             $saveResult = false;
@@ -158,6 +160,7 @@ class MenuController extends AuthController
             }
 
             if ($saveResult) {
+                $this->editUploaderAttributes($model, $oldUploaderValues);
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
@@ -180,8 +183,9 @@ class MenuController extends AuthController
      */
     public function actionDelete($id)
     {
-        $result = $this->findModel($id);
-        $result = $result->deleteWithChildren();
+        $model = $this->findModel($id);
+        $this->deleteUploaderAttributes($model);
+        $result = $model->deleteWithChildren();
 
         if ($result === false)
             Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
@@ -190,21 +194,5 @@ class MenuController extends AuthController
 
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Menu model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Menu the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Menu::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
 }

@@ -139,7 +139,7 @@ trait FormRendererTrait
             case static::FORM_FIELD_TYPE_SWITCH:
                 if (!isset($fieldOptions['template']))
                     $fieldOptions['template'] = '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}';
-                $obj = $form->field($model, $attribute, $fieldOptions)->checkbox([], false);
+                $obj = $form->field($model, $attribute, $fieldOptions)->checkbox($options, false);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_EDITOR:
                 $options['options']['tabindex'] = $options['tabindex'];

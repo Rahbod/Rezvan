@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\components\CrudControllerInterface;
+use app\components\CrudControllerTrait;
 use app\components\Imager;
 use app\models\Attachment;
 use devgroup\dropzone\RemoveAction;
@@ -11,6 +13,7 @@ use Yii;
 use app\models\Page;
 use app\models\PageSearch;
 use app\components\AuthController;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
@@ -21,19 +24,20 @@ use yii\widgets\ActiveForm;
 /**
  * PageController implements the CRUD actions for Page model.
  */
-class PageController extends AuthController
+class PageController extends AuthController implements CrudControllerInterface
 {
+    use CrudControllerTrait;
+
     public static $imageDir = 'uploads/pages';
     public static $imageOptions = [];
     public static $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
 
     /**
-     * for set admin theme
+     * @return string
      */
-    public function init()
+    public static function getModelName()
     {
-        $this->setTheme('default');
-        parent::init();
+        return Page::className();
     }
 
     public function getSystemActions()
@@ -44,21 +48,6 @@ class PageController extends AuthController
             'upload-attachment',
             'delete-attachment',
             'show',
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
         ];
     }
 
@@ -96,35 +85,6 @@ class PageController extends AuthController
                 'options' => self::$galleryOptions
             ],
         ];
-    }
-
-    /**
-     * Lists all Page models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new PageSearch();
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Page model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
     }
 
     public function actionShow($id)
@@ -231,21 +191,5 @@ class PageController extends AuthController
         $model->delete();
 
         return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the Page model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Page the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Page::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
 }

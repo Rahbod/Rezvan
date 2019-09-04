@@ -61,13 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'attribute' => 'status',
-                            'value' => function($model){
-                                return \app\models\Slide::getStatusLabels($model->status);
-                            },
-                            'filter'=>\app\models\Slide::getStatusFilter()
-                        ],
-                        [
-                            'attribute' => 'status',
                             'value' => function ($model) {
                                 return \app\models\Slide::getStatusLabels($model->status,true);
                             },

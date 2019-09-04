@@ -48,13 +48,34 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'id',
-//                        'type',
                         'name',
-                        //'dyna',
-                        //'extra:ntext',
-                        //'created',
-                        //'status',
+
+                        [
+                            'attribute' => 'status',
+                            'value' => function ($model) {
+                                return \app\models\Slide::getStatusLabels($model->status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'en_status',
+                            'value' => function ($model) {
+                                $model->en_status = $model->en_status ?: 0;
+                                return \app\models\Slide::getStatusLabels($model->en_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
+                        ],
+                        [
+                            'attribute' => 'ar_status',
+                            'value' => function ($model) {
+                                $model->ar_status = $model->ar_status ?: 0;
+                                return \app\models\Slide::getStatusLabels($model->ar_status,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Slide::getStatusFilter()
+                        ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
                             'template' => '{block} {unit} {update} {delete}',

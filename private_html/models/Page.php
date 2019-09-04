@@ -106,7 +106,6 @@ class Page extends Item
                     ],
                 ]
             ],
-            'lang' => static::FORM_FIELD_TYPE_LANGUAGE_SELECT,
             'body' => [
                 'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
                 'containerCssClass' => 'col-sm-12',
