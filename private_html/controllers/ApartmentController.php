@@ -201,4 +201,11 @@ class ApartmentController extends AuthController
 
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
+
+    public function getMenuActions()
+    {
+        return [
+            'index','show'
+        ];
+    }
 }

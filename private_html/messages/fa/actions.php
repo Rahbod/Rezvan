@@ -124,5 +124,9 @@ return [
     'online.cooperation' => 'درخواست همکاری',
     'online.advice' => 'درخواست مشاوره پزشکی',
     'online.reception' => 'درخواست پذیرش',
+
     'online.visit' => 'درخواست نوبت دهی',
+    'Apartment.index' => 'نمایش آپارتمان ها',
+    'Investment.index' => 'نمایش آپارتمان ها',
+    'Construction.index' => 'نمایش آپارتمان ها',
 ];

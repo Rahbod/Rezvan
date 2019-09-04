@@ -4,7 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
-use app\models\projects\Apartment;
+use app\models\ContactForm;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\models\Message;
@@ -12,12 +12,12 @@ use app\models\Page;
 use app\models\PageSearch;
 use app\models\Post;
 use app\models\PostSearch;
+use app\models\projects\Apartment;
 use app\models\Slide;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Response;
 use yii\filters\VerbFilter;
-use app\models\ContactForm;
+use yii\web\Response;
 
 class SiteController extends AuthController
 {
@@ -83,17 +83,6 @@ class SiteController extends AuthController
 //    {
 //        var_dump(Yii::$app->request);exit;
 //    }
-
-    /**
-     * Displays homepage.
-     *
-     * @return string
-     */
-    public function actionIndex()
-    {
-        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-        return $this->render('index', compact('slides'));
-    }
 
     public function actionChangeLang($language = false, $controller = false, $action = false)
     {
@@ -205,7 +194,7 @@ class SiteController extends AuthController
 
             $searchPage = new PageSearch();
             $searchPage->name = $term;
-            $searchPage->body= $term;
+            $searchPage->body = $term;
             $searchPage->status = Page::STATUS_PUBLISHED;
             $pageProvider = $searchPage->search([]);
             $pageProvider->getPagination()->pageSize = 100;
@@ -213,13 +202,18 @@ class SiteController extends AuthController
             $searchMenu = new MenuSearch();
             $searchMenu->name = $term;
             $searchMenu->status = Menu::STATUS_PUBLISHED;
-            $searchMenu->menu_type = [Menu::MENU_TYPE_ACTION,Menu::MENU_TYPE_EXTERNAL_LINK];
+            $searchMenu->menu_type = [Menu::MENU_TYPE_ACTION, Menu::MENU_TYPE_EXTERNAL_LINK];
             $menuProvider = $searchMenu->search([]);
             $menuProvider->getPagination()->pageSize = 100;
 
             return $this->render('search', compact('term', 'newsProvider', 'articleProvider', 'pageProvider', 'menuProvider'));
         } else
             return $this->goBack();
+    }
+
+    public function actionTest()
+    {
+        dd(Apartment::find()->count());
     }
 
     /*public function actionTest()
@@ -304,8 +298,49 @@ class SiteController extends AuthController
         }
     }*/
 
-    public function actionTest()
+
+    public function actionIndex()
     {
-        dd(Apartment::find()->count());
+        $this->bodyClass = 'home';
+
+        $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
+        return $this->render('index', compact('slides'));
     }
+
+    public function actionMoreOne()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+        return $this->render('more-one');
+    }
+
+    public function actionProjectList()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+        return $this->render('project-list');
+    }
+
+    public function actionTextPage()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+        return $this->render('text-page');
+    }
+
+    public function actionSpecial()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view special';
+        return $this->render('special');
+
+    }
+
+    public function actionIn()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view';
+        return $this->render('in');
+    }
+
 }

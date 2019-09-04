@@ -3,7 +3,7 @@ $baseUrl = $this->theme->baseUrl;
 
 ?>
 
-<header id="header" class="site-header header-style-1">
+<header id="header" class="site-header header-style-2">
     <div class="header-top">
         <div class="container-fluid">
             <div class="row">

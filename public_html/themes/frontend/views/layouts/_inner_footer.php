@@ -1,7 +1,7 @@
 <?php
 $baseUrl = $this->theme->baseUrl;
 ?>
-<footer>
+<footer class="footer-style-2">
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-5 col-md-5  col-sm-12 col-xs-12 footer-left">
