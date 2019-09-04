@@ -204,4 +204,6 @@ class InvestmentController extends AuthController
         ];
     }
 
+    public function getMenuActions(){return ['index'];}
+
 }
