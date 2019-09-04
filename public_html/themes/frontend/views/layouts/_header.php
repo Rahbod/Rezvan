@@ -65,8 +65,8 @@ $baseUrl = $this->theme->baseUrl;
                             <div id="main-navigation" class="search-container close collapse">
                                 <div class="search-box clearfix">
                                     <form role="search" method="get" class="search-form clearfix" action="#">
-                                        <input type="search" class="search-field" placeholder="<?= trans() ?>" value="" name="s"
-                                               title="Search:" autocomplete="off">
+                                        <input type="search" class="search-field" placeholder="<?= trans('words', 'Search') ?>" value="" name="s"
+                                               title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
                                     <!-- .search-form -->

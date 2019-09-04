@@ -200,18 +200,9 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Google Plus'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Youtube'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][googleplus]', $settings['socialNetworks']['googleplus'], [
-                        'class' => 'form-control m-input m-input__solid text-right',
-                        'dir' => 'ltr',
-                    ]); ?>
-                </div>
-            </div>
-            <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Linked-in'), '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][linkedin]', $settings['socialNetworks']['linkedin'], [
+                    <?php echo Html::textInput('Setting[socialNetworks][youtube]', $settings['socialNetworks']['youtube'], [
                         'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
@@ -228,9 +219,9 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Telegram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Whats app'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][telegram]', $settings['socialNetworks']['telegram'], [
+                    <?php echo Html::textInput('Setting[socialNetworks][whatsapp]', $settings['socialNetworks']['whatsapp'], [
                         'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>
