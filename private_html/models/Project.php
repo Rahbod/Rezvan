@@ -138,6 +138,7 @@ class Project extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
+            'hr' => self::FORM_SEPARATOR,
             'subtitle' => self::FORM_FIELD_TYPE_TEXT,
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
@@ -196,4 +197,12 @@ class Project extends Item
     {
         return $this->hasMany(Block::className(),[self::columnGetString('itemID')=>'id']);
     }
+
+    public function getImageSrc()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
+            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
+
 }
