@@ -27,8 +27,7 @@ class SiteController extends AuthController
         return [
             'index',
             'contact',
-            'suggestion',
-            'complaint',
+            'about',
         ];
     }
 
@@ -105,70 +104,6 @@ class SiteController extends AuthController
         return $this->redirect($url);
     }
 
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        return $this->ContactProcess();
-    }
-
-    public function actionSuggestion()
-    {
-        return $this->ContactProcess('suggestion', Message::TYPE_SUGGESTIONS);
-    }
-
-    public function actionComplaint()
-    {
-        return $this->ContactProcess('complaint', Message::TYPE_COMPLAINTS);
-    }
-
-    public function ContactProcess($view = 'contact', $type = Message::TYPE_CONTACT_US)
-    {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        $model = new ContactForm();
-        $model->scenario = $type == 'cnt' ? 'default' : "$type-scenario";
-        if (Yii::$app->request->post()) {
-            $model->load(Yii::$app->request->post());
-            if ($model->validate()) {
-                $message = new  Message();
-                $message->scenario = $type == 'cnt' ? 'default' : "$type-scenario";
-                $message->type = $type;
-                $message->name = $model->name;
-                $message->tel = $model->tel;
-                $message->body = $model->body;
-                $message->degree = $model->degree;
-                $message->subject = $model->subject;
-                $message->email = $model->email;
-                $message->department_id = $model->department_id;
-                if ($message->save()) {
-                    $model->contact(Yii::$app->params['adminEmail']);
-                    Yii::$app->session->setFlash('public-alert', ['type' => 'success', 'message' => trans('words', 'message.successMsg')]);
-                    if ($return = Yii::$app->request->getBodyParam('return'))
-                        return $this->redirect([$return]);
-                    return $this->refresh();
-                } else
-                    Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => trans('words', 'message.dangerMsg')]);
-            } else
-                Yii::$app->session->setFlash('public-alert', ['type' => 'danger', 'message' => trans('words', 'message.dangerMsg')]);
-        }
-
-        return $this->render($view, [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
 
     public function actionSearch()
     {
@@ -211,93 +146,6 @@ class SiteController extends AuthController
             return $this->goBack();
     }
 
-    public function actionTest()
-    {
-        dd(Apartment::find()->count());
-    }
-
-    /*public function actionTest()
-    {
-        $insurances = [
-            ['name' => 'بيمه تامين اجتماعي'],
-            ['name' => 'بيمه سلامت'],
-            ['name' => 'بيمه ايران'],
-            ['name' => 'بيمه آسيا'],
-            ['name' => 'بيمه البرز'],
-            ['name' => 'بيمه دانا '],
-            ['name' => 'بيمه پارسيان'],
-            ['name' => 'بيمه ما'],
-            ['name' => 'بيمه ملت'],
-            ['name' => 'بيمه نوين '],
-            ['name' => 'بيمه تعاون'],
-            ['name' => 'بيمه سايپا'],
-            ['name' => 'بيمه آتيه سازان حافظ'],
-            ['name' => 'بيمه SOS'],
-            ['name' => 'بيمه ميهن'],
-            ['name' => 'بيمه كارآفرين'],
-            ['name' => 'صنايع هواپيمايي'],
-            ['name' => 'هواپيمايي آسمان'],
-            ['name' => 'شركت هواپيمايي سامان'],
-            ['name' => 'شركت نفت فلات قاره'],
-            ['name' => 'مجلس شوراي اسلامي'],
-            ['name' => 'مركز مشاوره دانشگاه تهران'],
-            ['name' => 'بانك مركزي'],
-            ['name' => 'بانك ملت'],
-            ['name' => 'بانك صادرات'],
-            ['name' => 'بانك توسعه صادرات'],
-            ['name' => 'بانك تجارت '],
-            ['name' => 'بانك رفاه '],
-            ['name' => 'بانك مسكن '],
-            ['name' => 'بانك سپه '],
-            ['name' => 'بانك كشاوري'],
-            ['name' => 'بانك صنعت و معدن'],
-            ['name' => 'بانك مهر ايران'],
-            ['name' => 'صندوق رفاه كيش']
-        ];
-
-        $insurances2 = [
-            ['name' => 'بيمه تامين اجتماعي'],
-            ['name' => 'بيمه سلامت'],
-            ['name' => 'بيمه ايران'],
-            ['name' => 'بيمه آسيا'],
-            ['name' => 'بيمه البرز'],
-            ['name' => 'بيمه پارسيان'],
-            ['name' => 'بيمه سايپا'],
-            ['name' => 'صنايع هواپيمايي'],
-            ['name' => 'هواپيمايي آسمان'],
-            ['name' => 'شركت سازه گستر سايپا'],
-            ['name' => 'مجلس شوراي اسلامي'],
-            ['name' => 'بانك مركزي'],
-            ['name' => 'بانك ملت'],
-            ['name' => 'بانك صادرات'],
-            ['name' => 'بانك توسعه صادرات'],
-            ['name' => 'بانك تجارت '],
-            ['name' => 'بانك رفاه '],
-            ['name' => 'بانك مسكن '],
-            ['name' => 'بانك سپه '],
-            ['name' => 'بانك كشاوري'],
-            ['name' => 'بانك صنعت و معدن'],
-            ['name' => 'صندوق رفاه كيش']
-        ];
-
-
-        foreach ($insurances as $insurance) {
-            $model = new Insurance();
-            $model->name = $insurance['name'];
-            $model->code = $insurance['code'];
-            $model->type = Insurance::TYPE_INPATIENT;
-            @$model->save();
-        }
-
-        foreach ($insurances2 as $insurance) {
-            $model = new Insurance();
-            $model->name = $insurance['name'];
-            $model->code = $insurance['code'];
-            $model->type = Insurance::TYPE_OUTPATIENT;
-            @$model->save();
-        }
-    }*/
-
 
     public function actionIndex()
     {
@@ -307,6 +155,31 @@ class SiteController extends AuthController
         return $this->render('index', compact('slides'));
     }
 
+    /**
+     * Displays contact page.
+     *
+     * @return Response|string
+     */
+    public function actionContact()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+
+        return $this->render('contact', compact($this->getProjects()));
+    }
+
+    /**
+     * Displays about page.
+     *
+     * @return string
+     */
+    public function actionAbout()
+    {
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+        return $this->render('about', compact($this->getProjects()));
+    }
+
     public function actionMoreOne()
     {
         $this->innerPage = true;
@@ -314,33 +187,8 @@ class SiteController extends AuthController
         return $this->render('more-one');
     }
 
-    public function actionProjectList()
+    public function getProjects()
     {
-        $this->innerPage = true;
-        $this->bodyClass = 'more-one';
-        return $this->render('project-list');
+        return Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
     }
-
-    public function actionTextPage()
-    {
-        $this->innerPage = true;
-        $this->bodyClass = 'text-page';
-        return $this->render('text-page');
-    }
-
-    public function actionSpecial()
-    {
-        $this->innerPage = true;
-        $this->bodyClass = 'final-project-view special';
-        return $this->render('special');
-
-    }
-
-    public function actionIn()
-    {
-        $this->innerPage = true;
-        $this->bodyClass = 'final-project-view';
-        return $this->render('in');
-    }
-
 }
