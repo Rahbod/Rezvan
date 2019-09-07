@@ -6,6 +6,8 @@ return [
     'fa' => 'فارسی',
     'en' => 'انگلیسی',
     'ar' => 'عربی',
+    'Ar Name' => 'نام عربی',
+    'En Name' => 'نام انگلیسی',
     'base.successMsg' => 'اطلاعات با موفقیت ثبت شد.',
     'base.dangerMsg' => 'در ثبت اطلاعات خطایی رخ داده است.',
     'base.deleteSuccessMsg' => 'عملیات حذف با موفقیت انجام شد.',
@@ -413,9 +415,9 @@ return [
     'Construction time' => 'مدت اجرا',
     'Location' => 'منطقه',
     'Area size' => 'متراژ',
-    'Unit count' => 'تعداد واحد',
-    'Free count' => 'واحد آزاد',
-    'Sold count' => 'واحد فروخته شده',
+    'Unit count' => 'تعداد کل واحد',
+    'Free count' => 'تعداد واحد آزاد',
+    'Sold count' => 'تعداد واحد فروخته شده',
     'Project ID' => 'شناسه پروژه',
     'Unit number' => 'شماره واحد',
     'Floor number' => 'شماره طبقه',
@@ -452,6 +454,10 @@ return [
     'Create other construction' => 'ایجاد پروژه',
     'Create unit' => 'ایجاد واحد',
     'Create block' => 'ایجاد بلوک',
+    'Project type' => 'نوع پروژه',
+
+    'Single view' => 'نمایش تک معرفی',
+    'Multi view' => 'نمایش چند معرفی',
 
 
     'Apartments' => 'پروژه ها',
@@ -479,5 +485,4 @@ return [
 
     //    construction : update
     'Update other construction: {name}' => 'ویرایش سازه ها: {name}',
-
 ];
