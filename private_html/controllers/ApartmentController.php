@@ -36,7 +36,6 @@ class ApartmentController extends AuthController
     }
 
 
-
     public function actions()
     {
         return [
@@ -202,5 +201,52 @@ class ApartmentController extends AuthController
         throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
     }
 
-    public function getMenuActions(){return ['index'];}
+    public function getMenuActions()
+    {
+        return ['index'];
+    }
+
+    // ----------------rezvan methods ------------------
+    public function actionList()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+
+        $projects = Apartment::find()->orderBy([
+            'id' => SORT_DESC,
+        ])->all();
+
+        return $this->render('list', ['projects' => $projects]);
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+
+        $projects = Apartment::find($id)->orderBy(['id' => SORT_DESC,])->all();
+        return $this->render('list', ['projects' => $projects]);
+    }
+
+    public function actionSpecial()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view special';
+        return $this->render('special');
+
+    }//show project blocks
+
+    public function actionIn()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view';
+        return $this->render('in');
+    }//show project units
 }
