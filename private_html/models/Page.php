@@ -53,8 +53,8 @@ class Page extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'body' => Yii::t('words', 'Body'),
-            'image' => Yii::t('words', 'Image'),
+            'body' => trans('words', 'Body'),
+            'image' => trans('words', 'Image'),
         ]);
     }
 

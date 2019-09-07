@@ -6,8 +6,8 @@ use app\components\Setting;
 /* @var $this yii\web\View */
 /* @var $model app\models\Slide */
 
-$this->title = Yii::t('words', 'Slider setting');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">' . Yii::t('words', 'Slides') . '</span>', 'url' => ['index'], 'class' => 'm-nav__link'];
+$this->title = trans('words', 'Slider setting');
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">' . trans('words', 'Slides') . '</span>', 'url' => ['index'], 'class' => 'm-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 
 $settings = Setting::get('slider');
@@ -88,7 +88,7 @@ $settings = Setting::get('slider');
     </div>
     <div class="m-portlet__foot m-portet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
         </div>
     </div>
     <?= Html::endForm(); ?>

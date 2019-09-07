@@ -6,12 +6,12 @@ use yii\helpers\Html;
 /* @var $model app\models\Slide */
 /* @var $image \devgroup\dropzone\UploadedFiles */
 
-$this->title = Yii::t('words', 'Update Slide: {name}', [
+$this->title = trans('words', 'Update Slide: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Slides'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => trans('words', 'Slides'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = Yii::t('words', 'Update');
+$this->params['breadcrumbs'][] = trans('words', 'Update');
 ?>
 
 

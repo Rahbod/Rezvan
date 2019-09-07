@@ -82,16 +82,16 @@ class Role extends DynamicActiveRecord
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('words', 'base.name'),
+            'name' => trans('words', 'base.name'),
             'type' => 'Type',
-            'description' => Yii::t('words', 'base.alias'),
+            'description' => trans('words', 'base.alias'),
             'rule_name' => 'Rule Name',
             'data' => 'Data',
-            'created_at' => Yii::t('words', 'base.created'),
-            'updated_at' => Yii::t('words', 'role.updated'),
-            'parent' => Yii::t('words', 'role.parent'),
-            'child' => Yii::t('words', 'role.child'),
-            'statuses_permission' => Yii::t('words', 'role.statuses_permission'),
+            'created_at' => trans('words', 'base.created'),
+            'updated_at' => trans('words', 'role.updated'),
+            'parent' => trans('words', 'role.parent'),
+            'child' => trans('words', 'role.child'),
+            'statuses_permission' => trans('words', 'role.statuses_permission'),
         ];
     }
 

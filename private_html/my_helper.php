@@ -2,13 +2,6 @@
 
 use yii\helpers\Html;
 
-/**
- * @return \yii\console\Application|\yii\web\Application
- */
-function app()
-{
-    return Yii::$app;
-}
 
 /**
  * @param $vars

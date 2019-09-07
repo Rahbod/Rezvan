@@ -128,14 +128,14 @@ class Menu extends Category
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'image' => Yii::t('words', 'Icon'),
-            'menu_type' => Yii::t('words', 'Menu Type'),
-            'content' => Yii::t('words', 'Content'),
-            'page_id' => Yii::t('words', 'Page Name'),
-            'action_name' => Yii::t('words', 'Module Name'),
-            'show_in_footer' => Yii::t('words', 'Show in footer'),
-            'external_link' => Yii::t('words', 'External Link'),
-            'icon_class' => Yii::t('words', 'Icon Class'),
+            'image' => trans('words', 'Icon'),
+            'menu_type' => trans('words', 'Menu Type'),
+            'content' => trans('words', 'Content'),
+            'page_id' => trans('words', 'Page Name'),
+            'action_name' => trans('words', 'Module Name'),
+            'show_in_footer' => trans('words', 'Show in footer'),
+            'external_link' => trans('words', 'External Link'),
+            'icon_class' => trans('words', 'Icon Class'),
         ]);
     }
 
@@ -168,14 +168,14 @@ class Menu extends Category
     {
         if (!$type)
             $type = $this->menu_type;
-        return $type?Yii::t('words', ucfirst(self::$menuTypeLabels[$type])):'-';
+        return $type?trans('words', ucfirst(self::$menuTypeLabels[$type])):'-';
     }
 
     public static function getMenuTypeLabels()
     {
         $lbs = [];
         foreach (self::$menuTypeLabels as $key => $label)
-            $lbs[$key] = Yii::t('words', ucfirst($label));
+            $lbs[$key] = trans('words', ucfirst($label));
         return $lbs;
     }
 
@@ -210,7 +210,7 @@ class Menu extends Category
             $html .= $form->field($model, $attribute, ['template' => '{label}'])->label();
         $html .= Html::beginTag('select', $options);
         foreach ($controllers as $controller => $actions) {
-            $html .= Html::beginTag('optgroup', ['label' => Yii::t('actions', $controller)]);
+            $html .= Html::beginTag('optgroup', ['label' => trans('actions', $controller)]);
             $html .= Html::renderSelectOptions($selection, $actions);
             $html .= Html::endTag('optgroup');
         }

@@ -37,25 +37,25 @@ else
                     <li class="nav-item<?= $active == 'page' ? ' active' : '' ?>">
                         <a class="nav-link" id="tabs-pages-tab" data-toggle="tab" href="#tab-pages" role="tab"
                            aria-controls="tabs-pages" aria-selected="false">
-                            <?= Yii::t('words', 'Pages') ?>
+                            <?= trans('words', 'Pages') ?>
                             <span class="badge badge-danger"><?= number_format($pageProvider->count) ?></span></a>
                     </li>
                     <li class="nav-item<?= $active == 'menu' ? ' active' : '' ?>">
                         <a class="nav-link" id="tabs-menu-tab" data-toggle="tab" href="#tab-menu" role="tab"
                            aria-controls="tabs-menu" aria-selected="false">
-                            <?= Yii::t('words', 'Menu') ?>
+                            <?= trans('words', 'Menu') ?>
                             <span class="badge badge-danger"><?= number_format($menuProvider->count) ?></span></a>
                     </li>
                     <li class="nav-item<?= $active == 'news' ? ' active' : '' ?>">
                         <a class="nav-link" id="tabs-news-tab" data-toggle="tab" href="#tab-news" role="tab"
                            aria-controls="tabs-news" aria-selected="true">
-                            <?= Yii::t('words', 'News & Events') ?>
+                            <?= trans('words', 'News & Events') ?>
                             <span class="badge badge-danger"><?= number_format($newsProvider->count) ?></span> </a>
                     </li>
                     <li class="nav-item<?= $active == 'article' ? ' active' : '' ?>">
                         <a class="nav-link" id="tabs-article-tab" data-toggle="tab" href="#tab-article" role="tab"
                            aria-controls="tabs-article" aria-selected="false">
-                            <?= Yii::t('words', 'Articles') ?>
+                            <?= trans('words', 'Articles') ?>
                             <span class="badge badge-danger"><?= number_format($articleProvider->count) ?></span></a>
                     </li>
                     <!--                    <li class="nav-item">-->
@@ -75,7 +75,7 @@ else
                             ]) ?>
                         <? else: ?>
                             <div class="empty-box d-flex">
-                                <h3 class="d-flex__title"><?= Yii::t('words', 'No Result!') ?></h3>
+                                <h3 class="d-flex__title"><?= trans('words', 'No Result!') ?></h3>
                             </div>
                         <? endif; ?>
                     </div>
@@ -89,7 +89,7 @@ else
                             ]) ?>
                         <? else: ?>
                             <div class="empty-box d-flex">
-                                <h3 class="d-flex__title"><?= Yii::t('words', 'No Result!') ?></h3>
+                                <h3 class="d-flex__title"><?= trans('words', 'No Result!') ?></h3>
                             </div>
                         <? endif; ?>
                     </div>
@@ -103,7 +103,7 @@ else
                             ]) ?>
                         <? else: ?>
                             <div class="empty-box d-flex">
-                                <h3 class="d-flex__title"><?= Yii::t('words', 'No Result!') ?></h3>
+                                <h3 class="d-flex__title"><?= trans('words', 'No Result!') ?></h3>
                             </div>
                         <? endif; ?>
                     </div>
@@ -117,7 +117,7 @@ else
                             ]) ?>
                         <? else: ?>
                             <div class="empty-box d-flex">
-                                <h3 class="d-flex__title"><?= Yii::t('words', 'No Result!') ?></h3>
+                                <h3 class="d-flex__title"><?= trans('words', 'No Result!') ?></h3>
                             </div>
                         <? endif; ?>
                     </div>

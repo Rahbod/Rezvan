@@ -146,9 +146,9 @@ class UserController extends AuthController
                 $auth = Yii::$app->authManager;
                 $role = $auth->getRole($model->roleID);
                 $auth->assign($role, $model->id);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         $roles = ArrayHelper::map(Role::validQuery()->all(), 'name', 'description');
@@ -196,9 +196,9 @@ class UserController extends AuthController
                     $auth->assign($auth->getRole($model->roleID), $model->id);
                 }
 
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         $roles = ArrayHelper::map(Role::validQuery()->all(), 'name', 'description');
@@ -225,7 +225,7 @@ class UserController extends AuthController
         }
         $model->delete();
 
-        Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+        Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.deleteSuccessMsg')]);
 
         return $this->redirect(['index']);
     }
@@ -257,10 +257,10 @@ class UserController extends AuthController
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 $this->redirect([$model->roleID == 'user'?'/dashboard':'/admin/index']);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
 
         }
 
@@ -317,11 +317,11 @@ class UserController extends AuthController
                 //send sms to user
                 SmsSender::SendVerification($model->phone, $model->verification_code);
 
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 $hash = base64_encode($model->id);
                 return $this->redirect(['/user/authorize', 'hash' => urlencode($hash)]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
 
@@ -359,16 +359,16 @@ class UserController extends AuthController
                         SmsSender::SendAfterSignup($model->phone,$model->username,$model->nationalCode);
 
                         if($forgetMode)
-                            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.recoverySuccessMsg')]);
+                            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'user.recoverySuccessMsg')]);
                         else
-                            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.verifySuccessMsg')]);
+                            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'user.verifySuccessMsg')]);
                         return $this->redirect(['/user/login']);
                     } else
-                        Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                        Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
                 } else
-                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'user.verification_code_invalid')]);
+                    Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'user.verification_code_invalid')]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'user.hash_invalid')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'user.hash_invalid')]);
 
         }
 
@@ -383,7 +383,7 @@ class UserController extends AuthController
             $username = Yii::$app->request->getBodyParam('username');
             $model = User::findByUsername($username);
             if ($model === null) {
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'user.username_invalid')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'user.username_invalid')]);
                 return $this->refresh();
             }
 
@@ -393,7 +393,7 @@ class UserController extends AuthController
                 //send sms to user
                 SmsSender::SendVerification($model->phone, $model->verification_code);
 
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'user.forgetSuccessMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'user.forgetSuccessMsg')]);
                 $hash = base64_encode($model->id);
                 return $this->redirect(['/user/authorize', 'hash' => urlencode($hash), 'forget' => true]);
             }

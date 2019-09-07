@@ -33,18 +33,18 @@ use  app\components\customWidgets\CustomActiveForm;
                 <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
             </div>
             <!--            <div class="col-sm-3">-->
-            <!--                --><? //= $form->field($model, 'parent')->dropDownList($roles, ['value' => $model->parent ?: 'guest', 'prompt' => Yii::t('words', 'base.noParent')]) ?>
+            <!--                --><? //= $form->field($model, 'parent')->dropDownList($roles, ['value' => $model->parent ?: 'guest', 'prompt' => trans('words', 'base.noParent')]) ?>
             <!--            </div>-->
         </div>
 
 <!--        <div class="container-fluid mt-5">-->
 <!--            <div class="col-sm-12 mt-3">-->
-<!--                <h5>--><?//= Yii::t('words', 'role.statuses_permission') ?><!--</h5>-->
+<!--                <h5>--><?//= trans('words', 'role.statuses_permission') ?><!--</h5>-->
 <!--            </div>-->
 <!--            --><?php //foreach ($statuses as $modelName => $statusList): ?>
 <!--                <div class="col-sm-12 mt-4">-->
 <!--                    <div class="form-group m-form__group">-->
-<!--                        <h6><b>--><?php //echo Yii::t('words', "role.{$modelName}_statuses") ?><!--</b></h6>-->
+<!--                        <h6><b>--><?php //echo trans('words', "role.{$modelName}_statuses") ?><!--</b></h6>-->
 <!--                        --><?php //foreach ($statusList as $status => $label): ?>
 <!--                            <div class="col-sm-12">-->
 <!--                                <label class="m-checkbox m-checkbox--solid m-checkbox--brand mr-5">-->
@@ -52,7 +52,7 @@ use  app\components\customWidgets\CustomActiveForm;
 //                                        'value' => true,
 //                                        'class' => 'm-group-checkable'
 //                                    ]) ?>
-<!--                                    --><?//= Yii::t('words', "$modelName.$label") ?>
+<!--                                    --><?//= trans('words', "$modelName.$label") ?>
 <!--                                    <span></span>-->
 <!--                                </label>-->
 <!--                            </div>-->
@@ -64,7 +64,7 @@ use  app\components\customWidgets\CustomActiveForm;
 
         <div class="container-fluid mt-5">
             <div class="col-sm-12 mt-3">
-                <h5><?= Yii::t('words', 'Permissions') ?></h5>
+                <h5><?= trans('words', 'Permissions') ?></h5>
             </div>
             <?php foreach ($actions as $key => $controller): ?>
                 <div class="col-sm-4 mt-4">
@@ -91,8 +91,8 @@ use  app\components\customWidgets\CustomActiveForm;
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Cancel'); ?></button>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <button type="reset" class="btn btn-secondary"><?= trans('words', 'Cancel'); ?></button>
         </div>
     </div>
 

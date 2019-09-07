@@ -72,19 +72,19 @@ class Message extends DynamicActiveRecord
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'id' => Yii::t('words', 'ID'),
-            'type' => Yii::t('words', 'Type'),
-            'created' => Yii::t('words', 'Created'),
-            'name' => Yii::t('words', 'Name and Family'),
-            'email' => Yii::t('words', 'Email'),
-            'subject' => Yii::t('words', 'Subject'),
-            'body' => Yii::t('words', 'Body'),
-            'department_id' => Yii::t('words', 'Department ID'),
-            'tel' => Yii::t('words', 'Tel'),
-            'degree' => Yii::t('words', 'Degree'),
-            'country' => Yii::t('words', 'Country'),
-            'city' => Yii::t('words', 'City'),
-            'address' => Yii::t('words', 'Address'),
+            'id' => trans('words', 'ID'),
+            'type' => trans('words', 'Type'),
+            'created' => trans('words', 'Created'),
+            'name' => trans('words', 'Name and Family'),
+            'email' => trans('words', 'Email'),
+            'subject' => trans('words', 'Subject'),
+            'body' => trans('words', 'Body'),
+            'department_id' => trans('words', 'Department ID'),
+            'tel' => trans('words', 'Tel'),
+            'degree' => trans('words', 'Degree'),
+            'country' => trans('words', 'Country'),
+            'city' => trans('words', 'City'),
+            'address' => trans('words', 'Address'),
         ]);
     }
 
@@ -108,12 +108,12 @@ class Message extends DynamicActiveRecord
     public static function getDegrees($id = null)
     {
         $degrees = [
-            1 => Yii::t('words', 'Diploma'),
-            2 => Yii::t('words', 'Associate Degree'),
-            3 => Yii::t('words', 'Bachelor'),
-            4 => Yii::t('words', 'Senior'),
-            5 => Yii::t('words', 'PhD Degree'),
-            6 => Yii::t('words', 'Professor'),
+            1 => trans('words', 'Diploma'),
+            2 => trans('words', 'Associate Degree'),
+            3 => trans('words', 'Bachelor'),
+            4 => trans('words', 'Senior'),
+            5 => trans('words', 'PhD Degree'),
+            6 => trans('words', 'Professor'),
         ];
         if (is_null($id))
             return $degrees;
@@ -123,8 +123,8 @@ class Message extends DynamicActiveRecord
     public static function getSubjects($id = null)
     {
         $subjects = [
-            1 => Yii::t('words', 'Suggestions'),
-            2 => Yii::t('words', 'Critics'),
+            1 => trans('words', 'Suggestions'),
+            2 => trans('words', 'Critics'),
         ];
         if (is_null($id))
             return $subjects;

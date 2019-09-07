@@ -42,9 +42,9 @@ class SettingController extends AuthController
             }
 
             if (Setting::setAll($config))
-                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \Yii::t('words', 'base.successMsg')]);
+                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \trans('words', 'base.successMsg')]);
             else
-                \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \Yii::t('words', 'base.dangerMsg')]);
+                \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \trans('words', 'base.dangerMsg')]);
         }
         $settings = Setting::getAll(true);
         return $this->render('index', compact('settings'));

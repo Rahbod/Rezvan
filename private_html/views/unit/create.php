@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Unit */
 
-$this->title = Yii::t('words', 'Create unit');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Units').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->title = trans('words', 'Create unit');
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.trans('words', 'Units').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

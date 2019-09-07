@@ -35,7 +35,7 @@ use yii\helpers\Url;
                     </div>
                     <div class="col-sm-6">
                         <div class="form-group m-form__group mt-5">
-                            <?= Html::a('<i class="fa fa-plus"></i> '.Yii::t('words', 'Create Page'), ['/page/create', 'return' => Yii::$app->request->url], ['encode' => false, 'class' => 'btn btn-info']) ?>
+                            <?= Html::a('<i class="fa fa-plus"></i> '.trans('words', 'Create Page'), ['/page/create', 'return' => Yii::$app->request->url], ['encode' => false, 'class' => 'btn btn-info']) ?>
                         </div>
                     </div>
                 </div>
@@ -50,9 +50,9 @@ use yii\helpers\Url;
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
             <a href="<?= Url::to(['index']) ?>" data-pjax="false" class="btn btn-danger">
-                <?php echo Yii::t('words', 'Cancel') ?></a>
+                <?php echo trans('words', 'Cancel') ?></a>
         </div>
     </div>
 <?php CustomActiveForm::end(); ?>

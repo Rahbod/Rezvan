@@ -45,7 +45,7 @@ class Image extends Block implements BlockInterface
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'image' => Yii::t('words', 'Image')
+            'image' => trans('words', 'Image')
         ]);
     }
 

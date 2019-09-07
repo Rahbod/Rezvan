@@ -81,8 +81,8 @@ class SlideController extends AuthController implements CrudControllerInterface
 
     public function actionSetting()
     {
-        if (Yii::$app->request->post()) {
-            $postData = \Yii::$app->request->post('Setting');
+        if (app()->request->post()) {
+            $postData = app()->request->post('Setting');
 
             ## region validation post data
             $config = Setting::getAll();
@@ -92,10 +92,10 @@ class SlideController extends AuthController implements CrudControllerInterface
             $config['slider'] = $postData;
 
             if (Setting::setAll($config)) {
-                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \Yii::t('words', 'base.successMsg')]);
+                \Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => \trans('words', 'base.successMsg')]);
                 return $this->refresh();
             } else
-                \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \Yii::t('words', 'base.dangerMsg')]);
+                \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('setting');

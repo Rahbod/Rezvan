@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\projects\OtherConstruction */
 
-$this->title = Yii::t('words', 'Create other construction');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.Yii::t('words', 'Other constructions').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->title = trans('words', 'Create other construction');
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.trans('words', 'Other constructions').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

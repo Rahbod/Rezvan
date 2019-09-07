@@ -103,10 +103,10 @@ class BlockController extends AuthController
             $model->load(app()->request->post());
 
             if ($model->save()) {
-                app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                app()->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
             } else
-                app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                app()->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -134,10 +134,10 @@ class BlockController extends AuthController
         if (app()->request->post()) {
             $model->load(app()->request->post());
             if ($model->save()) {
-                app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                app()->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
             } else
-                app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                app()->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
@@ -175,6 +175,6 @@ class BlockController extends AuthController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
     }
 }

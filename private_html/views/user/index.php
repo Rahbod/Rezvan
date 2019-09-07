@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create User') ?></span>
+							<span><?= trans('words', 'Create User') ?></span>
 						</span>
                         </a>
                     </li>

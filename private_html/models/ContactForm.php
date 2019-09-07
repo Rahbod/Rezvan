@@ -50,17 +50,17 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => Yii::t('words', 'Name and Family'),
-            'email' => Yii::t('words', 'Email'),
-            'subject' => Yii::t('words', 'Subject'),
-            'body' => Yii::t('words', 'Body'),
-            'department_id' => Yii::t('words', 'Department ID'),
-            'tel' => Yii::t('words', 'Tel'),
-            'verifyCode' => Yii::t('words', 'Verify Code'),
-            'degree' => Yii::t('words', 'Degree'),
-            'country' => Yii::t('words', 'Country'),
-            'city' => Yii::t('words', 'City'),
-            'address' => Yii::t('words', 'Address'),
+            'name' => trans('words', 'Name and Family'),
+            'email' => trans('words', 'Email'),
+            'subject' => trans('words', 'Subject'),
+            'body' => trans('words', 'Body'),
+            'department_id' => trans('words', 'Department ID'),
+            'tel' => trans('words', 'Tel'),
+            'verifyCode' => trans('words', 'Verify Code'),
+            'degree' => trans('words', 'Degree'),
+            'country' => trans('words', 'Country'),
+            'city' => trans('words', 'City'),
+            'address' => trans('words', 'Address'),
         ];
     }
 

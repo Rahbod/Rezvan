@@ -109,10 +109,10 @@ class CategoryController extends AuthController
                 $saveResult = $model->prependTo($parent);
             }
             if ($saveResult) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -162,10 +162,10 @@ public function actionCreateGallery()
                 $saveResult = $model->prependTo($parent);
             }
             if ($saveResult) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -195,10 +195,10 @@ public function actionCreateGallery()
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
@@ -219,9 +219,9 @@ public function actionCreateGallery()
         $result = $result->deleteWithChildren();
 
         if ($result === false)
-            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.deleteDangerMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.deleteDangerMsg')]);
         else
-            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.deleteSuccessMsg')]);
+            Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.deleteSuccessMsg')]);
 
 
         return $this->redirect(['index']);
@@ -240,6 +240,6 @@ public function actionCreateGallery()
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
     }
 }

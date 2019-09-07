@@ -2,18 +2,22 @@
 
 namespace app\controllers;
 
-use app\components\AuthController;
 use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
+use app\components\Imager;
 use app\models\Attachment;
-use app\models\Page;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
-use yii\bootstrap\Html;
+use app\models\Page;
+use app\models\PageSearch;
+use app\components\AuthController;
+use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -118,10 +122,10 @@ class PageController extends AuthController implements CrudControllerInterface
             if ($model->save()) {
                 $image->move(static::$imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(isset($_GET['return']) ? $_GET['return'] : ['view', 'id' => $model->id]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -159,7 +163,7 @@ class PageController extends AuthController implements CrudControllerInterface
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [

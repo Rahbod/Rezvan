@@ -121,7 +121,7 @@ NULL is system files.',
 
     public function getAbsoluteUrl()
     {
-        return \Yii::getAlias('@web/'.Attachment::getAttachmentPath($this->created).'/').$this->file;
+        return \alias('@web/'.Attachment::getAttachmentPath($this->created).'/').$this->file;
     }
 
     public function getDownloadUrl()

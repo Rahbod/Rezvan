@@ -40,7 +40,7 @@ class Map extends Block implements BlockInterface
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'location_link' => Yii::t('words', 'Location link')
+            'location_link' => trans('words', 'Location link')
         ]);
     }
 

@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\projects\OtherConstructionSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Other constructions');
+$this->title = trans('words', 'Other constructions');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="other-construction-index">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create other construction') ?></span>
+							<span><?= trans('words', 'Create other construction') ?></span>
 						</span>
                         </a>
                     </li>

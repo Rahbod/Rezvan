@@ -31,14 +31,14 @@ class Post extends Item
     {
         if (!$type)
             $type = $this->type;
-        return Yii::t('words', ucfirst(self::$typeLabels[$type]));
+        return trans('words', ucfirst(self::$typeLabels[$type]));
     }
 
     public static function getTypeLabels()
     {
         $lbs = [];
         foreach (self::$typeLabels as $key => $label)
-            $lbs[$key] = Yii::t('words', ucfirst($label));
+            $lbs[$key] = trans('words', ucfirst($label));
         return $lbs;
     }
 
@@ -82,10 +82,10 @@ class Post extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'body' => Yii::t('words', 'Body'),
-            'image' => Yii::t('words', 'Image'),
-            'publish_date' => Yii::t('words', 'Publish Date'),
-            'summary' => Yii::t('words', 'Summary'),
+            'body' => trans('words', 'Body'),
+            'image' => trans('words', 'Image'),
+            'publish_date' => trans('words', 'Publish Date'),
+            'summary' => trans('words', 'Summary'),
         ]);
     }
 
@@ -154,7 +154,7 @@ class Post extends Item
             'formCategories' => [
                 'type' => static::FORM_FIELD_TYPE_SELECT,
                 'items' => Category::getWithType(Category::CATEGORY_TYPE_NEWS),
-                'options' => ['prompt' => Yii::t('words', 'Select Category')]
+                'options' => ['prompt' => trans('words', 'Select Category')]
             ],
             'summary' => [
                 'type' => static::FORM_FIELD_TYPE_TEXT_AREA,

@@ -41,7 +41,7 @@ class Video extends Block implements BlockInterface
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'link' => Yii::t('words', 'Link')
+            'link' => trans('words', 'Link')
         ]);
     }
 

@@ -14,7 +14,7 @@ $baseUrl = $this->theme->baseUrl;
         <div class="row">
             <div class="slide-title">
                 <div class="title-left">
-                    <img ` src="<?= Yii::getAlias('@web/themes/frontend/images/apartment-icon.png') ?>"
+                    <img ` src="<?= alias('@web/themes/frontend/images/apartment-icon.png') ?>"
                          alt="apartment-icon">
                     <h2 class="slide"><strong>available </strong> apartment</h2>
                 </div>
@@ -43,7 +43,7 @@ $baseUrl = $this->theme->baseUrl;
                         <div class="posts">
                             <div class="row">
                                 <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                    <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-1.jpg') ?>"
+                                    <img src="<?= alias('@web/themes/frontend/images/grid-1.jpg') ?>"
                                          alt="Chicago">
                                     <a href="#"><h2 class="item-title">Al-Ghadir</h2><span class="first-title">Residential Complex</span></a>
                                     <span class="description">Vakil Abad / Shams St</span>
@@ -53,35 +53,35 @@ $baseUrl = $this->theme->baseUrl;
                                             <p class="title-2">Metr</p>
                                         </div>
                                         <div class="item item-1">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-1-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-1-w.png') ?>"
                                                  alt="item-1">
                                         </div>
                                         <div class="item item-2">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-2.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-2.png') ?>"
                                                  alt="item-2">
                                         </div>
                                         <div class="item item-3">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-3-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-3-w.png') ?>"
                                                  alt="item-3">
                                         </div>
                                         <div class="item item-4">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-4-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-4-w.png') ?>"
                                                  alt="item-4">
                                         </div>
                                         <div class="item item-5">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-5-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-5-w.png') ?>"
                                                  alt="item-5">
                                         </div>
                                         <div class="item item-6">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-6-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-6-w.png') ?>"
                                                  alt="item-6">
                                         </div>
                                         <div class="item item-7">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-7-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-7-w.png') ?>"
                                                  alt="item-7">
                                         </div>
                                         <div class="item item-8">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-8-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-8-w.png') ?>"
                                                  alt="item-8">
                                         </div>
                                     </div>
@@ -89,25 +89,25 @@ $baseUrl = $this->theme->baseUrl;
                                 <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
                                     <div class="row">
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-3.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-3.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
                                             <span class="description">Shams Blvd / Salmani St</span>
                                         </div>
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-2.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-2.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
                                             <span class="description">Mahmoud Abad / Hasht Behesht St</span>
                                         </div>
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-4.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-4.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Sepid Building</h2></a>
                                             <span class="description">Vakil Abad / Rajayi St</span>
                                         </div>
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-5.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-5.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
                                             <span class="description">Imam reza Blvd / Beheshti St</span>
@@ -121,7 +121,7 @@ $baseUrl = $this->theme->baseUrl;
                         <div class="posts">
                             <div class="row">
                                 <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                    <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-1.jpg') ?>"
+                                    <img src="<?= alias('@web/themes/frontend/images/grid-1.jpg') ?>"
                                          alt="Chicago">
                                     <a href="#"><h2 class="item-title">Al-Ghadir</h2><span class="first-title">Residential Complex</span></a>
                                     <span class="description">Vakil Abad / Shams St</span>
@@ -131,35 +131,35 @@ $baseUrl = $this->theme->baseUrl;
                                             <p class="title-2">Metr</p>
                                         </div>
                                         <div class="item item-1">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-1-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-1-w.png') ?>"
                                                  alt="item-1">
                                         </div>
                                         <div class="item item-2">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-2.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-2.png') ?>"
                                                  alt="item-2">
                                         </div>
                                         <div class="item item-3">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-3-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-3-w.png') ?>"
                                                  alt="item-3">
                                         </div>
                                         <div class="item item-4">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-4-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-4-w.png') ?>"
                                                  alt="item-4">
                                         </div>
                                         <div class="item item-5">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-5-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-5-w.png') ?>"
                                                  alt="item-5">
                                         </div>
                                         <div class="item item-6">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-6-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-6-w.png') ?>"
                                                  alt="item-6">
                                         </div>
                                         <div class="item item-7">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-7-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-7-w.png') ?>"
                                                  alt="item-7">
                                         </div>
                                         <div class="item item-8">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/item-8-w.png') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/item-8-w.png') ?>"
                                                  alt="item-8">
                                         </div>
                                     </div>
@@ -167,25 +167,25 @@ $baseUrl = $this->theme->baseUrl;
                                 <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
                                     <div class="row">
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-3.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-3.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
                                             <span class="description">Shams Blvd / Salmani St</span>
                                         </div>
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-2.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-2.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
                                             <span class="description">Mahmoud Abad / Hasht Behesht St</span>
                                         </div>
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-4.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-4.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Sepid Building</h2></a>
                                             <span class="description">Vakil Abad / Rajayi St</span>
                                         </div>
                                         <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= Yii::getAlias('@web/themes/frontend/images/grid-5.jpg') ?>"
+                                            <img src="<?= alias('@web/themes/frontend/images/grid-5.jpg') ?>"
                                                  alt="Chicago">
                                             <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
                                             <span class="description">Imam reza Blvd / Beheshti St</span>

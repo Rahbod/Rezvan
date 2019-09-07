@@ -72,15 +72,15 @@ class Project extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'subtitle' => Yii::t('words', 'Subtitle'),
-            'image' => Yii::t('words', 'Image'),
-            'begin_date' => Yii::t('words', 'Begin date'),
-            'construction_time' => Yii::t('words', 'Construction time'),
-            'location' => Yii::t('words', 'Location'),
-            'area_size' => Yii::t('words', 'Area size'),
-            'unit_count' => Yii::t('words', 'Unit count'),
-            'free_count' => Yii::t('words', 'Free count'),
-            'sold_count' => Yii::t('words', 'Sold count'),
+            'subtitle' => trans('words', 'Subtitle'),
+            'image' => trans('words', 'Image'),
+            'begin_date' => trans('words', 'Begin date'),
+            'construction_time' => trans('words', 'Construction time'),
+            'location' => trans('words', 'Location'),
+            'area_size' => trans('words', 'Area size'),
+            'unit_count' => trans('words', 'Unit count'),
+            'free_count' => trans('words', 'Free count'),
+            'sold_count' => trans('words', 'Sold count'),
         ]);
     }
 
@@ -88,14 +88,14 @@ class Project extends Item
     {
         if (!$type)
             $type = $this->type;
-        return Yii::t('words', ucfirst(self::$typeLabels[$type]));
+        return trans('words', ucfirst(self::$typeLabels[$type]));
     }
 
     public static function getTypeLabels()
     {
         $lbs = [];
         foreach (self::$typeLabels as $key => $label)
-            $lbs[$key] = Yii::t('words', ucfirst($label));
+            $lbs[$key] = trans('words', ucfirst($label));
         return $lbs;
     }
 

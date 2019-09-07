@@ -16,7 +16,7 @@
                 </div>
                 <div class="news-image">
                     <div class="news-image-inner">
-                        <img src="<?= Yii::getAlias('@web/uploads/post/') . $model->image ?>">
+                        <img src="<?= alias('@web/uploads/post/') . $model->image ?>">
                     </div>
                 </div>
                 <div class="news-details">
@@ -47,7 +47,7 @@
             </div>
             <div class="card-body">
                 <a title="" href="#" class="card-link">
-                    <img src="<? /*= Yii::getAlias('@web/uploads/post/') . $model->image */ ?>" class="card-img-top"
+                    <img src="<? /*= alias('@web/uploads/post/') . $model->image */ ?>" class="card-img-top"
                          alt="<? /*= $model->name */ ?>">
                     <h4 class="card-title"><? /*= $model->name */ ?></h4>
                     <div class="card-text -show4Lines -show4Lines"><? /*= !empty($model->summary) ? $model->summary : mb_substr(strip_tags(nl2br($model->body)), 0, 200) */ ?>

@@ -122,10 +122,10 @@ class ApartmentController extends AuthController
             $image = new UploadedFiles(self::$tempDir, $model->image, self::$imageOptions);
             if ($model->save()) {
                 $image->move(self::$imgDir);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->id]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -157,10 +157,10 @@ class ApartmentController extends AuthController
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 $image->update($old, $model->image, self::$tempDir);
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->id]);
             } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
@@ -198,7 +198,7 @@ class ApartmentController extends AuthController
             return $model;
         }
 
-        throw new NotFoundHttpException(Yii::t('words', 'The requested page does not exist.'));
+        throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
     }
 
     public function getMenuActions()

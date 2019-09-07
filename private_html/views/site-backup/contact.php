@@ -14,7 +14,7 @@ use app\models\ContactForm;
 use app\models\Department;
 use app\models\Message;
 
-$this->title = Yii::t('words', 'Contact us');
+$this->title = trans('words', 'Contact us');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <section class="contactUsPage">
@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                          alt="">
                     <div class="content-header__titles">
                         <h1 class="media-heading content-header__title"><?= Html::encode($this->title) ?></h1>
-                        <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
+                        <h3 class="content-header__subTitle"><?= trans('words', 'Payambaran hospital') ?></h3>
                     </div>
                     <div class="socialAccounts">
                         <?php $val = Setting::get('socialNetworks.linkedin');
@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div class="col-xs-12">
                 <div class="texts">
-                    <h4 class="-blue"><?= Yii::t('words', 'contact_page_text') ?></h4>
-                    <p class="-grey"><?= Yii::t('words', 'contact_page_description') ?></p>
+                    <h4 class="-blue"><?= trans('words', 'contact_page_text') ?></h4>
+                    <p class="-grey"><?= trans('words', 'contact_page_description') ?></p>
                 </div>
                 <div class="contactUs__container">
                     <?php $form = ActiveForm::begin([
@@ -94,17 +94,17 @@ $this->params['breadcrumbs'][] = $this->title;
                                     <?= $form->field($model, 'verifyCode', ['options' => ['class' => 'pull-right']])->widget(\app\components\customWidgets\CustomCaptcha::className(), [
                                         'captchaAction' => ['/site/captcha'],
                                         'template' => '{input} {image}',
-                                        'linkOptions' => ['label' => Yii::t('words', 'Refresh')],
+                                        'linkOptions' => ['label' => trans('words', 'Refresh')],
                                         'imageOptions' => ['class' => 'floatToLeft form-control securityCode__image'],
                                         'options' => [
                                             'class' => 'floatToLeft securityCode__input form-control',
-                                            'placeholder' => Yii::t('words', 'Verify Code'),
+                                            'placeholder' => trans('words', 'Verify Code'),
                                             'tabindex' => 10,
                                             'autocomplete' => 'off'
                                         ],
                                     ])->label(false) ?>
                                 </div>
-                                <div class="col-sm-6"><button tabindex="11" type="submit" class="btn submitBtn"><?= Yii::t('words', 'Send to department') ?></button></div>
+                                <div class="col-sm-6"><button tabindex="11" type="submit" class="btn submitBtn"><?= trans('words', 'Send to department') ?></button></div>
                             </div>
                         </div>
                     </div>

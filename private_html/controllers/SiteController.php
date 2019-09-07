@@ -4,8 +4,10 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\models\ContactForm;
 use app\models\Menu;
 use app\models\MenuSearch;
+use app\models\Message;
 use app\models\Page;
 use app\models\PageSearch;
 use app\models\Post;
@@ -19,7 +21,6 @@ use yii\web\Response;
 
 class SiteController extends AuthController
 {
-    public $title;
 
     public function getMenuActions()
     {

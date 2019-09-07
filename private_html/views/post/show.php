@@ -17,16 +17,16 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                         <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png"
                              class="img-fluid content-header__image" alt="">
                         <div class="content-header__titles">
-                            <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Articles') ?></h1>
-                            <h3 class="content-header__subTitle"><?= Yii::t('words', 'Payambaran hospital') ?></h3>
+                            <h1 class="media-heading content-header__title"><?= trans('words', 'News & Articles') ?></h1>
+                            <h3 class="content-header__subTitle"><?= trans('words', 'Payambaran hospital') ?></h3>
                         </div>
                     </div>
                     <div class="newsSearchBox mt-4 mt-lg-0">
                         <form class="search-form" action="<?= \yii\helpers\Url::to(['/post/news']) ?>" method="get">
                             <p style="color: #fff;margin-right: 10px;"
-                               class="search-form-label"><?= Yii::t('words', $model->type == \app\models\Post::TYPE_NEWS ? 'Search in news...' : 'Search in articles...') ?></p>
+                               class="search-form-label"><?= trans('words', $model->type == \app\models\Post::TYPE_NEWS ? 'Search in news...' : 'Search in articles...') ?></p>
                             <div class="input-group search-container">
-                                <input class="form-control" placeholder="<?= Yii::t('words', 'Search...') ?>"
+                                <input class="form-control" placeholder="<?= trans('words', 'Search...') ?>"
                                        name="term" value="<?= Yii::$app->request->getQueryParam('term') ?>">
                                 <span class="input-group-addon"><button type="submit" class="search-btn"><i
                                                 class="search-icon"></i></button></span>
@@ -66,7 +66,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                     <div class="card-body text-center">
                                         <a title="" href="#" class="card-link">
                                             <img class="card-img-top"
-                                                 src="<?= Yii::getAlias('@web/uploads/post/') . $model->image ?>"
+                                                 src="<?= alias('@web/uploads/post/') . $model->image ?>"
                                                  alt="">
                                             <h4 class="card-title"><?= $model->name ?></h4>
                                         </a>
@@ -74,18 +74,18 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                     <?php if ($model->gallery): ?>
                                         <hr>
                                         <div class="clearfix">
-                                            <p style="color: #7a7a7a;"><?= Yii::t('words', 'News pictures') ?></p>
+                                            <p style="color: #7a7a7a;"><?= trans('words', 'News pictures') ?></p>
                                             <?php foreach ($model->gallery as $item):
-                                                if (!$item->file OR !is_file(Yii::getAlias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
+                                                if (!$item->file OR !is_file(alias('@webroot') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) . DIRECTORY_SEPARATOR . $item->file)) continue; ?>
                                                 <div class="gallery__imageContainer">
                                                     <a class="simpleGallery__link html5lightbox"
                                                        data-transition="crossfade" data-group="mygroup"
-                                                       href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>">
+                                                       href="<?= alias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>">
                                                         <img class="gallery__images"
-                                                                src="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/thumbs/100x100/'. $item->file ?>">
+                                                                src="<?= alias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .'/thumbs/100x100/'. $item->file ?>">
                                                     </a>
                                                     <div class="-hoverBox">
-                                                        <a href="<?= Yii::getAlias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>"
+                                                        <a href="<?= alias('@web') . DIRECTORY_SEPARATOR . Attachment::getAttachmentPath($item->created) .DIRECTORY_SEPARATOR. $item->file ?>"
                                                            data-transition="crossfade"
                                                            class="html5lightbox"
                                                            data-group="mygroup"
@@ -120,7 +120,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
             <div class="row insurance-container">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-right">
                     <div class="inline-title">
-                        <h3 class="section-title"><?= Yii::t('words', 'Related News & Articles') ?></h3>
+                        <h3 class="section-title"><?= trans('words', 'Related News & Articles') ?></h3>
                     </div>
                 </div>
             </div>
@@ -148,7 +148,7 @@ $this->registerJsFile($baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [
                                 </div>
                                 <div class="news-image">
                                     <div class="news-image-inner">
-                                        <img src="<?= Yii::getAlias('@web/uploads/post/') . $item->image ?>">
+                                        <img src="<?= alias('@web/uploads/post/') . $item->image ?>">
                                     </div>
                                 </div>
                                 <div class="news-details">

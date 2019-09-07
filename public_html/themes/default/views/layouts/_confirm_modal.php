@@ -17,7 +17,7 @@ use yii\widgets\Pjax;
 ]);?>
     <div class="top">
         <i class="confirm-icon"></i>
-        <span id="title"><?= Yii::t('words', 'base.sureYou') ?></span>
+        <span id="title"><?= trans('words', 'base.sureYou') ?></span>
     </div>
     <div class="context">
         <div class="record-info">
@@ -33,8 +33,8 @@ use yii\widgets\Pjax;
                 ]) ?>
                     <?= Html::hiddenInput('Confirm[id]', null, ['id' => 'id']) ?>
                     <?= Html::hiddenInput('Confirm[type]', null, ['id' => 'type']) ?>
-                    <?= Html::input('button', null, Yii::t('words', 'base.cancel'), ['class' => 'btn btn-dark btn-shadow close-modal']) ?>
-                    <?= Html::input('submit', 'Confirm[submit]', Yii::t('words', 'base.move'), ['class' => 'btn btn-success btn-shadow', 'id' => 'confirm-form-submit']) ?>
+                    <?= Html::input('button', null, trans('words', 'base.cancel'), ['class' => 'btn btn-dark btn-shadow close-modal']) ?>
+                    <?= Html::input('submit', 'Confirm[submit]', trans('words', 'base.move'), ['class' => 'btn btn-success btn-shadow', 'id' => 'confirm-form-submit']) ?>
                 <?= Html::endForm() ?>
             </div>
         </div>

@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\SlideSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('words', 'Slides');
+$this->title = trans('words', 'Slides');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="slide-index">
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= Yii::t('words', 'Create Slide') ?></span>
+							<span><?= trans('words', 'Create Slide') ?></span>
 						</span>
                         </a>
                     </li>

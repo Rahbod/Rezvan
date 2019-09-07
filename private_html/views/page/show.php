@@ -51,10 +51,10 @@ if ($relatedMenu)
             <div class="col-sm-12 col-md-9">
 
                 <div class="content-header bg-cyan">
-                    <?php if (is_file(Yii::getAlias('@webroot/uploads/pages/') . $model->image)): ?>
+                    <?php if (is_file(alias('@webroot/uploads/pages/') . $model->image)): ?>
                         <div class="content-header__gradient-overlay"></div>
                         <img class="content-header__fade-bg content-header__image"
-                             src="<?= Yii::getAlias('@web/uploads/pages/') . $model->image ?>">
+                             src="<?= alias('@web/uploads/pages/') . $model->image ?>">
                     <?php endif; ?>
                     <div class="media-heading content-header__titles">
                         <h1 class="media-heading content-header__title"><?= $model->name ?></h1>
@@ -68,23 +68,23 @@ if ($relatedMenu)
                     <?php if ($model->gallery):
                         $this->registerJsFile($this->theme->baseUrl . '/js/vendors/html5lightbox/html5lightbox.js', [], 'lightbox');
                         ?>
-                        <h4><?= Yii::t('words', 'pictures') ?></h4>
+                        <h4><?= trans('words', 'pictures') ?></h4>
                         <div class="mt-3 mb-5 page-gallery row">
                             <? foreach ($model->gallery as $item):
-                                if ($item->file && is_file(Yii::getAlias("@webroot/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file"))):?>
+                                if ($item->file && is_file(alias("@webroot/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file"))):?>
                                     <div class="col-sm-3 col-xs-6 mb-3">
                                         <div class="gallery__imageContainer">
-                                            <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
+                                            <a href="<?= alias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
                                                data-transition="crossfade"
                                                class="html5lightbox"
                                                data-group="mygroup">
                                                 <img class="gallery__images"
-                                                     src="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
+                                                     src="<?= alias("@web/" . \app\models\Attachment::$attachmentPath . "/thumbs/200x200/$item->file") ?>"
                                                      alt="<?= \yii\helpers\Html::encode($model->name) ?>">
                                             </a>
 
                                             <div class="-hoverBox bg-cyan">
-                                                <a href="<?= Yii::getAlias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
+                                                <a href="<?= alias("@web/" . \app\models\Attachment::$attachmentPath . "/$item->path/$item->file") ?>"
                                                    data-transition="crossfade"
                                                    class="html5lightbox"
                                                    data-group="mygroup" data-width="600"

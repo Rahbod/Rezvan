@@ -13,16 +13,16 @@
                         <img src="<?= $this->theme->baseUrl ?>/images/news/news-header-image.png"
                              class="img-fluid content-header__image" alt="">
                         <div class="content-header__titles">
-                            <h1 class="media-heading content-header__title"><?= Yii::t('words', 'News & Events') ?></h1>
-                            <h3 class="content-header__subTitle "><?= Yii::t('words', 'Payambaran Hospital') ?></h3>
+                            <h1 class="media-heading content-header__title"><?= trans('words', 'News & Events') ?></h1>
+                            <h3 class="content-header__subTitle "><?= trans('words', 'Payambaran Hospital') ?></h3>
                         </div>
                     </div>
                     <div class="newsSearchBox mt-4 mt-lg-0">
                         <form class="search-form" action="<?= \yii\helpers\Url::to(['/post/news']) ?>" method="get">
                             <p style="color: #fff;margin-right: 10px;"
-                               class="search-form-label"><?= Yii::t('words', 'Search in news...') ?></p>
+                               class="search-form-label"><?= trans('words', 'Search in news...') ?></p>
                             <div class="input-group search-container">
-                                <input class="form-control" placeholder="<?= Yii::t('words', 'Search...') ?>"
+                                <input class="form-control" placeholder="<?= trans('words', 'Search...') ?>"
                                        name="term" value="<?= Yii::$app->request->getQueryParam('term') ?>">
                                 <span class="input-group-addon"><button type="submit" class="search-btn"><i
                                                 class="search-icon"></i></button></span>

@@ -35,8 +35,8 @@ use app\components\customWidgets\CustomActiveForm;
             'sortableOptions' => [], // sortable options
             'htmlOptions' => ['class' => 'single'], // container html options
             'options' => [ // dropzone js options
-                'dictRemoveFile' => Yii::t('words', 'Delete'),
-                'dictDefaultMessage' => Yii::t('words', 'Add Image'),
+                'dictRemoveFile' => trans('words', 'Delete'),
+                'dictDefaultMessage' => trans('words', 'Add Image'),
                 'addRemoveLinks' => true,
                 'acceptedFiles' => array('jpg', 'jpeg', 'png'),
                 'maxFiles' => 1,
@@ -77,9 +77,9 @@ use app\components\customWidgets\CustomActiveForm;
 
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
-            <?= Html::submitButton(Yii::t('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
 
-            <button type="reset" class="btn btn-secondary"><?= Yii::t('words', 'Reset'); ?></button>
+            <button type="reset" class="btn btn-secondary"><?= trans('words', 'Reset'); ?></button>
         </div>
     </div>
 
