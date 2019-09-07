@@ -160,4 +160,9 @@ class Project extends Item
 
         ]);
     }
+
+    public function getBlocks()
+    {
+        return $this->hasMany(Block::className(),[self::columnGetString('itemID')=>'id']);
+    }
 }

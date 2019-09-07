@@ -4,6 +4,7 @@ namespace app\models\projects;
 
 //use app\models\Project;
 use app\models\Project;
+use Yii;
 
 /**
  * This is the model class for table "item".
@@ -58,5 +59,11 @@ class Apartment extends Project implements ProjectInterface
         // TODO: Implement renderView() method.
     }
 
+    public function getImage()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
+            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
 
 }

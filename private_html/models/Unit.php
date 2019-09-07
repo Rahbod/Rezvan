@@ -62,10 +62,10 @@ class Unit extends Item
             [['itemID'], 'required'],
             [
                 ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
-                    'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold','bed_room']
+                    'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room']
                 , 'integer'],
             [['project_blocks'], 'default', 'value' => 0],
-            [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort','price'], 'integer'],
+            [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort', 'price'], 'integer'],
             [['location', 'services'], 'string']
         ]);
     }
@@ -138,7 +138,12 @@ class Unit extends Item
 //            ],
             [['name', 'sold', 'radiator', 'parking', 'bath_room',
                 'wc', 'air_conditioner', 'floor_number', 'unit_number',
-                'area_size','bed_room','price'], self::FORM_FIELD_TYPE_TEXT],
+                'area_size', 'bed_room', 'price'], self::FORM_FIELD_TYPE_TEXT],
         ];
+    }
+
+    public function getBlocks()
+    {
+        return $this->hasMany(Block::className(), [self::columnGetString('itemID') => 'id']);
     }
 }

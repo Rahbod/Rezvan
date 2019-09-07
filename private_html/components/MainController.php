@@ -30,6 +30,10 @@ class MainController extends Controller
     public $tmpDir = 'uploads/temp';
     public static $tempDir = 'uploads/temp';
     public $models;
+    public static $imageOptions = ['thumbnail' => [
+        'width' => 100,
+        'height' => 100
+    ]];
 
     public function init()
     {

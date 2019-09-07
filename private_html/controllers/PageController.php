@@ -2,22 +2,18 @@
 
 namespace app\controllers;
 
+use app\components\AuthController;
 use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
-use app\components\Imager;
 use app\models\Attachment;
+use app\models\Page;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\Page;
-use app\models\PageSearch;
-use app\components\AuthController;
-use yii\db\ActiveRecord;
+use yii\bootstrap\Html;
 use yii\helpers\ArrayHelper;
-use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -29,7 +25,6 @@ class PageController extends AuthController implements CrudControllerInterface
     use CrudControllerTrait;
 
     public static $imageDir = 'uploads/pages';
-    public static $imageOptions = [];
     public static $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
 
     /**
@@ -118,10 +113,10 @@ class PageController extends AuthController implements CrudControllerInterface
 
         if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
-            $image = new UploadedFiles($this->tmpDir, $model->image, $this->imageOptions);
-            $gallery = new UploadedFiles($this->tmpDir, $model->gallery, $this->galleryOptions);
+            $image = new UploadedFiles(self::$tempDir, $model->image, self::$imageOptions);
+            $gallery = new UploadedFiles(self::$tempDir, $model->gallery, self::$galleryOptions);
             if ($model->save()) {
-                $image->move($this->imageDir);
+                $image->move(static::$imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(isset($_GET['return']) ? $_GET['return'] : ['view', 'id' => $model->id]);
@@ -151,16 +146,16 @@ class PageController extends AuthController implements CrudControllerInterface
             return ActiveForm::validate($model);
         }
 
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
+        $image = new UploadedFiles(static::$imageDir, $model->image, static::$imageOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, static::$galleryOptions);
 
         if (Yii::$app->request->post()) {
             $oldImage = $model->image;
             $oldGallery = ArrayHelper::map($model->gallery, 'id', 'file');
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                $image->update($oldImage, $model->image, $this->tmpDir);
-                $gallery->updateAll($oldGallery, $model->gallery, $this->tmpDir, Attachment::getAttachmentRelativePath());
+                $image->update($oldImage, $model->image, static::$tempDir);
+                $gallery->updateAll($oldGallery, $model->gallery, static::$tempDir, Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
             } else
@@ -184,12 +179,13 @@ class PageController extends AuthController implements CrudControllerInterface
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $image = new UploadedFiles($this->imageDir, $model->image, $this->imageOptions);
+        $image = new UploadedFiles(static::$imageDir, $model->image, static::$imageOptions);
         $image->removeAll(true);
-        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, $this->galleryOptions);
+        $gallery = new UploadedFiles(Attachment::$attachmentPath, $model->attachments, static::$galleryOptions);
         $gallery->removeAll(true);
         $model->delete();
 
         return $this->redirect(['index']);
     }
 }
+
