@@ -305,16 +305,16 @@ class MainController extends Controller
                 'items' => [
                     ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
                     ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
-                    ['label' => trans('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
+//                    ['label' => trans('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
                 ]
             ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . trans('words', 'Gallery') . '</span>',
-                'items' => [
-                    ['label' => trans('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions || app()->user->can('galleryIndex')],
-                    ['label' => trans('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || app()->user->can('galleryIndexVideo')],
-                ]
-            ],
+//            [
+//                'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . trans('words', 'Gallery') . '</span>',
+//                'items' => [
+//                    ['label' => trans('words', 'Picture Gallery'), 'url' => ['/gallery/index'], 'visible' => $permissions || app()->user->can('galleryIndex')],
+//                    ['label' => trans('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || app()->user->can('galleryIndexVideo')],
+//                ]
+//            ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . trans('words', 'Categories') . '</span>',
                 'url' => ['/category/index'],
