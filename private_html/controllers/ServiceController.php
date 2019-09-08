@@ -2,29 +2,24 @@
 
 namespace app\controllers;
 
-use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
-use app\components\Imager;
 use app\models\Attachment;
+use app\models\Service;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\Page;
-use app\models\PageSearch;
 use app\components\AuthController;
-use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
 /**
- * PageController implements the CRUD actions for Page model.
+ * ServiceController implements the CRUD actions for Service model.
  */
-class PageController extends AuthController
+class ServiceController extends AuthController
 {
     use CrudControllerTrait;
 
@@ -37,7 +32,7 @@ class PageController extends AuthController
      */
     public static function getModelName()
     {
-        return Page::className();
+        return Service::className();
     }
 
     public function getSystemActions()
@@ -56,7 +51,7 @@ class PageController extends AuthController
         return [
             'upload-image' => [
                 'class' => UploadAction::className(),
-                'fileName' => Html::getInputName(new Page(), 'image'),
+                'fileName' => Html::getInputName(new Service(), 'image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
                 'validateOptions' => array(
                     'acceptedTypes' => array('png', 'jpg', 'jpeg')
@@ -65,7 +60,7 @@ class PageController extends AuthController
             'delete-image' => [
                 'class' => RemoveAction::className(),
                 'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
-                'model' => new Page(),
+                'model' => new Service(),
                 'attribute' => 'image',
                 'upload' => self::$imageDir,
                 'options' => self::$imageOptions
@@ -73,8 +68,8 @@ class PageController extends AuthController
             'upload-attachment' => [
                 'class' => UploadAction::className(),
                 'rename' => UploadAction::RENAME_UNIQUE,
-                'model' => new Page(),
-                'modelName' => 'Page'
+                'model' => new Service(),
+                'modelName' => 'Service'
             ],
             'delete-attachment' => [
                 'class' => RemoveAction::className(),
@@ -102,13 +97,13 @@ class PageController extends AuthController
     }
 
     /**
-     * Creates a new Page model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Creates a new Service model.
+     * If creation is successful, the browser will be redirected to the 'view' Service.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Page();
+        $model = new Service();
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -135,8 +130,8 @@ class PageController extends AuthController
     }
 
     /**
-     * Updates an existing Page model.
-     * If update is successful, the browser will be redirected to the 'view' page.
+     * Updates an existing Service model.
+     * If update is successful, the browser will be redirected to the 'view' Service.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -175,8 +170,8 @@ class PageController extends AuthController
     }
 
     /**
-     * Deletes an existing Page model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
+     * Deletes an existing Service model.
+     * If deletion is successful, the browser will be redirected to the 'index' Service.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found

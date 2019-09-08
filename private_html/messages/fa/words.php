@@ -485,4 +485,8 @@ return [
 
     //    construction : update
     'Update other construction: {name}' => 'ویرایش سازه ها: {name}',
+
+    //    construction : update
+    'Create Service' => 'ایجاد رکورد جدید',
+    'Update Service: {name}' => 'ویرایش امکانات: {name}',
 ];

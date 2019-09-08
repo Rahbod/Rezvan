@@ -127,10 +127,10 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', <?= $urlParams ?>]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('create', [
@@ -158,10 +158,10 @@ class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->bas
         if (Yii::$app->request->post()){
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', <?= $urlParams ?>]);
             }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
         return $this->render('update', [
