@@ -48,6 +48,7 @@ class Block extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'image' => ['string', ''],
             'itemID' => ['INTEGER', ''],
             'sort' => ['INTEGER', '']
         ]);
@@ -56,9 +57,17 @@ class Block extends Item
 
     public function formAttributes()
     {
-        return array_merge(parent::formAttributes(),[
-            self::FORM_SEPARATOR
-        ]);
+        return [
+            'name' => static::FORM_FIELD_TYPE_TEXT,
+            'status' => [
+                'type' => static::FORM_FIELD_TYPE_SELECT,
+                'items' => self::getStatusFilter()
+            ],
+            'sep' => [
+                'type' => self::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ]
+        ];
     }
 
     /**
@@ -69,7 +78,7 @@ class Block extends Item
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['itemID', 'type'], 'required'],
-            [['itemID', 'sort'], 'integer'],
+            [['itemID', 'sort', 'image'], 'integer'],
         ]);
     }
 

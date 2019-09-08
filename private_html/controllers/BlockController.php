@@ -2,10 +2,16 @@
 
 namespace app\controllers;
 
+use app\components\CrudControllerTrait;
+use app\models\Page;
+use app\models\projects\Apartment;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
 use Yii;
 use app\models\Block;
 use app\models\BlockSearch;
 use app\components\AuthController;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -16,29 +22,47 @@ use yii\widgets\ActiveForm;
  */
 class BlockController extends AuthController
 {
+    use CrudControllerTrait;
+
     public static $imgDir = 'uploads/block';
     public static $imageOptions = [];
 
     /**
-     * for set admin theme
+     * @return string
      */
-    public function init()
+    public function getModelName()
     {
-        $this->setTheme('default');
-        parent::init();
+        return Block::className();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public function uploaderAttributes()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+            'image' => [
+                'dir' => self::$imgDir,
+                'options' => self::$imageOptions
+            ]
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'upload-image' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Block(), 'image'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-image' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$imgDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Block(),
+                'attribute' => 'image',
+                'options' => static::$imageOptions
             ],
         ];
     }
@@ -57,19 +81,6 @@ class BlockController extends AuthController
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Block model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
         ]);
     }
 
@@ -101,8 +112,8 @@ class BlockController extends AuthController
 
         if (app()->request->post() and !app()->request->isPjax) {
             $model->load(app()->request->post());
-
             if ($model->save()) {
+                $this->saveUploaderAttributes($model);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
             } else
@@ -132,8 +143,10 @@ class BlockController extends AuthController
         }
 
         if (app()->request->post()) {
+            $oldUploaderValues = $this->getOldUploaderValues($model);
             $model->load(app()->request->post());
             if ($model->save()) {
+                $this->editUploaderAttributes($model, $oldUploaderValues);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
             } else
@@ -154,7 +167,9 @@ class BlockController extends AuthController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $this->deleteUploaderAttributes($model);
+        $model->delete();
 
         return $this->redirect(['index']);
     }
