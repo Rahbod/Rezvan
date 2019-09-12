@@ -3,7 +3,6 @@
 namespace app\controllers;
 
 use app\components\AuthController;
-use app\components\CrudControllerTrait;
 use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
@@ -90,6 +89,12 @@ class ApartmentController extends AuthController
         ])->all();
 dd($projects[0]->render($this->view));
         return $this->render('list', ['projects' => $projects]);
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
+
+        return $this->render('list', [
+            'projects' => $projects,
+            'availableApartments' => $availableApartments,
+        ]);
     }
 
     public function actionShow($id)
@@ -98,13 +103,15 @@ dd($projects[0]->render($this->view));
         $this->innerPage = true;
         $this->bodyClass = 'more-one';
 
-        $model = Apartment::findOne($id);
-        return $this->render('show', compact('model'));
+        $projects = Apartment::find($id)->orderBy(['id' => SORT_DESC,])->all();
+
+        return $this->render('list', ['projects' => $projects]);
     }
 
     public function actionSpecial()
     {
         $this->setTheme('frontend');
+
         $this->innerPage = true;
         $this->bodyClass = 'final-project-view special';
         return $this->render('special');
