@@ -3,10 +3,14 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $baseUrl = $this->theme->baseUrl;
+$apartmentCounts = isset($projects) ? count($projects) : 0;
 
 ?>
+
+<?php if(isset($projects)): ?>
 <section class="full-slide">
     <div class="container-fluid">
         <div class="row">
@@ -19,21 +23,19 @@ $baseUrl = $this->theme->baseUrl;
                 </div>
                 <div class="title-right">
                     <p class="slide">
-                        <span class="projects"><?php echo count($projects) ?> projects / </span>
+                        <span class="projects"><?php echo $apartmentCounts ?> projects / </span>
                         <span class="available-project">available<br>
 									project </span>
-                        <span class="num">7</span>
+                        <span class="num"><?= $availableApartments ?></span>
                     </p>
                 </div>
             </div>
             <div class="container-fluid project-list">
                 <div class="row">
                     <div class="grid first-post col-lg-6">
-                        <img src="<?= $projects[0]->getImage() ?>"
-                             alt="<?= Html::encode($projects[0]->name) ?>">
-
+                        <img src="<?= $projects[0]->getModelImage() ?>" alt="<?= Html::encode($projects[0]->name) ?>">
                         <a title="<?= Html::encode($projects[0]->name) ?>"
-                           href="<?= \yii\helpers\Url::to('project/show/' . $projects[0]->id) ?>">
+                           href="<?= Url::to(['/apartment/show/' ,'id'=> $projects[0]->id]) ?>">
                             <h2 class="item-title"><?= Html::encode($projects[0]->name) ?></h2>
                             <span class="first-title"><?= $projects[0]->subtitle ?></span>
                         </a>
@@ -45,10 +47,10 @@ $baseUrl = $this->theme->baseUrl;
                             <?php foreach ($projects as $key => $project):
                                 if ($key && $key > 0 && $key < 5) : ?>
                                     <div class="grid col-lg-6">
-                                        <img src="<?= $project->getImage() ?>"
+                                        <img src="<?= $project->getModelImage() ?>"
                                              alt="<?= Html::encode($project->name) ?> ">
                                         <a title="<?= Html::encode($project->name) ?>"
-                                           href="<?= \yii\helpers\Url::to('project/show/' . $project->id) ?>">
+                                           href="<?= Url::to(['/apartment/show/' ,'id'=> $project->id]) ?>">
                                             <h2 class="item-title"><?= Html::encode($project->name) ?></h2>
                                         </a>
                                         <span class="description"><?= $project->location ?></span>
@@ -59,12 +61,12 @@ $baseUrl = $this->theme->baseUrl;
                     </div>
 
                     <?php foreach ($projects as $key => $project):
-                        if ($key && $key > 5) : ?>
+                        if ($key && $key > 4) : ?>
                             <div class="grid col-lg-3">
-                                <img src="<?= $project->getImage() ?>"
+                                <img src="<?= $project->getModelImage() ?>"
                                      alt="<?= Html::encode($project->name) ?> ">
                                 <a title="<?= Html::encode($project->name) ?>"
-                                   href="<?= \yii\helpers\Url::to('project/show/' . $project->id) ?>">
+                                   href="<?= Url::to(['/apartment/show/' ,'id'=> $project->id]) ?>">
                                     <h2 class="item-title"><?= Html::encode($project->name) ?></h2>
                                 </a>
                                 <span class="description"><?= $project->location ?></span>
@@ -76,4 +78,5 @@ $baseUrl = $this->theme->baseUrl;
         </div>
     </div>
 </section>
+<?php endif; ?>
 

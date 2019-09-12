@@ -26,7 +26,6 @@ class PageController extends AuthController
     use CrudControllerTrait;
 
     public static $imageDir = 'uploads/pages';
-    public static $imageOptions = [];
     public static $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
     public static $imageOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
 
@@ -93,16 +92,19 @@ class PageController extends AuthController
         $this->headerClass = 'header-style-2';
         $this->mainTag = 'main-text-page';
 
-//        $model = $this->findModel($id);
-//        $model->scenario = 'increase_seen';
-//        $model->seen++;
-//        $model->save(false);
+        $model = $this->findModel($id);
+        $model->scenario = 'increase_seen';
+        $model->seen++;
+        $model->save(false);
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
         $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
 
 
         return $this->render('show', [
             'apartments' => $apartments,
+            'model' => $model,
+            'availableApartments' => $availableApartments,
         ]);
     }
 
