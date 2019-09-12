@@ -4,16 +4,17 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
-use app\models\ContactForm;
 use app\models\Menu;
 use app\models\MenuSearch;
-use app\models\Message;
 use app\models\Page;
 use app\models\PageSearch;
 use app\models\Post;
 use app\models\PostSearch;
 use app\models\projects\Apartment;
+use app\models\projects\Investment;
+use app\models\projects\OtherConstruction;
 use app\models\Slide;
+use Symfony\Component\EventDispatcher\Tests\Service;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
@@ -151,8 +152,17 @@ class SiteController extends AuthController
     {
         $this->bodyClass = 'home';
 
+        $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
+        $investments = Investment::find()->orderBy(['id' => SORT_DESC,])->all();
+        $otherConstructions = OtherConstruction::find()->orderBy(['id' => SORT_DESC,])->all();
+//        $services = Service::find()->orderBy(['id' => SORT_DESC,])->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
-        return $this->render('index', compact('slides'));
+
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
+        $availableInvestments = Investment::find()->andWhere(['>', Investment::columnGetString('free_count'), 0])->count();
+
+        return $this->render('index', compact(['slides', 'apartments', 'investments',
+            'otherConstructions','availableApartments','availableInvestments']));
     }
 
     /**
@@ -165,7 +175,7 @@ class SiteController extends AuthController
         $this->innerPage = true;
         $this->bodyClass = 'text-page';
 
-        return $this->render('contact', compact($this->getProjects()));
+        return $this->render('contact', ['projects' => ($this->getProjects())]);
     }
 
     /**
@@ -177,7 +187,7 @@ class SiteController extends AuthController
     {
         $this->innerPage = true;
         $this->bodyClass = 'text-page';
-        return $this->render('about', compact($this->getProjects()));
+        return $this->render('about', ['projects' => ($this->getProjects())]);
     }
 
     public function actionMoreOne()

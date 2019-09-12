@@ -59,7 +59,7 @@ class Apartment extends Project implements ProjectInterface
         // TODO: Implement renderView() method.
     }
 
-    public function getImage()
+    public function getModelImage()
     {
         if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
             return Yii::getAlias('@web/uploads/apartment/') . $this->image;

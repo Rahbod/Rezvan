@@ -7,5 +7,4 @@ require __DIR__ . '/../private_html/vendor/autoload.php';
 require __DIR__ . '/../private_html/vendor/yiisoft/yii2/Yii.php';
 
 $config = require __DIR__ . '/../private_html/config/web.php';
-
 (new yii\web\Application($config))->run();

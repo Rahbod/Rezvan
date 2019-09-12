@@ -25,8 +25,9 @@ use yii\web\Controller;
 class MainController extends Controller
 {
     public $bodyClass='home';
-    public $headerClass;
+    public $headerClass='';
     public $innerPage=false;
+    public $mainTag='';
     public $theme;
     public $tmpDir = 'uploads/temp';
     public static $tempDir = 'uploads/temp';
@@ -380,8 +381,6 @@ class MainController extends Controller
                 $arr[$menu->id] = $menu;
             return $arr;
         }, $expire);
-
-
     }
 
     /**

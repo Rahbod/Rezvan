@@ -93,4 +93,11 @@ class Investment extends Project implements ProjectInterface
     {
         // TODO: Implement renderView() method.
     }
+
+    public function getModelImage()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/investment/') . $this->image))
+            return Yii::getAlias('@web/uploads/investment/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
 }
