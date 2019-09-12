@@ -94,4 +94,10 @@ class OtherConstruction extends Project implements ProjectInterface
         ]);
     }
 
+    public function getModelImage()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/construction/') . $this->image))
+            return Yii::getAlias('@web/uploads/construction/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
 }

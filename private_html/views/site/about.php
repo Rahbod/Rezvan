@@ -52,31 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
             <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
                 <div class="carousel-inner">
-                    <?php foreach ($projects as $key => $project): ?>
-                        <div class="carousel-item <?= $key == 0 ? 'active' : '' ?>">
-                            <div class="posts">
-                                <div class="row">
-                                    <div class="grid col-lg-4">
-                                        <div class="img">
-                                            <img height="200" width="330" src="<?= $project->getImage() ?>"
-                                                 alt="<?= Html::encode($project->name) ?> ">
-                                        </div>
-                                    </div>
-                                    <div class="grid col-lg-4">
-                                        <div class="img">
-                                            <img height="200" width="330" src="<?= $project->getImage() ?>"
-                                                 alt="<?= Html::encode($project->name) ?> "></div>
-                                    </div>
-                                    <div class="grid col-lg-4">
-                                        <div class="img">
-                                            <img height="200" width="330" src="<?= $project->getImage() ?>"
-                                                 alt="<?= Html::encode($project->name) ?> "></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
-
                     <a class="carousel-control-prev" href="#order-post" data-slide="prev">
                         <span class="carousel-control-prev-icon"></span>
                     </a>
@@ -88,4 +63,3 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </section>
-

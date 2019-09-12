@@ -51,7 +51,7 @@ if ($pageName == 'one-more') {
 else
     echo $this->render('_header');
 ?>
-<main>
+<main class="<?= isset(app()->controller->mainTag) ? app()->controller->mainTag : '' ?>">
     <?= $content ?>
 </main>
 

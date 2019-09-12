@@ -204,6 +204,52 @@ class InvestmentController extends AuthController
         ];
     }
 
-    public function getMenuActions(){return ['index'];}
+    public function getMenuActions()
+    {
+        return ['index'];
+    }
 
+    // ----------------rezvan methods ------------------
+    public function actionList()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+
+        $projects = Investment::find()->orderBy([
+            'id' => SORT_DESC,
+        ])->all();
+
+        return $this->render('list', ['projects' => $projects]);
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+
+        $projects = Investment::find($id)->orderBy(['id' => SORT_DESC,])->all();
+        return $this->render('list', ['projects' => $projects]);
+    }
+
+    public function actionSpecial()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view special';
+        return $this->render('special');
+
+    }//show project blocks
+
+    public function actionIn()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view';
+        return $this->render('in');
+    }//show project units
 }

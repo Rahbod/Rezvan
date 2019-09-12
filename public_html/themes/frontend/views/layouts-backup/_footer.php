@@ -90,7 +90,10 @@ $contactModel = new \app\models\ContactForm();
                         <li>
                             <div class="addressContainer">
                                 <i class="icon point-icon"></i>
-                                <div><?= Setting::get(Yii::$app->language == 'fa' ? 'address' : Yii::$app->language . '_address') ?></div>
+                                <div>
+                                    <?= Setting::get(Yii::$app->language == 'fa' ? 'address'
+                                        : Yii::$app->language . '_address') ?>
+                                </div>
                             </div>
                         </li>
                         <li>

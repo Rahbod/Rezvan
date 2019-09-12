@@ -2,22 +2,19 @@
 
 namespace app\controllers;
 
+use app\components\AuthController;
 use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
-use app\components\Imager;
 use app\models\Attachment;
+use app\models\Page;
+use app\models\projects\Apartment;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
-use app\models\Page;
-use app\models\PageSearch;
-use app\components\AuthController;
-use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -31,6 +28,7 @@ class PageController extends AuthController
     public static $imageDir = 'uploads/pages';
     public static $imageOptions = [];
     public static $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
+    public static $imageOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
 
     /**
      * @return string
@@ -89,15 +87,22 @@ class PageController extends AuthController
 
     public function actionShow($id)
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        $model = $this->findModel($id);
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+        $this->headerClass = 'header-style-2';
+        $this->mainTag = 'main-text-page';
 
-        $model->scenario = 'increase_seen';
-        $model->seen++;
-        $model->save(false);
+//        $model = $this->findModel($id);
+//        $model->scenario = 'increase_seen';
+//        $model->seen++;
+//        $model->save(false);
+
+        $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
+
 
         return $this->render('show', [
-            'model' => $model,
+            'apartments' => $apartments,
         ]);
     }
 
