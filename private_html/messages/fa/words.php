@@ -76,6 +76,7 @@ return [
     'Gallery' => 'گالری تصاویر',
     'show' => 'نمایش',
     'Link' => 'پیوند',
+    'Video file' => 'فایل ویدئو',
     'News & Articles' => 'اخبار و مقالات',
     'Insurance' => 'بیمه',
     'Category Type' => 'نوع دسته بندی',

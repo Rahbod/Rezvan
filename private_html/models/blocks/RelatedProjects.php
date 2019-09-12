@@ -10,7 +10,7 @@ use app\models\Block;
  */
 class RelatedProjects extends Block implements BlockInterface
 {
-    public static $typeName = self::TYPE_VIDEO;
+    public static $typeName = self::TYPE_RELATED_PROJECTS;
 
     public function init()
     {

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use richardfan\sortable\SortableAction;
 use Yii;
 
 /**
@@ -48,9 +49,12 @@ class Block extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            'image' => ['string', ''],
             'itemID' => ['INTEGER', ''],
-            'sort' => ['INTEGER', '']
+            'sort' => ['INTEGER', ''],
+
+            //
+            'image' => ['CHAR', ''],
+            'video' => ['CHAR', ''],
         ]);
     }
 
@@ -78,7 +82,8 @@ class Block extends Item
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['itemID', 'type'], 'required'],
-            [['itemID', 'sort', 'image'], 'integer'],
+            [['itemID', 'sort'], 'integer'],
+            [['sort'], 'safe', 'on' => SortableAction::SORTING_SCENARIO],
         ]);
     }
 

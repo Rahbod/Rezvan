@@ -69,6 +69,8 @@ class BlockSearch extends Block
 
         $query->andFilterWhere(['like', 'name', $this->name]);
 
+        $query->orderBy([self::columnGetString('sort') => SORT_ASC]);
+
         return $dataProvider;
     }
 }

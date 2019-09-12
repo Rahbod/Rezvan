@@ -27,8 +27,6 @@ use yii\helpers\Url;
         <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
         <a href="<?= Url::to(['index']) ?>" data-pjax="false" class="btn btn-danger">
             <?php echo trans('words', 'Cancel') ?></a>
-        <button type="reset" class="btn btn-secondary"><?php echo trans('words', 'Reset') ?></button>
-
     </div>
 </div>
 <?php CustomActiveForm::end(); ?>

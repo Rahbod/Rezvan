@@ -104,6 +104,10 @@ class NearbyAccess extends Block implements BlockInterface
         return array_merge(parent::formAttributes(), [
             [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link',
                 'airport_link', 'gas_link', 'bank_link', 'restaurant_link'], self::FORM_FIELD_TYPE_TEXT],
+            'sep2' => [
+                'type' => self::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ],
             [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance',
                 'airport_distance', 'gas_distance', 'bank_distance', 'restaurant_distance'], self::FORM_FIELD_TYPE_TEXT],
 

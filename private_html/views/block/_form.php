@@ -19,8 +19,12 @@ use yii\helpers\Url;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
+    <div class="col-sm-12 text-danger">
+        <?= $form->errorSummary($model) ?>
+    </div>
+
     <div class="row">
-        <div class="col-sm-12   ">
+        <div class="col-sm-12">
             <div class="form-group m-form__group field-block-name">
                 <?= Html::label($model->getAttributeLabel('type'), 'type', ['class' => 'col-form-label control-label']) ?>
                 <?= Html::dropDownList('type', $model->type, Block::getTypeLabels(), [
@@ -43,7 +47,6 @@ use yii\helpers\Url;
         <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
         <a href="<?= Url::to(['index', 'id' => $model->itemID]) ?>" data-pjax="false" class="btn btn-danger">
             <?php echo trans('words', 'Cancel') ?></a>
-        <button type="reset" class="btn btn-secondary"><?php echo trans('words', 'Reset') ?></button>
     </div>
 </div>
 <?php CustomActiveForm::end(); ?>

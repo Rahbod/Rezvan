@@ -3,17 +3,15 @@
 namespace app\controllers;
 
 use app\components\CrudControllerTrait;
-use app\models\Page;
-use app\models\projects\Apartment;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
-use Yii;
+use richardfan\sortable\SortableAction;
 use app\models\Block;
 use app\models\BlockSearch;
 use app\components\AuthController;
 use yii\helpers\Html;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -25,6 +23,7 @@ class BlockController extends AuthController
     use CrudControllerTrait;
 
     public static $imgDir = 'uploads/block';
+    public static $videoDir = 'uploads/block';
     public static $imageOptions = [];
 
     /**
@@ -41,7 +40,22 @@ class BlockController extends AuthController
             'image' => [
                 'dir' => self::$imgDir,
                 'options' => self::$imageOptions
+            ],
+            'video' => [
+                'dir' => self::$videoDir,
+                'options' => []
             ]
+        ];
+    }
+
+    public function getSystemActions()
+    {
+        return [
+            'upload-image',
+            'upload-video',
+            'delete-image',
+            'delete-video',
+            'sortItem',
         ];
     }
 
@@ -63,6 +77,22 @@ class BlockController extends AuthController
                 'model' => new Block(),
                 'attribute' => 'image',
                 'options' => static::$imageOptions
+            ],
+            'upload-video' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Block(), 'video'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('mp4')
+                )
+            ],
+            'delete-video' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$videoDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Block(),
+                'attribute' => 'video',
+                'options' => []
             ],
         ];
     }
@@ -111,6 +141,7 @@ class BlockController extends AuthController
         }
 
         if (app()->request->post() and !app()->request->isPjax) {
+            $this->repairBodyParams($model);
             $model->load(app()->request->post());
             if ($model->save()) {
                 $this->saveUploaderAttributes($model);
@@ -144,6 +175,7 @@ class BlockController extends AuthController
 
         if (app()->request->post()) {
             $oldUploaderValues = $this->getOldUploaderValues($model);
+            $this->repairBodyParams($model);
             $model->load(app()->request->post());
             if ($model->save()) {
                 $this->editUploaderAttributes($model, $oldUploaderValues);
@@ -171,7 +203,27 @@ class BlockController extends AuthController
         $this->deleteUploaderAttributes($model);
         $model->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['index', 'id' => $model->itemID]);
+    }
+
+    public function actionSortItem()
+    {
+        if (!request()->isAjax) {
+            throw new HttpException(404);
+        }
+
+        if (isset($_POST['items']) && is_array($_POST['items'])) {
+            foreach ($_POST['items'] as $i => $item) {
+                try {
+                    $model = $this->findModel($item);
+                    $model->scenario = SortableAction::SORTING_SCENARIO;
+                    $model->sort = $i + 1;
+                    $model->save();
+                }catch (\Exception $exception){
+                    dd($item,$exception->getMessage());
+                }
+            }
+        }
     }
 
     /**
@@ -187,9 +239,27 @@ class BlockController extends AuthController
             $modelName = Block::$typeModels[$model->type];
             /** @var Block $modelName */
             $model = $modelName::findOne($id);
+            if($model === null){
+                dd($modelName, $id,$model);
+            }
             return $model;
         }
 
         throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
+    }
+
+    /**
+     * @param Block $model
+     * @throws \yii\base\InvalidConfigException
+     */
+    private function repairBodyParams($model)
+    {
+        if (!app()->request->post('Block'))
+            return;
+        $params = request()->getBodyParams();
+        foreach (app()->request->post('Block') as $key => $value) {
+            $params[$model->formName()][$key] = $value;
+        }
+        app()->request->setBodyParams($params);
     }
 }
