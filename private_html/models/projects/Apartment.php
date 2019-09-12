@@ -11,7 +11,7 @@ use Yii;
  *
  * @property mixed|null image
  */
-class Apartment extends Project implements ProjectInterface
+class Apartment extends Project
 {
     public static $typeName = self::TYPE_AVAILABLE_APARTMENT;
 
@@ -41,22 +41,6 @@ class Apartment extends Project implements ProjectInterface
         return array_merge(parent::attributeLabels(), [
 
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function render()
-    {
-        // TODO: Implement render() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function renderView()
-    {
-        // TODO: Implement renderView() method.
     }
 
     public function getModelImage()

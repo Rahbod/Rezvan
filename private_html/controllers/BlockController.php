@@ -239,10 +239,8 @@ class BlockController extends AuthController
             $modelName = Block::$typeModels[$model->type];
             /** @var Block $modelName */
             $model = $modelName::findOne($id);
-            if($model === null){
-                dd($modelName, $id,$model);
-            }
-            return $model;
+            if($model !== null)
+                return $model;
         }
 
         throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));

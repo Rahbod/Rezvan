@@ -4,16 +4,18 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
+use app\models\projects\ProjectInterface;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
  *
  * @property mixed|null project_type
  */
-class Project extends Item
+class Project extends Item implements ProjectInterface
 {
     const TYPE_AVAILABLE_APARTMENT = 1;
     const TYPE_INVESTMENT = 2;
@@ -73,7 +75,7 @@ class Project extends Item
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['project_type'], 'required'],
             [['subtitle', 'begin_date', 'construction_time', 'location', 'image'], 'string'],
-            [['area_size', 'unit_count', 'free_count', 'sold_count','project_type'], 'integer']
+            [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer']
         ]);
     }
 
@@ -195,7 +197,7 @@ class Project extends Item
 
     public function getBlocks()
     {
-        return $this->hasMany(Block::className(),[self::columnGetString('itemID')=>'id']);
+        return $this->hasMany(Block::className(), [self::columnGetString('itemID') => 'id']);
     }
 
     public function getImageSrc()
@@ -203,5 +205,23 @@ class Project extends Item
         if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
             return Yii::getAlias('@web/uploads/apartment/') . $this->image;
         return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function render(View $view)
+    {
+        if ($this->project_type == self::SINGLE_VIEW)
+            return $this->renderBlocks();
+        else {
+            $className = strtolower($this->formName());
+            return $view->renderAjax('/' . $className . '/_render', ['model' => $this]);
+        }
+    }
+
+    public function renderBlocks()
+    {
+        return "Blocks";
     }
 }
