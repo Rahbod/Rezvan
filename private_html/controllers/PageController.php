@@ -6,6 +6,7 @@ use app\components\AuthController;
 use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
 use app\models\Attachment;
+use app\models\Item;
 use app\models\Page;
 use app\models\projects\Apartment;
 use devgroup\dropzone\RemoveAction;
@@ -92,17 +93,14 @@ class PageController extends AuthController
         $this->headerClass = 'header-style-2';
         $this->mainTag = 'main-text-page';
 
-        $model = $this->findModel($id);
+        $model = Page::findOne($id);
         $model->scenario = 'increase_seen';
         $model->seen++;
         $model->save(false);
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
-        $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
-
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
 
         return $this->render('show', [
-            'apartments' => $apartments,
             'model' => $model,
             'availableApartments' => $availableApartments,
         ]);

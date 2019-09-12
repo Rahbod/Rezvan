@@ -5,7 +5,7 @@
 use yii\helpers\Html;
 
 $baseUrl = $this->theme->baseUrl;
-$apartmentCounts = isset($apartments) ? count($apartments) : 0;
+$apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
 ?>
 <section class="main-text">
     <div class="title-page">
@@ -22,7 +22,7 @@ $apartmentCounts = isset($apartments) ? count($apartments) : 0;
             <div class="row">
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
-                        <p><strong>Where does it come from?</strong></p>
+                        <p><strong>Service Page</strong></p>
                         <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
                             classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
                             Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure
@@ -45,24 +45,7 @@ $apartmentCounts = isset($apartments) ? count($apartments) : 0;
                             uncover many web sites still in their infancy. Various versions have evolved over the years,
                             sometimes by accident, sometimes on purpose (injected humour and the like).
                         </p>
-                        <p>There are many variations of passages of Lorem Ipsum available, but the majority have
-                            suffered alteration in some form, by injected humour, or randomised words which don't look
-                            even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be
-                            sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum
-                            generators on the Internet tend to repeat predefined chunks as necessary, making this the
-                            first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined
-                            with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable.
-                            The generated Lorem Ipsum is therefore always free from repetition, injected humour, or
-                            non-characteristic words etc.
-                        </p>
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                            been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                            galley of type and scrambled it to make a type specimen book. It has survived not only five
-                            centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                            It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                            passages, and more recently with desktop publishing software like Aldus PageMaker including
-                            versions of Lorem Ipsum.
-                        </p>
+
                     </div>
                 </div>
             </div>
@@ -85,8 +68,8 @@ $apartmentCounts = isset($apartments) ? count($apartments) : 0;
                             <div class="posts">
                                 <div class="row">
                                     <?php
-                                    if (!isset($apartments[$i])) break;
-                                    $apartment = $apartments[$i];
+                                    if (!isset($availableApartments[$i])) break;
+                                    $apartment = $availableApartments[$i];
                                     ?>
                                     <div class="grid col-lg-4">
                                         <div class="img">
@@ -95,8 +78,8 @@ $apartmentCounts = isset($apartments) ? count($apartments) : 0;
                                         </div>
                                     </div>
 
-                                    <?php if (!isset($apartments[$i + 1])) break;
-                                    $apartment = $apartments[$i + 1];
+                                    <?php if (!isset($availableApartments[$i + 1])) break;
+                                    $apartment = $availableApartments[$i + 1];
                                     ?>
                                     <div class="grid col-lg-4">
                                         <div class="img">
@@ -105,8 +88,8 @@ $apartmentCounts = isset($apartments) ? count($apartments) : 0;
                                         </div>
                                     </div>
 
-                                    <?php if (!isset($apartments[$i + 2])) break;
-                                    $apartment = $apartments[$i + 2];
+                                    <?php if (!isset($availableApartments[$i + 2])) break;
+                                    $apartment = $availableApartments[$i + 2];
                                     ?>
                                     <div class="grid col-lg-4">
                                         <div class="img">

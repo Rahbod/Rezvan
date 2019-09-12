@@ -4,14 +4,18 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\models\Item;
 use app\models\Menu;
 use app\models\MenuSearch;
 use app\models\Page;
 use app\models\PageSearch;
 use app\models\Post;
 use app\models\PostSearch;
+use app\models\Project;
 use app\models\projects\Apartment;
+use app\models\projects\ApartmentSearch;
 use app\models\projects\Investment;
+use app\models\projects\InvestmentSearch;
 use app\models\projects\OtherConstruction;
 use app\models\Slide;
 use Symfony\Component\EventDispatcher\Tests\Service;
@@ -108,41 +112,38 @@ class SiteController extends AuthController
 
     public function actionSearch()
     {
-        $term = Yii::$app->request->getQueryParam('q');
+        $term = Yii::$app->request->getQueryParam('query');
         if ($term && !empty($term)) {
-//            $term = Helper::persian2Arabic($term);
+            $searchApartment = new ApartmentSearch();
+            $searchApartment->name = $term;
+            $searchApartment->sub_title = $term;
+            $searchApartment->type = Project::TYPE_AVAILABLE_APARTMENT;
+            $apartmentProvider = $searchApartment->search([]);
+            $apartmentProvider->getPagination()->pageSize = 50;
 
-            $searchPost = new PostSearch();
-            $searchPost->name = $term;
-            $searchPost->summary = $term;
-            $searchPost->type = Post::TYPE_NEWS;
-            $searchPost->status = Post::STATUS_PUBLISHED;
-            $newsProvider = $searchPost->search([]);
-            $newsProvider->getPagination()->pageSize = 50;
+            $searchInvestment = new InvestmentSearch();
+            $searchInvestment->name = $term;
+            $searchInvestment->sub_title = $term;
+            $searchInvestment->type = Project::TYPE_INVESTMENT;
+            $investmentProvider = $searchInvestment->search([]);
+            $investmentProvider->getPagination()->pageSize = 50;
 
-            $searchPost = new PostSearch();
-            $searchPost->name = $term;
-            $searchPost->summary = $term;
-            $searchPost->type = Post::TYPE_ARTICLE;
-            $searchPost->status = Post::STATUS_PUBLISHED;
-            $articleProvider = $searchPost->search([]);
-            $articleProvider->getPagination()->pageSize = 50;
+            $searchConstruction = new InvestmentSearch();
+            $searchConstruction->name = $term;
+            $searchConstruction->sub_title = $term;
+            $searchConstruction->type = Project::TYPE_OTHER_CONSTRUCTION;
+            $constructionProvider = $searchConstruction->search([]);
+            $constructionProvider->getPagination()->pageSize = 50;
 
-            $searchPage = new PageSearch();
-            $searchPage->name = $term;
-            $searchPage->body = $term;
-            $searchPage->status = Page::STATUS_PUBLISHED;
-            $pageProvider = $searchPage->search([]);
-            $pageProvider->getPagination()->pageSize = 100;
+//            $searchPage = new PageSearch();
+//            $searchPage->name = $term;
+//            $searchPage->body = $term;
+//            $searchPage->status = Page::STATUS_PUBLISHED;
+//            $pageProvider = $searchPage->search([]);
+//            $pageProvider->getPagination()->pageSize = 100;
 
-            $searchMenu = new MenuSearch();
-            $searchMenu->name = $term;
-            $searchMenu->status = Menu::STATUS_PUBLISHED;
-            $searchMenu->menu_type = [Menu::MENU_TYPE_ACTION, Menu::MENU_TYPE_EXTERNAL_LINK];
-            $menuProvider = $searchMenu->search([]);
-            $menuProvider->getPagination()->pageSize = 100;
-
-            return $this->render('search', compact('term', 'newsProvider', 'articleProvider', 'pageProvider', 'menuProvider'));
+            return $this->render('search', compact('term', 'investmentProvider',
+                'constructionProvider', 'searchApartment'));
         } else
             return $this->goBack();
     }
@@ -152,17 +153,19 @@ class SiteController extends AuthController
     {
         $this->bodyClass = 'home';
 
-        $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
-        $investments = Investment::find()->orderBy(['id' => SORT_DESC,])->all();
-        $otherConstructions = OtherConstruction::find()->orderBy(['id' => SORT_DESC,])->all();
-//        $services = Service::find()->orderBy(['id' => SORT_DESC,])->all();
+        $apartmentCounts = Apartment::find()->count();
+        $investmentCounts = Investment::find()->count();
+        $constructionCounts = OtherConstruction::find()->count();
+
+        $services = Item::find()->where(['=','name','SERVICES'])->orderBy(['id' => SORT_DESC,])->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
-        $availableInvestments = Investment::find()->andWhere(['>', Investment::columnGetString('free_count'), 0])->count();
+        $availableApartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableInvestments = Investment::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
+        $availableConstructions = OtherConstruction::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])->all();
 
-        return $this->render('index', compact(['slides', 'apartments', 'investments',
-            'otherConstructions','availableApartments','availableInvestments']));
+        return $this->render('index', compact(['slides', 'apartmentCounts', 'investmentCounts',
+            'constructionCounts','availableApartments','availableInvestments','availableConstructions','services']));
     }
 
     /**
@@ -175,7 +178,8 @@ class SiteController extends AuthController
         $this->innerPage = true;
         $this->bodyClass = 'text-page';
 
-        return $this->render('contact', ['projects' => ($this->getProjects())]);
+        return $this->render('contact', ['availableApartments' => ($this->getProjects())]);
+
     }
 
     /**
@@ -187,18 +191,12 @@ class SiteController extends AuthController
     {
         $this->innerPage = true;
         $this->bodyClass = 'text-page';
-        return $this->render('about', ['projects' => ($this->getProjects())]);
+        return $this->render('about', ['availableApartments' => ($this->getProjects())]);
     }
 
-    public function actionMoreOne()
-    {
-        $this->innerPage = true;
-        $this->bodyClass = 'more-one';
-        return $this->render('more-one');
-    }
 
     public function getProjects()
     {
-        return Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
+        return Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
     }
 }
