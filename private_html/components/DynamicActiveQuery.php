@@ -289,7 +289,7 @@ class DynamicActiveQuery extends ActiveQuery
                     try {
                         $type = $dynamicFieldsContainer[$orderByField][0];
                     } catch (ErrorException $e) {
-                        var_dump($this->orderBy, $orderByField);
+                        var_dump($e->getMessage(),$this->orderBy, $orderByField);
                         exit;
                     }
                     $this->orderBy["COLUMN_GET($dynamicColumn, '$orderByField' AS $type)"] = $this->orderBy[$orderByField];

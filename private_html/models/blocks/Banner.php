@@ -52,7 +52,7 @@ class Banner extends Block implements BlockInterface
 
     public function formAttributes()
     {
-        return array_merge(parent::formAttributes(),[
+        return array_merge(parent::formAttributes(), [
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
@@ -60,11 +60,12 @@ class Banner extends Block implements BlockInterface
                 'path' => BlockController::$imgDir,
                 'filesOptions' => BlockController::$imageOptions,
                 'options' => [
+                    'name' => Html::getInputName(new Block(), 'image'),
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),
                     'sortable' => false, // sortable flag
                     'sortableOptions' => [], // sortable options
-                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'image')],
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new Block(), 'image')],
                     'options' => [
                         'createImageThumbnails' => true,
                         'addRemoveLinks' => true,

@@ -59,11 +59,12 @@ class Image extends Block implements BlockInterface
                 'path' => BlockController::$imgDir,
                 'filesOptions' => BlockController::$imageOptions,
                 'options' => [
+                    'name' => Html::getInputName(new Block(), 'image'),
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),
                     'sortable' => false, // sortable flag
                     'sortableOptions' => [], // sortable options
-                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'image')],
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new Block(), 'image')],
                     'options' => [
                         'createImageThumbnails' => true,
                         'addRemoveLinks' => true,

@@ -10,7 +10,7 @@ use app\models\Block;
  */
 class Units extends Block implements BlockInterface
 {
-    public static $typeName = self::TYPE_VIDEO;
+    public static $typeName = self::TYPE_UNITS_BLOCK;
 
     public function init()
     {
