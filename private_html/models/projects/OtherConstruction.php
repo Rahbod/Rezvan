@@ -13,7 +13,7 @@ use yii\helpers\Url;
  * This is the model class for table "item".
  *
  */
-class OtherConstruction extends Project implements ProjectInterface
+class OtherConstruction extends Project
 {
     public static $typeName = self::TYPE_OTHER_CONSTRUCTION;
 
@@ -44,22 +44,6 @@ class OtherConstruction extends Project implements ProjectInterface
         return array_merge(parent::attributeLabels(), [
 
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function render()
-    {
-        // TODO: Implement render() method.
-    }
-
-    /**
-     * @return string
-     */
-    public function renderView()
-    {
-        // TODO: Implement renderView() method.
     }
 
     public function formAttributes()

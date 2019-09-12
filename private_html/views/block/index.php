@@ -61,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'contentOptions' => ['class' => 'handle-container'],
                             'headerOptions' => ['class' => 'handle-container'],
                         ],
-                        ['class' => 'yii\grid\SerialColumn'],
                         'name',
                         [
                             'attribute' => 'type',

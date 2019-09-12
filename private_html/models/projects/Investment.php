@@ -13,7 +13,7 @@ use yii\helpers\Url;
  * This is the model class for table "item".
  *
  */
-class Investment extends Project implements ProjectInterface
+class Investment extends Project
 {
     public static $typeName = self::TYPE_INVESTMENT;
 
@@ -46,14 +46,6 @@ class Investment extends Project implements ProjectInterface
         ]);
     }
 
-    /**
-     * @return string
-     */
-    public function render()
-    {
-        // TODO: Implement render() method.
-    }
-
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
@@ -84,14 +76,6 @@ class Investment extends Project implements ProjectInterface
             ],
 
         ]);
-    }
-
-    /**
-     * @return string
-     */
-    public function renderView()
-    {
-        // TODO: Implement renderView() method.
     }
 
     public function getModelImage()
