@@ -11,12 +11,16 @@ use yii\helpers\Url;
 /**
  * This is the model class for table "item".
  *
+ * @property mixed|null project_type
  */
 class Project extends Item
 {
     const TYPE_AVAILABLE_APARTMENT = 1;
     const TYPE_INVESTMENT = 2;
     const TYPE_OTHER_CONSTRUCTION = 3;
+
+    const SINGLE_VIEW = 1;
+    const MULTI_VIEW = 2;
 
     public static $multiLanguage = false;
     public static $modelName = 'project';
@@ -25,6 +29,11 @@ class Project extends Item
         self::TYPE_AVAILABLE_APARTMENT => 'Available apartments',
         self::TYPE_INVESTMENT => 'Investments',
         self::TYPE_OTHER_CONSTRUCTION => 'Other constructions'
+    ];
+
+    public static $projectTypeLabels = [
+        self::SINGLE_VIEW => 'Single view',
+        self::MULTI_VIEW => 'Multi view',
     ];
 
     /**
@@ -50,6 +59,7 @@ class Project extends Item
             'unit_per_floor_count' => ['INTEGER', ''],
             'free_count' => ['INTEGER', ''],
             'sold_count' => ['INTEGER', ''],
+            'project_type' => ['INTEGER', ''],
         ]);
     }
 
@@ -61,8 +71,9 @@ class Project extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
+            [['project_type'], 'required'],
             [['subtitle', 'begin_date', 'construction_time', 'location', 'image'], 'string'],
-            [['area_size', 'unit_count', 'free_count', 'sold_count'], 'integer']
+            [['area_size', 'unit_count', 'free_count', 'sold_count','project_type'], 'integer']
         ]);
     }
 
@@ -72,6 +83,7 @@ class Project extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'project_type' => trans('words', 'Project type'),
             'subtitle' => trans('words', 'Subtitle'),
             'image' => trans('words', 'Image'),
             'begin_date' => trans('words', 'Begin date'),
@@ -99,6 +111,21 @@ class Project extends Item
         return $lbs;
     }
 
+    public function getProjectTypeLabel($type = false)
+    {
+        if (!$type)
+            $type = $this->project_type;
+        return trans('words', ucfirst(self::$projectTypeLabels[$type]));
+    }
+
+    public static function getProjectTypeLabels()
+    {
+        $lbs = [];
+        foreach (self::$projectTypeLabels as $key => $label)
+            $lbs[$key] = trans('words', ucfirst($label));
+        return $lbs;
+    }
+
     /**
      * {@inheritdoc}
      * @return ItemQuery the active query used by this AR class.
@@ -111,7 +138,12 @@ class Project extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
+            'hr' => self::FORM_SEPARATOR,
             'subtitle' => self::FORM_FIELD_TYPE_TEXT,
+            'project_type' => [
+                'type' => self::FORM_FIELD_TYPE_SELECT,
+                'items' => self::getProjectTypeLabels()
+            ],
             'construction_time' => self::FORM_FIELD_TYPE_TEXT,
             'begin_date' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
@@ -165,4 +197,12 @@ class Project extends Item
     {
         return $this->hasMany(Block::className(),[self::columnGetString('itemID')=>'id']);
     }
+
+    public function getImageSrc()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
+            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
+
 }

@@ -139,6 +139,8 @@ class Item extends MultiLangActiveRecord
             'gallery' => trans('words', 'Picture gallery'),
             'formCategories' => trans('words', 'Category'),
             'formTags' => trans('words', 'Tags'),
+            'en_name' => trans('words', 'En Name'),
+            'ar_name' => trans('words', 'Ar Name'),
         ]);
     }
 

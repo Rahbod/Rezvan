@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\PageSearch */
+/* @var $searchModel app\models\ServiceSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = trans('words', 'Pages');
+$this->title = Yii::t('words', 'Services');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="page-index">
+<div class="service-index">
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= trans('words', 'Create Page') ?></span>
+							<span><?= Yii::t('words', 'Create Service') ?></span>
 						</span>
                         </a>
                     </li>
@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-
                         'name',
                         [
                             'attribute' => 'created',

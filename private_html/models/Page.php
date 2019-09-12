@@ -16,7 +16,11 @@ use yii\helpers\Url;
  */
 class Page extends Item
 {
+    const PAGE_TYPE = 1;
+    const SERVICES_TYPE = 2;
+
     public static $modelName = 'page';
+    public static $typeName = self::PAGE_TYPE;
 
     /**
      * {@inheritdoc}
@@ -43,6 +47,7 @@ class Page extends Item
         return array_merge(parent::rules(), [
             [['body'], 'required'],
             [['image'], 'string'],
+            [['type'], 'default', 'value' => static::$typeName],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
     }
@@ -113,7 +118,7 @@ class Page extends Item
                     'options' => ['rows' => 30]
                 ]
             ],
-            'gallery' => [
+           /* 'gallery' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
                 'temp' => MainController::$tempDir,
@@ -137,7 +142,7 @@ class Page extends Item
                         'maxFileSize' => 0.5,
                     ],
                 ]
-            ],
+            ],*/
         ]);
     }
 }

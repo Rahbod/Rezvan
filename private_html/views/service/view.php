@@ -1,19 +1,20 @@
 <?php
 
 use app\controllers\PageController;
+use app\controllers\ServiceController;
+use app\models\Service;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Page */
+/* @var $model app\models\Service */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => trans('words', 'Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('words', 'Services'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
-
 \yii\web\YiiAsset::register($this);
 
-$imageDir = PageController::$imageDir;
+$imageDir = ServiceController::$imageDir;
 ?>
 <div class="m-portlet m-portlet--mobile">
     <div class="m-portlet__head">
@@ -27,17 +28,17 @@ $imageDir = PageController::$imageDir;
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
                 <li class="m-portlet__nav-item">
-                    <?= Html::a('<span><i class="far fa-edit"></i><span>'.trans('words', 'Update').'</span></span>', ['update', 'id' => $model->id], [
+                    <?= Html::a('<span><i class="far fa-edit"></i><span>'.Yii::t('words', 'Update').'</span></span>', ['update', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-success',
                         'encode' => false,
                     ]) ?>
                 </li>
                 <li class="m-portlet__nav-item">
-                    <?= Html::a('<span><i class="far fa-trash-alt"></i><span>'.trans('words', 'Delete').'</span></span>', ['delete', 'id' => $model->id], [
+                    <?= Html::a('<span><i class="far fa-trash-alt"></i><span>'.Yii::t('words', 'Delete').'</span></span>', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-danger',
                         'encode' => false,
                         'data' => [
-                            'confirm' => trans('words', 'Are you sure you want to delete this item?'),
+                            'confirm' => Yii::t('words', 'Are you sure you want to delete this item?'),
                             'method' => 'post',
                         ],
                     ]) ?>

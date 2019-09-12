@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
 use devgroup\dropzone\RemoveAction;
@@ -10,6 +11,7 @@ use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -41,9 +43,8 @@ class ApartmentController extends AuthController
         return [
             'upload-image' => [
                 'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Apartment(), 'image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
-                'modelName' => 'Apartment',
-                'model' => new Apartment(),
                 'validateOptions' => array(
                     'acceptedTypes' => array('png', 'jpg', 'jpeg')
                 )

@@ -306,6 +306,7 @@ class MainController extends Controller
                 'items' => [
                     ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
                     ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
+                    ['label' => trans('words', 'Services'), 'url' => ['/service/index'], 'visible' => $permissions || app()->user->can('serviceIndex')],
 //                    ['label' => trans('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
                 ]
             ],
