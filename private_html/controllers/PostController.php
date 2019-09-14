@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
 /**
  * PostController implements the CRUD actions for Post model.
  */
-class PostController extends AuthController implements CrudControllerInterface
+class PostController extends AuthController
 {
     use CrudControllerTrait;
 

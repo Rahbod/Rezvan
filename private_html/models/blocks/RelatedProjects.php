@@ -3,12 +3,14 @@
 namespace app\models\blocks;
 
 use app\models\Block;
+use app\models\Project;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
  *
  */
-class RelatedProjects extends Block implements BlockInterface
+class RelatedProjects extends Block
 {
     public static $typeName = self::TYPE_RELATED_PROJECTS;
 
@@ -41,8 +43,12 @@ class RelatedProjects extends Block implements BlockInterface
         ]);
     }
 
-    public function render()
+    /**
+     * @inheritDoc
+     */
+    public function render(View $view, $project)
     {
-        // TODO: Implement render() method.
+        /** @var $project Project */
+        return $view->render('//block/_related_projects_view', ['block' => $this]);
     }
 }

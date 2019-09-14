@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
+use app\models\blocks\Units;
 use app\models\projects\ProjectInterface;
 use Yii;
 use yii\helpers\Html;
@@ -14,6 +15,11 @@ use yii\web\View;
  * This is the model class for table "item".
  *
  * @property mixed|null project_type
+ * @property string subtitle
+ * @property string area_size
+ *
+ * @property Block[] blocks
+ * @property Units[] units
  */
 class Project extends Item implements ProjectInterface
 {
@@ -197,7 +203,12 @@ class Project extends Item implements ProjectInterface
 
     public function getBlocks()
     {
-        return $this->hasMany(Block::className(), [self::columnGetString('itemID') => 'id']);
+        return $this->hasMany(Block::className(), [Block::columnGetString('itemID') => 'id']);
+    }
+
+    public function getUnits()
+    {
+        return $this->hasMany(Units::className(), [Units::columnGetString('itemID') => 'id']);
     }
 
     public function getImageSrc()
@@ -213,15 +224,35 @@ class Project extends Item implements ProjectInterface
     public function render(View $view)
     {
         if ($this->project_type == self::SINGLE_VIEW)
-            return $this->renderBlocks();
+            return $this->renderBlocks($view, $this);
         else {
             $className = strtolower($this->formName());
             return $view->renderAjax('/' . $className . '/_render', ['model' => $this]);
         }
     }
 
-    public function renderBlocks()
+    /**
+     * @param View $view
+     * @param $project
+     * @return string
+     */
+    public function renderBlocks($view, $project)
     {
-        return "Blocks";
+        $output = '';
+        foreach ($this->blocks as $block){
+            $type = $block->type;
+            /** @var Block $modelClass */
+            $modelClass = Block::$typeModels[$type];
+            $block = $modelClass::findOne($block->id);
+            $output .= $block->render($view, $project);
+        }
+        return $output;
+    }
+
+    public function getPoster()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
+            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
 }

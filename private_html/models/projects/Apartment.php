@@ -49,5 +49,4 @@ class Apartment extends Project
             return Yii::getAlias('@web/uploads/apartment/') . $this->image;
         return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
-
 }

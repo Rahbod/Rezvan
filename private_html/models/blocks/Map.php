@@ -3,13 +3,16 @@
 namespace app\models\blocks;
 
 use app\models\Block;
+use app\models\Project;
 use Yii;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
  *
+ * @property string location_link
  */
-class Map extends Block implements BlockInterface
+class Map extends Block
 {
     public static $typeName = self::TYPE_MAP_VIEW;
 
@@ -51,9 +54,12 @@ class Map extends Block implements BlockInterface
         ]);
     }
 
-
-    public function render()
+    /**
+     * @inheritDoc
+     */
+    public function render(View $view, $project)
     {
-        // TODO: Implement render() method.
+        /** @var $project Project */
+        return $view->render('//block/_map_view', ['block' => $this]);
     }
 }

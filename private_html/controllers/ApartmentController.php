@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\components\CrudControllerTrait;
 use app\models\Page;
+use app\models\Project;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
 use devgroup\dropzone\RemoveAction;
@@ -40,7 +42,7 @@ class ApartmentController extends AuthController
 
     public function getMenuActions()
     {
-        return ['index'];
+        return ['list'];
     }
 
     public function uploaderAttributes()
@@ -87,8 +89,7 @@ class ApartmentController extends AuthController
         $projects = Apartment::find()->orderBy([
             'id' => SORT_DESC,
         ])->all();
-dd($projects[0]->render($this->view));
-        return $this->render('list', ['projects' => $projects]);
+
         $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
         return $this->render('list', [
@@ -101,11 +102,15 @@ dd($projects[0]->render($this->view));
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
-        $this->bodyClass = 'more-one';
 
-        $projects = Apartment::find($id)->orderBy(['id' => SORT_DESC,])->all();
+        $model = $this->findModel($id);
 
-        return $this->render('list', ['projects' => $projects]);
+        if($model->project_type == Project::SINGLE_VIEW)
+            $this->bodyClass = 'final-project-view';
+        else
+            $this->bodyClass = 'more-one';
+
+        return $this->render('show', compact('model'));
     }
 
     public function actionSpecial()

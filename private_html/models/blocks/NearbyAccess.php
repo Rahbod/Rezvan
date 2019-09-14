@@ -3,7 +3,9 @@
 namespace app\models\blocks;
 
 use app\models\Block;
+use app\models\Project;
 use Yii;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
@@ -25,7 +27,7 @@ use Yii;
  * @property string $gas_link
  * @property string $restaurant_link
  */
-class NearbyAccess extends Block implements BlockInterface
+class NearbyAccess extends Block
 {
     public static $typeName = self::TYPE_NEARBY_ACCESS;
 
@@ -115,8 +117,12 @@ class NearbyAccess extends Block implements BlockInterface
     }
 
 
-    public function render()
+    /**
+     * @inheritDoc
+     */
+    public function render(View $view, $project)
     {
-        // TODO: Implement render() method.
+        /** @var $project Project */
+        return $view->render('//block/_nearby_access_view', ['block' => $this]);
     }
 }

@@ -76,6 +76,7 @@ return [
     'Gallery' => 'گالری تصاویر',
     'show' => 'نمایش',
     'Link' => 'پیوند',
+    'Embed code' => 'اسکریپت ویدئو',
     'Video file' => 'فایل ویدئو',
     'News & Articles' => 'اخبار و مقالات',
     'Insurance' => 'بیمه',

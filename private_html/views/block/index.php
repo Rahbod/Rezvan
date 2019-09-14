@@ -12,6 +12,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = trans('words', 'Blocks');
+$this->params['breadcrumbs'][] = ['label' => trans('words', 'Apartments'), 'url' => app()->session->get('return')];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="block-index">

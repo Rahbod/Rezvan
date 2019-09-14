@@ -22,7 +22,7 @@ use yii\web\Controller;
  *
  * @property User $user
  */
-class MainController extends Controller
+class MainController extends Controller implements CrudControllerInterface
 {
     public $bodyClass='home';
     public $headerClass='';
@@ -392,7 +392,7 @@ class MainController extends Controller
     public static function getRoutes()
     {
         return [
-            'after_save_route' => 'index'
+            static::AFTER_SAVE_ROUTE => 'index'
         ];
     }
 }

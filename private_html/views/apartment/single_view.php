@@ -5,84 +5,25 @@
 $baseUrl = $this->theme->baseUrl;
 
 ?>
-<section class="full-slide">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="bg-slide">
-                <div class="bg-logo-slider">
-                </div>
-                <div class="center-title">
-                    <h1 class="center-text">Al-Ghadir</h1>
-                    <h2 class="center-text">Residential Complex</h2>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <ul class="icon-list-slider">
-                            <div class="item item-1">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-7.png" alt="item-7">
-                                </div>
-                            </div>
-                            <div class="item item-2">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-4.png" alt="item-3">
-                                </div>
-                            </div>
-                            <div class="item item-3">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-6.png" alt="item-6">
-                                </div>
-                            </div>
-                            <div class="item item-4">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-5.png" alt="item-4">
-                                </div>
-                            </div>
-                            <div class="item center-icon">
-                                <div class="inner">
-                                    <p class="title-center-icon-1">240</p>
-                                    <p class="title-center-icon-2">Meter</p>
-                                </div>
-                            </div>
-                            <div class="item item-5">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-2.png" alt="item-2">
-                                </div>
-                            </div>
-                            <div class="item item-6">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-9.png" alt="item-9">
-                                </div>
-                            </div>
-                            <div class="item item-7">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-3.png" alt="item-3">
-                                </div>
-                            </div>
-                            <div class="item item-8">
-                                <div class="inner">
-                                    <img src="<?= $baseUrl ?>./images/item-10.png" alt="item-10">
-                                </div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 <section class="slide-2">
     <div class="picture-slide-1">
         <img src="<?= $baseUrl ?>./images/picture-post.png" alt="item-10">
     </div>
+</section>
+<section class="slide-2">
     <div class="picture-slide-2">
         <img src="<?= $baseUrl ?>./images/picture-post-1.jpg" alt="item-10">
     </div>
+</section>
+<section class="slide-2">
     <div class="picture-slide-3">
         <img src="<?= $baseUrl ?>./images/picture-post-2.jpg" alt="item-10">
     </div>
+</section>
+<section class="slide-2">
     <div class="picture-slide-4">
-        <img src="<?= $baseUrl ?>./images/picture-post-3.jpg" alt="item-10">
+        <a href="#"><img src="<?= $baseUrl ?>./images/picture-post-3.jpg" alt="item-10"></a>
     </div>
 </section>
 <section class="slide-3">
