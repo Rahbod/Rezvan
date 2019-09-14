@@ -1,30 +1,18 @@
 <?php
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-
-/* @var $model app\models\ContactForm */
 
 use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
-use app\components\Setting;
-use yii\helpers\ArrayHelper;
-use app\models\ContactForm;
-use app\models\Department;
-use app\models\Message;
 
-$this->title = trans('words', 'Contact us');
-$this->params['breadcrumbs'][] = $this->title;
+$baseUrl = $this->theme->baseUrl;
 $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
-
 ?>
 <section class="main-text">
     <div class="title-page">
         <div class="container-fluid">
             <div class="row">
                 <div class="title">
-                    <h1><?= Html::encode($this->title) ?></h1>
+                    <h1><strong>Services</strong></h1>
                 </div>
             </div>
         </div>
@@ -34,9 +22,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             <div class="row">
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
-                        <!--                        <code>--><? //= __FILE__ ?><!--</code>-->
-
-                        <p><strong>Where does it come from?</strong></p>
+                        <p><strong>Service Page</strong></p>
                         <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
                             classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
                             Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure
@@ -47,6 +33,19 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                             popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit
                             amet..", comes from a line in section 1.10.32.
                         </p>
+                        <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those
+                            interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are
+                            also reproduced in their exact original form, accompanied by English versions from the 1914
+                            translation by H. Rackham.
+                            It is a long established fact that a reader will be distracted by the readable content of a
+                            page when looking at its layout. The point of using Lorem Ipsum is that it has a
+                            more-or-less normal distribution of letters, as opposed to using 'Content here, content
+                            here', making it look like readable English. Many desktop publishing packages and web page
+                            editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will
+                            uncover many web sites still in their infancy. Various versions have evolved over the years,
+                            sometimes by accident, sometimes on purpose (injected humour and the like).
+                        </p>
+
                     </div>
                 </div>
             </div>

@@ -5,9 +5,9 @@ use yii\helpers\Url;
 
 $baseUrl = $this->theme->baseUrl;
 
-$apartmentCounts = isset($apartments) ? count($apartments) : 0;
-$investmentCounts = isset($investments) ? count($investments) : 0;
-$constructionCounts = isset($otherConstructions) ? count($otherConstructions) : 0;
+$availableApartmentsCounts = isset($availableApartments) ? count($availableApartments) : 0;
+$availableInvestmentsCounts = isset($availableInvestments) ? count($availableInvestments) : 0;
+$availableConstructionsCounts = isset($availableConstructions) ? count($availableConstructions) : 0;
 $serviceCounts = isset($services) ? count($services) : null;
 
 ?>
@@ -17,7 +17,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </div>
 </section>
 
-<?php if (isset($apartments)): ?>
+<?php if (isset($availableApartments)): ?>
     <section class="slide-1">
         <div class="container-fluid">
             <div class="row">
@@ -32,7 +32,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <span class="projects"><?= $apartmentCounts ?> projects / </span>
                             <span class="available-project">available</br>
                                 project </span>
-                            <span class="num"><?= $availableApartments ?></span>
+                            <span class="num"><?= $availableApartmentsCounts ?></span>
                         </p>
                     </div>
                 </div>
@@ -43,8 +43,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <ul class="carousel-indicators">
                         <?php $pageNumber = 1;
 
-                        for ($i = 0; $i < $apartmentCounts; $i++): ?>
-                            <?php if ($apartmentCounts / 4 >= 1 && $i % 4 == 0): ?>
+                        for ($i = 0; $i < $availableApartmentsCounts; $i++): ?>
+                            <?php if ($availableApartmentsCounts / 4 >= 1 && $i % 4 == 0): ?>
                                 <li data-target="#slide-1" data-slide-to="<?php echo $pageNumber - 1 ?>"
                                     class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
                                 </li>
@@ -53,8 +53,8 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     <!-- The slideshow -->
                     <div class="carousel-inner">
-                        <?php for ($i = 0; $i < $apartmentCounts; $i = $i + 5): ?>
-                            <?php $apartment = $apartments[$i]; ?>
+                        <?php for ($i = 0; $i < $availableApartmentsCounts; $i = $i + 5): ?>
+                            <?php $apartment = $availableApartments[$i]; ?>
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
@@ -108,9 +108,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </div>
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
                                             <div class="row">
-                                                <?php if (!isset($apartments[$i + 1]))
+                                                <?php if (!isset($availableApartments[$i + 1]))
                                                     break;
-                                                $apartment = $apartments[$i + 1]; ?>
+                                                $apartment = $availableApartments[$i + 1]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
                                                          alt="<?= Html::encode($apartment->name) ?>">
@@ -122,8 +122,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
 
-                                                <?php if (!isset($apartments[$i + 2])) break;
-                                                $apartment = $apartments[$i + 2]; ?>
+                                                <?php if (!isset($availableApartments[$i + 2])) break;
+                                                $apartment = $availableApartments[$i + 2]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
                                                          alt="<?= Html::encode($apartment->name) ?>">
@@ -135,8 +135,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
 
-                                                <?php if (!isset($apartments[$i + 3])) break;
-                                                $apartment = $apartments[$i + 3]; ?>
+                                                <?php if (!isset($availableApartments[$i + 3])) break;
+                                                $apartment = $availableApartments[$i + 3]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
                                                          alt="<?= Html::encode($apartment->name) ?>">
@@ -148,8 +148,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
 
-                                                <?php if (!isset($apartments[$i + 4])) break;
-                                                $apartment = $apartments[$i + 4]; ?>
+                                                <?php if (!isset($availableApartments[$i + 4])) break;
+                                                $apartment = $availableApartments[$i + 4]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
                                                          alt="<?= Html::encode($apartment->name) ?>">
@@ -186,7 +186,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </section>
 <?php endif; ?>
 
-<?php if (isset($investments)): ?>
+<?php if (isset($availableInvestments)): ?>
     <section class="slide-2">
         <div class="container-fluid">
             <div class="row">
@@ -200,7 +200,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <span class="projects"><?= $investmentCounts ?> projects / </span>
                             <span class="available-project">available</br>
                                 project </span>
-                            <span class="num"><?= $availableInvestments ?></span>
+                            <span class="num"><?= $availableInvestmentsCounts ?></span>
                         </p>
                     </div>
                 </div>
@@ -210,8 +210,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <ul class="carousel-indicators">
                         <?php $pageNumber = 1;
 
-                        for ($i = 0; $i < $investmentCounts; $i++): ?>
-                            <?php if ($investmentCounts / 5 > 1 && $i % 5 == 0): ?>
+                        for ($i = 0; $i < $availableInvestmentsCounts; $i++): ?>
+                            <?php if ($availableInvestmentsCounts / 5 > 1 && $i % 5 == 0): ?>
                                 <li data-target="#slide-2" data-slide-to="<?php echo $pageNumber - 1 ?>"
                                     class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
                                 </li>
@@ -220,15 +220,15 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     <!-- The slideshow -->
                     <div class="carousel-inner">
-                        <?php for ($i = 0; $i < $investmentCounts; $i = $i + 5): ?>
+                        <?php for ($i = 0; $i < $availableInvestmentsCounts; $i = $i + 5): ?>
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 left-post-slider">
                                             <div class="row">
                                                 <?php
-                                                if (!isset($investments[$i])) break;
-                                                $investment = $investments[$i];
+                                                if (!isset($availableInvestments[$i])) break;
+                                                $investment = $availableInvestments[$i];
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
@@ -240,8 +240,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <span class="description-2"><?= $investment->location ?></span>
                                                 </div>
                                                 <?php
-                                                if (!isset($investments[$i + 1])) break;
-                                                $investment = $investments[$i + 1];
+                                                if (!isset($availableInvestments[$i + 1])) break;
+                                                $investment = $availableInvestments[$i + 1];
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
@@ -253,8 +253,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <span class="description-2"><?= $investment->location ?></span>
                                                 </div>
                                                 <?php
-                                                if (!isset($investments[$i + 2])) break;
-                                                $investment = $investments[$i + 2];
+                                                if (!isset($availableInvestments[$i + 2])) break;
+                                                $investment = $availableInvestments[$i + 2];
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
@@ -266,8 +266,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <span class="description-2"><?= $investment->location ?></span>
                                                 </div>
                                                 <?php
-                                                if (!isset($investments[$i + 3])) break;
-                                                $investment = $investments[$i + 3];
+                                                if (!isset($availableInvestments[$i + 3])) break;
+                                                $investment = $availableInvestments[$i + 3];
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
@@ -281,8 +281,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             </div>
                                         </div>
                                         <?php
-                                        if (!isset($investments[$i+4])) break;
-                                        $investment = $investments[$i+4];
+                                        if (!isset($availableInvestments[$i+4])) break;
+                                        $investment = $availableInvestments[$i+4];
                                         ?>
                                         <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $investment->getModelImage() ?>"
@@ -452,7 +452,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </section>
 <?php endif; ?>
 
-<?php if (isset($otherConstructions)): ?>
+<?php if (isset($availableConstructions)): ?>
     <section class="slide-4">
         <div class="container-fluid">
             <div class="row">
@@ -466,8 +466,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <ul class="carousel-indicators">
                         <?php $pageNumber = 1;
 
-                        for ($i = 0; $i < $constructionCounts; $i++): ?>
-                            <?php if ($constructionCounts / 4 > 1 && $i % 4 == 0): ?>
+                        for ($i = 0; $i < $availableConstructionsCounts; $i++): ?>
+                            <?php if ($availableConstructionsCounts / 4 > 1 && $i % 4 == 0): ?>
                                 <li data-target="#slide-4" data-slide-to="<?php echo $pageNumber - 1 ?>"
                                     class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
                                 </li>
@@ -475,13 +475,13 @@ $serviceCounts = isset($services) ? count($services) : null;
                     </ul>
                     <div class="carousel-inner">
                         <?php
-                        for ($i = 0; $i < $constructionCounts; $i = $i + 4): ?>
+                        for ($i = 0; $i < $availableConstructionsCounts; $i = $i + 4): ?>
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
                                         <?php
-                                        if (!isset($otherConstructions[$i])) break;
-                                        $construction = $otherConstructions[$i];
+                                        if (!isset($availableConstructions[$i])) break;
+                                        $construction = $availableConstructions[$i];
                                         ?>
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
@@ -503,8 +503,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             </div>
                                         </div>
 
-                                        <?php if (!isset($otherConstructions[$i + 1])) break;
-                                        $construction = $otherConstructions[$i + 1];
+                                        <?php if (!isset($availableConstructions[$i + 1])) break;
+                                        $construction = $availableConstructions[$i + 1];
                                         ?>
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
@@ -526,8 +526,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             </div>
                                         </div>
 
-                                        <?php if (!isset($otherConstructions[$i + 2])) break;
-                                        $construction = $otherConstructions[$i + 2];
+                                        <?php if (!isset($availableConstructions[$i + 2])) break;
+                                        $construction = $availableConstructions[$i + 2];
                                         ?>
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
@@ -549,8 +549,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             </div>
                                         </div>
 
-                                        <?php if (!isset($otherConstructions[$i + 3])) break;
-                                        $construction = $otherConstructions[$i + 3];
+                                        <?php if (!isset($availableConstructions[$i + 3])) break;
+                                        $construction = $availableConstructions[$i + 3];
                                         ?>
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">

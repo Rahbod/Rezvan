@@ -4,6 +4,9 @@ namespace app\controllers;
 
 use app\components\CrudControllerTrait;
 use app\models\Attachment;
+use app\models\Item;
+use app\models\Page;
+use app\models\projects\Apartment;
 use app\models\Service;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
@@ -84,15 +87,24 @@ class ServiceController extends AuthController
 
     public function actionShow($id)
     {
-        $this->setTheme('frontend', ['bodyClass' => 'innerPages']);
-        $model = $this->findModel($id);
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+        $this->headerClass = 'header-style-2';
+        $this->mainTag = 'main-text-page';
 
+        $model = Page::findOne($id);
         $model->scenario = 'increase_seen';
         $model->seen++;
         $model->save(false);
 
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+//        $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
+
         return $this->render('show', [
+//            'apartments' => $apartments,
             'model' => $model,
+            'availableApartments' => $availableApartments,
         ]);
     }
 

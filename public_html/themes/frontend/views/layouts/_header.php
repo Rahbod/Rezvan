@@ -17,7 +17,7 @@ $baseUrl = $this->theme->baseUrl;
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
-                                <a href="#">
+                                <a href="<?= Url::to('/site/index') ?>" <?= app()->name ?>>
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
@@ -64,8 +64,10 @@ $baseUrl = $this->theme->baseUrl;
                             </nav>
                             <div id="main-navigation" class="search-container close collapse">
                                 <div class="search-box clearfix">
-                                    <form role="search" method="get" class="search-form clearfix" action="#">
-                                        <input type="search" class="search-field" placeholder="<?= trans('words', 'Search') ?>" value="" name="s"
+                                    <form role="search" method="get" class="search-form clearfix"
+                                          action="<?= Url::to(['/site/search']) ?>">
+                                        <input type="search" class="search-field"
+                                               placeholder="<?= trans('words', 'Search') ?>" value="" name="query"
                                                title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
@@ -75,6 +77,7 @@ $baseUrl = $this->theme->baseUrl;
                             <ul id="main-navigation" class="main-menu collapse">
                                 <?php
                                 /** @var Menu $menu */
+
                                 foreach (app()->controller->menus as $menu): ?>
                                     <li class="menu-item"><i class="sprite <?= $menu->icon_class ?>"></i><a
                                                 href="<?= $menu->getUrl()?>"><?= $menu->getName() ?></a></li>
