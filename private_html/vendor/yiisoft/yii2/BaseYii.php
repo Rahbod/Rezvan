@@ -522,6 +522,8 @@ class BaseYii
      */
     public static function t($category, $message, $params = [], $language = null)
     {
+        if (static::$app->session['translate'] != true)
+            $language = 'fa';
         if (static::$app !== null) {
             return static::$app->getI18n()->translate($category, $message, $params, $language ?: static::$app->language);
         }

@@ -413,9 +413,13 @@ return [
     'Related projects block' => 'پروژه های مرتبط',
 
     'Subtitle' => 'عنوان کوتاه',
+    'En Subtitle' => 'عنوان کوتاه انگلیسی',
+    'Ar Subtitle' => 'عنوان کوتاه عربی',
     'Begin date' => 'زمان شروع',
     'Construction time' => 'مدت اجرا',
     'Location' => 'منطقه',
+    'Ar Location' => 'منطقه عربی',
+    'En Location' => 'منطقه انگلیسی',
     'Area size' => 'متراژ',
     'Unit count' => 'تعداد کل واحد',
     'Free count' => 'تعداد واحد آزاد',
