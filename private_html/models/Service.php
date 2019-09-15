@@ -52,4 +52,14 @@ class Service extends Page
         return array_merge(parent::attributeLabels(), [
         ]);
     }
+
+    public static function getList()
+    {
+        return ArrayHelper::map(Service::find()->valid()->all(), 'id', 'name');
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/service/show', 'id' => $this->id, 'title' => encodeUrl($this->name)]);
+    }
 }

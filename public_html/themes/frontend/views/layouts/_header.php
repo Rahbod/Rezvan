@@ -17,27 +17,14 @@ $baseUrl = $this->theme->baseUrl;
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
-                                <a href="<?= Url::to('/site/index') ?>" <?= app()->name ?>>
+                                <a href="<?= Url::to('/site/index') ?>">
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
                         </div>
                         <!-- .site-branding -->
-                        <div class="social-icon">
-                            <ul class="social-list">
-                                <li class="social-item whatsapp"><a href="#" target="_blank"><i
-                                                class="fa fa-whatsapp"></i></a></li>
-                                <li class="social-item twitter"><a href="#" target="_blank"><i
-                                                class="fa fa-twitter"></i></a></li>
-                                <li class="social-item instagram"><a href="#" target="_blank"><i
-                                                class="fa fa-instagram"></i></a></li>
-                                <li class="social-item facebook"><a href="#" target="_blank"><i
-                                                class="fa fa-facebook-f"></i></a></li>
-                                <li class="social-item youtube"><a href="#" target="_blank"><i
-                                                class="fa fa-youtube"></i></a></li>
-                            </ul>
-                        </div>
+                        <?php $this->render('//layouts/_socials') ?>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">

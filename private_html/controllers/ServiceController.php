@@ -8,6 +8,7 @@ use app\models\Item;
 use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\Service;
+use app\models\ServiceSearch;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use devgroup\dropzone\UploadedFiles;
@@ -38,6 +39,13 @@ class ServiceController extends AuthController
         return Service::className();
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'list'
+        ];
+    }
+
     public function getSystemActions()
     {
         return [
@@ -45,6 +53,7 @@ class ServiceController extends AuthController
             'delete-image',
             'upload-attachment',
             'delete-attachment',
+            'list',
             'show',
         ];
     }
@@ -83,29 +92,6 @@ class ServiceController extends AuthController
                 'options' => self::$galleryOptions
             ],
         ];
-    }
-
-    public function actionShow($id)
-    {
-        $this->setTheme('frontend');
-        $this->innerPage = true;
-        $this->bodyClass = 'text-page';
-        $this->headerClass = 'header-style-2';
-        $this->mainTag = 'main-text-page';
-
-        $model = Page::findOne($id);
-        $model->scenario = 'increase_seen';
-        $model->seen++;
-        $model->save(false);
-
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-//        $apartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->all();
-
-        return $this->render('show', [
-//            'apartments' => $apartments,
-            'model' => $model,
-            'availableApartments' => $availableApartments,
-        ]);
     }
 
     /**
@@ -198,5 +184,39 @@ class ServiceController extends AuthController
         $model->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionList()
+    {
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+        $this->headerClass = 'header-style-2';
+        $this->mainTag = 'main-text-page';
+
+        $searchModel = new ServiceSearch();
+        $dataProvider = $searchModel->search(request()->getQueryParams());
+
+        return $this->render('list', compact('searchModel', 'dataProvider'));
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'text-page';
+        $this->headerClass = 'header-style-2';
+        $this->mainTag = 'main-text-page';
+
+        $model = $this->findModel($id);
+        $model->scenario = 'increase_seen';
+        $model->seen++;
+        $model->save(false);
+
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        return $this->render('show', [
+            'model' => $model,
+            'availableApartments' => $availableApartments,
+        ]);
     }
 }
