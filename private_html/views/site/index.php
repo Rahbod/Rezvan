@@ -70,7 +70,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
                                                title="<?= Html::encode($apartment->getName()) ?>">
                                                 <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                                <span class="first-title"><?= Html::encode($apartment->getSubtitle()) ?></span>
+                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
                                             </a>
                                             <span class="description"><?= Html::encode($apartment->location) ?></span>
                                             <div class="overly">
@@ -501,7 +501,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 </a>
                                                 <span class="author"><?= Html::encode($construction->location) ?></span>
 
-                                                <span class="description"><?= Html::encode($construction->getSubtitle()) ?></span>
+                                                <span class="description"><?= Html::encode($construction->getSubtitleStr()) ?></span>
 
                                                 <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
                                                     <button type="button" class="btn btn-primary">View More</button>

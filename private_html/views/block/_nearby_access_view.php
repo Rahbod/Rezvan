@@ -7,6 +7,8 @@ use app\models\blocks\Banner;
 use app\models\Project;
 use yii\web\View;
 
+$baseUrl = $this->theme->baseUrl;
+
 ?>
 <section class="slide-3">
     <div class="container-fluid">
@@ -24,7 +26,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/imam-reza.png" alt="imam-reza">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/imam-reza.png" alt="imam-reza">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">IMAM REZA shrine</h3>
@@ -35,7 +37,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/shoping.png" alt="shoping">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/shoping.png" alt="shoping">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">shopping</h3>
@@ -48,7 +50,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/hospital.png" alt="hospital">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/hospital.png" alt="hospital">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">hospital</h3>
@@ -61,7 +63,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/metro.png" alt="metro">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/metro.png" alt="metro">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">mETRO</h3>
@@ -72,7 +74,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/laundry.png" alt="laundry">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/laundry.png" alt="laundry">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">LAUNDRY</h3>
@@ -83,7 +85,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/airport.png" alt="airport">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/airport.png" alt="airport">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">airport</h3>
@@ -94,7 +96,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/resturant.png" alt="resturant">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/resturant.png" alt="resturant">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">RESTURANT</h3>
@@ -107,7 +109,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/bank.png" alt="bank">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/bank.png" alt="bank">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">bank</h3>
@@ -120,7 +122,7 @@ use yii\web\View;
             <div class="col-lg-4 building-access">
                 <div class="row">
                     <div class="col-lg-2 thumb">
-                        <img class="img-building-access" src="<?= $baseUrl ?>./images/gas.png" alt="gas">
+                        <img class="img-building-access" src="<?= $baseUrl ?>/images/gas.png" alt="gas">
                     </div>
                     <div class="col-lg-10 right">
                         <h3 class="title-building-access">gas / oil</h3>

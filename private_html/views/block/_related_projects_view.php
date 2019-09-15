@@ -7,13 +7,14 @@ use app\models\blocks\Banner;
 use app\models\Project;
 use yii\web\View;
 
+$baseUrl = $this->theme->baseUrl;
 ?>
 <section class="order-post">
     <div class="container-fluid">
         <div class="row">
             <div class="title-order-post">
                 <h2 id="txt-order-post">
-                    <strong>related projects</strong>
+                    <strong><?= trans('words', 'related projects') ?></strong>
                 </h2>
             </div>
             <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
@@ -23,22 +24,22 @@ use yii\web\View;
                             <div class="row">
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-1.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-1.png" alt="Chicago">
                                     </div>
                                 </div>
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-2.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-2.png" alt="Chicago">
                                     </div>
                                 </div>
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-3.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-3.png" alt="Chicago">
                                     </div>
                                 </div>
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-3.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-3.png" alt="Chicago">
                                     </div>
                                 </div>
                             </div>
@@ -49,22 +50,22 @@ use yii\web\View;
                             <div class="row">
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-3.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-3.png" alt="Chicago">
                                     </div>
                                 </div>
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-2.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-2.png" alt="Chicago">
                                     </div>
                                 </div>
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-1.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-1.png" alt="Chicago">
                                     </div>
                                 </div>
                                 <div class="grid col-lg-3">
                                     <div class="img">
-                                        <img src="<?= $baseUrl ?>./images/post-3.png" alt="Chicago">
+                                        <img src="<?= $baseUrl ?>/images/post-3.png" alt="Chicago">
                                     </div>
                                 </div>
                             </div>

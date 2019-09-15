@@ -27,7 +27,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
                         <p><strong><?= $model->getName() ?></strong></p>
-                        <div class="text"><?= $model->body ?></div>
+                        <div class="text"><?= $model->getBodyStr() ?></div>
                     </div>
                 </div>
             </div>

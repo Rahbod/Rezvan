@@ -1,10 +1,11 @@
 <?php
 /** @var $this View */
 
-/** @var $block Banner */
+/** @var $block Image */
 
 use app\controllers\BlockController;
 use app\models\blocks\Banner;
+use app\models\blocks\Image;
 use yii\helpers\Html;
 use yii\web\View;
 

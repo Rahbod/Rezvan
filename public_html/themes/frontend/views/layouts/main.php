@@ -21,10 +21,10 @@ AppAsset::register($this);
     <link href="<?= $this->theme->baseUrl . '/css/bootstrap.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/font-awesome.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/css/style.css' ?>" rel="stylesheet">
-    <script src="<?= $this->theme->baseUrl .'/js/jquery.min.js' ?>"></script>
-    <script src="<?= $this->theme->baseUrl .'/js/custom.js' ?>"></script>
-
-
+    <?php if (app()->language != 'en'): ?>
+        <link href="<?= $this->theme->baseUrl . '/css/rtl.css' ?>" rel="stylesheet"><?php endif; ?>
+    <script src="<?= $this->theme->baseUrl . '/js/jquery.min.js' ?>"></script>
+    <script src="<?= $this->theme->baseUrl . '/js/custom.js' ?>"></script>
 </head>
 <?php
 

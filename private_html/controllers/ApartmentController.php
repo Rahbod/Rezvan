@@ -40,6 +40,11 @@ class ApartmentController extends AuthController
         return Apartment::className();
     }
 
+    public function getSystemActions()
+    {
+        return ['list', 'show'];
+    }
+
     public function getMenuActions()
     {
         return ['list'];

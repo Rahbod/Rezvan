@@ -132,6 +132,8 @@ class BlockController extends AuthController
                 $modelName = Block::$typeModels[$type];
                 /** @var Block $model */
                 $model = new $modelName();
+                $model->name = $model->getTypeLabel($type);
+                $model->load(app()->request->post());
                 $model->type = $type;
             }
         }

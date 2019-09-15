@@ -63,6 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'headerOptions' => ['class' => 'handle-container'],
                         ],
                         'name',
+                        'sort',
                         [
                             'attribute' => 'type',
                             'value' => function ($model) {

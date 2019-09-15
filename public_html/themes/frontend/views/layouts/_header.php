@@ -2,6 +2,7 @@
 /** @var $this View */
 /** @var string $baseUrl */
 
+use app\components\MultiLangActiveRecord;
 use app\models\Menu;
 use yii\helpers\Url;
 use yii\web\View;
@@ -42,8 +43,10 @@ $baseUrl = $this->theme->baseUrl;
                                             <a class="nav-link dropdown-toggle" href="#" id="lang-select"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="<?= Url::to(["/en"]) ?>">EN</a>
-                                                <a class="dropdown-item" href="<?= Url::to(["/fa"]) ?>">FA</a>
+                                                <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </li>
                                     </ul>

@@ -9,11 +9,10 @@ use app\models\blocks\Map;
 use yii\helpers\Html;
 use yii\web\View;
 
-$baseUrl = $this->theme->baseUrl;
+$url = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $block->image;
 ?>
 <section class="slide-2">
     <div class="picture-slide-4">
-        <a href="<?= $block->location_link ?>"><img src="<?= $baseUrl ?>./images/picture-post-3.jpg"
-                                                    alt="<?= $block->name ?>"></a>
+        <a target="_blank" rel="nofollow" href="<?= $block->location_link ?>"><img src="<?= $url ?>" alt="<?= $block->name ?>"></a>
     </div>
 </section>

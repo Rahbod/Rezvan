@@ -43,6 +43,8 @@ return [
     'ID' => 'شناسه',
     'Creator' => 'ایجاد کننده',
     'Body' => 'متن',
+    'En Body' => 'متن انگلیسی',
+    'Ar Body' => 'متن عربی',
     'Image' => 'تصویر',
     'Avatar' => 'تصویر پروفایل',
     'Expertise' => 'تخصص',
@@ -462,6 +464,9 @@ return [
     'Bath room' => 'حمام',
     'WC' => 'سرویس بهداشتی',
     'Air conditioner' => 'خنک کننده هوا',
+    'Meter' => 'متر',
+    'related projects' => 'پروژه های مرتبط',
+    '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
 
     //    apartment : update
     'Update apartment: {name}' => 'ویرایش پروژه: {name}',

@@ -129,7 +129,7 @@ class PageController extends AuthController
                 $image->move(static::$imageDir);
                 $gallery->move(Attachment::getAttachmentPath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(isset($_GET['return']) ? $_GET['return'] : ['view', 'id' => $model->id]);
+                return $this->redirect(isset($_GET['return']) ? $_GET['return'] : ['index']);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
@@ -167,7 +167,7 @@ class PageController extends AuthController
                 $image->update($oldImage, $model->image, static::$tempDir);
                 $gallery->updateAll($oldGallery, $model->gallery, static::$tempDir, Attachment::getAttachmentRelativePath());
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['update', 'id' => $model->id]);
             } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }

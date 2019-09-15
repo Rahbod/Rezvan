@@ -216,7 +216,7 @@ class Project extends Item implements ProjectInterface
 
     public function getBlocks()
     {
-        return $this->hasMany(Block::className(), [Block::columnGetString('itemID') => 'id']);
+        return $this->hasMany(Block::className(), [Block::columnGetString('itemID') => 'id'])->orderBy([Block::columnGetString('sort') => SORT_ASC]);
     }
 
     public function getUnits()
@@ -262,14 +262,14 @@ class Project extends Item implements ProjectInterface
         return $output;
     }
 
-    public function getPoster()
+    public function getPosterSrc()
     {
         if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
             return Yii::getAlias('@web/uploads/apartment/') . $this->image;
         return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
 
-    public function getSubtitle()
+    public function getSubtitleStr()
     {
         if (!static::$multiLanguage) {
             if (Yii::$app->language == 'fa')
@@ -280,7 +280,7 @@ class Project extends Item implements ProjectInterface
         return $this->subtitle;
     }
     
-    public function getLocation()
+    public function getLocationStr()
     {
         if (!static::$multiLanguage) {
             if (Yii::$app->language == 'fa')

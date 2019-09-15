@@ -139,8 +139,7 @@ class Block extends Item implements BlockInterface
     public function getMaxSort()
     {
         return self::find()->where([
-            'itemID' => $this->itemID,
-            'type' => self::$typeName,
+            'itemID' => $this->itemID
         ])->max(self::columnGetString('sort'));
     }
 

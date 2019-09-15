@@ -162,7 +162,7 @@ class UrlManager extends Component
     private $_baseUrl;
     private $_scriptUrl;
     private $_hostInfo;
-    private $_ruleCache;
+    protected $_ruleCache;
 
 
     /**

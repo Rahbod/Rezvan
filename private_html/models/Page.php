@@ -19,6 +19,7 @@ class Page extends Item
     const PAGE_TYPE = 1;
     const SERVICES_TYPE = 2;
 
+    public static $multiLanguage = false;
     public static $modelName = 'page';
     public static $typeName = self::PAGE_TYPE;
 
@@ -35,6 +36,8 @@ class Page extends Item
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'body' => ['CHAR', ''],
+            'en_body' => ['CHAR', ''],
+            'ar_body' => ['CHAR', ''],
             'image' => ['CHAR', ''],
         ]);
     }
@@ -46,7 +49,7 @@ class Page extends Item
     {
         return array_merge(parent::rules(), [
             [['body'], 'required'],
-            [['image'], 'string'],
+            [['image', 'en_body', 'ar_body'], 'string'],
             [['type'], 'default', 'value' => static::$typeName],
             ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
         ]);
@@ -59,6 +62,8 @@ class Page extends Item
     {
         return array_merge(parent::attributeLabels(), [
             'body' => trans('words', 'Body'),
+            'ar_body' => trans('words', 'Ar Body'),
+            'en_body' => trans('words', 'En Body'),
             'image' => trans('words', 'Image'),
         ]);
     }
@@ -85,7 +90,7 @@ class Page extends Item
 
     public function formAttributes()
     {
-        return array_merge(parent::formAttributes(),[
+        return array_merge(parent::formAttributes(), [
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
@@ -111,38 +116,49 @@ class Page extends Item
                     ],
                 ]
             ],
-            'body' => [
+            [['body', 'ar_body', 'en_body'], [
                 'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
                 'containerCssClass' => 'col-sm-12',
                 'options' => [
                     'options' => ['rows' => 30]
                 ]
-            ],
-           /* 'gallery' => [
-                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                'containerCssClass' => 'col-sm-12',
-                'temp' => MainController::$tempDir,
-                'path' => Attachment::getAttachmentPath(),
-                'filesOptions' => PostController::$galleryOptions,
-                'options' => [
-                    'url' => Url::to(['upload-attachment']),
-                    'removeUrl' => Url::to(['delete-attachment']),
-                    'sortable' => false, // sortable flag
-                    'sortableOptions' => [], // sortable options
-                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'gallery')],
-                    'options' => [
-                        'createImageThumbnails' => true,
-                        'addRemoveLinks' => true,
-                        'dictRemoveFile' => 'حذف',
-                        'addViewLinks' => true,
-                        'dictViewFile' => '',
-                        'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
-                        'acceptedFiles' => 'png, jpeg, jpg',
-                        'maxFiles' => 10,
-                        'maxFileSize' => 0.5,
-                    ],
-                ]
-            ],*/
+            ]],
+            /* 'gallery' => [
+                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                 'containerCssClass' => 'col-sm-12',
+                 'temp' => MainController::$tempDir,
+                 'path' => Attachment::getAttachmentPath(),
+                 'filesOptions' => PostController::$galleryOptions,
+                 'options' => [
+                     'url' => Url::to(['upload-attachment']),
+                     'removeUrl' => Url::to(['delete-attachment']),
+                     'sortable' => false, // sortable flag
+                     'sortableOptions' => [], // sortable options
+                     'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'gallery')],
+                     'options' => [
+                         'createImageThumbnails' => true,
+                         'addRemoveLinks' => true,
+                         'dictRemoveFile' => 'حذف',
+                         'addViewLinks' => true,
+                         'dictViewFile' => '',
+                         'dictDefaultMessage' => 'جهت آپلود تصاویر کلیک کنید',
+                         'acceptedFiles' => 'png, jpeg, jpg',
+                         'maxFiles' => 10,
+                         'maxFileSize' => 0.5,
+                     ],
+                 ]
+             ],*/
         ]);
+    }
+
+    public function getBodyStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->body;
+            else
+                return $this->{Yii::$app->language . '_body'} ?: $this->body;
+        }
+        return $this->body;
     }
 }

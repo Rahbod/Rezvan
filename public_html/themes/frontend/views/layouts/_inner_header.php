@@ -1,6 +1,7 @@
 <?php
 $baseUrl = $this->theme->baseUrl;
 
+use app\components\MultiLangActiveRecord;
 use app\models\Menu;
 use yii\helpers\Url; ?>
 
@@ -13,7 +14,8 @@ use yii\helpers\Url; ?>
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
                                 <a href="<?= Url::to('/site/index') ?>">
-                                    <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
+                                    <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>"
+                                         alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
@@ -35,10 +37,13 @@ use yii\helpers\Url; ?>
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="lang-select"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(app()->language) ?></a>
+                                               data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="<?= Url::to(["/en"]) ?>">EN</a>
-                                                <a class="dropdown-item" href="<?= Url::to(["/fa"]) ?>">FA</a>
+                                                <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </li>
                                     </ul>
@@ -46,9 +51,11 @@ use yii\helpers\Url; ?>
                             </nav>
                             <div id="main-navigation" class="search-container close collapse">
                                 <div class="search-box clearfix">
-                                    <form role="search" method="get" class="search-form clearfix" action="#">
-                                        <input type="search" class="search-field" placeholder="Search" value="" name="s"
-                                               title="Search:" autocomplete="off">
+                                    <form role="search" method="get" class="search-form clearfix"
+                                          action="<?= Url::to(['/site/search']) ?>">
+                                        <input type="search" class="search-field"
+                                               placeholder="<?= trans('words', 'Search') ?>" value="" name="query"
+                                               title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
                                     <!-- .search-form -->
@@ -60,7 +67,7 @@ use yii\helpers\Url; ?>
 
                                 foreach (app()->controller->menus as $menu): ?>
                                     <li class="menu-item"><i class="sprite <?= $menu->icon_class ?>"></i><a
-                                                href="<?= $menu->getUrl()?>"><?= $menu->getName() ?></a></li>
+                                                href="<?= $menu->getUrl() ?>"><?= $menu->getName() ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                             <!-- #main-navigation -->
