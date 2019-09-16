@@ -3,6 +3,7 @@
 /** @var string $baseUrl */
 
 use app\components\MultiLangActiveRecord;
+use app\components\Setting;
 use app\models\Menu;
 use yii\helpers\Url;
 use yii\web\View;
@@ -18,7 +19,7 @@ $baseUrl = $this->theme->baseUrl;
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
-                                <a href="<?= Url::to('/site/index') ?>">
+                                <a href="<?= Url::to('/site/index') ?>" <?= app()->name ?>>
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>

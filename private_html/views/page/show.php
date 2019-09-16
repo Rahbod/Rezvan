@@ -16,7 +16,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
         <div class="container-fluid">
             <div class="row">
                 <div class="title">
-                    <h1><strong><?= $model->getName() ?></strong></h1>
+                    <h1><strong><?= trans('words', 'ABOUT') ?></strong> <?= app()->name ?></h1>
                 </div>
             </div>
         </div>
@@ -26,8 +26,13 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             <div class="row">
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
-                        <p><strong><?= $model->getName() ?></strong></p>
-                        <div class="text"><?= $model->getBodyStr() ?></div>
+                        <p><strong>
+                                <?= trans('words', $model->name) ?>
+                            </strong></p>
+                        <img src="<?= $model->image ?>" alt="">
+                        <p>
+                            <?= Html::decode($model->body) ?>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -39,7 +44,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
         <div class="row">
             <div class="title-order-post">
                 <h2 id="txt-order-post">
-                    <strong><?= trans('words', 'Projects') ?></strong>
+                    <strong><?= trans('words', 'projects') ?></strong>
                 </h2>
             </div>
             <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">

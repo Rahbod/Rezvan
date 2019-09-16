@@ -93,7 +93,8 @@ class PageController extends AuthController
         $this->headerClass = 'header-style-2';
         $this->mainTag = 'main-text-page';
 
-        $model = Page::findOne($id);
+//        $model = Page::findOne($id);
+        $model = Item::findOne($id);
         $model->scenario = 'increase_seen';
         $model->seen++;
         $model->save(false);

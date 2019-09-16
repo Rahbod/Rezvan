@@ -112,6 +112,8 @@ class SiteController extends AuthController
 
     public function actionSearch()
     {
+        $this->bodyClass = 'home';
+
         $term = Yii::$app->request->getQueryParam('query');
         if ($term && !empty($term)) {
             $searchApartment = new ApartmentSearch();

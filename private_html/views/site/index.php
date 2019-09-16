@@ -31,13 +31,14 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <div class="title-left">
                         <img src="<?= alias('@web/themes/frontend/images/apartment-icon.png') ?>"
                              alt="apartment-icon">
-                        <h2 class="slide"><strong>available </strong> apartment</h2>
+                        <h2 class="slide"><strong><?= trans('words', 'available') ?>
+                            </strong> <?= trans('words', 'apartments') ?></h2>
                     </div>
                     <div class="title-right">
                         <p class="slide">
-                            <span class="projects"><?= $apartmentCounts ?> projects / </span>
-                            <span class="available-project">available</br>
-                                project </span>
+                            <span class="projects"><?= $apartmentCounts ?> <?= trans('words', 'projects') ?> / </span>
+                            <span class="available-project"><?= trans('words', 'available') ?></br>
+                                <?= trans('words', 'project') ?> </span>
                             <span class="num"><?= $availableApartmentsCounts ?></span>
                         </p>
                     </div>
@@ -183,8 +184,8 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     </div>
                     <div class="button-more">
-                        <a title="View More" href="<?= Url::to('apartment/list') ?>">
-                            <button type="button" class="btn btn-primary section-button">View More</button>
+                        <a title="<?= trans('words', 'View More') ?>" href="<?= Url::to('apartment/list') ?>">
+                            <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
                     </div>
                 </div>
@@ -199,13 +200,14 @@ $serviceCounts = isset($services) ? count($services) : null;
                 <div class="slide-title">
                     <div class="title-left">
                         <img src="<?= $baseUrl . '/images/investment.png' ?>" alt="investment-icon">
-                        <h2 class="slide"><strong>investment</strong> opportunities</h2>
+                        <h2 class="slide"><strong><?= trans('words', 'investment') ?></strong>
+                            <?= trans('words', 'opportunities') ?></h2>
                     </div>
                     <div class="title-right">
                         <p class="slide">
-                            <span class="projects"><?= $investmentCounts ?> projects / </span>
-                            <span class="available-project">available</br>
-                                project </span>
+                            <span class="projects"><?= $investmentCounts ?> <?= trans('words', 'projects') ?> / </span>
+                            <span class="available-project"><?= trans('words', 'available') ?></br>
+                                <?= trans('words', 'project') ?> </span>
                             <span class="num"><?= $availableInvestmentsCounts ?></span>
                         </p>
                     </div>
@@ -352,7 +354,7 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     </div>
                     <div class="button-more col-lg-4 col-md-4 col-sm-4">
-                        <button type="button" class="btn btn-primary section-button">View More</button>
+                        <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                     </div>
                 </div>
             </div>
@@ -366,7 +368,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                 <div class="slide-title">
                     <div class="title-left">
                         <img src="<?= $baseUrl . '/images/services.png' ?>" alt="services-icon">
-                        <h2 class="slide"><strong>Available</strong> services</h2>
+                        <h2 class="slide"><strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
                     </div>
                 </div>
                 <div id="slide-3" class="carousel slide" data-ride="carousel">
@@ -399,7 +401,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </span>
                                         <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
                                            title="<?= Html::encode($service->title) ?>">
-                                            <button type="button" class="btn btn-primary slider-button">View More
+                                            <button type="button" class="btn btn-primary slider-button">
+                                                <?= trans('words', 'View More') ?>
                                             </button>
                                         </a>
                                     </div>
@@ -417,7 +420,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </span>
                                         <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
                                            title="<?= Html::encode($service->title) ?>">
-                                            <button type="button" class="btn btn-primary slider-button">View More
+                                            <button type="button" class="btn btn-primary slider-button">
+                                                <?= trans('words', 'View More') ?>
                                             </button>
                                         </a>
                                     </div>
@@ -435,7 +439,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </span>
                                         <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
                                            title="<?= Html::encode($service->title) ?>">
-                                            <button type="button" class="btn btn-primary slider-button">View More
+                                            <button type="button" class="btn btn-primary slider-button">
+                                                <?= trans('words', 'View More') ?>
                                             </button>
                                         </a>
                                     </div>
@@ -446,11 +451,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                     </div>
                     <a class="carousel-control-prev" href="#slide-3" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
+                        <span class="sr-only"><?= trans('words', 'Previous') ?></span>
                     </a>
                     <a class="carousel-control-next" href="#slide-3" role="button" data-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
+                        <span class="sr-only"><?= trans('words', 'Next') ?></span>
                     </a>
                 </div>
             </div>
@@ -464,7 +469,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <h2 class="slide">other construction</h2>
+                        <h2 class="slide"><?= trans('words','other construction') ?></h2>
                     </div>
                 </div>
 
@@ -504,7 +509,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <span class="description"><?= Html::encode($construction->getSubtitleStr()) ?></span>
 
                                                 <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary">View More</button>
+                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
                                                 </a>
                                             </div>
                                         </div>
@@ -527,7 +532,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <span class="description"><?= Html::encode($construction->location) ?></span>
 
                                                 <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary">View More</button>
+                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
                                                 </a>
                                             </div>
                                         </div>
@@ -550,7 +555,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <span class="description"><?= Html::encode($construction->location) ?></span>
 
                                                 <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary">View More</button>
+                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
                                                 </a>
                                             </div>
                                         </div>
@@ -573,7 +578,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <span class="description"><?= Html::encode($construction->location) ?></span>
 
                                                 <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary">View More</button>
+                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
                                                 </a>
                                             </div>
                                         </div>
@@ -591,8 +596,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                         </a>
                     </div>
                     <div class="button-more">
-                        <a href="<?= Url::to('construction') ?>" title="View More">
-                            <button type="button" class="btn btn-primary section-button">View More</button>
+                        <a href="<?= Url::to('construction') ?>" title="<?= trans('words', 'View More') ?>">
+                            <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
 
                     </div>
