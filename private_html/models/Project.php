@@ -165,7 +165,7 @@ class Project extends Item implements ProjectInterface
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getProjectTypeLabels()
             ],
-            'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'روزکاری'],
+            'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'بر حسب ماه'],
             'begin_date' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
 //                'options' => [

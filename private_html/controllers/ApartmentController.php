@@ -114,7 +114,7 @@ class ApartmentController extends AuthController
             $this->bodyClass = 'final-project-view';
         else
             $this->bodyClass = 'more-one';
-
+        
         return $this->render('show', compact('model'));
     }
 

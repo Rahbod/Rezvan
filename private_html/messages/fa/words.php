@@ -466,7 +466,20 @@ return [
     'Air conditioner' => 'خنک کننده هوا',
     'Meter' => 'متر',
     'related projects' => 'پروژه های مرتبط',
+    'projects' => 'پروژه ها',
+
+    // blocks
     '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
+    '<strong>available </strong> apartment' => 'آپارتمان های موجود',
+    'available<br>project' => 'پروژه های<br>موجود',
+    '<strong>Building </strong> access<br>Near you' => '<strong>دسترسی های </strong> نزدیک',
+    'About {value} km distance' => 'حدود {value} کیلومتر',
+
+    // nearby access labels
+    'IMAM REZA shrine' => 'حرم امام رضا',
+    'shopping' => 'مراکز تجاری',
+    'metro' => 'ایستگاه مترو',
+    'laundry' => 'خشکشویی',
 
     //    apartment : update
     'Update apartment: {name}' => 'ویرایش پروژه: {name}',

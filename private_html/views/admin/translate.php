@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     ?>
                     <div class="form-group m-form__group row">
-                        <?php echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label']) ?>
+                        <?php echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label', 'encode' => true]) ?>
                         <div class="col-lg-6">
                             <?php echo Html::textarea("new_phrases[$key]", $value, [
                                 'class' => 'form-control m-input m-input__solid',
