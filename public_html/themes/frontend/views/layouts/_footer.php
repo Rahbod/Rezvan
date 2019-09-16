@@ -11,17 +11,23 @@ $baseUrl = $this->theme->baseUrl;
             <div class="col-lg-5 col-md-5  col-sm-12 col-xs-12 footer-left">
                 <div class="row">
                     <div class="col-lg-4 col-md-4  col-sm-12 col-xs-12 logo-footer">
-                        <img class="logo-img" src="<?= $baseUrl . '/images/logo-footer-1.png' ?>" alt="rezvan">
+                        <img class="logo-img" src="<?= $baseUrl . '/images/logo-footer-1.png' ?>"
+                             alt="<?= app()->name ?>">
                     </div>
                     <div class="col-lg-8 col-md-8  col-sm-12 col-xs-12 text-footer">
-                        <div class="footer-title"><p>ABOUT REZVAN</p></div>
-                        <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
+                        <div class="footer-title">
+                            <p><?= trans('words', 'ABOUT') ?> <?= trans('words', app()->name)  ?></p>
+                        </div>
+                        <p>
+                            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
                             model text, and a search for 'lorem ipsum' will uncover many web sites still in their
-                            infancy.</p>
-                        <div class="footer-title"><p>CONTACT US</p></div>
+                            infancy.
+                        </p>
+                        <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
                         <p><?= Setting::get(Yii::$app->language == 'fa' ? 'address' : Yii::$app->language . '_address') ?></p>
                         <div class="phone">
-                            <p><strong><?= Yii::t('words', 'Tell & Fax') ?><br> <?= Setting::get('tell') ?>- <?= Setting::get('fax') ?></strong></p>
+                            <p><strong><?= Yii::t('words', 'Tell & Fax') ?><br> <?= Setting::get('tell') ?>
+                                    - <?= Setting::get('fax') ?></strong></p>
                         </div>
                         <div class="social-icon">
                             <ul class="social-list">
@@ -57,7 +63,8 @@ $baseUrl = $this->theme->baseUrl;
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="lang-select"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(app()->language) ?></a>
+                                               data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
                                                 <a class="dropdown-item" href="<?= Url::to(["/en"]) ?>">EN</a>
                                                 <a class="dropdown-item" href="<?= Url::to(["/fa"]) ?>">FA</a>
@@ -74,7 +81,7 @@ $baseUrl = $this->theme->baseUrl;
                         <nav id="footer-menu" class="footer-menu-container">
                             <ul id="main-footer" class="main-menu">
                                 <?php
-                                /** @var $menu \app\models\Menu*/
+                                /** @var $menu \app\models\Menu */
                                 foreach (app()->controller->menus as $menu): ?>
                                     <li class="menu-item">
                                         <a href="<?= $menu->getUrl() ?>"><?= $menu->getName() ?></a>
@@ -89,10 +96,10 @@ $baseUrl = $this->theme->baseUrl;
                     <div class="row footer-copy-row">
                         <div class="copy-1 col-lg-6 col-md-6 col-sm-12 col-xs-12">
                             © REZVAN.COM <?= date('Y') ?></br>
-                            REZVAN is a registered trademark of DENSO WAVE INCORPORATED
+                            <?= trans('words', 'REZVAN is a registered trademark of DENSO WAVE INCORPORATED') ?>
                         </div>
                         <div class="copy-2 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            Design by : <a title="Tarsim.inc" href="http://tarsiminc.com">Tarsim.inc</a>
+                            <?= trans('words', 'Design by') ?> : <a title="<?= trans('words', 'Tarsim.inc') ?>" href="http://tarsiminc.com"><?= trans('words', 'Tarsim.inc') ?></a>
                         </div>
                     </div>
                 </div>

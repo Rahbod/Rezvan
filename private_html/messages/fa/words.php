@@ -426,9 +426,9 @@ return [
     'Bed room' => 'تعداد خواب',
     'Price' => 'قیمت',
     'Location link' => 'لینک ادرس',
-    'Map view'=> 'نمایش نقشه',
-    'Banner'=> 'بنر',
-    'Nearby access'=> 'نزدیکترین ها',
+    'Map view' => 'نمایش نقشه',
+    'Banner' => 'بنر',
+    'Nearby access' => 'نزدیکترین ها',
 
     'Shrine link' => 'لینک حرم',
     'Shopping link' => 'لینک واحدهای تجاری نزدیک',
@@ -490,4 +490,76 @@ return [
     //    construction : update
     'Create Service' => 'ایجاد رکورد جدید',
     'Update Service: {name}' => 'ویرایش امکانات: {name}',
+
+
+    //site : index
+    'available' => 'در دسترس',
+    'apartments' => 'آپارتمان های',
+    'project' => 'پروژه',
+    'projects' => 'پروژه ها',
+    'View More' => 'مشاهده بیشتر',
+    'Previous' => 'قبلی',
+    'Next' => 'بعدی',
+    'COMPANY REGISTRATION' => 'ثبت نام شرکت',
+
+    //site : index ->slide-2
+    'investment' => 'سرمایه گذاری',
+    'opportunities' => 'فرصت های',
+
+    //site : index ->slide-3
+    'services' => 'سرویس های',
+    'SERVICES' => 'سرویس ها',
+
+    //site : index ->slide-4
+    'other construction' => 'سازه های دیگر',
+
+    //site : header and footer
+    'whatsapp' => 'واتس اپ',
+    'twitter' => 'توییتر',
+    'instagram' => 'اینستاگرام',
+    'facebook' => 'فیسبوک',
+    'telegram' => 'تلگرام',
+    'ABOUT' => 'درباره',
+    'Design by' => 'طراحی شده توسط',
+    'CONTACT US' => 'تماس با ما',
+    'Tarsim.inc' => 'ترسیم',
+    'Rezvan' => 'رضوان',
+    'REZVAN is a registered trademark of DENSO WAVE INCORPORATED' => 'رضوان یک نماد تجاری ثبت شده DENSO WAVE INCORPORATED است ',
+
+    //project : show
+    'Metr'=>'مترمربع',
+    'Building'=>'ساختمان',
+    'access'=>'در دسترس',
+    'Near you'=>'نزدیک شما',
+    'About'=>'تقریبا',
+    'facades'=>'نمای خارجی',
+    'faces have'=>'نمای خارجی',
+    'shopping'=>'مرکز خرید',
+    'hospital'=>'مرکز خرید',
+    'metro'=>'مرکز خرید',
+    'LAUNDRY'=>'خشکشویی',
+    'RESTURANT'=>'رستوران',
+    'bank'=>'بانک',
+    'gas / oil'=>'گاز / بنزین',
+    'Current status'=>'وضعیت فعلی',
+    'of the UNIT'=>'واحد',
+    'unit'=>'واحد',
+    'from'=>'از',
+    'ON FLOOR'=>'در طبقه',
+    'on floor'=>'در طبقه',
+    'have'=>'دارای',
+    'rooms'=>'اتاق',
+    'air conditions'=>'تعدیل کننده هوا',
+    'wc'=>'سرویس بهداشتی',
+    'seprat'=>'جداگانه',
+    'bathroom'=>'حمام',
+    'parking'=>'پارکینگ',
+    'radiator'=>'رادیاتور',
+    'related'=>'مرتبط',
+    'Number'=>'تعداد',
+    'Foundation'=>'زیرساخت',
+    'Water Score'=>'امتیاز آب',
+    'has it'=>'دارد',
+    'of floors'=>'طبقات',
+
 ];

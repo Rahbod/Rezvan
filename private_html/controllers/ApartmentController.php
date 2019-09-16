@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\components\CrudControllerTrait;
 use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
@@ -87,8 +88,7 @@ class ApartmentController extends AuthController
         $projects = Apartment::find()->orderBy([
             'id' => SORT_DESC,
         ])->all();
-dd($projects[0]->render($this->view));
-        return $this->render('list', ['projects' => $projects]);
+//        return $this->render('list', ['projects' => $projects]);
         $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
         return $this->render('list', [

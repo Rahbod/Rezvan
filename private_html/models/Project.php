@@ -200,13 +200,6 @@ class Project extends Item implements ProjectInterface
         return $this->hasMany(Block::className(), [self::columnGetString('itemID') => 'id']);
     }
 
-    public function getImageSrc()
-    {
-        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
-            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
-        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
-    }
-
     /**
      * @inheritDoc
      */

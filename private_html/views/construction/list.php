@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $baseUrl = $this->theme->baseUrl;
-$apartmentCounts = isset($projects) ? count($projects) : 0;
+$otherConstructionCounts = isset($projects) ? count($projects) : 0;
 
 ?>
 
@@ -18,12 +18,13 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                 <div class="title-left">
                     <img src="<?= $baseUrl ?>. /images/apartment-icon-w.png" alt="apartment-icon">
                     <div class="text">
-                        <h2 class="slide"><strong><?= trans('words', 'available') ?> </strong> <?= trans('words', 'apartments') ?></h2>
+                        <h2 class="slide"><strong><?= trans('words', 'available') ?> </strong>
+                            <?= trans('words', 'other construction') ?></h2>
                     </div>
                 </div>
                 <div class="title-right">
                     <p class="slide">
-                        <span class="projects"><?php echo $apartmentCounts ?> <?= trans('words', 'projects') ?> / </span>
+                        <span class="projects"><?php echo $otherConstructionCounts ?> <?= trans('words', 'projects') ?> / </span>
                         <span class="available-project"><?= trans('words', 'available') ?><br>
                             <?= trans('words', 'project') ?> </span>
                         <span class="num"><?= $availableApartments ?></span>
