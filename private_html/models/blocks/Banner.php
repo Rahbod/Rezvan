@@ -9,13 +9,14 @@ use app\models\Block;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
  *
  * @property string image
  */
-class Banner extends Block implements BlockInterface
+class Banner extends Block
 {
     public static $typeName = self::TYPE_BANNER;
 
@@ -82,8 +83,11 @@ class Banner extends Block implements BlockInterface
         ]);
     }
 
-    public function render()
+    /**
+     * @inheritDoc
+     */
+    public function render(View $view, $project)
     {
-        // TODO: Implement render() method.
+        return $view->render('//block/_banner_view', ['block' => $this, 'project' => $project]);
     }
 }

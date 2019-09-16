@@ -1,7 +1,9 @@
 <?php
 $baseUrl = $this->theme->baseUrl;
 
-?>
+use app\components\MultiLangActiveRecord;
+use app\models\Menu;
+use yii\helpers\Url; ?>
 
 <header id="header" class="site-header header-style-2">
     <div class="header-top">
@@ -11,27 +13,15 @@ $baseUrl = $this->theme->baseUrl;
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
-                                <a href="#">
-                                    <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="rezvan">
-                                    <span class="site-title">rezvan</span>
+                                <a href="<?= Url::to('/site/index') ?>">
+                                    <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>"
+                                         alt="<?= app()->name ?>">
+                                    <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
                         </div>
                         <!-- .site-branding -->
-                        <div class="social-icon">
-                            <ul class="social-list">
-                                <li class="social-item whatsapp"><a href="#" target="_blank"><i
-                                                class="fa fa-whatsapp"></i></a></li>
-                                <li class="social-item twitter"><a href="#" target="_blank"><i
-                                                class="fa fa-twitter"></i></a></li>
-                                <li class="social-item instagram"><a href="#" target="_blank"><i
-                                                class="fa fa-instagram"></i></a></li>
-                                <li class="social-item facebook"><a href="#" target="_blank"><i
-                                                class="fa fa-facebook-f"></i></a></li>
-                                <li class="social-item youtube"><a href="#" target="_blank"><i
-                                                class="fa fa-youtube"></i></a></li>
-                            </ul>
-                        </div>
+                        <?php $this->render('//layouts/_socials') ?>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">
@@ -47,9 +37,13 @@ $baseUrl = $this->theme->baseUrl;
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="lang-select"
-                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+                                               data-toggle="dropdown" aria-haspopup="true"
+                                               aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="#">IR</a>
+                                                <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </li>
                                     </ul>
@@ -57,27 +51,24 @@ $baseUrl = $this->theme->baseUrl;
                             </nav>
                             <div id="main-navigation" class="search-container close collapse">
                                 <div class="search-box clearfix">
-                                    <form role="search" method="get" class="search-form clearfix" action="#">
-                                        <input type="search" class="search-field" placeholder="Search" value="" name="s"
-                                               title="Search:" autocomplete="off">
+                                    <form role="search" method="get" class="search-form clearfix"
+                                          action="<?= Url::to(['/site/search']) ?>">
+                                        <input type="search" class="search-field"
+                                               placeholder="<?= trans('words', 'Search') ?>" value="" name="query"
+                                               title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
                                     <!-- .search-form -->
                                 </div>
                             </div>
                             <ul id="main-navigation" class="main-menu collapse">
-                                <li class="menu-item"><i class="sprite sprite-services-icon"></i><a
-                                            href="#">SERVICES</a></li>
-                                <li class="menu-item"><i class="sprite sprite-company-icon"></i><a href="#">COMPANY
-                                        REGISTRATION</a></li>
-                                <li class="menu-item"><i class="sprite sprite-project-icon"></i><a href="#">PROJECTS</a>
-                                </li>
-                                <li class="menu-item"><i class="sprite sprite-investment-icon"></i><a href="#">INVESTMENT
-                                        OPPORTUNITIES</a></li>
-                                <li class="menu-item"><i class="sprite sprite-about-icon"></i><a href="#">ABOUT US</a>
-                                </li>
-                                <li class="menu-item"><i class="sprite sprite-phone-icon"></i><a href="#">CONTACT US</a>
-                                </li>
+                                <?php
+                                /** @var Menu $menu */
+
+                                foreach (app()->controller->menus as $menu): ?>
+                                    <li class="menu-item"><i class="sprite <?= $menu->icon_class ?>"></i><a
+                                                href="<?= $menu->getUrl() ?>"><?= $menu->getName() ?></a></li>
+                                <?php endforeach; ?>
                             </ul>
                             <!-- #main-navigation -->
                         </nav>

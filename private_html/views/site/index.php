@@ -1,5 +1,11 @@
 <?php
+/** @var Apartment $apartment */
+/** @var OtherConstruction $construction */
+/** @var Investment $investment */
 
+use app\models\projects\Apartment;
+use app\models\projects\Investment;
+use app\models\projects\OtherConstruction;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -61,11 +67,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <div class="row">
                                         <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                             <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                               title="<?= Html::encode($apartment->name) ?>">
-                                                <h2 class="item-title"><?= Html::encode($apartment->name) ?></h2>
-                                                <span class="first-title"><?= Html::encode($apartment->subTitle) ?></span>
+                                               title="<?= Html::encode($apartment->getName()) ?>">
+                                                <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
+                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
                                             </a>
                                             <span class="description"><?= Html::encode($apartment->location) ?></span>
                                             <div class="overly">
@@ -114,11 +120,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 $apartment = $availableApartments[$i + 1]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->name) ?>">
+                                                         alt="<?= Html::encode($apartment->getName()) ?>">
                                                     <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->name) ?>">
+                                                       title="<?= Html::encode($apartment->getName()) ?>">
                                                         <h2 class="item-title">
-                                                            <?= Html::encode($apartment->name) ?></h2>
+                                                            <?= Html::encode($apartment->getName()) ?></h2>
                                                     </a>
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
@@ -127,11 +133,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 $apartment = $availableApartments[$i + 2]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->name) ?>">
+                                                         alt="<?= Html::encode($apartment->getName()) ?>">
                                                     <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->name) ?>">
+                                                       title="<?= Html::encode($apartment->getName()) ?>">
                                                         <h2 class="item-title">
-                                                            <?= Html::encode($apartment->name) ?></h2>
+                                                            <?= Html::encode($apartment->getName()) ?></h2>
                                                     </a>
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
@@ -140,11 +146,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 $apartment = $availableApartments[$i + 3]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->name) ?>">
+                                                         alt="<?= Html::encode($apartment->getName()) ?>">
                                                     <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->name) ?>">
+                                                       title="<?= Html::encode($apartment->getName()) ?>">
                                                         <h2 class="item-title">
-                                                            <?= Html::encode($apartment->name) ?></h2>
+                                                            <?= Html::encode($apartment->getName()) ?></h2>
                                                     </a>
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
@@ -153,11 +159,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 $apartment = $availableApartments[$i + 4]; ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->name) ?>">
+                                                         alt="<?= Html::encode($apartment->getName()) ?>">
                                                     <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->name) ?>">
+                                                       title="<?= Html::encode($apartment->getName()) ?>">
                                                         <h2 class="item-title">
-                                                            <?= Html::encode($apartment->name) ?></h2>
+                                                            <?= Html::encode($apartment->getName()) ?></h2>
                                                     </a>
                                                     <span class="description"><?= Html::encode($apartment->location) ?></span>
                                                 </div>
@@ -234,9 +240,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                     <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->name ?></h2>
+                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                     </a>
                                                     <span class="description"><?= $investment->location ?> / </span>
                                                     <span class="description-2"><?= $investment->location ?></span>
@@ -247,9 +253,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                     <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->name ?></h2>
+                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                     </a>
                                                     <span class="description"><?= $investment->location ?> / </span>
                                                     <span class="description-2"><?= $investment->location ?></span>
@@ -260,9 +266,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                     <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->name ?></h2>
+                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                     </a>
                                                     <span class="description"><?= $investment->location ?> / </span>
                                                     <span class="description-2"><?= $investment->location ?></span>
@@ -273,9 +279,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 ?>
                                                 <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                     <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                     <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->name ?></h2>
+                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                     </a>
                                                     <span class="description"><?= $investment->location ?> / </span>
                                                     <span class="description-2"><?= $investment->location ?></span>
@@ -288,9 +294,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         ?>
                                         <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $investment->getModelImage() ?>"
-                                                 alt="<?= $investment->name ?>">
+                                                 alt="<?= $investment->getName() ?>">
                                             <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                <h2 class="item-title"><?= $investment->name ?></h2>
+                                                <h2 class="item-title"><?= $investment->getName() ?></h2>
                                             </a>
                                             <span class="description"><?= $investment->location ?> / </span>
                                             <div class="overly">
@@ -300,35 +306,35 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 </div>
                                                 <div class="item item-1">
                                                     <img src="<?= $baseUrl . '/images/item-1-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-2">
                                                     <img src="<?= $baseUrl . '/images/item-2-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-3">
                                                     <img src="<?= $baseUrl . '/images/item-3-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-4">
                                                     <img src="<?= $baseUrl . '/images/item-4-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-5">
                                                     <img src="<?= $baseUrl . '/images/item-5-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-6">
                                                     <img src="<?= $baseUrl . '/images/item-6-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-7">
                                                     <img src="<?= $baseUrl . '/images/item-7-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                                 <div class="item item-8">
                                                     <img src="<?= $baseUrl . '/images/item-8-w.png' ?>"
-                                                         alt="<?= $investment->name ?>">
+                                                         alt="<?= $investment->getName() ?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -491,16 +497,16 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
                                                 <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->name) ?>">
+                                                     alt="<?= Html::encode($construction->getName()) ?>">
                                             </div>
                                             <div class="post-meta">
                                                 <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->name) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->name) ?></h2>
+                                                   title="<?= Html::encode($construction->getName()) ?>">
+                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
                                                 </a>
                                                 <span class="author"><?= Html::encode($construction->location) ?></span>
 
-                                                <span class="description"><?= Html::encode($construction->subtitle) ?></span>
+                                                <span class="description"><?= Html::encode($construction->getSubtitleStr()) ?></span>
 
                                                 <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
                                                     <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
@@ -514,12 +520,12 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
                                                 <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->name) ?>">
+                                                     alt="<?= Html::encode($construction->getName()) ?>">
                                             </div>
                                             <div class="post-meta">
                                                 <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->name) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->name) ?></h2>
+                                                   title="<?= Html::encode($construction->getName()) ?>">
+                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
                                                 </a>
                                                 <span class="author"><?= Html::encode($construction->location) ?></span>
 
@@ -537,12 +543,12 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
                                                 <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->name) ?>">
+                                                     alt="<?= Html::encode($construction->getName()) ?>">
                                             </div>
                                             <div class="post-meta">
                                                 <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->name) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->name) ?></h2>
+                                                   title="<?= Html::encode($construction->getName()) ?>">
+                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
                                                 </a>
                                                 <span class="author"><?= Html::encode($construction->location) ?></span>
 
@@ -560,12 +566,12 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <div class="img">
                                                 <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->name) ?>">
+                                                     alt="<?= Html::encode($construction->getName()) ?>">
                                             </div>
                                             <div class="post-meta">
                                                 <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->name) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->name) ?></h2>
+                                                   title="<?= Html::encode($construction->getName()) ?>">
+                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
                                                 </a>
                                                 <span class="author"><?= Html::encode($construction->location) ?></span>
 

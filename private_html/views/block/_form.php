@@ -13,7 +13,7 @@ use yii\helpers\Url;
     'id' => 'block-form',
     //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
-    'enableClientValidation' => true,
+    'enableClientValidation' => false,
     'validateOnSubmit' => true,
 ]); ?>
 <div class="m-portlet__body">

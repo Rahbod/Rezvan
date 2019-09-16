@@ -2,6 +2,9 @@
 
 /* @var $this yii\web\View */
 
+/* @var $availableApartments Apartment[] */
+
+use app\models\projects\Apartment;
 use yii\helpers\Html;
 use yii\helpers\Url;
 

@@ -69,6 +69,15 @@ trait FormRendererTrait
         if (!is_array($field))
             $field = ['type' => $field];
 
+        $hint = false;
+        if (isset($field['hint'])) {
+            if ($field['hint'] instanceof \Closure)
+                $hint = $field['hint']($this);
+            else
+                $hint = $field['hint'];
+            unset($field['hint']);
+        }
+
         if (isset($field['visible'])) {
             if ($field['visible'] instanceof \Closure)
                 $visible = $field['visible']($this);
@@ -178,6 +187,9 @@ trait FormRendererTrait
                 $output .= strtr($template, ['{label}' => $label]);
             }
         }
+
+        if($hint)
+            $obj->hint($hint);
 
         Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
         $fieldHtml = Html::tag('div', $obj, $containerOptions);

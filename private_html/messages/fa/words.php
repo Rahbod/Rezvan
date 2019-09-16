@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'Payambaran Hospital' => 'بیمارستان پیامبران',
+    'Rezvan' => 'رضوان',
     'logo_title' => 'بیمارســتان پیامبران',
     'fa' => 'فارسی',
     'en' => 'انگلیسی',
@@ -43,6 +43,8 @@ return [
     'ID' => 'شناسه',
     'Creator' => 'ایجاد کننده',
     'Body' => 'متن',
+    'En Body' => 'متن انگلیسی',
+    'Ar Body' => 'متن عربی',
     'Image' => 'تصویر',
     'Avatar' => 'تصویر پروفایل',
     'Expertise' => 'تخصص',
@@ -76,6 +78,7 @@ return [
     'Gallery' => 'گالری تصاویر',
     'show' => 'نمایش',
     'Link' => 'پیوند',
+    'Embed code' => 'اسکریپت ویدئو',
     'Video file' => 'فایل ویدئو',
     'News & Articles' => 'اخبار و مقالات',
     'Insurance' => 'بیمه',
@@ -150,7 +153,6 @@ return [
     'Time' => 'زمان',
     'Search' => 'جستجو',
     'Search...' => 'متن جستجو...',
-    'Payambaran hospital' => 'بیمارستان پیامبران',
     'Create' => 'افزودن',
     'Hover icon' => 'آیکون هاور',
     'Icon' => 'آیکون',
@@ -182,7 +184,7 @@ return [
     'Criticism and Suggestion' => 'انتقاد و پیشنهاد',
     'contact_footer_text' => 'در صورتی که مایل به تماس با ما هستید، می توانید از طریق فرم زیر بخش مورد نظر خود را انتخاب و موضوع خود را مطرح کنید.<br>همچنین می توانید با شماره تماس های درج شده نیز تماس حاصل فرمایید.',
     'contact_page_text' => 'آماده پاسخگویی به انتقادات، پیشنهادات و سوالات شما هستیم.',
-    'contact_page_description' => 'با ساخت حساب کاربری میتوانید با ساخت حساب کاربری میتوانید با ساخت حساب کاربری میتوانید ارائه شده در بیمارستان مانند : جواب آزمایش ، ارائه شده در بیمارستان مانند : جواب آزمایش ، ارائه شده در بیمارستان مانند : جواب آزمایش ، نوبت دهی ،تصاویر PACS را به صورت آنلاین پیگیری و دریافت نمایید.',
+    'contact_page_description' => '',
     'Related News & Articles' => 'اخبار مرتبط',
 
     /****** Message ******/
@@ -210,7 +212,6 @@ return [
     /****** User ******/
     'Create user account' => 'ساخت حساب کاربری',
     'Account information' => 'اطلاعات حساب کاربری',
-    'register_text' => 'با ساخت حساب کاربری میتوانید خدمات ارائه شده در بیمارستان مانند : جواب آزمایش، نوبت دهی، تصاویر PACS را به صورت آنلاین پیگیری و دریافت نمایید.',
     'login_text' => 'لطفا اطلاعات حساب کاربری خود را وارد نمایید.<br>در صورت فراموشی اطلاعات حساب کاربری ،از گزینه فراموشی رمز عبور استفاده نمایید.',
     'Name and Family' => 'نام و نام خانوادگی',
     'National Code' => 'کد ملی',
@@ -225,24 +226,6 @@ return [
     'Refresh' => 'عبارت جدید',
     'Permissions' => 'مجوزهای دسترسی',
 
-
-    'Payambaran Medical team' => 'تیم پزشکی بیمارستان پیامبران',
-    'get_visit' => 'دریافت نوبت',
-    'more information' => 'اطلاعات بیشتر',
-    'show_time' => '{start_time} الی {end_time}',
-    'Load more' => 'بارگذاری بیشتر',
-    'Alternative Person ID' => 'پزشک جایگزین',
-    'Add Doctor' => 'افزودن پزشک',
-    'Payambaran Hospital Gallery' => 'گالری بیمارستان پیامبران',
-    'News & Events' => 'اخبار و رویدادها',
-    'Articles' => 'مطالب آموزشی',
-    'Send to department' => 'ارسال به بخش مربوطه',
-    'Suggestions' => 'پیشنهادات',
-    'Critics' => 'انتقادات',
-    'Medical system number' => 'شماره نظام پزشکی',
-    'Authorize mobile' => 'اعتبارسنجی موبایل',
-    'register_authorize_text' => 'کد پیامکی اعتبارسنجی برای شما پیامک شده است، لطفا عدد موردنظر را وارد کنید.',
-    'forget_password_text' => 'شماره تماس خود را جهت فعالسازی مجدد وارد نمایید.',
     'Authorize code' => 'کد اعتبارسنجی',
     'Verification code' => 'کد اعتبارسنجی',
     'confirm' => 'تایید',
@@ -412,9 +395,13 @@ return [
     'Related projects block' => 'پروژه های مرتبط',
 
     'Subtitle' => 'عنوان کوتاه',
+    'En Subtitle' => 'عنوان کوتاه انگلیسی',
+    'Ar Subtitle' => 'عنوان کوتاه عربی',
     'Begin date' => 'زمان شروع',
     'Construction time' => 'مدت اجرا',
     'Location' => 'منطقه',
+    'Ar Location' => 'منطقه عربی',
+    'En Location' => 'منطقه انگلیسی',
     'Area size' => 'متراژ',
     'Unit count' => 'تعداد کل واحد',
     'Free count' => 'تعداد واحد آزاد',
@@ -422,7 +409,7 @@ return [
     'Project ID' => 'شناسه پروژه',
     'Unit number' => 'شماره واحد',
     'Floor number' => 'شماره طبقه',
-    'Services' => 'امکانات',
+    'Services' => 'خدمات',
     'Bed room' => 'تعداد خواب',
     'Price' => 'قیمت',
     'Location link' => 'لینک ادرس',
@@ -477,6 +464,9 @@ return [
     'Bath room' => 'حمام',
     'WC' => 'سرویس بهداشتی',
     'Air conditioner' => 'خنک کننده هوا',
+    'Meter' => 'متر',
+    'related projects' => 'پروژه های مرتبط',
+    '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
 
     //    apartment : update
     'Update apartment: {name}' => 'ویرایش پروژه: {name}',

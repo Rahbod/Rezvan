@@ -2,8 +2,10 @@
 
 namespace app\models;
 
+use app\models\blocks\BlockInterface;
 use richardfan\sortable\SortableAction;
 use Yii;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
@@ -11,8 +13,9 @@ use Yii;
  * @property int $itemID
  * @property int $sort
  *
+ * @property Project $project
  */
-class Block extends Item
+class Block extends Item implements BlockInterface
 {
     const TYPE_BANNER = 1;
     const TYPE_IMAGE = 2;
@@ -136,8 +139,22 @@ class Block extends Item
     public function getMaxSort()
     {
         return self::find()->where([
-            'itemID' => $this->itemID,
-            'type' => self::$typeName,
+            'itemID' => $this->itemID
         ])->max(self::columnGetString('sort'));
+    }
+
+    public function getProject()
+    {
+        return $this->hasOne(Project::className(), ['id' => self::columnGetString('itemID')]);
+    }
+
+    /**
+     * @param View $view
+     * @param $project
+     * @return mixed
+     */
+    public function render(View $view, $project)
+    {
+        // TODO: Implement render() method.
     }
 }

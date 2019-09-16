@@ -126,7 +126,8 @@ return [
     'online.reception' => 'درخواست پذیرش',
 
     'online.visit' => 'درخواست نوبت دهی',
-    'Apartment.index' => 'نمایش آپارتمان ها',
-    'Investment.index' => 'نمایش آپارتمان ها',
-    'Construction.index' => 'نمایش آپارتمان ها',
+    'apartment.list' => 'نمایش آپارتمان ها',
+    'investment.list' => 'نمایش سرمایه گذاری ها',
+    'construction.list' => 'نمایش دیگر سازه ها',
+    'site.about' => 'درباره ما',
 ];

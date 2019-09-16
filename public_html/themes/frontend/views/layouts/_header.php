@@ -2,6 +2,7 @@
 /** @var $this View */
 /** @var string $baseUrl */
 
+use app\components\MultiLangActiveRecord;
 use app\components\Setting;
 use app\models\Menu;
 use yii\helpers\Url;
@@ -25,27 +26,7 @@ $baseUrl = $this->theme->baseUrl;
                             </h1>
                         </div>
                         <!-- .site-branding -->
-                        <div class="social-icon">
-                            <ul class="social-list">
-                                <?php $val = Setting::get('socialNetworks.whatsapp');
-                                echo $val && !empty($val) ? '
-                                <li class="social-item whatsapp"><a href="' . $val . '" target="_blank"><i class="fa fa-whatsapp"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.twitter');
-                                echo $val && !empty($val) ? '
-                                 <li class="social-item twitter"><a href="' . $val . '" target="_blank"><i class="fa fa-twitter"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.instagram');
-                                echo $val && !empty($val) ? '<li class="social-item instagram"><a href="' . $val . '" target="_blank"><i class="fa fa-instagram"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.facebook');
-                                echo $val && !empty($val) ? '<li class="social-item facebook"><a href="' . $val . '" target="_blank"><i class="fa fa-facebook-f"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.telegram');
-                                echo $val && !empty($val) ? '<li class="social-item youtube"><a href="' . $val . '" target="_blank"><i class="fa fa-youtube"></i></a></li>' : ''; ?>
-
-                            </ul>
-                        </div>
+                        <?php $this->render('//layouts/_socials') ?>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">
@@ -63,8 +44,10 @@ $baseUrl = $this->theme->baseUrl;
                                             <a class="nav-link dropdown-toggle" href="#" id="lang-select"
                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="<?= Url::to(["/en"]) ?>">EN</a>
-                                                <a class="dropdown-item" href="<?= Url::to(["/fa"]) ?>">FA</a>
+                                                <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </li>
                                     </ul>
@@ -75,8 +58,8 @@ $baseUrl = $this->theme->baseUrl;
                                     <form role="search" method="get" class="search-form clearfix"
                                           action="<?= Url::to(['/site/search']) ?>">
                                         <input type="search" class="search-field"
-                                               placeholder="<?= trans('words', 'Search')?> ..." value="" name="query"
-                                               title="<?= trans('words', 'Search') ?> ..." autocomplete="off">
+                                               placeholder="<?= trans('words', 'Search') ?>" value="" name="query"
+                                               title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
                                     <!-- .search-form -->

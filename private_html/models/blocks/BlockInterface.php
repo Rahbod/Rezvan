@@ -4,7 +4,14 @@
 namespace app\models\blocks;
 
 
+use yii\web\View;
+
 interface BlockInterface
 {
-    public function render();
+    /**
+     * @param View $view
+     * @param $project
+     * @return mixed
+     */
+    public function render(View $view, $project);
 }

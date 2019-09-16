@@ -1,7 +1,11 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $model Page */
+/* @var $apartment Apartment */
 
+use app\models\Page;
+use app\models\projects\Apartment;
 use yii\helpers\Html;
 
 $baseUrl = $this->theme->baseUrl;
@@ -57,7 +61,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                     <div class="grid col-lg-4">
                                         <div class="img">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                         </div>
                                     </div>
 
@@ -67,7 +71,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                     <div class="grid col-lg-4">
                                         <div class="img">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                         </div>
                                     </div>
 
@@ -77,7 +81,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                     <div class="grid col-lg-4">
                                         <div class="img">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                         </div>
                                     </div>
                                 </div>

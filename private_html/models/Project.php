@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
+use app\models\blocks\Units;
 use app\models\projects\ProjectInterface;
 use Yii;
 use yii\helpers\Html;
@@ -14,6 +15,16 @@ use yii\web\View;
  * This is the model class for table "item".
  *
  * @property mixed|null project_type
+ * @property string subtitle
+ * @property string en_subtitle
+ * @property string ar_subtitle
+ * @property string location
+ * @property string en_location
+ * @property string ar_location
+ * @property string area_size
+ *
+ * @property Block[] blocks
+ * @property Units[] units
  */
 class Project extends Item implements ProjectInterface
 {
@@ -54,7 +65,11 @@ class Project extends Item implements ProjectInterface
             'begin_date' => ['CHAR', ''],
             'construction_time' => ['CHAR', ''],
             'location' => ['CHAR', ''],
+            'ar_location' => ['CHAR', ''],
+            'en_location' => ['CHAR', ''],
             'subtitle' => ['CHAR', ''],
+            'ar_subtitle' => ['CHAR', ''],
+            'en_subtitle' => ['CHAR', ''],
             'image' => ['CHAR', ''],
             'area_size' => ['INTEGER', ''],
             'unit_count' => ['INTEGER', ''],
@@ -74,7 +89,7 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['project_type'], 'required'],
-            [['subtitle', 'begin_date', 'construction_time', 'location', 'image'], 'string'],
+            [['subtitle', 'ar_subtitle', 'en_subtitle', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer']
         ]);
     }
@@ -87,10 +102,14 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::attributeLabels(), [
             'project_type' => trans('words', 'Project type'),
             'subtitle' => trans('words', 'Subtitle'),
+            'en_subtitle' => trans('words', 'En Subtitle'),
+            'ar_subtitle' => trans('words', 'Ar Subtitle'),
             'image' => trans('words', 'Image'),
             'begin_date' => trans('words', 'Begin date'),
             'construction_time' => trans('words', 'Construction time'),
             'location' => trans('words', 'Location'),
+            'en_location' => trans('words', 'En Location'),
+            'ar_location' => trans('words', 'Ar Location'),
             'area_size' => trans('words', 'Area size'),
             'unit_count' => trans('words', 'Unit count'),
             'free_count' => trans('words', 'Free count'),
@@ -141,12 +160,12 @@ class Project extends Item implements ProjectInterface
     {
         return array_merge(parent::formAttributes(), [
             'hr' => self::FORM_SEPARATOR,
-            'subtitle' => self::FORM_FIELD_TYPE_TEXT,
+            [['subtitle','ar_subtitle','en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getProjectTypeLabels()
             ],
-            'construction_time' => self::FORM_FIELD_TYPE_TEXT,
+            'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'روزکاری'],
             'begin_date' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
 //                'options' => [
@@ -161,8 +180,8 @@ class Project extends Item implements ProjectInterface
 //                    ]
 //                ]
             ],
-            'location' => self::FORM_FIELD_TYPE_TEXT,
-            'area_size' => self::FORM_FIELD_TYPE_TEXT,
+            [['location','ar_location','en_location'], self::FORM_FIELD_TYPE_TEXT],
+            'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
             'unit_count' => self::FORM_FIELD_TYPE_TEXT,
             'free_count' => self::FORM_FIELD_TYPE_TEXT,
             'sold_count' => self::FORM_FIELD_TYPE_TEXT,
@@ -197,7 +216,12 @@ class Project extends Item implements ProjectInterface
 
     public function getBlocks()
     {
-        return $this->hasMany(Block::className(), [self::columnGetString('itemID') => 'id']);
+        return $this->hasMany(Block::className(), [Block::columnGetString('itemID') => 'id'])->orderBy([Block::columnGetString('sort') => SORT_ASC]);
+    }
+
+    public function getUnits()
+    {
+        return $this->hasMany(Units::className(), [Units::columnGetString('itemID') => 'id']);
     }
 
     /**
@@ -206,15 +230,57 @@ class Project extends Item implements ProjectInterface
     public function render(View $view)
     {
         if ($this->project_type == self::SINGLE_VIEW)
-            return $this->renderBlocks();
+            return $this->renderBlocks($view, $this);
         else {
             $className = strtolower($this->formName());
             return $view->renderAjax('/' . $className . '/_render', ['model' => $this]);
         }
     }
 
-    public function renderBlocks()
+    /**
+     * @param View $view
+     * @param $project
+     * @return string
+     */
+    public function renderBlocks($view, $project)
     {
-        return "Blocks";
+        $output = '';
+        foreach ($this->blocks as $block){
+            $type = $block->type;
+            /** @var Block $modelClass */
+            $modelClass = Block::$typeModels[$type];
+            $block = $modelClass::findOne($block->id);
+            $output .= $block->render($view, $project);
+        }
+        return $output;
+    }
+
+    public function getPosterSrc()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
+            return Yii::getAlias('@web/uploads/apartment/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
+    }
+
+    public function getSubtitleStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->subtitle;
+            else
+                return $this->{Yii::$app->language . '_subtitle'} ?: $this->subtitle;
+        }
+        return $this->subtitle;
+    }
+    
+    public function getLocationStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->loc;
+            else
+                return $this->{Yii::$app->language . '_subtitle'} ?: $this->subtitle;
+        }
+        return $this->subtitle;
     }
 }

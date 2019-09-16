@@ -104,6 +104,10 @@ class BlockController extends AuthController
     public function actionIndex($id)
     {
         app()->session->set('itemID', $id);
+        if (strpos(request()->referrer, 'apartment') !== false ||
+            strpos(request()->referrer, 'investment') !== false ||
+            strpos(request()->referrer, 'construction') !== false)
+            app()->session->set('return', request()->referrer);
         $searchModel = new BlockSearch();
         $searchModel->itemID = $id;
         $dataProvider = $searchModel->search(app()->request->queryParams);
@@ -128,6 +132,8 @@ class BlockController extends AuthController
                 $modelName = Block::$typeModels[$type];
                 /** @var Block $model */
                 $model = new $modelName();
+                $model->name = $model->getTypeLabel($type);
+                $model->load(app()->request->post());
                 $model->type = $type;
             }
         }
@@ -219,8 +225,8 @@ class BlockController extends AuthController
                     $model->scenario = SortableAction::SORTING_SCENARIO;
                     $model->sort = $i + 1;
                     $model->save();
-                }catch (\Exception $exception){
-                    dd($item,$exception->getMessage());
+                } catch (\Exception $exception) {
+                    dd($item, $exception->getMessage());
                 }
             }
         }
@@ -239,7 +245,7 @@ class BlockController extends AuthController
             $modelName = Block::$typeModels[$model->type];
             /** @var Block $modelName */
             $model = $modelName::findOne($id);
-            if($model !== null)
+            if ($model !== null)
                 return $model;
         }
 

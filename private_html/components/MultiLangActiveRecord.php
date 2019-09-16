@@ -21,6 +21,11 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
         'en' => 'انگلیسی',
     ];
 
+    public static $showLangArray = [
+        'ar' => 'Ar',
+        'en' => 'En',
+    ];
+
     public $dynaDefaults = [
         'lang' => ['CHAR', ''],
     ];
