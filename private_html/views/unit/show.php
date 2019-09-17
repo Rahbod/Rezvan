@@ -1,10 +1,11 @@
 <?php
 
 use app\models\projects\Apartment;
+use app\models\Unit;
 use yii\web\View;
 
 /** @var View $this */
-/** @var Apartment $model */
+/** @var Unit $model */
 
 $baseUrl = $this->theme->baseUrl;
 ?>

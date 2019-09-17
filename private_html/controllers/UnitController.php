@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\components\CrudControllerTrait;
+use app\models\Project;
 use Yii;
 use app\models\Unit;
 use app\models\UnitSearch;
@@ -16,28 +18,16 @@ use yii\widgets\ActiveForm;
  */
 class UnitController extends AuthController
 {
-    /**
-    * for set admin theme
-    */
-    public function init()
+    use CrudControllerTrait;
+
+    public function getModelName()
     {
-        $this->setTheme('default');
-        parent::init();
+        return Unit::className();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public function getSystemActions()
     {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
+        return ['show'];
     }
 
     /**
@@ -55,19 +45,6 @@ class UnitController extends AuthController
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Unit model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
         ]);
     }
 
@@ -133,33 +110,16 @@ class UnitController extends AuthController
         ]);
     }
 
-    /**
-     * Deletes an existing Unit model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
+
+
+    public function actionShow($id)
     {
-        $this->findModel($id)->delete();
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->bodyClass = 'final-project-view special';
 
-        return $this->redirect(['index']);
-    }
+        $model = $this->findModel($id);
 
-    /**
-     * Finds the Unit model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return Unit the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = Unit::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
+        return $this->render('show', compact('model'));
     }
 }

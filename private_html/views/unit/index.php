@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'area_size',
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{block} {update} {delete}',
+                            'template' => '{block} {clone} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
                                     if (!$model->project_blocks)
@@ -73,6 +73,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                             ]
                                         );
                                     return '';
+                                },
+                                'clone' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-copy text-primary" ></span >', ['clone', 'id' => $model['id']], [
+                                            'class' => '',
+                                            'title' => "تکثیر",
+                                            'aria-label' => "clone",
+                                            'data-pjax' => 0,
+                                        ]
+                                    );
                                 },
                             ]
                         ]

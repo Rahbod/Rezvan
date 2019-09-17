@@ -4,7 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
-use app\models\blocks\Units;
+use app\models\Unit;
 use app\models\projects\ProjectInterface;
 use Yii;
 use yii\helpers\Html;
@@ -22,9 +22,11 @@ use yii\web\View;
  * @property string en_location
  * @property string ar_location
  * @property string area_size
+ * @property string pdf_file
+ * @property string banner
  *
  * @property Block[] blocks
- * @property Units[] units
+ * @property Unit[] units
  */
 class Project extends Item implements ProjectInterface
 {
@@ -42,6 +44,12 @@ class Project extends Item implements ProjectInterface
         self::TYPE_AVAILABLE_APARTMENT => 'Available apartments',
         self::TYPE_INVESTMENT => 'Investments',
         self::TYPE_OTHER_CONSTRUCTION => 'Other constructions'
+    ];
+
+    public static $typeModels = [
+        self::TYPE_AVAILABLE_APARTMENT => 'app\models\projects\Apartment',
+        self::TYPE_INVESTMENT => 'app\models\projects\Investment',
+        self::TYPE_OTHER_CONSTRUCTION => 'app\models\projects\OtherConstruction'
     ];
 
     public static $projectTypeLabels = [
@@ -77,6 +85,8 @@ class Project extends Item implements ProjectInterface
             'free_count' => ['INTEGER', ''],
             'sold_count' => ['INTEGER', ''],
             'project_type' => ['INTEGER', ''],
+            'pdf_file' => ['CHAR', ''],
+            'banner' => ['CHAR', ''],
         ]);
     }
 
@@ -89,7 +99,7 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['project_type'], 'required'],
-            [['subtitle', 'ar_subtitle', 'en_subtitle', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
+            [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer']
         ]);
     }
@@ -114,6 +124,8 @@ class Project extends Item implements ProjectInterface
             'unit_count' => trans('words', 'Unit count'),
             'free_count' => trans('words', 'Free count'),
             'sold_count' => trans('words', 'Sold count'),
+            'pdf_file' => trans('words', 'Pdf file'),
+            'banner' => trans('words', 'Banner'),
         ]);
     }
 
@@ -160,10 +172,11 @@ class Project extends Item implements ProjectInterface
     {
         return array_merge(parent::formAttributes(), [
             'hr' => self::FORM_SEPARATOR,
-            [['subtitle','ar_subtitle','en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
+            [['subtitle', 'ar_subtitle', 'en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items' => self::getProjectTypeLabels()
+                'items' => self::getProjectTypeLabels(),
+                'options' => ['id' => 'project_type']
             ],
             'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'بر حسب ماه'],
             'begin_date' => [
@@ -180,14 +193,19 @@ class Project extends Item implements ProjectInterface
 //                    ]
 //                ]
             ],
-            [['location','ar_location','en_location'], self::FORM_FIELD_TYPE_TEXT],
+            [['location', 'ar_location', 'en_location'], self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
             'unit_count' => self::FORM_FIELD_TYPE_TEXT,
             'free_count' => self::FORM_FIELD_TYPE_TEXT,
             'sold_count' => self::FORM_FIELD_TYPE_TEXT,
+            'sep' => [
+                'type' => self::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ],
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                'containerCssClass' => 'col-sm-12',
+                'hint' => 'تصویر کوچک',
+                'containerCssClass' => 'col-sm-6',
                 'temp' => MainController::$tempDir,
                 'path' => ApartmentController::$imgDir,
                 'filesOptions' => ApartmentController::$imageOptions,
@@ -210,7 +228,71 @@ class Project extends Item implements ProjectInterface
                     ],
                 ]
             ],
+            'pdf_file' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-6',
+                'temp' => MainController::$tempDir,
+                'path' => ApartmentController::$pdfDir,
+                'filesOptions' => [],
+                'options' => [
+                    'url' => Url::to(['upload-pdf']),
+                    'removeUrl' => Url::to(['delete-pdf']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'pdf_file')],
+                    'options' => [
+                        'createImageThumbnails' => false,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود فایل Pdf کلیک کنید',
+                        'acceptedFiles' => 'pdf',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 50,
+                    ],
+                ]
+            ],
+            'banner' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'hint' => 'تصویر کاور برای پروژه های چند معرفی',
+                'containerCssClass' => 'col-sm-12 banner-container d-none',
+                'temp' => MainController::$tempDir,
+                'path' => ApartmentController::$imgDir,
+                'filesOptions' => [],
+                'options' => [
+                    'url' => Url::to(['upload-banner']),
+                    'removeUrl' => Url::to(['delete-banner']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'banner')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 5,
+                    ],
+                ]
+            ],
 
+            'js_script' => [
+                'type' => static::FORM_JS_SCRIPT,
+                'js' => <<<JS
+if($('#project_type').val() === '2')
+    $(".banner-container").removeClass('d-none');
+$("body").on("change", '#project_type', function(e) {
+    if($(this).val() === '2')
+        $(".banner-container").removeClass('d-none');
+    else
+        $(".banner-container").addClass('d-none');
+});
+JS
+            ],
         ]);
     }
 
@@ -221,7 +303,15 @@ class Project extends Item implements ProjectInterface
 
     public function getUnits()
     {
-        return $this->hasMany(Units::className(), [Units::columnGetString('itemID') => 'id']);
+        return $this->hasMany(Unit::className(), [Unit::columnGetString('itemID') => 'id']);
+    }
+
+    public function getUnitCount($free = false)
+    {
+        $q = $this->hasMany(Unit::className(), [Unit::columnGetString('itemID') => 'id']);
+        if ($free)
+            $q->andWhere([Unit::columnGetString('sold') => 0]);
+        return $q->count();
     }
 
     /**
@@ -233,7 +323,7 @@ class Project extends Item implements ProjectInterface
             return $this->renderBlocks($view, $this);
         else {
             $className = strtolower($this->formName());
-            return $view->renderAjax('/' . $className . '/_render', ['model' => $this]);
+            return $view->renderAjax('/' . $className . '/multi_view', ['project' => $this]);
         }
     }
 
@@ -245,7 +335,7 @@ class Project extends Item implements ProjectInterface
     public function renderBlocks($view, $project)
     {
         $output = '';
-        foreach ($this->blocks as $block){
+        foreach ($this->blocks as $block) {
             $type = $block->type;
             /** @var Block $modelClass */
             $modelClass = Block::$typeModels[$type];
@@ -272,7 +362,7 @@ class Project extends Item implements ProjectInterface
         }
         return $this->subtitle;
     }
-    
+
     public function getLocationStr()
     {
         if (!static::$multiLanguage) {
@@ -282,5 +372,13 @@ class Project extends Item implements ProjectInterface
                 return $this->{Yii::$app->language . '_subtitle'} ?: $this->subtitle;
         }
         return $this->subtitle;
+    }
+
+    public function getPdfUrl($dir)
+    {
+        $path = alias('@webroot') . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $this->pdf_file;
+        if ($this->pdf_file and is_file($path))
+            return alias('@web/') . $dir . '/' . $this->pdf_file;
+        return false;
     }
 }

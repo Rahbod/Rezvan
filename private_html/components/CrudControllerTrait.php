@@ -3,11 +3,15 @@
 
 namespace app\components;
 
+use app\models\Item;
 use Yii;
 use DeepCopy\Exception\PropertyException;
 use devgroup\dropzone\UploadedFiles;
+use yii\base\InvalidConfigException;
 use yii\db\ActiveRecord;
 use yii\filters\VerbFilter;
+use yii\validators\RequiredValidator;
+use yii\validators\Validator;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -192,8 +196,33 @@ trait CrudControllerTrait
     /**
      * @return array
      */
-    public function uploaderAttributes(){
+    public function uploaderAttributes()
+    {
         return [];
+    }
+
+    /**
+     * @param $model ActiveRecord
+     */
+    public function unsetUploaderAttributes($model)
+    {
+        if (!method_exists($this, 'uploaderAttributes'))
+            return;
+        $fields = $this->uploaderAttributes();
+
+//        $rules = $model->rules();
+//        foreach ($rules as $key => $rule) {
+//            if (is_array($rule) && isset($rule[0], $rule[1])) { // attributes, validator type
+//                $validator = Validator::createValidator($rule[1], $model, (array) $rule[0], array_slice($rule, 2));
+//                if($validator instanceof RequiredValidator)
+//                    foreach ($fields as $attribute => $options)
+//                        if(in_array($attribute, $validator->attributes))
+//                            unset($rules[$key]);
+//            }
+//        }
+
+        foreach ($fields as $attribute => $options)
+            $model->$attribute = null;
     }
 
     /**
@@ -248,6 +277,34 @@ trait CrudControllerTrait
         foreach ($fields as $attribute => $options)
             (new UploadedFiles($options['dir'], $model->$attribute, $options['options']))
                 ->removeAll(true);
+    }
+
+    public function actionClone($id)
+    {
+        $base = $this->findModel($id);
+
+        /** @var Item $model */
+        $model = clone $base;
+//        $model->scenario = 'clone';
+
+        $model->setOldAttributes([]);
+        $model->id = null;
+        $model->isNewRecord = true;
+        foreach ($model::$unCloneFields as $field)
+            $model->$field = null;
+
+        $this->unsetUploaderAttributes($model);
+
+        if ($model->save()) {
+            app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+            return $this->redirect(['update', 'id' => $model->id]);
+        } else
+            dd($model->errors);
+        app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+
+        if (isset($model->itemID) && $model->itemID)
+            return $this->redirect(['index', 'id' => $model->itemID]);
+        return $this->redirect(['index']);
     }
 
     /********************************************** End DropZone Field types ******************************************/

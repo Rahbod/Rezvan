@@ -26,6 +26,7 @@ class ApartmentController extends AuthController
     use CrudControllerTrait;
 
     public static $imgDir = 'uploads/apartment';
+    public static $pdfDir = 'uploads/apartment/pdf';
 
     public static $imageOptions = ['thumbnail' => [
         'width' => 100,
@@ -56,6 +57,14 @@ class ApartmentController extends AuthController
             'image' => [
                 'dir' => self::$imgDir,
                 'options' => self::$imageOptions
+            ],
+            'banner' => [
+                'dir' => self::$imgDir,
+                'options' => []
+            ],
+            'pdf_file' => [
+                'dir' => self::$pdfDir,
+                'options' => []
             ]
         ];
     }
@@ -78,6 +87,38 @@ class ApartmentController extends AuthController
                 'model' => new Apartment(),
                 'attribute' => 'image',
                 'options' => static::$imageOptions
+            ],
+            'upload-banner' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Apartment(), 'banner'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-banner' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$imgDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Apartment(),
+                'attribute' => 'banner',
+                'options' => []
+            ],
+            'upload-pdf' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Apartment(), 'pdf_file'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('pdf')
+                )
+            ],
+            'delete-pdf' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$pdfDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Apartment(),
+                'attribute' => 'pdf_file',
+                'options' => []
             ],
         ];
     }
@@ -114,26 +155,7 @@ class ApartmentController extends AuthController
             $this->bodyClass = 'final-project-view';
         else
             $this->bodyClass = 'more-one';
-        
+
         return $this->render('show', compact('model'));
     }
-
-    public function actionSpecial()
-    {
-        $this->setTheme('frontend');
-
-        $this->innerPage = true;
-        $this->bodyClass = 'final-project-view special';
-        return $this->render('special');
-
-    }//show project blocks
-
-    public function actionIn()
-    {
-        $this->setTheme('frontend');
-
-        $this->innerPage = true;
-        $this->bodyClass = 'final-project-view';
-        return $this->render('in');
-    }//show project units
 }

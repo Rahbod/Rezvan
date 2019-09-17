@@ -145,7 +145,13 @@ class Block extends Item implements BlockInterface
 
     public function getProject()
     {
-        return $this->hasOne(Project::className(), ['id' => self::columnGetString('itemID')]);
+        $model = Project::findOne($this->itemID);
+        if (!$model)
+            return null;
+        $type = $model->type;
+        /** @var Block $modelClass */
+        $modelClass = Project::$typeModels[$type];
+        return $modelClass::findOne($model->id);
     }
 
     /**

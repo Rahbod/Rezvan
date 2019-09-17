@@ -9,6 +9,7 @@ use devgroup\dropzone\UploadedFiles;
 use dosamigos\tinymce\TinyMce;
 use faravaghi\jalaliDatePicker\jalaliDatePicker;
 use yii\helpers\Html;
+use yii\web\View;
 use yii\widgets\ActiveForm;
 
 trait FormRendererTrait
@@ -68,6 +69,15 @@ trait FormRendererTrait
     {
         if (!is_array($field))
             $field = ['type' => $field];
+
+        // for js script type
+        if ($field['type'] === static::FORM_JS_SCRIPT) {
+            if (isset($field['url']))
+                $form->view->registerJsFile($field['url'], isset($field['pos']) ? $field['pos'] : View::POS_READY, isset($field['key']) ? $field['key'] : $name . '-script');
+            elseif (isset($field['js']))
+                $form->view->registerJs($field['js'], isset($field['pos']) ? $field['pos'] : View::POS_READY, isset($field['key']) ? $field['key'] : $name . '-script');
+            return '';
+        }
 
         $hint = false;
         if (isset($field['hint'])) {
@@ -188,7 +198,7 @@ trait FormRendererTrait
             }
         }
 
-        if($hint)
+        if ($hint)
             $obj->hint($hint);
 
         Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);

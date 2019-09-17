@@ -77,7 +77,18 @@ $this->params['breadcrumbs'][] = $this->title;
                         //'status',
                         [
                             'class' => CustomActionColumn::className(),
-                            'template' => '{update} {delete}'
+                            'template' => '{clone} {update} {delete}',
+                            'buttons' => [
+                                'clone' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-copy text-primary" ></span >', ['clone', 'id' => $model['id']], [
+                                            'class' => '',
+                                            'title' => "تکثیر",
+                                            'aria-label' => "clone",
+                                            'data-pjax' => 0,
+                                        ]
+                                    );
+                                },
+                            ]
                         ]
                     ],
                 ]); ?>

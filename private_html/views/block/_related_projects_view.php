@@ -3,6 +3,7 @@
 /** @var $block Banner */
 
 /** @var $projects Apartment[] */
+
 /** @var $apartment Apartment */
 
 use app\controllers\ApartmentController;
@@ -10,7 +11,7 @@ use app\models\blocks\Banner;
 use app\models\projects\Apartment;
 use yii\web\View;
 
-$baseUrl = alias('@web').'/'.ApartmentController::$imgDir.'/';
+$baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
 ?>
 <?php if ($projects): ?>
     <section class="order-post">
@@ -27,11 +28,15 @@ $baseUrl = alias('@web').'/'.ApartmentController::$imgDir.'/';
                             <div class="carousel-item active">
                                 <div class="posts">
                                     <div class="row">
-                                        <?php for ($j = $i; $j <=4; $j++): $apartment = $projects[$j];?>
+                                        <?php for ($j = $i; $j <= 4; $j++):
+                                            if (!isset($projects[$j]))
+                                                break;
+                                            $apartment = $projects[$j]; ?>
                                             <div class="grid col-lg-3">
                                                 <div class="img">
                                                     <a href="<?= $apartment->getUrl() ?>">
-                                                        <img src="<?= $baseUrl.$apartment->image ?>" alt="<?= $apartment->getName() ?>">
+                                                        <img src="<?= $baseUrl . $apartment->image ?>"
+                                                             alt="<?= $apartment->getName() ?>">
                                                     </a>
                                                 </div>
                                             </div>
