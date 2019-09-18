@@ -605,10 +605,11 @@ return [
 
     //third column
     'Number of floors'=>'تعداد طبقه',
+    'Unit per floor number'=>'تعداد واحد در هر طبقه',
     'Property direction'=>'جهت ساختمان',
     'Age of the building'=>'سن ساختمان',
     'Condition'=>'وضعیت',
-    'User'=>'کاربر',
+    'Type of use'=>'نوع کاربری',
     'Diorra'=>'Diorra',
     'Gas points'=>'نقاط گاز',
     'Electricity rating'=>'امتیاز برق',
