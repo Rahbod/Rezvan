@@ -54,7 +54,7 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                                             <img src="<?= $project->getModelImage() ?>"
                                                  alt="<?= Html::encode($project->getName()) ?> ">
                                             <a title="<?= Html::encode($project->getName()) ?>"
-                                               href="<?= Url::to(['/apartment/show/', 'id' => $project->id]) ?>">
+                                               href="<?= $project->getUrl() ?>">
                                                 <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                             </a>
                                             <span class="description"><?= $project->getLocationStr() ?></span>

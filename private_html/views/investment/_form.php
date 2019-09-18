@@ -1,7 +1,7 @@
 <?php
 
-use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Html;
+use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -17,6 +17,7 @@ use yii\helpers\Url;
 ]); ?>
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+
     <div class="row">
         <?= $model->formRenderer($form, '{field}', 'col-lg-4'); ?>
     </div>

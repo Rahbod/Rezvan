@@ -118,24 +118,27 @@ class SiteController extends AuthController
         if ($term && !empty($term)) {
             $searchApartment = new ApartmentSearch();
             $searchApartment->name = $term;
-            $searchApartment->sub_title = $term;
+            $searchApartment->subtitle = $term;
             $searchApartment->type = Project::TYPE_AVAILABLE_APARTMENT;
             $apartmentProvider = $searchApartment->search([]);
             $apartmentProvider->getPagination()->pageSize = 50;
+            $apartmentProvider = $apartmentProvider->getModels();
 
             $searchInvestment = new InvestmentSearch();
             $searchInvestment->name = $term;
-            $searchInvestment->sub_title = $term;
+            $searchInvestment->subtitle = $term;
             $searchInvestment->type = Project::TYPE_INVESTMENT;
             $investmentProvider = $searchInvestment->search([]);
             $investmentProvider->getPagination()->pageSize = 50;
+            $investmentProvider = $investmentProvider->getModels();
 
             $searchConstruction = new InvestmentSearch();
             $searchConstruction->name = $term;
-            $searchConstruction->sub_title = $term;
+            $searchConstruction->subtitle = $term;
             $searchConstruction->type = Project::TYPE_OTHER_CONSTRUCTION;
             $constructionProvider = $searchConstruction->search([]);
             $constructionProvider->getPagination()->pageSize = 50;
+            $constructionProvider = $constructionProvider->getModels();
 
 //            $searchPage = new PageSearch();
 //            $searchPage->name = $term;
@@ -143,9 +146,9 @@ class SiteController extends AuthController
 //            $searchPage->status = Page::STATUS_PUBLISHED;
 //            $pageProvider = $searchPage->search([]);
 //            $pageProvider->getPagination()->pageSize = 100;
-
+dd(1);
             return $this->render('search', compact('term', 'investmentProvider',
-                'constructionProvider', 'searchApartment'));
+                'constructionProvider', 'searchApartment', 'apartmentProvider'));
         } else
             return $this->goBack();
     }

@@ -386,7 +386,8 @@ return [
     'No Result!' => 'نتیجه ای یافت نشد!',
     'Menu' => 'منوها',
     'Short Title' => 'عنوان کوتاه',
-    'Available Apartments' => 'ساختمان های در دسترس',
+    'Available Investments' => 'سرمایه گذاری های موجود',
+    'Available Apartments' => 'ساختمان های موجود',
 //    'Investments' => 'سرمایه گذاری',
     'Other constructions' => 'دیگر سازه ها',
     'Banner block' => 'بنر اصلی',
@@ -452,7 +453,7 @@ return [
 
 
     'Apartments' => 'پروژه ها',
-    'Investments' => 'پروژه ها',
+    'Investments' => 'سرمایه گذاری ها',
     'Constructions' => 'پروژه ها',
 
     'Blocks' => 'بلوک ها',
@@ -477,6 +478,7 @@ return [
     // blocks
     '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
     '<strong>available </strong> apartment' => 'آپارتمان های موجود',
+    '<strong>available </strong> investment' => 'سرمایه گذاری های موجود',
     'available<br>project' => 'پروژه های<br>موجود',
     '<strong>Building </strong> access<br>Near you' => '<strong>دسترسی های </strong> نزدیک',
     'available<br>unit' => 'واحدهای<br>موجود',
@@ -523,6 +525,7 @@ return [
     //site : index
     'available' => 'در دسترس',
     'apartments' => 'آپارتمان های',
+    'investments' => 'سرمایه گذاری های',
     'project' => 'پروژه',
     'View More' => 'مشاهده بیشتر',
     'Previous' => 'قبلی',

@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = trans('words', 'Update');
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [
-    'model' => $model,
+        'model' => $model,
     ]) ?>
     <!--end::Form-->
 </div>

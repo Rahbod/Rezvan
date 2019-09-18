@@ -20,10 +20,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-<!--    --><?//= $form->field($model, 'userID') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'modelID') ?>
-
 <!--    --><?//= $form->field($model, 'type') ?>
 
     <?= $form->field($model, 'name') ?>
