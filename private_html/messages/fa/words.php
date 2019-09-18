@@ -581,8 +581,34 @@ return [
     'radiator'=>'رادیاتور',
     'related'=>'مرتبط',
     'Number'=>'تعداد',
+
+    //first column
     'Foundation'=>'زیرساخت',
+    'Number of Sleep'=>'تعداد خواب',
+    'Number of units'=>'تعداد واحد',
+    'View'=>'نما',
+    'type of Document'=>'نوع سند',
+    'Number of assignments'=>'نوع تکالیف',
+    'Cabinets'=>'کابینت',
+
+    //second column
     'Water Score'=>'امتیاز آب',
+    'Store'=>'فروشگاه',
+    'Floor heating'=>'گرمایش زمینی',
+    'IPhone Video'=>'آیفون تصویری',
+    'Elevator'=>'آسانسور',
+    'Terrace'=>'تراز',
+    'Floor'=>'طبقه',
+
+    //third column
+    'Number of floors'=>'تعداد طبقه',
+    'Property direction'=>'جهت ساختمان',
+    'Age of the building'=>'سن ساختمان',
+    'Condition'=>'وضعیت',
+    'User'=>'کاربر',
+    'Diorra'=>'Diorra',
+    'Gas points'=>'نقاط گاز',
+    'Electricity rating'=>'امتیاز برق',
+    'Split'=>'انشعاب',
     'has it'=>'دارد',
-    'of floors'=>'طبقات',
 ];

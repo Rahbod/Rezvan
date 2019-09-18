@@ -16,6 +16,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
 <section class="main-text">
     <div class="title-page">
         <div class="container-fluid">
+            
             <div class="row">
                 <div class="title">
                     <h1><strong><?= Html::encode($this->title) ?></strong></h1>
