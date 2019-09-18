@@ -5,18 +5,10 @@ namespace app\controllers;
 use app\components\AuthController;
 use app\components\CrudControllerTrait;
 use app\models\Project;
-use app\models\projects\Apartment;
 use app\models\projects\Investment;
-use app\models\projects\InvestmentSearch;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
-use devgroup\dropzone\UploadedFiles;
-use Yii;
-use yii\filters\VerbFilter;
 use yii\helpers\Html;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
 
 /**
  * InvestmentController implements the CRUD actions for Investment model.
@@ -26,6 +18,8 @@ class InvestmentController extends AuthController
     use CrudControllerTrait;
 
     public static $imgDir = 'uploads/investment';
+    public static $pdfDir = 'uploads/investment/pdf';
+
     public static $imageOptions = ['thumbnail' => [
         'width' => 100,
         'height' => 100
@@ -39,6 +33,11 @@ class InvestmentController extends AuthController
         return Investment::className();
     }
 
+    public function getSystemActions()
+    {
+        return ['list', 'show'];
+    }
+
     public function getMenuActions()
     {
         return ['list'];
@@ -50,6 +49,14 @@ class InvestmentController extends AuthController
             'image' => [
                 'dir' => self::$imgDir,
                 'options' => self::$imageOptions
+            ],
+            'banner' => [
+                'dir' => self::$imgDir,
+                'options' => []
+            ],
+            'pdf_file' => [
+                'dir' => self::$pdfDir,
+                'options' => []
             ]
         ];
     }
@@ -73,6 +80,38 @@ class InvestmentController extends AuthController
                 'attribute' => 'image',
                 'options' => static::$imageOptions
             ],
+            'upload-banner' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Investment(), 'banner'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-banner' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$imgDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Investment(),
+                'attribute' => 'banner',
+                'options' => []
+            ],
+            'upload-pdf' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Investment(), 'pdf_file'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('pdf')
+                )
+            ],
+            'delete-pdf' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$pdfDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Investment(),
+                'attribute' => 'pdf_file',
+                'options' => []
+            ],
         ];
     }
 
@@ -84,16 +123,16 @@ class InvestmentController extends AuthController
         $this->innerPage = true;
         $this->bodyClass = 'more-one';
 
-        /** @var Apartment[] $projects */
+        /** @var Investment[] $projects */
         $projects = Investment::find()->orderBy([
             'id' => SORT_DESC,
         ])->all();
 
-        $availableApartments = Investment::find()->count();
+        $availableInvestments = Investment::find()->andWhere(['>', Investment::columnGetString('free_count'), 0])->count();
 
         return $this->render('list', [
             'projects' => $projects,
-            'availableApartments' => $availableApartments,
+            'availableInvestments' => $availableInvestments,
         ]);
     }
 
@@ -111,23 +150,4 @@ class InvestmentController extends AuthController
 
         return $this->render('show', compact('model'));
     }
-
-    public function actionSpecial()
-    {
-        $this->setTheme('frontend');
-
-        $this->innerPage = true;
-        $this->bodyClass = 'final-project-view special';
-        return $this->render('special');
-
-    }//show project blocks
-
-    public function actionIn()
-    {
-        $this->setTheme('frontend');
-
-        $this->innerPage = true;
-        $this->bodyClass = 'final-project-view';
-        return $this->render('in');
-    }//show project units
 }

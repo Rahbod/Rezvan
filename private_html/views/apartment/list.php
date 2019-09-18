@@ -35,16 +35,18 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                 </div>
                 <div class="container-fluid project-list">
                     <div class="row">
-                        <div class="grid first-post col-lg-6">
-                            <img src="<?= $projects[0]->getModelImage() ?>"
-                                 alt="<?= Html::encode($projects[0]->getName()) ?>">
-                            <a title="<?= Html::encode($projects[0]->getName()) ?>"
-                               href="<?= $projects[0]->getUrl() ?>">
-                                <h2 class="item-title"><?= Html::encode($projects[0]->getName()) ?></h2>
-                                <span class="first-title"><?= $projects[0]->getSubtitleStr() ?></span>
-                            </a>
-                            <span class="description"><?= Html::encode($projects[0]->getName()) ?></span>
-                        </div>
+                        <?php if (isset($projects[0])): ?>
+                            <div class="grid first-post col-lg-6">
+                                <img src="<?= $projects[0]->getModelImage() ?>"
+                                     alt="<?= Html::encode($projects[0]->getName()) ?>">
+                                <a title="<?= Html::encode($projects[0]->getName()) ?>"
+                                   href="<?= $projects[0]->getUrl() ?>">
+                                    <h2 class="item-title"><?= Html::encode($projects[0]->getName()) ?></h2>
+                                    <span class="first-title"><?= $projects[0]->getSubtitleStr() ?></span>
+                                </a>
+                                <span class="description"><?= Html::encode($projects[0]->getName()) ?></span>
+                            </div>
+                        <?php endif; ?>
 
                         <div class="col-lg-6 right-post-slider">
                             <div class="row">
@@ -54,7 +56,7 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                                             <img src="<?= $project->getModelImage() ?>"
                                                  alt="<?= Html::encode($project->getName()) ?> ">
                                             <a title="<?= Html::encode($project->getName()) ?>"
-                                               href="<?= Url::to(['/apartment/show/', 'id' => $project->id]) ?>">
+                                               href="<?= $project->getUrl() ?>">
                                                 <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                             </a>
                                             <span class="description"><?= $project->getLocationStr() ?></span>
