@@ -54,7 +54,7 @@ abstract class AuthController extends MainController
                 break;
         }
 
-        if ($parentPermission and Yii::$app->user->can($this->id . $parentPermission))
+        if ($parentPermission and app()->user->can($this->id . $parentPermission))
             return true;
 
         // Check permission
@@ -85,9 +85,7 @@ abstract class AuthController extends MainController
                                 return true;
                 }
             }
-
-            return $this->redirect(['/admin']);
-//            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
+            throw new ForbiddenHttpException('شما مجوز انجام این عملیات را ندارید.');
         }
     }
 }

@@ -11,7 +11,5 @@ use yii\web\View;
 
 ?>
 <section class="slide-4">
-    <div class="picture-slide-1">
-        <?php $block->getContent() ?>
-    </div>
+    <div class="picture-slide-1"><?= $block->getContent() ?></div>
 </section>

@@ -4,9 +4,13 @@
 /** @var $block Units */
 
 use app\models\blocks\Units;
+use app\models\Unit;
 use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
+
+$sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->all();
+$free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->all();
 ?>
 <section class="slide-4">
     <div class="container-fluid">

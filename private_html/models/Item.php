@@ -43,6 +43,8 @@ class Item extends MultiLangActiveRecord
     public static $modelName = null;
     public static $typeName = null;
 
+    public static $unCloneFields = ['userID', 'created'];
+
     public $gallery = null;
     public $formCategories = [];
     public $formTags = [];
@@ -114,7 +116,7 @@ class Item extends MultiLangActiveRecord
             [['created'], 'string', 'max' => 20],
             ['created', 'default', 'value' => time()],
             [['formCategories', 'formTags'], 'safe'],
-            ['userID', 'default', 'value' => Yii::$app->user->getId()],
+            ['userID', 'default', 'value' => app()->user->getId()],
             [['status','en_status','ar_status'], 'default', 'value' => self::STATUS_PUBLISHED],
             [['userID'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['userID' => 'id']],
             [['modelID'], 'exist', 'skipOnError' => true, 'targetClass' => Model::className(), 'targetAttribute' => ['modelID' => 'id']],

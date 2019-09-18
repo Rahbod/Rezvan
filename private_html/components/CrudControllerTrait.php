@@ -4,7 +4,7 @@
 namespace app\components;
 
 use Yii;
-use DeepCopy\Exception\PropertyException;
+use app\models\Item;
 use devgroup\dropzone\UploadedFiles;
 use yii\db\ActiveRecord;
 use yii\filters\VerbFilter;
@@ -29,7 +29,6 @@ trait CrudControllerTrait
      * @return array
      */
     abstract public function getRoutes();
-
 
     /**
      * for set admin theme
@@ -158,6 +157,34 @@ trait CrudControllerTrait
         ]);
     }
 
+    public function actionClone($id)
+    {
+        $base = $this->findModel($id);
+
+        /** @var Item $model */
+        $model = clone $base;
+        $model->scenario = 'clone';
+
+        $model->setOldAttributes([]);
+        $model->id = null;
+        $model->isNewRecord = true;
+        foreach ($model::$unCloneFields as $field)
+            $model->$field = null;
+
+        $this->unsetUploaderAttributes($model);
+
+        if ($model->save()) {
+            app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+            return $this->redirect(['update', 'id' => $model->id]);
+        } else
+            dd($model->errors);
+        app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+
+        if (isset($model->itemID) && $model->itemID)
+            return $this->redirect(['index', 'id' => $model->itemID]);
+        return $this->redirect(['index']);
+    }
+
     /**
      * Deletes an existing Slide model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -192,8 +219,21 @@ trait CrudControllerTrait
     /**
      * @return array
      */
-    public function uploaderAttributes(){
+    public function uploaderAttributes()
+    {
         return [];
+    }
+
+    /**
+     * @param $model ActiveRecord
+     */
+    public function unsetUploaderAttributes($model)
+    {
+        if (!method_exists($this, 'uploaderAttributes'))
+            return;
+        $fields = $this->uploaderAttributes();
+        foreach ($fields as $attribute => $options)
+            $model->$attribute = null;
     }
 
     /**
@@ -249,7 +289,6 @@ trait CrudControllerTrait
             (new UploadedFiles($options['dir'], $model->$attribute, $options['options']))
                 ->removeAll(true);
     }
-
     /********************************************** End DropZone Field types ******************************************/
 
     public function getEventRoute($name)

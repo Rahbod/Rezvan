@@ -37,8 +37,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <div class="title-right">
                         <p class="slide">
                             <span class="projects"><?= $apartmentCounts ?> <?= trans('words', 'projects') ?> / </span>
-                            <span class="available-project"><?= trans('words', 'available') ?></br>
-                                <?= trans('words', 'project') ?> </span>
+                            <span class="available-project"><?= trans('words', 'available') ?><br><?= trans('words', 'project') ?> </span>
                             <span class="num"><?= $availableApartmentsCounts ?></span>
                         </p>
                     </div>

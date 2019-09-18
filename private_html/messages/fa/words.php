@@ -466,7 +466,42 @@ return [
     'Air conditioner' => 'خنک کننده هوا',
     'Meter' => 'متر',
     'related projects' => 'پروژه های مرتبط',
+    'projects' => 'پروژه ها',
+    'Pdf file' => 'فایل pdf',
+    'Download As<br><strong>PDF</strong>' => '<strong>دانلود فایل pdf</strong>',
+    'More ...' => 'بیشتر ...',
+
+    // blocks
     '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
+    '<strong>available </strong> apartment' => 'آپارتمان های موجود',
+    'available<br>project' => 'پروژه های<br>موجود',
+    '<strong>Building </strong> access<br>Near you' => '<strong>دسترسی های </strong> نزدیک',
+    'available<br>unit' => 'واحدهای<br>موجود',
+    'About {value} km distance' => 'حدود {value} کیلومتر',
+
+    // units
+    '<strong>available</strong> for sel' => 'آماده برای فروش',
+    '<strong>sold</strong> units' => 'واحد های فروخته شده',
+    'on floor {value}' => 'طبقه {value}',
+    'have {value} rooms' => 'دارای {value} اتاق خواب',
+    'have {value} air conditions' => 'دارای {value} رادیاتور',
+    'have {value} wc' => 'دارای {value} سرویس بهداشتی',
+    'have {value} separate bathroom' => 'دارای {value} حمام مجزا',
+    'have {value} parking spaces' => 'دارای {value} پارکینگ',
+    'have {value} radiators' => 'دارای {value} رادیاتور',
+
+    'have a room' => 'دارای {value} اتاق خواب',
+    'have a air condition' => 'دارای {value} رادیاتور',
+    'have a wc' => 'دارای {value} سرویس بهداشتی',
+    'have a bathroom' => 'دارای {value} حمام مجزا',
+    'have a parking' => 'دارای پارکینگ',
+    'have a radiator' => 'دارای رادیاتور',
+
+    // nearby access labels
+    'IMAM REZA shrine' => 'حرم امام رضا',
+    'shopping' => 'مراکز تجاری',
+    'metro' => 'ایستگاه مترو',
+    'laundry' => 'خشکشویی',
 
     //    apartment : update
     'Update apartment: {name}' => 'ویرایش پروژه: {name}',

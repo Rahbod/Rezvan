@@ -5,6 +5,7 @@ namespace app\components;
 
 interface FormRendererDefinition
 {
+    const FORM_JS_SCRIPT = -3;
     const FORM_PARAGRAPH = -2;
     const FORM_HEADER = -1;
     const FORM_SEPARATOR = 0;

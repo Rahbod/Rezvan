@@ -19,6 +19,8 @@ abstract class CustomActiveRecord extends ActiveRecord implements FormRendererDe
     // use this trait for render forms dynamic
     use FormRendererTrait;
 
+    public static $unCloneFields = [];
+
     /* This fields for save system logs */
     protected $logging = true;
     protected $logModelID;

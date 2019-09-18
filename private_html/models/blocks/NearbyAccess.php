@@ -31,32 +31,42 @@ class NearbyAccess extends Block
 {
     public static $typeName = self::TYPE_NEARBY_ACCESS;
 
+    public static $fields = [
+        'shrine',
+        'shopping',
+        'hospital',
+        'metro',
+        'laundry',
+        'airport',
+        'gas',
+        'restaurant',
+        'bank',
+    ];
+
+    public static $iconsName = [
+        'shrine' => 'imam-reza.png',
+        'shopping' => 'shoping.png',
+        'hospital' => 'hospital.png',
+        'metro' => 'metro.png',
+        'laundry' => 'laundry.png',
+        'airport' => 'airport.png',
+        'gas' => 'gas.png',
+        'bank' => 'bank.png',
+        'restaurant' => 'resturant.png',
+    ];
+
     public function init()
     {
         parent::init();
 
-        $this->dynaDefaults = array_merge($this->dynaDefaults, [
-            // below field values is link of google nearby searches
-            'shrine_link' => ['CHAR', ''],
-            'shopping_link' => ['CHAR', ''],
-            'hospital_link' => ['CHAR', ''],
-            'metro_link' => ['CHAR', ''], // metro
-            'laundry_link' => ['CHAR', ''], // khoshkshoee
-            'airport_link' => ['CHAR', ''],
-            'gas_link' => ['CHAR', ''],
-            'bank_link' => ['CHAR', ''],
-            'restaurant_link' => ['CHAR', ''],
+        $dyna_fields = [];
+        foreach (self::$fields as $field) {
+            $dyna_fields[$field . '_link'] = ['CHAR', '']; // field values is link of google nearby searches
+            $dyna_fields[$field . '_distance'] = ['INTEGER', '']; // field values is KM distance
+        }
 
-            // below field values is KM distance
-            'shrine_distance' => ['INTEGER', ''],
-            'shopping_distance' => ['INTEGER', ''],
-            'hospital_distance' => ['INTEGER', ''],
-            'metro_distance' => ['INTEGER', ''], // metro
-            'laundry_distance' => ['INTEGER', ''], // khoshkshoee
-            'airport_distance' => ['INTEGER', ''],
-            'gas_distance' => ['INTEGER', ''],
-            'bank_distance' => ['INTEGER', ''],
-            'restaurant_distance' => ['INTEGER', ''],
+        $this->dynaDefaults = array_merge($this->dynaDefaults, $dyna_fields, [
+            // other dyna fields
         ]);
     }
 
@@ -66,11 +76,16 @@ class NearbyAccess extends Block
      */
     public function rules()
     {
+        $dyna_string_rules = [];
+        $dyna_integer_rules = [];
+        foreach (self::$fields as $field) {
+            $dyna_string_rules[] = $field . '_link';
+            $dyna_integer_rules[] = $field . '_distance';
+        }
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
-            [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link', 'airport_link', 'gas_link', 'restaurant_link'], 'string'],
-            [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance', 'airport_distance', 'gas_distance',
-                'restaurant_distance'], 'integer']
+            [$dyna_string_rules, 'string'],
+            [$dyna_integer_rules, 'integer']
         ]);
     }
 
@@ -98,21 +113,39 @@ class NearbyAccess extends Block
             'gas_distance' => trans('words', 'Gas station distance'),
             'bank_distance' => trans('words', 'Bank distance'),
             'restaurant_distance' => trans('words', 'Restaurant distance'),
+
+            // in show page
+            'shrine' => trans('words', 'IMAM REZA shrine'),
+            'shopping'=> trans('words', 'shopping'),
+            'hospital'=> trans('words', 'hospital'),
+            'metro'=> trans('words', 'metro'),
+            'laundry'=> trans('words', 'laundry'),
+            'airport'=> trans('words', 'airport'),
+            'gas'=> trans('words', 'gas'),
+            'bank'=> trans('words', 'bank'),
+            'restaurant'=> trans('words', 'restaurant'),
         ]);
     }
 
     public function formAttributes()
     {
+        $dyna_string_rules = [];
+        $dyna_integer_rules = [];
+        foreach (self::$fields as $field) {
+            $dyna_string_rules[] = $field . '_link';
+            $dyna_integer_rules[] = $field . '_distance';
+        }
         return array_merge(parent::formAttributes(), [
-            [['shrine_link', 'shopping_link', 'hospital_link', 'metro_link', 'laundry_link',
-                'airport_link', 'gas_link', 'bank_link', 'restaurant_link'], self::FORM_FIELD_TYPE_TEXT],
+            [$dyna_string_rules, self::FORM_FIELD_TYPE_TEXT],
             'sep2' => [
                 'type' => self::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
             ],
-            [['shrine_distance', 'shopping_distance', 'hospital_distance', 'metro_distance', 'laundry_distance',
-                'airport_distance', 'gas_distance', 'bank_distance', 'restaurant_distance'], self::FORM_FIELD_TYPE_TEXT],
-
+            [$dyna_integer_rules,[
+                'type' =>  self::FORM_FIELD_TYPE_TEXT,
+                'hint' => 'بر حسب کیلومتر',
+                'containerCssClass' => 'col-sm-3'
+            ]],
         ]);
     }
 

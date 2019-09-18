@@ -36,7 +36,7 @@ class Banner extends Block
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
-            ['image', 'required'],
+            ['image', 'required', 'except' => 'clone'],
             ['image', 'string'],
         ]);
     }

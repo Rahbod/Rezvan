@@ -3,17 +3,28 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Url;
+use yii\web\View;
 
 /**
  * This is the model class for table "item".
  *
  * @property int $itemID
  * @property int $unit_number
+ * @property int project_blocks
  * @property int $floor_number
- * @property int $area_size
- * @property string $location
- * @property string $services
+ * @property int air_conditioner
+ * @property int wc
+ * @property int bath_room
+ * @property int parking
+ * @property int radiator
+ * @property int area_size
+ * @property int location
+ * @property int bed_room
  * @property int $sort
+ *
+ * @property Block[] $blocks
+ * @property Project $project
  */
 class Unit extends Item
 {
@@ -42,6 +53,7 @@ class Unit extends Item
             'radiator' => ['INTEGER', ''],
             'area_size' => ['INTEGER', ''],
             'location' => ['CHAR', ''],
+            'bed_room' => ['CHAR', ''],
 //            'services' => ['CHAR', ''],
             'sold' => ['INTEGER', ''],
             'project_blocks' => ['INTEGER', ''],
@@ -124,26 +136,120 @@ class Unit extends Item
 
     public function formAttributes()
     {
-        return [
-            'status' => [
-                'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items' => self::getStatusFilter()
+        return array_merge(parent::formAttributes(), [
+            'sep' => [
+                'type' => static::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
             ],
-//            'parent'=>self::FORM_FIELD_TYPE_TEXT,
-//            'unit_per_floor_number'=>self::FORM_FIELD_TYPE_TEXT,
-
-//            'project_blocks' => [
-//                'type' => self::FORM_FIELD_TYPE_SELECT,
-//                'items' => self::getStatusFilter()
-//            ],
-            [['name', 'sold', 'radiator', 'parking', 'bath_room',
+            [['radiator', 'parking', 'bath_room',
                 'wc', 'air_conditioner', 'floor_number', 'unit_number',
-                'area_size', 'bed_room', 'price'], self::FORM_FIELD_TYPE_TEXT],
-        ];
+                'unit_per_floor_number', 'bed_room'], self::FORM_FIELD_TYPE_TEXT],
+            'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
+            'price' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'تومان'],
+            [['project_blocks', 'sold'], static::FORM_FIELD_TYPE_SWITCH],
+        ]);
     }
 
     public function getBlocks()
     {
-        return $this->hasMany(Block::className(), [self::columnGetString('itemID') => 'id']);
+        return $this->hasMany(Block::className(), [Block::columnGetString('itemID') => 'id'])->orderBy([Block::columnGetString('sort') => SORT_ASC]);
+    }
+
+    public function getProject()
+    {
+        $model = Project::findOne($this->itemID);
+        if (!$model)
+            return null;
+        $type = $model->type;
+        /** @var Block $modelClass */
+        $modelClass = Project::$typeModels[$type];
+        return $modelClass::findOne($model->id);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function render(View $view)
+    {
+        if ($this->project_blocks == 1)
+            return $this->project->renderBlocks($view, $this->project);
+        return $this->renderBlocks($view, $this);
+    }
+
+    /**
+     * @param View $view
+     * @param $project
+     * @return string
+     */
+    public function renderBlocks($view, $unit)
+    {
+        $output = '';
+        foreach ($this->blocks as $block) {
+            $type = $block->type;
+            /** @var Block $modelClass */
+            $modelClass = Block::$typeModels[$type];
+            $block = $modelClass::findOne($block->id);
+            $output .= $block->render($view, $unit);
+        }
+        return $output;
+    }
+
+    /// attribute string getters
+
+    public function getSubtitleStr()
+    {
+        return $this->project->getSubtitleStr();
+    }
+
+    public function getFloorNumberStr()
+    {
+        return trans('words', 'on floor {value}', ['value' => $this->floor_number]);
+    }
+
+    public function getBedRoomStr()
+    {
+        if ((int)$this->bed_room > 1)
+            return trans('words', 'have {value} rooms', ['value' => $this->bed_room]);
+        return trans('words', 'have a room');
+    }
+
+    public function getAirConditionerStr()
+    {
+        if ((int)$this->air_conditioner > 1)
+            return trans('words', 'have {value} air conditions', ['value' => $this->air_conditioner]);
+        return trans('words', 'have a air condition');
+    }
+
+    public function getWcStr()
+    {
+        if ((int)$this->wc > 1)
+            return trans('words', 'have {value} wc', ['value' => $this->wc]);
+        return trans('words', 'have a wc');
+    }
+
+    public function getBathRoomStr()
+    {
+        if ((int)$this->bath_room > 1)
+            return trans('words', 'have {value} separate bathroom', ['value' => $this->bath_room]);
+        return trans('words', 'have a bathroom');
+    }
+
+    public function getParkingStr()
+    {
+        if ((int)$this->parking > 1)
+            return trans('words', 'have {value} parking spaces', ['value' => $this->parking]);
+        return trans('words', 'have a parking');
+    }
+
+    public function getRadiatorStr()
+    {
+        if ((int)$this->radiator > 1)
+            return trans('words', 'have {value} radiators', ['value' => $this->radiator]);
+        return trans('words', 'have a radiator');
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/unit/show', 'id' => $this->id]);
     }
 }

@@ -8,6 +8,8 @@ use app\models\Page;
 use app\models\projects\Apartment;
 use yii\helpers\Html;
 
+$this->title = $model->getName();
+
 $baseUrl = $this->theme->baseUrl;
 $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
 ?>
@@ -17,7 +19,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             
             <div class="row">
                 <div class="title">
-                    <h1><strong><?= trans('words', 'ABOUT') ?></strong> <?= app()->name ?></h1>
+                    <h1><strong><?= Html::encode($this->title) ?></strong></h1>
                 </div>
             </div>
         </div>

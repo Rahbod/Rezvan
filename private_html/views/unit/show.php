@@ -1,10 +1,11 @@
 <?php
 
 use app\models\projects\Apartment;
+use app\models\Unit;
 use yii\web\View;
 
 /** @var View $this */
-/** @var Apartment $model */
+/** @var Unit $model */
 
 $baseUrl = $this->theme->baseUrl;
 ?>
@@ -12,7 +13,7 @@ $baseUrl = $this->theme->baseUrl;
 <div class="overly">
     <div class="item unit">
         <p class="title-1"><?= $model->area_size ?></p>
-        <p class="title-2"><?= trans('words', 'Meter') ?>></p>
+        <p class="title-2"><?= trans('words', 'Meter') ?></p>
     </div>
     <div class="item item-1">
         <img src="<?= $baseUrl ?>/images/item-1-w.png" alt="item-1">
