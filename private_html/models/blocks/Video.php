@@ -124,9 +124,12 @@ class Video extends Block
     {
         if (!empty($this->link))
             return $this->link;
-        return Html::tag('video', $this->video,[
+
+        $videoUrl = alias('@web').'/'.BlockController::$videoDir.'/'.$this->video;
+        $posterUrl = alias('@web').'/'.BlockController::$imgDir.'/'.$this->poster;
+        return Html::tag('video', $videoUrl,[
             'controls' => true,
-            'poster' => $this->image,
+            'poster' => $posterUrl,
             'preload' => 'none'
         ]);
     }

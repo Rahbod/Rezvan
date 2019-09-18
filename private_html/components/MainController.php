@@ -282,7 +282,8 @@ class MainController extends Controller implements CrudControllerInterface
         return [
             [
                 'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . trans('words', 'Dashboard') . '</span>',
-                'url' => ['/admin']
+                'url' => ['/admin'],
+                'visible' => $permissions || app()->user->can('adminDashboard')
             ],
 
             "<li class='m-menu__section'><h4 class='m-menu__section-text'>" . trans('words', $menuName) . "</h4><i class='m-menu__section-icon flaticon-more-v3'></i></li>",

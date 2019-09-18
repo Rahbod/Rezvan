@@ -38,7 +38,7 @@ class Map extends Block
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
-            [['location_link','image'], 'required'],
+            [['location_link','image'], 'required', 'except' => 'clone'],
             ['location_link', 'string'],
             ['image', 'string'],
         ]);

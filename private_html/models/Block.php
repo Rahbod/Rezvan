@@ -14,6 +14,7 @@ use yii\web\View;
  * @property int $sort
  *
  * @property Project $project
+ * @property Unit $unit
  */
 class Block extends Item implements BlockInterface
 {
@@ -154,6 +155,12 @@ class Block extends Item implements BlockInterface
         return $modelClass::findOne($model->id);
     }
 
+    public function getUnit()
+    {
+        return Unit::findOne($this->itemID);
+        return $this->hasOne(Unit::className(), [self::columnGetString('itemID') => 'id']);
+    }
+
     /**
      * @param View $view
      * @param $project
@@ -161,6 +168,6 @@ class Block extends Item implements BlockInterface
      */
     public function render(View $view, $project)
     {
-        // TODO: Implement render() method.
+        return '';
     }
 }

@@ -57,7 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter' => [1 => 'بله', 0 => 'خیر']
                         ],
-                        'sold',
+                        [
+                            'attribute' => 'sold',
+                            'value' => function ($model) {
+                                return $model->sold ? "<i class='fa fa-check text-success'></i>" : "<i class='fa fa-times text-danger'></i>";
+                            },
+                            'format' => 'raw',
+                            'filter' => [1 => 'بله', 0 => 'خیر']
+                        ],
                         'area_size',
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',

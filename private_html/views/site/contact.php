@@ -16,15 +16,16 @@ use app\models\Message;
 
 $this->title = trans('words', 'Contact us');
 $this->params['breadcrumbs'][] = $this->title;
-$apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
 
+$baseUrl = $this->theme->baseUrl;
+$apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
 ?>
 <section class="main-text">
     <div class="title-page">
         <div class="container-fluid">
             <div class="row">
                 <div class="title">
-                    <h1><?= Html::encode($this->title) ?></h1>
+                    <h1><strong><?= Html::encode($this->title) ?></strong></h1>
                 </div>
             </div>
         </div>
@@ -34,8 +35,6 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             <div class="row">
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
-                        <!--                        <code>--><? //= __FILE__ ?><!--</code>-->
-
                         <p><strong>Where does it come from?</strong></p>
                         <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of
                             classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a
@@ -58,7 +57,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
         <div class="row">
             <div class="title-order-post">
                 <h2 id="txt-order-post">
-                    <strong>PROJECTS</strong>
+                    <strong><?= trans('words', 'projects') ?></strong>
                 </h2>
             </div>
             <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
@@ -75,7 +74,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                     <div class="grid col-lg-4">
                                         <div class="img">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                         </div>
                                     </div>
 
@@ -85,7 +84,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                     <div class="grid col-lg-4">
                                         <div class="img">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                         </div>
                                     </div>
 
@@ -95,7 +94,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                     <div class="grid col-lg-4">
                                         <div class="img">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->name) ?>">
+                                                 alt="<?= Html::encode($apartment->getName()) ?>">
                                         </div>
                                     </div>
                                 </div>

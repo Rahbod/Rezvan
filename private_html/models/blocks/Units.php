@@ -49,6 +49,6 @@ class Units extends Block
     public function render(View $view, $project)
     {
         /** @var $project Project */
-        return $view->render('//block/_units_view', ['block' => $this, 'units' => $project->units]);
+        return $view->render('//block/_units_view', ['block' => $this, 'project' => $project]);
     }
 }

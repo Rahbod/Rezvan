@@ -18,13 +18,9 @@ $baseUrl = $this->theme->baseUrl;
                         <div class="footer-title">
                             <p><?= trans('words', 'ABOUT') ?> <?= trans('words', app()->name)  ?></p>
                         </div>
-                        <p>
-                            Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
-                            model text, and a search for 'lorem ipsum' will uncover many web sites still in their
-                            infancy.
-                        </p>
+                        <p><?= Setting::get('about.'.app()->language) ?></p>
                         <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
-                        <p><?= Setting::get(Yii::$app->language == 'fa' ? 'address' : Yii::$app->language . '_address') ?></p>
+                        <p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p>
                         <div class="phone">
                             <p><strong><?= Yii::t('words', 'Tell & Fax') ?><br> <?= Setting::get('tell') ?>
                                     - <?= Setting::get('fax') ?></strong></p>
@@ -95,7 +91,7 @@ $baseUrl = $this->theme->baseUrl;
                 <div class="container-fluid">
                     <div class="row footer-copy-row">
                         <div class="copy-1 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            © REZVAN.COM <?= date('Y') ?></br>
+                            © REZVAN.INFO <?= date('Y') ?></br>
                             <?= trans('words', 'REZVAN is a registered trademark of DENSO WAVE INCORPORATED') ?>
                         </div>
                         <div class="copy-2 col-lg-6 col-md-6 col-sm-12 col-xs-12">

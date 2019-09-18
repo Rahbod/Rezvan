@@ -8,6 +8,12 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $model app\models\Block */
 /* @var $form app\components\customWidgets\CustomActiveForm */
+
+$types = Block::getTypeLabels();
+if($model->unit) {
+    unset($types[Block::TYPE_UNITS_BLOCK]);
+    unset($types[Block::TYPE_RELATED_PROJECTS]);
+}
 ?>
 <?php $form = CustomActiveForm::begin([
     'id' => 'block-form',
@@ -27,10 +33,10 @@ use yii\helpers\Url;
         <div class="col-sm-12">
             <div class="form-group m-form__group field-block-name">
                 <?= Html::label($model->getAttributeLabel('type'), 'type', ['class' => 'col-form-label control-label']) ?>
-                <?= Html::dropDownList('type', $model->type, Block::getTypeLabels(), [
+                <?= Html::dropDownList('type', $model->type, $types, [
                     'id' => 'type-trigger',
                     'class' => 'form-control m-input m-input--solid',
-                    'prompt' => 'لطفا نوع بنر را انتخاب کنید',
+                    'prompt' => 'لطفا نوع بلاک را انتخاب کنید',
                     'data-url' => app()->request->url,
                     'disabled' => !$model->isNewRecord,
                     'readonly' => !$model->isNewRecord,
