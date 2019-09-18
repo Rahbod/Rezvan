@@ -84,4 +84,9 @@ class Investment extends Project
             return Yii::getAlias('@web/uploads/investment/') . $this->image;
         return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
+
+    public function getUrl()
+    {
+        return Url::to(['/investment/show', 'id' => $this->id]);
+    }
 }

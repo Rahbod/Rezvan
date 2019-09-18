@@ -70,6 +70,9 @@ return [
     'Parent' => 'والد',
     'Parent ID' => 'والد',
     'Menu Type' => 'محتوای منو',
+    'page' => 'صفحه',
+    'Ar Description' => 'توضیحات عربی',
+    'En Description' => 'توضیحات انگلیسی',
     'Page Name' => 'عنوان صفحه',
     'Page Link' => 'لینک صفحه',
     'External Link' => 'لینک خارجی',
@@ -490,10 +493,10 @@ return [
     'have {value} parking spaces' => 'دارای {value} پارکینگ',
     'have {value} radiators' => 'دارای {value} رادیاتور',
 
-    'have a room' => 'دارای {value} اتاق خواب',
-    'have a air condition' => 'دارای {value} رادیاتور',
-    'have a wc' => 'دارای {value} سرویس بهداشتی',
-    'have a bathroom' => 'دارای {value} حمام مجزا',
+    'have a room' => 'یک خوابه',
+    'have a air condition' => 'دارای رادیاتور',
+    'have a wc' => 'دارای سرویس بهداشتی',
+    'have a bathroom' => 'دارای حمام مجزا',
     'have a parking' => 'دارای پارکینگ',
     'have a radiator' => 'دارای رادیاتور',
 
@@ -521,7 +524,6 @@ return [
     'available' => 'در دسترس',
     'apartments' => 'آپارتمان های',
     'project' => 'پروژه',
-    'projects' => 'پروژه ها',
     'View More' => 'مشاهده بیشتر',
     'Previous' => 'قبلی',
     'Next' => 'بعدی',
@@ -548,7 +550,6 @@ return [
     'Design by' => 'طراحی شده توسط',
     'CONTACT US' => 'تماس با ما',
     'Tarsim.inc' => 'ترسیم',
-    'Rezvan' => 'رضوان',
     'REZVAN is a registered trademark of DENSO WAVE INCORPORATED' => 'رضوان یک نماد تجاری ثبت شده DENSO WAVE INCORPORATED است ',
 
     //project : show
@@ -559,9 +560,7 @@ return [
     'About'=>'تقریبا',
     'facades'=>'نمای خارجی',
     'faces have'=>'نمای خارجی',
-    'shopping'=>'مرکز خرید',
     'hospital'=>'مرکز خرید',
-    'metro'=>'مرکز خرید',
     'LAUNDRY'=>'خشکشویی',
     'RESTURANT'=>'رستوران',
     'bank'=>'بانک',
@@ -586,5 +585,4 @@ return [
     'Water Score'=>'امتیاز آب',
     'has it'=>'دارد',
     'of floors'=>'طبقات',
-
 ];

@@ -3,9 +3,12 @@
 /** @var OtherConstruction $construction */
 /** @var Investment $investment */
 
+/** @var Service $service */
+
 use app\models\projects\Apartment;
 use app\models\projects\Investment;
 use app\models\projects\OtherConstruction;
+use app\models\Service;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -52,7 +55,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                         for ($i = 0; $i < $availableApartmentsCounts; $i++): ?>
                             <?php if ($availableApartmentsCounts / 4 >= 1 && $i % 4 == 0): ?>
                                 <li data-target="#slide-1" data-slide-to="<?php echo $pageNumber - 1 ?>"
-                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
+                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span
+                                            class="indicators"><?= trans('words', 'page') ?><?php echo $pageNumber++ ?></span>
                                 </li>
                             <?php endif; endfor; ?>
                     </ul>
@@ -76,7 +80,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             <div class="overly">
                                                 <div class="item unit">
                                                     <p class="title-1"><?= $apartment->area_size ?></p>
-                                                    <p class="title-2">Metr</p>
+                                                    <p class="title-2"><?= trans('words', 'Meter') ?></p>
                                                 </div>
                                                 <div class="item item-1">
                                                     <img src="<?= alias('@web/themes/frontend/images/item-1-w.png') ?>"
@@ -114,58 +118,21 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </div>
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
                                             <div class="row">
-                                                <?php if (!isset($availableApartments[$i + 1]))
-                                                    break;
-                                                $apartment = $availableApartments[$i + 1]; ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->getName()) ?>">
-                                                    <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->getName()) ?>">
-                                                        <h2 class="item-title">
-                                                            <?= Html::encode($apartment->getName()) ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= Html::encode($apartment->location) ?></span>
-                                                </div>
-
-                                                <?php if (!isset($availableApartments[$i + 2])) break;
-                                                $apartment = $availableApartments[$i + 2]; ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->getName()) ?>">
-                                                    <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->getName()) ?>">
-                                                        <h2 class="item-title">
-                                                            <?= Html::encode($apartment->getName()) ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= Html::encode($apartment->location) ?></span>
-                                                </div>
-
-                                                <?php if (!isset($availableApartments[$i + 3])) break;
-                                                $apartment = $availableApartments[$i + 3]; ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->getName()) ?>">
-                                                    <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->getName()) ?>">
-                                                        <h2 class="item-title">
-                                                            <?= Html::encode($apartment->getName()) ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= Html::encode($apartment->location) ?></span>
-                                                </div>
-
-                                                <?php if (!isset($availableApartments[$i + 4])) break;
-                                                $apartment = $availableApartments[$i + 4]; ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $apartment->getModelImage() ?>"
-                                                         alt="<?= Html::encode($apartment->getName()) ?>">
-                                                    <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
-                                                       title="<?= Html::encode($apartment->getName()) ?>">
-                                                        <h2 class="item-title">
-                                                            <?= Html::encode($apartment->getName()) ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= Html::encode($apartment->location) ?></span>
-                                                </div>
+                                                <?php for ($j = $i + 1; $j <= 4; $j++): ?>
+                                                    <?php if (!isset($availableApartments[$j]))
+                                                        break;
+                                                    $apartment = $availableApartments[$j]; ?>
+                                                    <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                                        <img src="<?= $apartment->getModelImage() ?>"
+                                                             alt="<?= Html::encode($apartment->getName()) ?>">
+                                                        <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
+                                                           title="<?= Html::encode($apartment->getName()) ?>">
+                                                            <h2 class="item-title">
+                                                                <?= Html::encode($apartment->getName()) ?></h2>
+                                                        </a>
+                                                        <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
+                                                    </div>
+                                                <?php endfor; ?>
                                             </div>
                                         </div>
                                     </div>
@@ -184,7 +151,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                     </div>
                     <div class="button-more">
                         <a title="<?= trans('words', 'View More') ?>" href="<?= Url::to('apartment/list') ?>">
-                            <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
+                            <button type="button"
+                                    class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
                     </div>
                 </div>
@@ -205,7 +173,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <div class="title-right">
                         <p class="slide">
                             <span class="projects"><?= $investmentCounts ?> <?= trans('words', 'projects') ?> / </span>
-                            <span class="available-project"><?= trans('words', 'available') ?></br>
+                            <span class="available-project"><?= trans('words', 'available') ?><br>
                                 <?= trans('words', 'project') ?> </span>
                             <span class="num"><?= $availableInvestmentsCounts ?></span>
                         </p>
@@ -220,7 +188,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                         for ($i = 0; $i < $availableInvestmentsCounts; $i++): ?>
                             <?php if ($availableInvestmentsCounts / 5 > 1 && $i % 5 == 0): ?>
                                 <li data-target="#slide-2" data-slide-to="<?php echo $pageNumber - 1 ?>"
-                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
+                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span
+                                            class="indicators"><?= trans('words', 'page') ?><?php echo $pageNumber++ ?></span>
                                 </li>
                             <?php endif; endfor; ?>
                     </ul>
@@ -233,63 +202,26 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 left-post-slider">
                                             <div class="row">
-                                                <?php
-                                                if (!isset($availableInvestments[$i])) break;
-                                                $investment = $availableInvestments[$i];
-                                                ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->getName() ?>">
-                                                    <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= $investment->location ?> / </span>
-                                                    <span class="description-2"><?= $investment->location ?></span>
-                                                </div>
-                                                <?php
-                                                if (!isset($availableInvestments[$i + 1])) break;
-                                                $investment = $availableInvestments[$i + 1];
-                                                ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->getName() ?>">
-                                                    <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= $investment->location ?> / </span>
-                                                    <span class="description-2"><?= $investment->location ?></span>
-                                                </div>
-                                                <?php
-                                                if (!isset($availableInvestments[$i + 2])) break;
-                                                $investment = $availableInvestments[$i + 2];
-                                                ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->getName() ?>">
-                                                    <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= $investment->location ?> / </span>
-                                                    <span class="description-2"><?= $investment->location ?></span>
-                                                </div>
-                                                <?php
-                                                if (!isset($availableInvestments[$i + 3])) break;
-                                                $investment = $availableInvestments[$i + 3];
-                                                ?>
-                                                <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
-                                                    <img src="<?= $investment->getModelImage() ?>"
-                                                         alt="<?= $investment->getName() ?>">
-                                                    <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
-                                                        <h2 class="item-title"><?= $investment->getName() ?></h2>
-                                                    </a>
-                                                    <span class="description"><?= $investment->location ?> / </span>
-                                                    <span class="description-2"><?= $investment->location ?></span>
-                                                </div>
+                                                <?php for ($j = $i; $j < 4; $j++): ?>
+                                                    <?php
+                                                    if (!isset($availableInvestments[$j])) break;
+                                                    $investment = $availableInvestments[$j];
+                                                    ?>
+                                                    <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                                        <img src="<?= $investment->getModelImage() ?>"
+                                                             alt="<?= $investment->getName() ?>">
+                                                        <a href="<?= $investment->getUrl(); ?>">
+                                                            <h2 class="item-title"><?= $investment->getName() ?></h2>
+                                                        </a>
+                                                        <span class="description"><?= $investment->getLocationStr() ?> / </span>
+                                                        <span class="description-2"><?= $investment->getLocationStr() ?></span>
+                                                    </div>
+                                                <?php endfor; ?>
                                             </div>
                                         </div>
                                         <?php
-                                        if (!isset($availableInvestments[$i+4])) break;
-                                        $investment = $availableInvestments[$i+4];
+                                        if (!isset($availableInvestments[$i + 4])) break;
+                                        $investment = $availableInvestments[$i + 4];
                                         ?>
                                         <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $investment->getModelImage() ?>"
@@ -297,11 +229,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             <a href="<?= Url::to(['/investment/show/', 'id' => $investment->id]) ?>">
                                                 <h2 class="item-title"><?= $investment->getName() ?></h2>
                                             </a>
-                                            <span class="description"><?= $investment->location ?> / </span>
+                                            <span class="description"><?= $investment->getLocationStr() ?> / </span>
                                             <div class="overly">
                                                 <div class="item unit">
                                                     <p class="title-1"><?= $investment->area_size ?></p>
-                                                    <p class="title-2">Metr</p>
+                                                    <p class="title-2"><?= trans('words', 'Meter') ?></p>
                                                 </div>
                                                 <div class="item item-1">
                                                     <img src="<?= $baseUrl . '/images/item-1-w.png' ?>"
@@ -340,7 +272,6 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     </div>
                                 </div>
                             </div>
-
                         <?php endfor; ?>
 
                         <!-- Left and right controls -->
@@ -353,7 +284,8 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     </div>
                     <div class="button-more col-lg-4 col-md-4 col-sm-4">
-                        <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
+                        <button type="button"
+                                class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                     </div>
                 </div>
             </div>
@@ -367,7 +299,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                 <div class="slide-title">
                     <div class="title-left">
                         <img src="<?= $baseUrl . '/images/services.png' ?>" alt="services-icon">
-                        <h2 class="slide"><strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
+                        <h2 class="slide">
+                            <strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
                     </div>
                 </div>
                 <div id="slide-3" class="carousel slide" data-ride="carousel">
@@ -377,7 +310,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                         for ($i = 0; $i < $serviceCounts; $i++): ?>
                             <?php if ($serviceCounts / 4 > 1 && $i % 4 == 0): ?>
                                 <li data-target="#slide-3" data-slide-to="<?php echo $pageNumber - 1 ?>"
-                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
+                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span
+                                            class="indicators"><?= trans('words', 'page') ?><?php echo $pageNumber++ ?></span>
                                 </li>
                             <?php endif; endfor; ?>
 
@@ -386,63 +320,27 @@ $serviceCounts = isset($services) ? count($services) : null;
                         <?php for ($i = 0; $i < $serviceCounts; $i = $i + 3): ?>
                             <div class="carousel-item col-lg-12 col-md-12 col-sm-12 col-xs-12 <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="row">
-                                    <?php
-                                    if (!isset($services[$i])) break;
-                                    $service = $services[$i];
-                                    ?>
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
-                                        <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
-                                           title="<?= Html::encode($service->title) ?>">
-                                            <h2 class="item-title"><?= Html::encode($service->title) ?></h2>
-                                        </a>
-                                        <span class="description">
-                                            <?= Html::encode($service->description) ?>
+                                    <?php for ($j = $i; $j < 4; $j++): ?>
+                                        <?php
+                                        if (!isset($services[$j])) break;
+                                        $service = $services[$j];
+                                        ?>
+                                        <div class="col-sm-12 col-md-4 col-lg-4">
+                                            <a href="<?= $service->getUrl() ?>"
+                                               title="<?= Html::encode($service->getName()) ?>">
+                                                <h2 class="item-title"><?= Html::encode($service->getName()) ?></h2>
+                                            </a>
+                                            <span class="description">
+                                            <?= Html::encode($service->getDescriptionStr()) ?>
                                         </span>
-                                        <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
-                                           title="<?= Html::encode($service->title) ?>">
-                                            <button type="button" class="btn btn-primary slider-button">
-                                                <?= trans('words', 'View More') ?>
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <?php
-                                    if (!isset($services[$i + 1])) break;
-                                    $service = $services[$i + 1];
-                                    ?>
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
-                                        <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
-                                           title="<?= Html::encode($service->title) ?>">
-                                            <h2 class="item-title"><?= Html::encode($service->title) ?></h2>
-                                        </a>
-                                        <span class="description">
-                                            <?= Html::encode($service->description) ?>
-                                        </span>
-                                        <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
-                                           title="<?= Html::encode($service->title) ?>">
-                                            <button type="button" class="btn btn-primary slider-button">
-                                                <?= trans('words', 'View More') ?>
-                                            </button>
-                                        </a>
-                                    </div>
-                                    <?php
-                                    if (!isset($services[$i + 2])) break;
-                                    $service = $services[$i + 2];
-                                    ?>
-                                    <div class="col-sm-12 col-md-4 col-lg-4">
-                                        <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
-                                           title="<?= Html::encode($service->title) ?>">
-                                            <h2 class="item-title"><?= Html::encode($service->title) ?></h2>
-                                        </a>
-                                        <span class="description">
-                                            <?= Html::encode($service->description) ?>
-                                        </span>
-                                        <a href="<?= Url::to(['/service/show/', 'id' => $service->id]) ?>"
-                                           title="<?= Html::encode($service->title) ?>">
-                                            <button type="button" class="btn btn-primary slider-button">
-                                                <?= trans('words', 'View More') ?>
-                                            </button>
-                                        </a>
-                                    </div>
+                                            <a href="<?= $service->getUrl() ?>"
+                                               title="<?= Html::encode($service->getName()) ?>">
+                                                <button type="button" class="btn btn-primary slider-button">
+                                                    <?= trans('words', 'View More') ?>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    <?php endfor; ?>
                                 </div>
                             </div>
                         <?php endfor; ?>
@@ -468,7 +366,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <h2 class="slide"><?= trans('words','other construction') ?></h2>
+                        <h2 class="slide"><?= trans('words', 'other construction') ?></h2>
                     </div>
                 </div>
 
@@ -479,7 +377,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                         for ($i = 0; $i < $availableConstructionsCounts; $i++): ?>
                             <?php if ($availableConstructionsCounts / 4 > 1 && $i % 4 == 0): ?>
                                 <li data-target="#slide-4" data-slide-to="<?php echo $pageNumber - 1 ?>"
-                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span class="indicators">page <?php echo $pageNumber++ ?></span>
+                                    class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span
+                                            class="indicators"><?= trans('words', 'page') ?><?php echo $pageNumber++ ?></span>
                                 </li>
                             <?php endif; endfor; ?>
                     </ul>
@@ -489,99 +388,29 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <?php
-                                        if (!isset($availableConstructions[$i])) break;
-                                        $construction = $availableConstructions[$i];
-                                        ?>
-                                        <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                            <div class="img">
-                                                <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->getName()) ?>">
+                                        <?php for ($j = $i; $j < 4; $j++): ?>
+                                            <?php
+                                            if (!isset($availableConstructions[$j])) break;
+                                            $construction = $availableConstructions[$j];
+                                            ?>
+                                            <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                                <div class="img"><img src="<?= $construction->getModelImage() ?>"
+                                                                      alt="<?= Html::encode($construction->getName()) ?>">
+                                                </div>
+                                                <div class="post-meta">
+                                                    <a href="<?= $construction->getUrl() ?>"
+                                                       title="<?= Html::encode($construction->getName()) ?>">
+                                                        <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
+                                                    </a>
+                                                    <span class="author"><?= Html::encode($construction->getLocationStr()) ?></span>
+                                                    <span class="description"><?= Html::encode($construction->getLocationStr()) ?></span>
+                                                    <a href="<?= $construction->getUrl() ?>">
+                                                        <button type="button"
+                                                                class="btn btn-primary"><?= trans('words', 'View More') ?></button>
+                                                    </a>
+                                                </div>
                                             </div>
-                                            <div class="post-meta">
-                                                <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->getName()) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
-                                                </a>
-                                                <span class="author"><?= Html::encode($construction->location) ?></span>
-
-                                                <span class="description"><?= Html::encode($construction->getSubtitleStr()) ?></span>
-
-                                                <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <?php if (!isset($availableConstructions[$i + 1])) break;
-                                        $construction = $availableConstructions[$i + 1];
-                                        ?>
-                                        <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                            <div class="img">
-                                                <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->getName()) ?>">
-                                            </div>
-                                            <div class="post-meta">
-                                                <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->getName()) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
-                                                </a>
-                                                <span class="author"><?= Html::encode($construction->location) ?></span>
-
-                                                <span class="description"><?= Html::encode($construction->location) ?></span>
-
-                                                <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <?php if (!isset($availableConstructions[$i + 2])) break;
-                                        $construction = $availableConstructions[$i + 2];
-                                        ?>
-                                        <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                            <div class="img">
-                                                <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->getName()) ?>">
-                                            </div>
-                                            <div class="post-meta">
-                                                <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->getName()) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
-                                                </a>
-                                                <span class="author"><?= Html::encode($construction->location) ?></span>
-
-                                                <span class="description"><?= Html::encode($construction->location) ?></span>
-
-                                                <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
-                                                </a>
-                                            </div>
-                                        </div>
-
-                                        <?php if (!isset($availableConstructions[$i + 3])) break;
-                                        $construction = $availableConstructions[$i + 3];
-                                        ?>
-                                        <div class="grid col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                            <div class="img">
-                                                <img src="<?= $construction->getModelImage() ?>"
-                                                     alt="<?= Html::encode($construction->getName()) ?>">
-                                            </div>
-                                            <div class="post-meta">
-                                                <a href="<?= Url::to(['/construction/show/', 'id' => $construction->id]) ?>"
-                                                   title="<?= Html::encode($construction->getName()) ?>">
-                                                    <h2 class="item-title"><?= Html::encode($construction->getName()) ?></h2>
-                                                </a>
-                                                <span class="author"><?= Html::encode($construction->location) ?></span>
-
-                                                <span class="description"><?= Html::encode($construction->location) ?></span>
-
-                                                <a href="<?= Url::to('construction/show', ['id' => $construction->id]) ?>">
-                                                    <button type="button" class="btn btn-primary"><?= trans('words', 'View More') ?></button>
-                                                </a>
-                                            </div>
-                                        </div>
-
+                                        <?php endfor; ?>
                                     </div>
                                 </div>
                             </div>
@@ -596,7 +425,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                     </div>
                     <div class="button-more">
                         <a href="<?= Url::to('construction') ?>" title="<?= trans('words', 'View More') ?>">
-                            <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
+                            <button type="button"
+                                    class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
 
                     </div>

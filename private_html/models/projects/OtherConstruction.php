@@ -84,4 +84,9 @@ class OtherConstruction extends Project
             return Yii::getAlias('@web/uploads/construction/') . $this->image;
         return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
+
+    public function getUrl()
+    {
+        return Url::to(['/construction/show', 'id' => $this->id]);
+    }
 }

@@ -11,7 +11,10 @@ use yii\helpers\Url;
 
 /**
  * This is the model class for table "item".
- * @property $body
+ * @property string $body
+ * @property string description
+ * @property string ar_description
+ * @property string en_description
  *
  */
 class Service extends Page
@@ -31,6 +34,9 @@ class Service extends Page
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'description' => ['CHAR', ''],
+            'ar_description' => ['CHAR', ''],
+            'en_description' => ['CHAR', ''],
         ]);
     }
 
@@ -41,6 +47,7 @@ class Service extends Page
     {
         return array_merge(parent::rules(), [
             [['type'], 'default', 'value' => static::$typeName],
+            [['description', 'ar_description', 'en_description'], 'required'],
         ]);
     }
 
@@ -50,12 +57,37 @@ class Service extends Page
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'description' => trans('words', 'Description'),
+            'ar_description' => trans('words', 'Ar Description'),
+            'en_description' => trans('words', 'En Description'),
+        ]);
+    }
+
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(), [
+            [
+                ['description', 'ar_description', 'en_description'],
+                ['type' => static::FORM_FIELD_TYPE_TEXT_AREA, 'containerCssClass' => 'col-sm-4']
+            ]
         ]);
     }
 
     public static function getList()
     {
         return ArrayHelper::map(Service::find()->valid()->all(), 'id', 'name');
+    }
+
+    public function getDescriptionStr()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->description;
+            else
+                return $this->{Yii::$app->language . '_description'} ?: $this->description;
+        }
+        return $this->description;
+
     }
 
     public function getUrl()
