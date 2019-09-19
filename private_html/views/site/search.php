@@ -1,13 +1,15 @@
 <?php
 
+/** @var ActiveDataProvider $apartmentProvider */
 
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 $baseUrl = $this->theme->baseUrl;
 ?>
 
 
 <?php
-if (isset($apartmentProvider)): ?>
+if ($apartmentProvider->totalCount): ?>
     <section class="full-slide">
         <div class="container-fluid">
             <div class="row">

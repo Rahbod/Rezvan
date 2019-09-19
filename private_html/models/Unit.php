@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use app\models\blocks\OtherUnits;
+use app\models\blocks\UnitDetails;
 use Yii;
 use yii\helpers\Url;
 use yii\web\View;
@@ -250,7 +252,7 @@ class Unit extends Item
     public function render(View $view)
     {
         if ($this->project_blocks == 1)
-            return $this->project->renderBlocks($view, $this->project);
+            return $this->project->renderBlocks($view, $this->project, $this);
         return $this->renderBlocks($view, $this);
     }
 
@@ -269,6 +271,16 @@ class Unit extends Item
             $block = $modelClass::findOne($block->id);
             $output .= $block->render($view, $unit);
         }
+
+        // render static unit blocks
+        // render unit details
+        $block = new UnitDetails($this);
+        $output .= $block->render($view);
+
+        // render other units
+        $block = new OtherUnits($this);
+        $output .= $block->render($view);
+
         return $output;
     }
 

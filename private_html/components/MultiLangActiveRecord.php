@@ -52,6 +52,9 @@ abstract class MultiLangActiveRecord extends DynamicActiveRecord
             $this->lang = Yii::$app->language;
         } else {
             $this->dynaDefaults = array_merge($this->dynaDefaults, [
+                'en_name' => ['CHAR', ''],
+                'ar_name' => ['CHAR', ''],
+
                 'en_status' => ['INTEGER', ''],
                 'ar_status' => ['INTEGER', ''],
             ]);
