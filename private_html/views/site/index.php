@@ -26,7 +26,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </div>
 </section>
 
-<?php if (isset($availableApartments)): ?>
+<?php if (isset($availableApartments) && $availableApartmentsCounts > 0): ?>
     <section class="slide-1">
         <div class="container-fluid">
             <div class="row">
@@ -160,7 +160,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </section>
 <?php endif; ?>
 
-<?php if (isset($availableInvestments)): ?>
+<?php if (isset($availableInvestments) && $availableInvestmentsCounts > 0): ?>
     <section class="slide-2">
         <div class="container-fluid">
             <div class="row">
@@ -292,7 +292,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </section>
 <?php endif; ?>
 
-<?php if (isset($services)): ?>
+<?php if (isset($services) && $serviceCounts > 0 ):?>
     <section class="slide-3">
         <div class="container-fluid">
             <div class="row">
@@ -360,7 +360,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </section>
 <?php endif; ?>
 
-<?php if (isset($availableConstructions)): ?>
+<?php if (isset($availableConstructions) && $availableConstructionsCounts > 0): ?>
     <section class="slide-4">
         <div class="container-fluid">
             <div class="row">

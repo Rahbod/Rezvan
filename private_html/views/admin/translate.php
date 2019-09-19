@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </form>
         </div>
 
-        <?php if ($basePhrases && $destPhrases): ?>
+        <?php if (isset($basePhrases) && $destPhrases): ?>
             <hr>
             <div class="m-form__section m-form__section--last">
                 <div class="m-form__heading">

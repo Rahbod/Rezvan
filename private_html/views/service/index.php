@@ -61,13 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
                         ],
-                        [
-                            'attribute' => 'lang',
-                            'value' => function($model){
-                                return \app\models\Page::$langArray[$model->lang];
-                            },
-                            'filter'=>\app\models\Page::$langArray
-                        ],
+
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

@@ -13,7 +13,7 @@ use yii\helpers\Url; ?>
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
-                                <a href="<?= Url::to('/site/index') ?>">
+                                <a href="<?= Url::to(['/site/index']) ?>">
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>"
                                          alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
