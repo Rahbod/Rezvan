@@ -18,7 +18,7 @@ $imageUrl = request()->getBaseUrl().'/'.BlockController::$imgDir.'/'.$block->ima
                 <div class="bg-logo-slider">
                 </div>
                 <div class="center-title">
-                    <h1 class="center-text"><?= $project->getName() ?></h1>
+                    <h1 class="center-text"><?= $project->unit?$project->unit->getName():$project->getName() ?></h1>
                     <h2 class="center-text"><?= $project->getSubtitleStr() ?></h2>
                 </div>
                 <div class="container-fluid">

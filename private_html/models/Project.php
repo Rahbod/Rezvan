@@ -4,6 +4,10 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
+use app\models\blocks\OtherUnits;
+use app\models\blocks\RelatedProjects;
+use app\models\blocks\UnitDetails;
+use app\models\blocks\Units;
 use app\models\Unit;
 use app\models\projects\ProjectInterface;
 use Yii;
@@ -56,6 +60,9 @@ class Project extends Item implements ProjectInterface
         self::SINGLE_VIEW => 'Single view',
         self::MULTI_VIEW => 'Multi view',
     ];
+
+    /** @var Unit */
+    public $unit = null; // unit that belongs to this project, comes this in Unit Model in render function
 
     /**
      * {@inheritdoc}
@@ -329,19 +336,37 @@ JS
 
     /**
      * @param View $view
-     * @param $project
+     * @param Project $project
+     * @param bool|Unit $unit
      * @return string
      */
-    public function renderBlocks($view, $project)
+    public function renderBlocks($view, $project, $unit = false)
     {
+        if ($unit)
+            $project->unit = $unit;
+
         $output = '';
         foreach ($this->blocks as $block) {
             $type = $block->type;
             /** @var Block $modelClass */
             $modelClass = Block::$typeModels[$type];
+            if ($unit && ($modelClass == Units::className() || $modelClass == RelatedProjects::className()))
+                continue;
             $block = $modelClass::findOne($block->id);
             $output .= $block->render($view, $project);
         }
+
+        // render static unit blocks
+        if($project->unit){
+            // render unit details
+            $block = new UnitDetails($project->unit);
+            $output .= $block->render($view);
+
+            // render other units
+            $block = new OtherUnits($project->unit);
+            $output .= $block->render($view);
+        }
+
         return $output;
     }
 

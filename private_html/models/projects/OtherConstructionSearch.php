@@ -19,7 +19,7 @@ class OtherConstructionSearch extends OtherConstruction
         return [
             [['id', 'userID', 'modelID', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created'], 'safe'],
+            [['name', 'en_name', 'ar_name', 'subtitle', 'ar_subtitle', 'en_subtitle'], 'safe'],
         ];
     }
 
@@ -57,19 +57,13 @@ class OtherConstructionSearch extends OtherConstruction
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        $query->andFilterWhere([
-            'id' => $this->id,
-            'userID' => $this->userID,
-            'modelID' => $this->modelID,
-            'type' => $this->type,
-            'status' => $this->status,
-        ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra])
-            ->andFilterWhere(['like', 'created', $this->created]);
+        if(($lang = app()->language) == 'fa') {
+            $query->andFilterWhere(['like', 'name', $this->name]);
+            $query->orFilterWhere(['like', self::columnGetString('subtitle'), $this->subtitle]);
+        }else {
+            $query->andFilterWhere(['like', self::columnGetString($lang . '_name'), $this->name]);
+            $query->orFilterWhere(['like', self::columnGetString($lang . '_subtitle'), $this->subtitle]);
+        }
 
         return $dataProvider;
     }

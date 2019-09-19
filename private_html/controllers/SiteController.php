@@ -4,20 +4,27 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\models\Item;
+use app\models\Menu;
+use app\models\MenuSearch;
+use app\models\Page;
+use app\models\PageSearch;
+use app\models\Post;
+use app\models\PostSearch;
 use app\models\Project;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
 use app\models\projects\Investment;
 use app\models\projects\InvestmentSearch;
 use app\models\projects\OtherConstruction;
+use app\models\projects\OtherConstructionSearch;
 use app\models\Service;
 use app\models\Slide;
+use Symfony\Component\EventDispatcher\Tests\Service;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
-
-//use Symfony\Component\EventDispatcher\Tests\Service;
 
 class SiteController extends AuthController
 {
@@ -114,26 +121,20 @@ class SiteController extends AuthController
             $searchApartment = new ApartmentSearch();
             $searchApartment->name = $term;
             $searchApartment->subtitle = $term;
-            $searchApartment->type = Project::TYPE_AVAILABLE_APARTMENT;
             $apartmentProvider = $searchApartment->search([]);
             $apartmentProvider->getPagination()->pageSize = 50;
-            $apartmentProvider = $apartmentProvider->getModels();
 
             $searchInvestment = new InvestmentSearch();
             $searchInvestment->name = $term;
             $searchInvestment->subtitle = $term;
-            $searchInvestment->type = Project::TYPE_INVESTMENT;
             $investmentProvider = $searchInvestment->search([]);
             $investmentProvider->getPagination()->pageSize = 50;
-            $investmentProvider = $investmentProvider->getModels();
 
-            $searchConstruction = new InvestmentSearch();
+            $searchConstruction = new OtherConstructionSearch();
             $searchConstruction->name = $term;
             $searchConstruction->subtitle = $term;
-            $searchConstruction->type = Project::TYPE_OTHER_CONSTRUCTION;
             $constructionProvider = $searchConstruction->search([]);
             $constructionProvider->getPagination()->pageSize = 50;
-            $constructionProvider = $constructionProvider->getModels();
 
 //            $searchPage = new PageSearch();
 //            $searchPage->name = $term;
@@ -141,7 +142,7 @@ class SiteController extends AuthController
 //            $searchPage->status = Page::STATUS_PUBLISHED;
 //            $pageProvider = $searchPage->search([]);
 //            $pageProvider->getPagination()->pageSize = 100;
-//            dd($constructionProvider);
+
             return $this->render('search', compact('term', 'investmentProvider',
                 'constructionProvider', 'searchApartment', 'apartmentProvider'));
         } else

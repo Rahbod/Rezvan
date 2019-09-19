@@ -18,7 +18,7 @@ class ApartmentSearch extends Apartment
         return [
             [['id', 'status'], 'integer'],
             [['type'], 'number'],
-            [['name', 'dyna', 'extra', 'created','subtitle'], 'safe'],
+            [['name', 'en_name', 'ar_name', 'subtitle', 'ar_subtitle', 'en_subtitle'], 'safe'],
         ];
     }
 
@@ -42,17 +42,6 @@ class ApartmentSearch extends Apartment
     {
         $query = Apartment::find();
 
-//            ->andWhere([
-//            ['con1' => 55],
-//            [
-//                'or',
-//                [
-//                    ['con2' => 1],
-//                    ['like', 'con3', 'asdsad']
-//                ]
-//            ]
-//        ])->count();
-
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
@@ -67,17 +56,13 @@ class ApartmentSearch extends Apartment
             return $dataProvider;
         }
 
-        // grid filtering conditions
-//        $query->andFilterWhere([
-//            'id' => $this->id,
-//            'type' => $this->type,
-//            'status' => $this->status,
-//        ]);
-
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'subtitle', $this->dyna])
-            ->andFilterWhere(['like', 'extra', $this->extra]);
+        if(($lang = app()->language) == 'fa') {
+            $query->andFilterWhere(['like', 'name', $this->name]);
+            $query->orFilterWhere(['like', self::columnGetString('subtitle'), $this->subtitle]);
+        }else {
+            $query->andFilterWhere(['like', self::columnGetString($lang . '_name'), $this->name]);
+            $query->orFilterWhere(['like', self::columnGetString($lang . '_subtitle'), $this->subtitle]);
+        }
 
         return $dataProvider;
     }

@@ -150,7 +150,7 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     </div>
                     <div class="button-more">
-                        <a title="<?= trans('words', 'View More') ?>" href="<?= Url::to('apartment/list') ?>">
+                        <a href="<?= Url::to(['/apartment/list']) ?>" title="<?= trans('words', 'View More') ?>">
                             <button type="button"
                                     class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
@@ -284,8 +284,10 @@ $serviceCounts = isset($services) ? count($services) : null;
 
                     </div>
                     <div class="button-more col-lg-4 col-md-4 col-sm-4">
-                        <button type="button"
-                                class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
+                        <a href="<?= Url::to(['/investment/list']) ?>" title="<?= trans('words', 'View More') ?>">
+                            <button type="button"
+                                    class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -424,7 +426,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         </a>
                     </div>
                     <div class="button-more">
-                        <a href="<?= Url::to('construction') ?>" title="<?= trans('words', 'View More') ?>">
+                        <a href="<?= Url::to(['/construction/list']) ?>" title="<?= trans('words', 'View More') ?>">
                             <button type="button"
                                     class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
