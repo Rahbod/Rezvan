@@ -20,7 +20,7 @@ use app\models\projects\OtherConstruction;
 use app\models\projects\OtherConstructionSearch;
 use app\models\Service;
 use app\models\Slide;
-use Symfony\Component\EventDispatcher\Tests\Service;
+//use Symfony\Component\EventDispatcher\Tests\Service;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
