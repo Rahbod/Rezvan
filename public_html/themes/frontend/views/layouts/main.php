@@ -33,7 +33,7 @@ $url_array = explode('/', $url);
 $pageName = end($url_array);
 
 
-if ($pageName == 'one-more') {
+if ($pageName == 'more-one') {
     $bodyClass = 'more-one';
     $headerClass = 'header-style-2';
 } else {

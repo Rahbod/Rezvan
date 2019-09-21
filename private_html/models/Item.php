@@ -369,4 +369,5 @@ class Item extends MultiLangActiveRecord
         }
         return $this->name;
     }
+
 }

@@ -15,7 +15,7 @@ use yii\web\HttpException;
  */
 abstract class AuthController extends MainController
 {
-    public $bodyClass;
+    public $bodyClass='home';
 
     /**
      * @inheritdoc
