@@ -1,6 +1,8 @@
 <?php
 $baseUrl = $this->theme->baseUrl;
-?>
+
+use app\components\MultiLangActiveRecord;
+use yii\helpers\Url; ?>
 <footer class="footer-style-2">
     <div class="container-fluid">
         <div class="row">
@@ -37,9 +39,12 @@ $baseUrl = $this->theme->baseUrl;
                                 <div class="collapse navbar-collapse" id="language">
                                     <ul class="navbar-nav">
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="lang-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+                                            <a class="nav-link dropdown-toggle" href="#" id="lang-select" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="#">IR</a>
+                                                <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </li>
                                     </ul>
