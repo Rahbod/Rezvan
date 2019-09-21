@@ -4,14 +4,6 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
-use app\models\Item;
-use app\models\Menu;
-use app\models\MenuSearch;
-use app\models\Page;
-use app\models\PageSearch;
-use app\models\Post;
-use app\models\PostSearch;
-use app\models\Project;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
 use app\models\projects\Investment;
@@ -20,11 +12,12 @@ use app\models\projects\OtherConstruction;
 use app\models\projects\OtherConstructionSearch;
 use app\models\Service;
 use app\models\Slide;
-//use Symfony\Component\EventDispatcher\Tests\Service;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+
+//use Symfony\Component\EventDispatcher\Tests\Service;
 
 class SiteController extends AuthController
 {
@@ -114,7 +107,8 @@ class SiteController extends AuthController
 
     public function actionSearch()
     {
-        $this->bodyClass = 'home';
+        $this->bodyClass = 'more-one';
+        $this->innerPage = true;
 
         $term = Yii::$app->request->getQueryParam('query');
         if ($term && !empty($term)) {
@@ -152,8 +146,6 @@ class SiteController extends AuthController
 
     public function actionIndex()
     {
-        $this->bodyClass = 'home';
-
         $apartmentCounts = Apartment::find()->count();
         $investmentCounts = Investment::find()->count();
         $constructionCounts = OtherConstruction::find()->count();
