@@ -200,9 +200,9 @@ $this->registerJs('
                 </div>
             </div>
             <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Youtube'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                <?php echo Html::label(trans('words', 'Telegram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
                 <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][youtube]', $settings['socialNetworks']['youtube'], [
+                    <?php echo Html::textInput('Setting[socialNetworks][telegram]', $settings['socialNetworks']['telegram'], [
                         'class' => 'form-control m-input m-input__solid text-right',
                         'dir' => 'ltr',
                     ]); ?>

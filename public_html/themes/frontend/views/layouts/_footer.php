@@ -1,5 +1,6 @@
 <?php
 
+use app\components\MultiLangActiveRecord;
 use app\components\Setting;
 use yii\helpers\Url;
 
@@ -18,7 +19,7 @@ $baseUrl = $this->theme->baseUrl;
                         <div class="footer-title">
                             <p><?= trans('words', 'ABOUT') ?> <?= trans('words', app()->name)  ?></p>
                         </div>
-                        <p><?= Setting::get('about.'.app()->language) ?></p>
+                        <p><?= Setting::get(app()->language.'_about') ?></p>
                         <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
                         <p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p>
                         <div class="phone">
@@ -62,8 +63,10 @@ $baseUrl = $this->theme->baseUrl;
                                                data-toggle="dropdown" aria-haspopup="true"
                                                aria-expanded="false"><?= strtoupper(app()->language) ?></a>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                <a class="dropdown-item" href="<?= Url::to(["/en"]) ?>">EN</a>
-                                                <a class="dropdown-item" href="<?= Url::to(["/fa"]) ?>">FA</a>
+                                                <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
+                                                    <a class="dropdown-item"
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                <?php endforeach; ?>
                                             </div>
                                         </li>
                                     </ul>

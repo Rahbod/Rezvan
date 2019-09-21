@@ -1,1 +1,25 @@
-{"language":"fa","timeZone":"Asia/Tehran","map":{"enabled":true,"lat":35.734507600000000593354343436658382415771484375,"lng":51.3279493000000002211891114711761474609375},"ar_address":"","en_address":"","address":"","tell":"","fax":"","email":"","socialNetworks":{"whatsapp":"","twitter":"","instagram":"","facebook":"","youtube":""}}
+{
+  "language": "fa",
+  "timeZone": "Asia/Tehran",
+  "map": {
+    "enabled": true,
+    "lat": 35.734507600000000593354343436658382415771484375,
+    "lng": 51.3279493000000002211891114711761474609375
+  },
+  "fa_about": "",
+  "ar_about": "",
+  "en_about": "",
+  "ar_address": "",
+  "en_address": "",
+  "address": "",
+  "tell": "",
+  "fax": "",
+  "email": "",
+  "socialNetworks": {
+    "whatsapp": "",
+    "twitter": "",
+    "instagram": "",
+    "facebook": "",
+    "telegram": ""
+  }
+}
