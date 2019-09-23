@@ -2,6 +2,7 @@
 /** @var $this View */
 
 /** @var $block Units */
+/** @var $units Unit[] */
 
 use app\models\blocks\Units;
 use app\models\Unit;
