@@ -29,4 +29,12 @@ class UnitDetails implements BlockInterface
     {
         return $view->render('//block/_unit_details_view', ['block' => $this]);
     }
+
+    /**
+     * @return Unit
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
 }

@@ -2,8 +2,10 @@
 /** @var $this View */
 
 /** @var $block Units */
+/** @var $project Project */
 
 use app\models\blocks\Units;
+use app\models\Project;
 use app\models\Unit;
 use yii\web\View;
 

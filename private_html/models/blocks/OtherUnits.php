@@ -28,8 +28,19 @@ class OtherUnits implements BlockInterface
     public function render(View $view, $project = null)
     {
         /** @var $project Project */
-        $units = Units::find()->andWhere(['!=', 'id', $this->unit->id])->all();
+        $units = Unit::find()
+            ->andWhere([Unit::columnGetString('itemID') => $this->unit->itemID])
+            ->andWhere(['!=', 'id', $this->unit->id])
+            ->all();
 
         return $view->render('//block/_other_units_view', ['block' => $this, 'units' => $units]);
+    }
+
+    /**
+     * @return Unit
+     */
+    public function getUnit()
+    {
+        return $this->unit;
     }
 }

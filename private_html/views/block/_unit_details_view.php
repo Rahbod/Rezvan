@@ -1,13 +1,13 @@
 <?php
 /** @var $this View */
 
-/** @var $block Units */
+/** @var $block UnitDetails */
 
-use app\models\blocks\Units;
-use app\models\Unit;
+use app\models\blocks\UnitDetails;
 use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
+$unit = $block->getUnit();
 ?>
 <section class="slide-4">
     <div class="container-fluid">

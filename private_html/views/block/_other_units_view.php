@@ -1,9 +1,10 @@
 <?php
 /** @var $this View */
 
-/** @var $block Units */
+/** @var $block OtherUnits */
+/** @var $units Unit[] */
 
-use app\models\blocks\Units;
+use app\models\blocks\OtherUnits;
 use app\models\Unit;
 use yii\web\View;
 
