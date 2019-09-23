@@ -351,6 +351,8 @@ JS
         foreach ($this->blocks as $block) {
             $type = $block->type;
             /** @var Block $modelClass */
+
+
             $modelClass = Block::$typeModels[$type];
             if ($unit && ($modelClass == Units::className() || $modelClass == RelatedProjects::className()))
                 continue;
