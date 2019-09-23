@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="other-construction-search">
+<div class="construction-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -19,10 +19,6 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'id') ?>
-
-<!--    --><?//= $form->field($model, 'userID') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'modelID') ?>
 
 <!--    --><?//= $form->field($model, 'type') ?>
 

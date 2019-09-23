@@ -27,7 +27,9 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                     </div>
                     <div class="title-right">
                         <p class="slide">
-                            <span class="projects"><?php echo $investmentCounts ?> <?= trans('words', 'projects') ?> / </span>
+                             <span class="projects">
+                                <?= trans('words', '{count} projects', ['count' => $investmentCounts]) ?> /
+                            </span>
                             <span class="available-project"><?= trans('words', 'available<br>project') ?></span>
                             <span class="num"><?= $availableInvestments ?></span>
                         </p>

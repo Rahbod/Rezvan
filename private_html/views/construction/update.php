@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\projects\OtherConstruction */
 
-$this->title = trans('words', 'Update other construction: {name}', [
+$this->title = trans('words', 'Update construction: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => trans('words', 'Other constructions'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => trans('words', 'Constructions'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = trans('words', 'Update');
 ?>
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = trans('words', 'Update');
     </div>
     <!--begin::Form-->
     <?= $this->render('_form', [
-    'model' => $model,
+        'model' => $model,
     ]) ?>
     <!--end::Form-->
 </div>

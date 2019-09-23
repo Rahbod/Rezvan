@@ -146,6 +146,8 @@ class SiteController extends AuthController
 
     public function actionIndex()
     {
+        $this->bodyClass = 'home';
+
         $apartmentCounts = Apartment::find()->count();
         $investmentCounts = Investment::find()->count();
         $constructionCounts = OtherConstruction::find()->count();

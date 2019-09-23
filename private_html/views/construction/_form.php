@@ -1,7 +1,7 @@
 <?php
 
-use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Html;
+use app\components\customWidgets\CustomActiveForm;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -9,7 +9,7 @@ use yii\helpers\Url;
 /* @var $form app\components\customWidgets\CustomActiveForm */
 ?>
 <?php $form = CustomActiveForm::begin([
-    'id' => 'other-construction-form',
+    'id' => 'apartment-form',
     //'action' => $model->isNewRecord ? ['create'] : ['update', 'id' => $model->id],
     'enableAjaxValidation' => true,
     'enableClientValidation' => true,

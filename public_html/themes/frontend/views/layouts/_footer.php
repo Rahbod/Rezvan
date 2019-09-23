@@ -23,8 +23,7 @@ $baseUrl = $this->theme->baseUrl;
                         <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
                         <p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p>
                         <div class="phone">
-                            <p><strong><?= Yii::t('words', 'Tell & Fax') ?><br> <?= Setting::get('tell') ?>
-                                    - <?= Setting::get('fax') ?></strong></p>
+                            <p><strong><?= Yii::t('words', 'Tell') ?><br> <?= Setting::get('tell') ?></strong></p>
                         </div>
                         <div class="social-icon">
                             <ul class="social-list">

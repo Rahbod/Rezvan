@@ -34,13 +34,14 @@ $serviceCounts = isset($services) ? count($services) : null;
                     <div class="title-left">
                         <img src="<?= alias('@web/themes/frontend/images/apartment-icon.png') ?>"
                              alt="apartment-icon">
-                        <h2 class="slide"><strong><?= trans('words', 'available') ?>
-                            </strong> <?= trans('words', 'apartments') ?></h2>
+                        <h2 class="slide"><?= trans('words', '<strong>available </strong> apartment') ?></h2>
                     </div>
                     <div class="title-right">
                         <p class="slide">
-                            <span class="projects"><?= $apartmentCounts ?> <?= trans('words', 'projects') ?> / </span>
-                            <span class="available-project"><?= trans('words', 'available') ?><br><?= trans('words', 'project') ?> </span>
+                            <span class="projects">
+                                <?= trans('words', '{count} projects', ['count' => $apartmentCounts]) ?> /
+                            </span>
+                            <span class="available-project"><?= trans('words', 'available<br>project') ?></span>
                             <span class="num"><?= $availableApartmentsCounts ?></span>
                         </p>
                     </div>
@@ -167,14 +168,14 @@ $serviceCounts = isset($services) ? count($services) : null;
                 <div class="slide-title">
                     <div class="title-left">
                         <img src="<?= $baseUrl . '/images/investment.png' ?>" alt="investment-icon">
-                        <h2 class="slide"><strong><?= trans('words', 'investment') ?></strong>
-                            <?= trans('words', 'opportunities') ?></h2>
+                        <h2 class="slide"><?= trans('words', '<strong>available </strong> investment') ?></h2>
                     </div>
                     <div class="title-right">
                         <p class="slide">
-                            <span class="projects"><?= $investmentCounts ?> <?= trans('words', 'projects') ?> / </span>
-                            <span class="available-project"><?= trans('words', 'available') ?><br>
-                                <?= trans('words', 'project') ?> </span>
+                            <span class="projects">
+                                <?= trans('words', '{count} projects', ['count' => $investmentCounts]) ?> /
+                            </span>
+                            <span class="available-project"><?= trans('words', 'available<br>project') ?></span>
                             <span class="num"><?= $availableInvestmentsCounts ?></span>
                         </p>
                     </div>
@@ -301,8 +302,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                 <div class="slide-title">
                     <div class="title-left">
                         <img src="<?= $baseUrl . '/images/services.png' ?>" alt="services-icon">
-                        <h2 class="slide">
-                            <strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
+                        <h2 class="slide"><?= trans('words', '<strong>available </strong> services') ?></h2>
                     </div>
                 </div>
                 <div id="slide-3" class="carousel slide" data-ride="carousel">

@@ -341,13 +341,14 @@ class MainController extends Controller implements CrudControllerInterface
                 'url' => ['/admin/translate'],
                 'visible' => $permissions || app()->user->can('adminTranslate')
             ],
+
             [
                 'label' => '<i class="m-menu__link-icon fa fa-cogs"></i><span class="m-menu__link-text">' . trans('words', 'Setting') . '</span>',
-                'items' => [
-                    ['label' => 'تنظیمات عمومی', 'url' => ['/setting/index'], 'visible' => $permissions || app()->user->can('settingIndex')],
-                    ['label' => 'تنظیمات اسلایدر', 'url' => ['/slide/setting'], 'visible' => $permissions || app()->user->can('sliderSetting')],
-                ]
+                'url' => ['/setting/index'],
+                'visible' => $permissions || app()->user->can('settingIndex')
             ],
+
+
             [
                 'label' => '<i class="m-menu__link-icon flaticon-logout"></i><span class="m-menu__link-text text-danger">' . trans('words', 'Logout') . '</span>',
                 'url' => ['/admin/logout'],

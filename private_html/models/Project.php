@@ -330,6 +330,8 @@ JS
             return $this->renderBlocks($view, $this);
         else {
             $className = strtolower($this->formName());
+            if($className == 'otherconstruction')
+                $className = 'construction';
             return $view->renderAjax('/' . $className . '/multi_view', ['project' => $this]);
         }
     }
