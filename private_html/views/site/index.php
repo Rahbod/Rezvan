@@ -181,23 +181,6 @@ $serviceCounts = isset($services) ? count($services) : null;
                         </p>
                     </div>
                 </div>
-
-                <div class="slide-title">
-                    <div class="title-left">
-                        <img src="<?= $baseUrl . '/images/investment.png' ?>" alt="investment-icon">
-                        <h2 class="slide"><strong><?= trans('words', 'investment') ?></strong>
-                            <?= trans('words', 'opportunities') ?></h2>
-                    </div>
-                    <div class="title-right">
-                        <p class="slide">
-                            <span class="projects"><?= $investmentCounts ?> <?= trans('words', 'projects') ?> / </span>
-                            <span class="available-project"><?= trans('words', 'available') ?><br>
-                                <?= trans('words', 'project') ?> </span>
-                            <span class="num"><?= $availableInvestmentsCounts ?></span>
-                        </p>
-                    </div>
-                </div>
-
                 <div id="slide-2" class="carousel slide col-lg-12 col-md-12  col-sm-12 col-xs-12" data-ride="carousel">
                     <!-- Indicators -->
                     <ul class="carousel-indicators">
