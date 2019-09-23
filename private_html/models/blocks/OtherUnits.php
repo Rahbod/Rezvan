@@ -35,4 +35,12 @@ class OtherUnits implements BlockInterface
 
         return $view->render('//block/_other_units_view', ['block' => $this, 'units' => $units]);
     }
+
+    /**
+     * @return Unit
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
 }
