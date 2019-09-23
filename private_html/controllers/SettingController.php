@@ -2,9 +2,8 @@
 
 namespace app\controllers;
 
-use app\components\Setting;
 use app\components\AuthController;
-use yii\helpers\Json;
+use app\components\Setting;
 
 class SettingController extends AuthController
 {
@@ -19,6 +18,7 @@ class SettingController extends AuthController
 
         if (\Yii::$app->request->post()) {
             $postData = \Yii::$app->request->post('Setting');
+//            dd($postData);
 
             ## region validation post data
             $config = Setting::getAll();
@@ -47,6 +47,8 @@ class SettingController extends AuthController
                 \Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => \trans('words', 'base.dangerMsg')]);
         }
         $settings = Setting::getAll(true);
+
+//        dd($settings);
         return $this->render('index', compact('settings'));
     }
 }

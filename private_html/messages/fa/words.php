@@ -479,10 +479,16 @@ return [
     '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
     '<strong>available </strong> apartment' => 'آپارتمان های موجود',
     '<strong>available </strong> investment' => 'سرمایه گذاری های موجود',
+    '<strong>available </strong> construction' => 'دیگر سازه های موجود',
+    '<strong>available </strong> services' => 'خدمات موجود',
     'available<br>project' => 'پروژه های<br>موجود',
     '<strong>Building </strong> access<br>Near you' => '<strong>دسترسی های </strong> نزدیک',
     'available<br>unit' => 'واحدهای<br>موجود',
     'About {value} km distance' => 'حدود {value} کیلومتر',
+
+    '{count} projects' => ' پروژه ها {count}',
+    '{count} unit' => ' واحدها {count}',
+
 
     // units
     '<strong>available</strong> for sel' => 'آماده برای فروش',

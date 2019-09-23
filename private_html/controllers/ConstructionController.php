@@ -3,184 +3,63 @@
 namespace app\controllers;
 
 use app\components\AuthController;
+use app\components\CrudControllerTrait;
+use app\models\Project;
 use app\models\projects\OtherConstruction;
-use app\models\projects\OtherConstructionSearch;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
-use devgroup\dropzone\UploadedFiles;
 use Yii;
-use yii\filters\VerbFilter;
-use yii\web\NotFoundHttpException;
-use yii\web\Response;
-use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 /**
- * ConstructionController implements the CRUD actions for OtherConstruction model.
+ * ConstructionController implements the CRUD actions for Investment model.
  */
 class ConstructionController extends AuthController
 {
+    use CrudControllerTrait;
+
     public static $imgDir = 'uploads/construction';
+    public static $pdfDir = 'uploads/construction/pdf';
+
     public static $imageOptions = ['thumbnail' => [
         'width' => 100,
         'height' => 100
     ]];
 
     /**
-     * for set admin theme
+     * @return string
      */
-    public function init()
+    public function getModelName()
     {
-        $this->setTheme('default');
-        parent::init();
+        return OtherConstruction::className();
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
+    public function getSystemActions()
+    {
+        return ['list', 'show'];
+    }
+
+    public function getMenuActions()
+    {
+        return ['list'];
+    }
+
+    public function uploaderAttributes()
     {
         return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
+            'image' => [
+                'dir' => self::$imgDir,
+                'options' => self::$imageOptions
             ],
+            'banner' => [
+                'dir' => self::$imgDir,
+                'options' => []
+            ],
+            'pdf_file' => [
+                'dir' => self::$pdfDir,
+                'options' => []
+            ]
         ];
-    }
-
-    /**
-     * Lists all OtherConstruction models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new OtherConstructionSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single OtherConstruction model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
-
-    /**
-     * Creates a new OtherConstruction model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new OtherConstruction();
-
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-        if (Yii::$app->request->post()) {
-            $model->load(Yii::$app->request->post());
-            $image = new UploadedFiles(self::$tempDir, $model->image, self::$imageOptions);
-
-            if ($model->save()) {
-                $image->move(self::$imgDir);
-
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['index', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing OtherConstruction model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-        $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
-
-        if (Yii::$app->request->post()) {
-            $old = $model->image;
-
-            $model->load(Yii::$app->request->post());
-            if ($model->save()) {
-                $image->update($old, $model->image, self::$tempDir);
-
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['index', 'id' => $model->id]);
-            } else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing OtherConstruction model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $model = $this->findModel($id);
-
-        $image = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
-        $image->removeAll(true);
-
-        $thumb = new UploadedFiles(self::$imgDir, $model->image, self::$imageOptions);
-        $thumb->removeAll(true);
-        $model->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
-     * Finds the OtherConstruction model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return OtherConstruction the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    protected function findModel($id)
-    {
-        if (($model = OtherConstruction::findOne($id)) !== null) {
-            return $model;
-        }
-
-        throw new NotFoundHttpException(trans('words', 'The requested page does not exist.'));
     }
 
     public function actions()
@@ -188,9 +67,8 @@ class ConstructionController extends AuthController
         return [
             'upload-image' => [
                 'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new OtherConstruction(), 'image'),
                 'rename' => UploadAction::RENAME_UNIQUE,
-                'modelName' => 'OtherConstruction',
-                'model' => new OtherConstruction(),
                 'validateOptions' => array(
                     'acceptedTypes' => array('png', 'jpg', 'jpeg')
                 )
@@ -203,6 +81,74 @@ class ConstructionController extends AuthController
                 'attribute' => 'image',
                 'options' => static::$imageOptions
             ],
+            'upload-banner' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new OtherConstruction(), 'banner'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-banner' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$imgDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new OtherConstruction(),
+                'attribute' => 'banner',
+                'options' => []
+            ],
+            'upload-pdf' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new OtherConstruction(), 'pdf_file'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('pdf')
+                )
+            ],
+            'delete-pdf' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$pdfDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new OtherConstruction(),
+                'attribute' => 'pdf_file',
+                'options' => []
+            ],
         ];
+    }
+
+    // ----------------rezvan methods ------------------
+    public function actionList()
+    {
+        $this->setTheme('frontend');
+
+        $this->innerPage = true;
+        $this->bodyClass = 'more-one';
+
+        /** @var OtherConstruction[] $projects */
+        $projects = OtherConstruction::find()->orderBy([
+            'id' => SORT_DESC,
+        ])->all();
+
+        $availableOtherConstructions = OtherConstruction::find()->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])->count();
+
+        return $this->render('list', [
+            'projects' => $projects,
+            'availableOtherConstructions' => $availableOtherConstructions,
+        ]);
+    }
+
+    public function actionShow($id)
+    {
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+
+        $model = $this->findModel($id);
+
+        if($model->project_type == Project::SINGLE_VIEW)
+            $this->bodyClass = 'final-project-view';
+        else
+            $this->bodyClass = 'more-one';
+
+        return $this->render('show', compact('model'));
     }
 }

@@ -1,12 +1,8 @@
 <?php
 
-use yii\grid\GridView;
-use yii\widgets\Pjax;
-use yii\helpers\Html;
-use yii\helpers\Url;
-use app\components\Setting;
-use yii\widgets\ActiveForm;
 use app\components\customWidgets\CustomActiveForm;
+use app\components\Setting;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $settings [] */
@@ -181,52 +177,26 @@ $this->registerJs('
             <div class="m-form__heading">
                 <h3 class="m-form__heading-title"><?= trans('words', 'Social Networks') ?></h3>
             </div>
-            <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Twitter'), '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][twitter]', $settings['socialNetworks']['twitter'], [
-                        'class' => 'form-control m-input m-input__solid text-right',
-                        'dir' => 'ltr',
-                    ]); ?>
+
+            <?php foreach ($settings['socialNetworks'] as $key => $socialNetwork): ?>
+                <div class="form-group m-form__group row">
+                    <?php echo Html::label(trans('words', $key), '', ['class' => 'col-lg-2 col-form-label']) ?>
+                    <div class="col-lg-6">
+                        <?php echo Html::textInput('Setting[socialNetworks]['.$key.']', $socialNetwork, ['class' => 'form-control m-input m-input__solid text-right', 'dir' => 'ltr',]); ?>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Facebook'), '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][facebook]', $settings['socialNetworks']['facebook'], [
-                        'class' => 'form-control m-input m-input__solid text-right',
-                        'dir' => 'ltr',
-                    ]); ?>
-                </div>
-            </div>
-            <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Telegram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][telegram]', $settings['socialNetworks']['telegram'], [
-                        'class' => 'form-control m-input m-input__solid text-right',
-                        'dir' => 'ltr',
-                    ]); ?>
-                </div>
-            </div>
-            
-            <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Instagram'), '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][instagram]', $settings['socialNetworks']['instagram'], [
-                        'class' => 'form-control m-input m-input__solid text-right',
-                        'dir' => 'ltr',
-                    ]); ?>
-                </div>
-            </div>
-            <div class="form-group m-form__group row">
-                <?php echo Html::label(trans('words', 'Whats app'), '', ['class' => 'col-lg-2 col-form-label']) ?>
-                <div class="col-lg-6">
-                    <?php echo Html::textInput('Setting[socialNetworks][whatsapp]', $settings['socialNetworks']['whatsapp'], [
-                        'class' => 'form-control m-input m-input__solid text-right',
-                        'dir' => 'ltr',
-                    ]); ?>
-                </div>
-            </div>
+            <?php endforeach; ?>
+
+<!--            <div class="form-group m-form__group row">-->
+<!--                --><?php //echo Html::label(trans('words', 'Facebook'), '', ['class' => 'col-lg-2 col-form-label']) ?>
+<!--                <div class="col-lg-6">-->
+<!--                    --><?php //echo Html::textInput('Setting[socialNetworks][facebook]', $settings['socialNetworks']['facebook'], [
+//                        'class' => 'form-control m-input m-input__solid text-right',
+//                        'dir' => 'ltr',
+//                    ]); ?>
+<!--                </div>-->
+<!--            </div>-->
+
         </div>
     </div>
     <div class="m-portlet__foot m-portlet__foot--fit">
