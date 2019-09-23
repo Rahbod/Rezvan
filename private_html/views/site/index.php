@@ -119,7 +119,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </div>
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
                                             <div class="row">
-                                                <?php for ($j = $i + 1; $j <= 4; $j++): ?>
+                                                <?php for ($j = $i; $j < 4; $j++): ?>
                                                     <?php if (!isset($availableApartments[$j]))
                                                         break;
                                                     $apartment = $availableApartments[$j]; ?>
@@ -167,7 +167,8 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl . '/images/investment.png' ?>" alt="investment-icon">
+                        <img src="<?= alias('@web/themes/frontend/images/apartment-icon.png') ?>"
+                             alt="apartment-icon">
                         <h2 class="slide"><?= trans('words', '<strong>available </strong> investment') ?></h2>
                     </div>
                     <div class="title-right">
@@ -176,6 +177,22 @@ $serviceCounts = isset($services) ? count($services) : null;
                                 <?= trans('words', '{count} projects', ['count' => $investmentCounts]) ?> /
                             </span>
                             <span class="available-project"><?= trans('words', 'available<br>project') ?></span>
+                            <span class="num"><?= $availableInvestmentsCounts ?></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="slide-title">
+                    <div class="title-left">
+                        <img src="<?= $baseUrl . '/images/investment.png' ?>" alt="investment-icon">
+                        <h2 class="slide"><strong><?= trans('words', 'investment') ?></strong>
+                            <?= trans('words', 'opportunities') ?></h2>
+                    </div>
+                    <div class="title-right">
+                        <p class="slide">
+                            <span class="projects"><?= $investmentCounts ?> <?= trans('words', 'projects') ?> / </span>
+                            <span class="available-project"><?= trans('words', 'available') ?><br>
+                                <?= trans('words', 'project') ?> </span>
                             <span class="num"><?= $availableInvestmentsCounts ?></span>
                         </p>
                     </div>
@@ -203,7 +220,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 left-post-slider">
                                             <div class="row">
-                                                <?php for ($j = $i; $j < 4; $j++): ?>
+                                                <?php for ($j = $i; $j <$i+ 4; $j++): ?>
                                                     <?php
                                                     if (!isset($availableInvestments[$j])) break;
                                                     $investment = $availableInvestments[$j];
@@ -302,7 +319,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                 <div class="slide-title">
                     <div class="title-left">
                         <img src="<?= $baseUrl . '/images/services.png' ?>" alt="services-icon">
-                        <h2 class="slide"><?= trans('words', '<strong>available </strong> services') ?></h2>
+                        <h2 class="slide">
+                            <strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
                     </div>
                 </div>
                 <div id="slide-3" class="carousel slide" data-ride="carousel">
@@ -322,7 +340,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         <?php for ($i = 0; $i < $serviceCounts; $i = $i + 3): ?>
                             <div class="carousel-item col-lg-12 col-md-12 col-sm-12 col-xs-12 <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="row">
-                                    <?php for ($j = $i; $j < 4; $j++): ?>
+                                    <?php for ($j = $i; $j <$i+ 4; $j++): ?>
                                         <?php
                                         if (!isset($services[$j])) break;
                                         $service = $services[$j];
@@ -390,7 +408,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <?php for ($j = $i; $j < 4; $j++): ?>
+                                        <?php for ($j = $i; $j <$i+ 4; $j++): ?>
                                             <?php
                                             if (!isset($availableConstructions[$j])) break;
                                             $construction = $availableConstructions[$j];

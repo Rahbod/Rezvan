@@ -19,16 +19,16 @@ $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
             <div class="row">
                 <div class="title-order-post">
                     <h2 id="txt-order-post">
-                        <strong><?= trans('words', 'related projects') ?></strong>
+                        <strong><?= trans('words', 'other units') ?></strong>
                     </h2>
                 </div>
                 <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
                     <div class="carousel-inner">
                         <?php for ($i = 0; $i <= count($projects); $i = $i + 4): ?>
-                            <div class="carousel-item active">
+                            <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <?php for ($j = $i; $j <= 4; $j++):
+                                        <?php for ($j = $i; $j < $i+ 4; $j++):
                                             if (!isset($projects[$j]))
                                                 break;
                                             $apartment = $projects[$j]; ?>
