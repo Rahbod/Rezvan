@@ -23,8 +23,8 @@ class Block extends Item implements BlockInterface
     const TYPE_VIDEO = 3;
     const TYPE_MAP_VIEW = 4;
     const TYPE_NEARBY_ACCESS = 5;
-    const TYPE_UNITS_BLOCK = 6;
-    const TYPE_RELATED_PROJECTS = 7;
+//    const TYPE_UNITS_BLOCK = 6;
+//    const TYPE_RELATED_PROJECTS = 7;
 
     public static $multiLanguage = false;
     public static $modelName = 'block';
@@ -35,8 +35,8 @@ class Block extends Item implements BlockInterface
         self::TYPE_VIDEO => 'Video',
         self::TYPE_MAP_VIEW => 'Map view',
         self::TYPE_NEARBY_ACCESS => 'Nearby access',
-        self::TYPE_UNITS_BLOCK => 'Units block',
-        self::TYPE_RELATED_PROJECTS => 'Related projects block',
+//        self::TYPE_UNITS_BLOCK => 'Units block',
+//        self::TYPE_RELATED_PROJECTS => 'Related projects block',
     ];
 
     public static $typeModels = [
@@ -45,8 +45,8 @@ class Block extends Item implements BlockInterface
         self::TYPE_VIDEO => 'app\models\blocks\Video',
         self::TYPE_MAP_VIEW => 'app\models\blocks\Map',
         self::TYPE_NEARBY_ACCESS => 'app\models\blocks\NearbyAccess',
-        self::TYPE_UNITS_BLOCK => 'app\models\blocks\Units',
-        self::TYPE_RELATED_PROJECTS => 'app\models\blocks\RelatedProjects',
+//        self::TYPE_UNITS_BLOCK => 'app\models\blocks\Units',
+//        self::TYPE_RELATED_PROJECTS => 'app\models\blocks\RelatedProjects',
     ];
 
     public function init()
@@ -158,7 +158,7 @@ class Block extends Item implements BlockInterface
     public function getUnit()
     {
         return Unit::findOne($this->itemID);
-        return $this->hasOne(Unit::className(), [self::columnGetString('itemID') => 'id']);
+//        return $this->hasOne(Unit::className(), [self::columnGetString('itemID') => 'id']);
     }
 
     /**
