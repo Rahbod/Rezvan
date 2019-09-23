@@ -357,7 +357,7 @@ JS
         }
 
         // render static unit blocks
-        if($project->unit){
+        if ($project->unit) {
             // render unit details
             $block = new UnitDetails($project->unit);
             $output .= $block->render($view);
@@ -365,6 +365,14 @@ JS
             // render other units
             $block = new OtherUnits($project->unit);
             $output .= $block->render($view);
+        } else {
+            // render project units
+            $block = new Units();
+            $output .= $block->render($view, $this);
+
+            // render related projects
+            $block = new RelatedProjects();
+            $output .= $block->render($view, $this);
         }
 
         return $output;
