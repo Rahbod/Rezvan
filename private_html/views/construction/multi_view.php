@@ -13,6 +13,7 @@ use app\models\Unit;
 
 $sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->all();
 $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->all();
+
 ?>
 <section class="full-slide">
     <div class="container-fluid">

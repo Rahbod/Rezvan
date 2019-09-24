@@ -477,6 +477,7 @@ return [
 
     // blocks
     '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',
+    '<strong>Current status</strong><br> of the UNIT {unit_number}'=>'<strong>وضعیت فعلی</strong><br> واحد {unit_number}',
     '<strong>available </strong> apartment' => 'آپارتمان های موجود',
     '<strong>available </strong> investment' => 'سرمایه گذاری های موجود',
     '<strong>available </strong> construction' => 'دیگر سازه های موجود',
@@ -484,12 +485,17 @@ return [
     'available<br>project' => 'پروژه های<br>موجود',
     '<strong>Building </strong> access<br>Near you' => '<strong>دسترسی های </strong> نزدیک',
     'available<br>unit' => 'واحدهای<br>موجود',
+    '<span class="green"><strong>{count} unit </span>free </strong>'=>'واحدهای موجود {count}',
+    '<span class="red"><strong>{count} unit</strong></span> SOLD'=>'واحدهای فروخته شده {count}',
+
+    '<span class="green"><strong>unit {unit_number}</strong></span><strong>available</strong>'=>'<span class="green"><strong>واحد {unit_number}</strong></span><strong>موجود</strong>',
+    'from {all_units} unit / ON FLOOR {floor}'=>'از {all_units} واحد / در طبقه {floor}',
+
     'About {value} km distance' => 'حدود {value} کیلومتر',
 
     '{count} projects' => ' پروژه ها {count}',
     '{count} unit' => ' واحدها {count}',
     'other units' => 'واحدهای دیگر',
-
 
     // units
     '<strong>available</strong> for sel' => 'آماده برای فروش',
@@ -603,7 +609,7 @@ return [
 
     //second column
     'Water Score' => 'امتیاز آب',
-    'Store' => 'فروشگاه',
+    'Store' => 'انبار',
     'Floor heating' => 'گرمایش زمینی',
     'IPhone Video' => 'آیفون تصویری',
     'Elevator' => 'آسانسور',
@@ -622,4 +628,5 @@ return [
     'Electricity rating' => 'امتیاز برق',
     'Split' => 'انشعاب',
     'has it' => 'دارد',
+    'has not' => 'ندارد',
 ];
