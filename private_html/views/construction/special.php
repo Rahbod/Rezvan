@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 $baseUrl = $this->theme->baseUrl;
-
 ?>
 <div class="overly">
     <div class="item unit">

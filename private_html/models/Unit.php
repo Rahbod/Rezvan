@@ -115,9 +115,9 @@ class Unit extends Item
 
             [
                 ['view', 'type_of_document', 'water_score',
-                    'store', 'floor_heating','iPhone_video','elevator','terrace',
-                    'condition','diorra','gas_points','electricity_rating','split'
-                    ]
+                    'store', 'floor_heating', 'iPhone_video', 'elevator', 'terrace',
+                    'condition', 'diorra', 'gas_points', 'electricity_rating', 'split'
+                ]
                 , 'integer'],
         ]);
     }
@@ -147,30 +147,30 @@ class Unit extends Item
             'price' => trans('words', 'Price'),
 
             //first column
-            'view' => trans('words','View'),
-            'type_of_document' => trans('words','type of Document'),
-            'number_of_assignments' => trans('words','Number of assignments'),
-            'cabinets' => trans('words','Cabinets'),
+            'view' => trans('words', 'View'),
+            'type_of_document' => trans('words', 'type of Document'),
+            'number_of_assignments' => trans('words', 'Number of assignments'),
+            'cabinets' => trans('words', 'Cabinets'),
 
             //second column
-            'water_score' => trans('words','Water Score'),
-            'store' => trans('words','Store'),
-            'floor_heating' => trans('words','Floor heating'),
-            'iPhone_video' => trans('words','IPhone Video'),
-            'elevator' => trans('words','Elevator'),
-            'terrace' => trans('words','Terrace'),
+            'water_score' => trans('words', 'Water Score'),
+            'store' => trans('words', 'Store'),
+            'floor_heating' => trans('words', 'Floor heating'),
+            'iPhone_video' => trans('words', 'IPhone Video'),
+            'elevator' => trans('words', 'Elevator'),
+            'terrace' => trans('words', 'Terrace'),
 //            'floor' => trans('words),',
 
             //third column
-            'number_of_floors' => trans('words','Number of floors'),
-            'property_direction' => trans('words','Property direction'),
-            'age_of_the_building' => trans('words','Age of the building'),
-            'condition' => trans('words','Condition'),
-            'type_of_use' => trans('words','Type of use'),
-            'diorra' => trans('words','Diorra'),
-            'gas_points' => trans('words','Gas points'),
-            'electricity_rating' => trans('words','Electricity rating'),
-            'split' => trans('words','Split'),
+            'number_of_floors' => trans('words', 'Number of floors'),
+            'property_direction' => trans('words', 'Property direction'),
+            'age_of_the_building' => trans('words', 'Age of the building'),
+            'condition' => trans('words', 'Condition'),
+            'type_of_use' => trans('words', 'Type of use'),
+            'diorra' => trans('words', 'Diorra'),
+            'gas_points' => trans('words', 'Gas points'),
+            'electricity_rating' => trans('words', 'Electricity rating'),
+            'split' => trans('words', 'Split'),
 
         ]);
     }
@@ -217,14 +217,14 @@ class Unit extends Item
             [['project_blocks', 'sold'], static::FORM_FIELD_TYPE_SWITCH],
 
             [
-                ['type_of_use','number_of_assignments',
+                ['type_of_use', 'number_of_assignments',
                     'cabinets', 'number_of_floors']
                 , self::FORM_FIELD_TYPE_TEXT],
 
             [
                 ['view', 'type_of_document', 'water_score',
-                    'store', 'floor_heating','iPhone_video','elevator','terrace',
-                    'condition','user','diorra','gas_points','electricity_rating','split'
+                    'store', 'floor_heating', 'iPhone_video', 'elevator', 'terrace',
+                    'condition', 'user', 'diorra', 'gas_points', 'electricity_rating', 'split'
                 ]
                 , self::FORM_FIELD_TYPE_TEXT],
         ]);
@@ -342,4 +342,14 @@ class Unit extends Item
     {
         return Url::to(['/unit/show', 'id' => $this->id]);
     }
+
+    public function getWaterScorerStr()
+    {
+        if ((int)$this->water_score == 0)
+            return trans('words', 'has not');
+        elseif ((int)$this->water_score > 1)
+            return trans('words', 'have {value}', ['value' => $this->water_score]);
+        return trans('words', 'have it');
+    }
+
 }
