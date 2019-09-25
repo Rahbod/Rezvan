@@ -4,7 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\PostController;
-use app\controllers\SlideController;
+use app\controllers\ListController;
 use Yii;
 use yii\helpers\Html;
 use yii\helpers\Url;

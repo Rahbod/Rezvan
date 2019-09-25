@@ -21,12 +21,6 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                 <div class="title-left">
                     <p class="slide"><?= trans('words', '<strong>Current status</strong></br> of the building') ?></p>
                 </div>
-                <div class="title-right">
-                    <p class="slide">
-                        <a href="#" class="active"><img src="<?= $baseUrl ?>/images/icon-1.png" alt="icon-1"></a>
-                        <a href="#"><img src="<?= $baseUrl ?>/images/icon-2.png" alt="icon-2"></a>
-                    </p>
-                </div>
             </div>
         </div>
     </div>

@@ -1,8 +1,17 @@
-﻿$(document).scroll(function() {
+$(document).scroll(function() {
   var y = $(this).scrollTop();
   if (y > 800) {
-    $('.overly').fadeIn();
+    $('.fade').fadeIn();
   } else {
-    $('.overly').fadeOut();
+    $('.fade').fadeOut();
+  }
+});
+
+$(document).scroll(function() {
+  var y = $(this).scrollTop();
+  if (y > 100) {
+    $('.site-header').addClass('fixed-menu');
+  } else {
+    $('.site-header').removeClass('fixed-menu');
   }
 });

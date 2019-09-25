@@ -308,7 +308,7 @@ class MainController extends Controller implements CrudControllerInterface
                     ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
                     ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
                     ['label' => trans('words', 'Services'), 'url' => ['/service/index'], 'visible' => $permissions || app()->user->can('serviceIndex')],
-//                    ['label' => trans('words', 'Posts'), 'url' => ['/post/index'], 'visible' => $permissions || app()->user->can('postIndex')],
+                    ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
                 ]
             ],
 //            [
@@ -380,7 +380,7 @@ class MainController extends Controller implements CrudControllerInterface
         // cache menus
         $this->menus = $cache->getOrSet('menus', function () {
             $arr = [];
-            foreach (Menu::find()->all() as $menu)
+            foreach (Menu::find()->valid()->all() as $menu)
                 $arr[$menu->id] = $menu;
             return $arr;
         }, $expire);

@@ -239,4 +239,16 @@ class Menu extends Category
                 return '#';
         }
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        parent::afterSave($insert, $changedAttributes);
+        app()->cache->delete('menus');
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+        app()->cache->delete('menus');
+    }
 }

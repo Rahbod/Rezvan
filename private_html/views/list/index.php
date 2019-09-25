@@ -1,17 +1,17 @@
 <?php
 
-use app\components\customWidgets\CustomGridView;
 use yii\helpers\Html;
+use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\projects\OtherConstructionSearch */
+/* @var $searchModel app\models\ListsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = trans('words', 'Other constructions');
+$this->title = trans('words', 'Lists');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="construction-index">
+<div class="page-index">
 
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= trans('words', 'Create construction') ?></span>
+							<span><?= trans('words', 'Create Lists') ?></span>
 						</span>
                         </a>
                     </li>
@@ -48,55 +48,33 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'name',
 
+                        'name',
+                        'slu',
+                        [
+                            'attribute' => 'created',
+                            'value' => function ($model) {
+                                return jDateTime::date('Y/m/d', $model->created);
+                            }
+                        ],
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Slide::getStatusLabels($model->status, true);
+                                return \app\models\Lists::getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
-                            'filter' => \app\models\Slide::getStatusFilter()
-                        ],
-                        [
-                            'attribute' => 'en_status',
-                            'value' => function ($model) {
-                                $model->en_status = $model->en_status ?: 0;
-                                return \app\models\Slide::getStatusLabels($model->en_status, true);
-                            },
-                            'format' => 'raw',
-                            'filter' => \app\models\Slide::getStatusFilter()
-                        ],
-                        [
-                            'attribute' => 'ar_status',
-                            'value' => function ($model) {
-                                $model->ar_status = $model->ar_status ?: 0;
-                                return \app\models\Slide::getStatusLabels($model->ar_status, true);
-                            },
-                            'format' => 'raw',
-                            'filter' => \app\models\Slide::getStatusFilter()
+                            'filter' => \app\models\Lists::getStatusFilter()
                         ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{block} {unit} {update} {delete}',
+                            'template' => '{options} {update} {delete}',
                             'buttons' => [
-                                'block' => function ($url, $model, $key) {
-                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index', 'id' => $model->id],
+                                'options' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-bars text-warning" ></span >', ['list/options', 'id' => $model->id],
                                         [
                                             'class' => '',
-                                            'title' => "لیست بلوک ها",
-                                            'aria-label' => "block",
-                                            'data-pjax' => 0
-
-                                        ]
-                                    );
-                                },
-                                'unit' => function ($url, $model, $key) {
-                                    return Html::a('<span class="far fa-building text-dark" ></span >', ['unit/index', 'id' => $model->id],
-                                        [
-                                            'class' => '',
-                                            'title' => "لیست واحدها",
-                                            'aria-label' => "unit",
+                                            'title' => "لیست زیرمجموعه ها",
+                                            'aria-label' => "options",
                                             'data-pjax' => 0
 
                                         ]

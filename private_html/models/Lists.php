@@ -6,24 +6,19 @@ use Yii;
 
 /**
  * This is the model class for table "category".
+ *
+ * @property string slug
  */
 class Lists extends Category
 {
-    public static $typeName = self::TYPE_LIST;
 
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return 'category';
-    }
+    public static $typeName = self::TYPE_LIST;
 
     public function init()
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
-
+            'slug' => ['CHAR', '']
         ]);
     }
 
@@ -33,6 +28,9 @@ class Lists extends Category
     public function rules()
     {
         return array_merge(parent::rules(), [
+            ['type', 'default', 'value' => self::$typeName],
+            ['slug', 'required', 'except' => 'option-insert'],
+            ['slug', 'string'],
         ]);
     }
 
@@ -43,5 +41,17 @@ class Lists extends Category
     {
         return array_merge(parent::attributeLabels(), [
         ]);
+    }
+
+    public function formAttributes()
+    {
+        return array_merge(parent::formAttributes(),[
+            'slug' => ['type' => self::FORM_FIELD_TYPE_TEXT]
+        ]);
+    }
+
+    public function formOptionsAttributes()
+    {
+        return parent::formAttributes();
     }
 }

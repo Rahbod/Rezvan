@@ -4,10 +4,12 @@
 namespace app\components;
 
 
+use app\models\Lists;
 use devgroup\dropzone\DropZone;
 use devgroup\dropzone\UploadedFiles;
 use dosamigos\tinymce\TinyMce;
 use faravaghi\jalaliDatePicker\jalaliDatePicker;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\View;
 use yii\widgets\ActiveForm;
@@ -124,6 +126,14 @@ trait FormRendererTrait
         $options = isset($field['options']) ? $field['options'] : [];
         $fieldOptions = isset($field['fieldOptions']) ? $field['fieldOptions'] : [];
         $items = isset($field['items']) ? $field['items'] : [];
+        if(isset($field['listSlug'])) {
+            /** @var Lists $list */
+            $list = Lists::find()->andWhere([Lists::columnGetString('slug') => $field['listSlug']])->one();
+            if($list) {
+                $options = Lists::find()->andWhere([Lists::columnGetString('parentID')=>$list->id])->one();
+                $items = $options?ArrayHelper::map($options, 'id', 'name') : [];
+            }
+        }
         $attribute = $field['attribute'];
         $type = isset($field['type']) ? $field['type'] : false;
 
