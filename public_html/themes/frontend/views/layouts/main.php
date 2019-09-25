@@ -18,13 +18,11 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/css/bootstrap.min.css' ?>" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/css/font-awesome.min.css' ?>" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/css/style.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/assets/css/font-awesome.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/style.css' ?>" rel="stylesheet">
     <?php if (app()->language != 'en'): ?>
-        <link href="<?= $this->theme->baseUrl . '/css/rtl.css' ?>" rel="stylesheet"><?php endif; ?>
-    <script src="<?= $this->theme->baseUrl . '/js/jquery.min.js' ?>"></script>
-    <script src="<?= $this->theme->baseUrl . '/js/custom.js' ?>"></script>
+        <link href="<?= $this->theme->baseUrl . '/rtl.css' ?>" rel="stylesheet"><?php endif; ?>
 </head>
 <?php
 
@@ -64,9 +62,9 @@ else
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 
-<script src="<?= $this->theme->baseUrl . '/js/jquery.min.js' ?>"></script>
-<script src="<?= $this->theme->baseUrl . '/js/bootstrap.min.js' ?>"></script>
-
+<script src="<?= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/assets/bootstrap/js/bootstrap.min.js' ?>"></script>
+<script src="<?= $this->theme->baseUrl . '/assets/js/custom.js' ?>"></script>
 </body>
 </html>
 <?php $this->endPage(); ?>

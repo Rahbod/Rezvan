@@ -21,6 +21,7 @@ $baseUrl = $this->theme->baseUrl;
                             <h1 id="site-title" class="logo img-logo">
                                 <a href="<?= Url::to(['/site/index']) ?>" <?= app()->name ?>>
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
+                                    <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-02.png' ?>" alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>

@@ -32,13 +32,13 @@ $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
                                             if (!isset($projects[$j]))
                                                 break;
                                             $apartment = $projects[$j]; ?>
-                                            <div class="grid col-lg-3">
-                                                <div class="img">
-                                                    <a href="<?= $apartment->getUrl() ?>">
-                                                        <img src="<?= $baseUrl . $apartment->image ?>"
-                                                             alt="<?= $apartment->getName() ?>">
-                                                    </a>
-                                                </div>
+                                            <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                                <img src="<?= $baseUrl . $apartment->image ?>"
+                                                     alt="<?= $apartment->getName() ?>">
+                                                <a href="<?= $apartment->getUrl() ?>">
+                                                    <h2 class="item-title"><?= $apartment->getName() ?></h2>
+                                                </a>
+                                                <span class="description"><?= $apartment->getSubtitleStr() ?></span>
                                             </div>
                                         <?php endfor; ?>
                                     </div>

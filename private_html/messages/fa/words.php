@@ -498,6 +498,8 @@ return [
     'other units' => 'واحدهای دیگر',
 
     // units
+    'free' => 'موجود',
+    'sold' => 'فروخته شده',
     '<strong>available</strong> for sel' => 'آماده برای فروش',
     '<strong>sold</strong> units' => 'واحد های فروخته شده',
     'on floor {value}' => 'طبقه {value}',
