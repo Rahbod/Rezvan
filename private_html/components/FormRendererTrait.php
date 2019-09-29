@@ -81,15 +81,6 @@ trait FormRendererTrait
             return '';
         }
 
-        $hint = false;
-        if (isset($field['hint'])) {
-            if ($field['hint'] instanceof \Closure)
-                $hint = $field['hint']($this);
-            else
-                $hint = $field['hint'];
-            unset($field['hint']);
-        }
-
         if (isset($field['visible'])) {
             if ($field['visible'] instanceof \Closure)
                 $visible = $field['visible']($this);
@@ -126,19 +117,37 @@ trait FormRendererTrait
         $options = isset($field['options']) ? $field['options'] : [];
         $fieldOptions = isset($field['fieldOptions']) ? $field['fieldOptions'] : [];
         $items = isset($field['items']) ? $field['items'] : [];
-        if(isset($field['listSlug'])) {
+        if (isset($field['listSlug'])) {
             /** @var Lists $list */
             $list = Lists::find()->andWhere([Lists::columnGetString('slug') => $field['listSlug']])->one();
-            if($list) {
-                $options = Lists::find()->andWhere([Lists::columnGetString('parentID')=>$list->id])->one();
-                $items = $options?ArrayHelper::map($options, 'id', 'name') : [];
+            if ($list) {
+                $list_options = Lists::find()->andWhere(['parentID' => $list->id])->all();
+                if ($list_options)
+                    $items = ArrayHelper::map($list_options, 'id', 'name');
             }
+
+            $options['prompt'] = isset($options['prompt'])?$options['prompt']:"انتخاب کنید";
+
+            if (!$items)
+                $field['hint'] = "لیست خالی است. " . Html::a('ایجاد لیست', ['/list/create', 'slug' => $field['listSlug'], 'label' => $model->getAttributeLabel($field['attribute'])]);
+            else if(!isset($field['hint']))
+                $field['hint'] = Html::a('ویرایش لیست', ['/list/create', 'slug' => $field['listSlug']]);
         }
         $attribute = $field['attribute'];
         $type = isset($field['type']) ? $field['type'] : false;
 
         if (isset($field['tabindex']))
             $options['tabindex'] = $field['tabindex'];
+
+        $hint = false;
+        if (isset($field['hint'])) {
+            if ($field['hint'] instanceof \Closure)
+                $hint = $field['hint']($this);
+            else
+                $hint = $field['hint'];
+            unset($field['hint']);
+        }
+
         switch ($type) {
             case static::FORM_SEPARATOR:
                 Html::addCssClass($options, 'm-form__heading');

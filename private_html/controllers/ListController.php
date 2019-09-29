@@ -44,6 +44,19 @@ class ListController extends AuthController implements CrudControllerInterface
     {
         $model = new Lists();
 
+        if ($slug = request()->getQueryParam('slug')) {
+            if (app()->session->get('slug') != $slug)
+                app()->session->set('return', request()->referrer);
+            app()->session->set('slug', $slug);
+
+            if ($list = Lists::find()->andWhere([Lists::columnGetString('slug') => $slug])->one())
+                return $this->redirect(['options', 'id' => $list->id]);
+            $model->name = request()->getQueryParam('label')?:$slug;
+            $model->slug = $slug;
+            if($model->makeRoot())
+                return $this->redirect(['options', 'id' => $model->id]);
+        }
+
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
             Yii::$app->response->format = Response::FORMAT_JSON;
@@ -123,7 +136,7 @@ class ListController extends AuthController implements CrudControllerInterface
     {
         $model = new Lists();
         $parent = $this->findModel($id);
-        $model->scenario ='option-insert';
+        $model->scenario = 'option-insert';
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());

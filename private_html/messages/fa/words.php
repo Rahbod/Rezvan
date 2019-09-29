@@ -529,6 +529,12 @@ return [
     //    investment : update
     'Update investment: {name}' => 'ویرایش پروژه: {name}',
 
+    //    lists
+    'Create List option: {parent}' => 'ایجاد گزینه لیست: {parent}',
+    'Update List option: {parent}' => 'ویرایش گزینه لیست: {parent}',
+    'List options "{parent}"' => 'گزینه های لیست "{parent}"',
+    'Create new option' => 'ایجاد گزینه جدید',
+
     //    construction : update
     'Update other construction: {name}' => 'ویرایش سازه ها: {name}',
 
@@ -601,32 +607,32 @@ return [
     'Number' => 'تعداد',
 
     //first column
-    'Foundation' => 'زیرساخت',
+    'Foundation' => 'زیربنا',
     'Number of Sleep' => 'تعداد خواب',
     'Number of units' => 'تعداد واحد',
     'View' => 'نما',
     'type of Document' => 'نوع سند',
-    'Number of assignments' => 'نوع تکالیف',
+    'Number of assignments' => 'تعداد واگذاری',
     'Cabinets' => 'کابینت',
 
     //second column
     'Water Score' => 'امتیاز آب',
     'Store' => 'انبار',
-    'Floor heating' => 'گرمایش زمینی',
+    'Floor heating' => 'گرمایش از کف',
     'IPhone Video' => 'آیفون تصویری',
     'Elevator' => 'آسانسور',
-    'Terrace' => 'تراز',
+    'Terrace' => 'تراس',
     'Floor' => 'طبقه',
 
     //third column
     'Number of floors' => 'تعداد طبقه',
     'Unit per floor number' => 'تعداد واحد در هر طبقه',
     'Property direction' => 'جهت ساختمان',
-    'Age of the building' => 'سن ساختمان',
-    'Condition' => 'وضعیت',
+    'Age of the building' => 'سن بنا',
+    'State' => 'وضعیت',
     'Type of use' => 'نوع کاربری',
-    'Diorra' => 'Diorra',
-    'Gas points' => 'نقاط گاز',
+    'Wall' => 'دیوار',
+    'Gas points' => 'امتیاز گاز',
     'Electricity rating' => 'امتیاز برق',
     'Split' => 'انشعاب',
     'has it' => 'دارد',

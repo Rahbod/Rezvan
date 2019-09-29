@@ -8,7 +8,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\ListsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = trans('words', 'List options "{name}"', ['name' => $model->name]);
+$this->title = trans('words', 'List options "{parent}"', ['parent' => $model->name]);
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-index">
@@ -32,10 +32,21 @@ $this->params['breadcrumbs'][] = $this->title;
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
-							<span><?= trans('words', 'Create Lists') ?></span>
+							<span><?= trans('words', 'Create new option') ?></span>
 						</span>
                         </a>
                     </li>
+                    <?php if($return = app()->session->get('return')):?>
+                        <li class="m-portlet__nav-item">
+                            <a href="<?= \yii\helpers\Url::to($return) ?>"
+                               class="btn btn-warning m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+						<span>
+							<span><?= trans('words', 'Back') ?></span>
+							<i class="la la-arrow-left"></i>
+						</span>
+                            </a>
+                        </li>
+                    <?php endif?>
                 </ul>
             </div>
         </div>

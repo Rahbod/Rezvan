@@ -81,9 +81,9 @@ class Unit extends Item
             'number_of_floors' => ['INTEGER', ''],
             'property_direction' => ['INTEGER', ''],
             'age_of_the_building' => ['INTEGER', ''],
-            'condition' => ['INTEGER', ''],
+            'state' => ['INTEGER', ''],
             'type_of_use' => ['INTEGER', ''],
-            'diorra' => ['INTEGER', ''],
+            'wall' => ['INTEGER', ''],
             'gas_points' => ['INTEGER', ''],
             'electricity_rating' => ['INTEGER', ''],
             'split' => ['INTEGER', ''],
@@ -116,7 +116,7 @@ class Unit extends Item
             [
                 ['view', 'type_of_document', 'water_score',
                     'store', 'floor_heating', 'iPhone_video', 'elevator', 'terrace',
-                    'condition', 'diorra', 'gas_points', 'electricity_rating', 'split'
+                    'state', 'wall', 'gas_points', 'electricity_rating', 'split'
                 ]
                 , 'integer'],
         ]);
@@ -165,9 +165,9 @@ class Unit extends Item
             'number_of_floors' => trans('words', 'Number of floors'),
             'property_direction' => trans('words', 'Property direction'),
             'age_of_the_building' => trans('words', 'Age of the building'),
-            'condition' => trans('words', 'Condition'),
+            'state' => trans('words', 'state'),
             'type_of_use' => trans('words', 'Type of use'),
-            'diorra' => trans('words', 'Diorra'),
+            'wall' => trans('words', 'Wall'),
             'gas_points' => trans('words', 'Gas points'),
             'electricity_rating' => trans('words', 'Electricity rating'),
             'split' => trans('words', 'Split'),
@@ -209,24 +209,32 @@ class Unit extends Item
                 'type' => static::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
             ],
+            'price' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'تومان'],
+            [['sold','project_blocks'], static::FORM_FIELD_TYPE_SWITCH],
+            'sep2' => [
+                'type' => static::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ],
             [['radiator', 'parking', 'bath_room',
                 'wc', 'air_conditioner', 'floor_number', 'unit_number',
                 'unit_per_floor_number', 'bed_room'], self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
-            'price' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'تومان'],
-            [['project_blocks', 'sold'], static::FORM_FIELD_TYPE_SWITCH],
-
-            [
-                ['type_of_use', 'number_of_assignments',
-                    'cabinets', 'number_of_floors']
-                , self::FORM_FIELD_TYPE_TEXT],
-
-            [
-                ['view', 'type_of_document', 'water_score',
-                    'store', 'floor_heating', 'iPhone_video', 'elevator', 'terrace',
-                    'condition', 'user', 'diorra', 'gas_points', 'electricity_rating', 'split'
-                ]
-                , self::FORM_FIELD_TYPE_TEXT],
+            [[ 'number_of_assignments', 'number_of_floors'], self::FORM_FIELD_TYPE_TEXT],
+            // lists
+            'type_of_use' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_use'],
+            'view' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'view'],
+            'type_of_document' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_document'],
+            'cabinets' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cabinets'],
+            'store' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'store'],
+            'state' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'state'],
+            'user' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'user'],
+            'wall' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'wall'],
+            [['water_score', 'gas_points', 'electricity_rating'], ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'scores']],
+            'sep3' => [
+                'type' => static::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ],
+            [['floor_heating', 'iPhone_video', 'elevator', 'split','terrace'], self::FORM_FIELD_TYPE_SWITCH],
         ]);
     }
 

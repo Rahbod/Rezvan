@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 </div>
             </div>
             <div class="m-portlet__head-tools">
-                <ul class="m-portlet__nav">
+                <ul class="m-portlet__nav d-none">
                     <li class="m-portlet__nav-item">
                         <a href="<?= \yii\helpers\Url::to(['create']) ?>"
                            class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{options} {update} {delete}',
+                            'template' => '{options} {update}',
                             'buttons' => [
                                 'options' => function ($url, $model, $key) {
                                     return Html::a('<span class="fas fa-bars text-warning" ></span >', ['list/options', 'id' => $model->id],

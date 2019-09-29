@@ -4,9 +4,10 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Lists */
+/* @var $parent app\models\Lists */
 
-$this->title = trans('words', 'Create List option');
-$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">'.trans('words', 'Lists').'</span>', 'url' => ['index'], 'class' =>'m-nav__link'];
+$this->title = trans('words', 'Create List option: {parent}', ['parent' => $parent->getName()]);
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">' . trans('words', 'Lists') . '</span>', 'url' => ['index'], 'class' => 'm-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
