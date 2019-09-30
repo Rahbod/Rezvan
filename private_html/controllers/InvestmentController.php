@@ -141,7 +141,14 @@ class InvestmentController extends AuthController
         $this->setTheme('frontend');
         $this->innerPage = true;
 
+        /** @var Investment $model */
         $model = $this->findModel($id);
+
+        $this->breadcrumbs = [
+            trans('words','Available Investments'),
+            $model->getName(),
+            $model->getSubtitleStr(),
+        ];
 
         if($model->project_type == Project::SINGLE_VIEW)
             $this->bodyClass = 'final-project-view';

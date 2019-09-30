@@ -10,72 +10,42 @@
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="assets/js/custom.js"></script>
 </head>
-<body class="more-one">
+<body class="more-one list">
 <header id="header" class="site-header header-style-2">
     <div class="header-top">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-2">
+                <div class="col-lg-2 col-md-2">
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
                                 <a href="#">
                                     <img id="site-logo" src="images/logo.png" alt="rezvan">
+                                    <img id="site-logo-2" src="images/logo-02.png" alt="rezvan">
                                     <span class="site-title">rezvan</span>
                                 </a>
                             </h1>
                         </div>
                         <!-- .site-branding -->
-                    </div>
-                </div>
-                <div class="col-lg-10">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-lg-3 offset-5">
-                                <div class="social-icon">
-                                    <ul class="social-list">
-                                        <li class="social-item whatsapp"><a href="#" target="_blank"><i
-                                                class="fa fa-whatsapp"></i></a></li>
-                                        <li class="social-item twitter"><a href="#" target="_blank"><i
-                                                class="fa fa-twitter"></i></a></li>
-                                        <li class="social-item instagram"><a href="#" target="_blank"><i
-                                                class="fa fa-instagram"></i></a></li>
-                                        <li class="social-item facebook"><a href="#" target="_blank"><i
-                                                class="fa fa-facebook-f"></i></a></li>
-                                        <li class="social-item youtube"><a href="#" target="_blank"><i
-                                                class="fa fa-youtube"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <nav class="navbar navbar-expand-lg">
-                                    <div class="collapse navbar-collapse" id="language">
-                                        <ul class="navbar-nav">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link dropdown-toggle" href="#" id="lang-select"
-                                                   data-toggle="dropdown" aria-haspopup="true"
-                                                   aria-expanded="false">EN</a>
-                                                <div class="dropdown-menu" aria-labelledby="lang-select">
-                                                    <a class="dropdown-item" href="#">IR</a>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
-                                <div class="search-container close">
-                                    <div class="search-box clearfix">
-                                        <form role="search" method="get" class="search-form clearfix" action="#">
-                                            <input type="search" class="search-field" placeholder="Search" value=""
-                                                   name="s" title="Search:" autocomplete="off">
-                                            <input type="submit" class="search-submit" value="Search">
-                                        </form>
-                                        <!-- .search-form -->
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="social-icon">
+                            <ul class="social-list">
+                                <li class="social-item whatsapp"><a href="#" target="_blank"><i
+                                        class="fa fa-whatsapp"></i></a></li>
+                                <li class="social-item twitter"><a href="#" target="_blank"><i
+                                        class="fa fa-twitter"></i></a></li>
+                                <li class="social-item instagram"><a href="#" target="_blank"><i
+                                        class="fa fa-instagram"></i></a></li>
+                                <li class="social-item facebook"><a href="#" target="_blank"><i
+                                        class="fa fa-facebook-f"></i></a></li>
+                                <li class="social-item youtube"><a href="#" target="_blank"><i
+                                        class="fa fa-youtube"></i></a></li>
+                            </ul>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-10 col-md-10">
                     <div class="row">
                         <nav id="menu-main" class="main-menu-container navbar-expand-lg">
                             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
@@ -83,6 +53,29 @@
                                     aria-label="Toggle navigation">
                                 <i class="fa fa-bars"></i>
                             </button>
+                            <nav class="navbar navbar-expand-lg">
+                                <div class="navbar-collapse" id="language">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="lang-select"
+                                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EN</a>
+                                            <div class="dropdown-menu" aria-labelledby="lang-select">
+                                                <a class="dropdown-item" href="#">IR</a>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <div id="main-navigation" class="search-container close collapse">
+                                <div class="search-box clearfix">
+                                    <form role="search" method="get" class="search-form clearfix" action="#">
+                                        <input type="search" class="search-field" placeholder="Search" value="" name="s"
+                                               title="Search:" autocomplete="off">
+                                        <input type="submit" class="search-submit" value="Search">
+                                    </form>
+                                    <!-- .search-form -->
+                                </div>
+                            </div>
                             <ul id="main-navigation" class="main-menu collapse">
                                 <li class="menu-item"><i class="sprite sprite-services-icon"></i><a
                                         href="#">SERVICES</a></li>
@@ -136,154 +129,162 @@
                         </div>
                         <div class="col-lg-6 right-post-slider">
                             <div class="row">
-                                <div class="grid col-lg-6">
+                                <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                     <img src="images/grid-3.jpg" alt="Chicago">
                                     <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                                    <span class="description">Shams Blvd / Salmani St</span>
+                                    <span class="description">Shams Blvd / </span>
+                                    <span class="description-2">Salmani St</span>
                                 </div>
-                                <div class="grid col-lg-6">
+                                <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                     <img src="images/grid-2.jpg" alt="Chicago">
                                     <span class="sold-icon">SOLD!</span>
                                     <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                                    <span class="description">Mahmoud Abad / Hasht Behesht St</span>
+                                    <span class="description">Mahmoud Abad / </span>
+                                    <span class="description-2">Hasht Behesht St</span>
                                 </div>
-                                <div class="grid col-lg-6">
+                                <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                     <img src="images/grid-4.jpg" alt="Chicago">
                                     <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                                    <span class="description">Vakil Abad / Rajayi St</span>
+                                    <span class="description">Vakil Abad / </span>
+                                    <span class="description-2">Rajayi St</span>
                                 </div>
-                                <div class="grid col-lg-6">
+                                <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                     <img src="images/grid-5.jpg" alt="Chicago">
                                     <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                                    <span class="description">Imam reza Blvd / Beheshti St</span>
+                                    <span class="description">Imam reza Blvd / </span>
+                                    <span class="description-2">Beheshti St</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-3.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                            <span class="description">Shams Blvd / Salmani St</span>
+                            <span class="description">Shams Blvd / </span>
+                            <span class="description-2">Salmani St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-2.jpg" alt="Chicago">
                             <span class="sold-icon">SOLD!</span>
                             <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                            <span class="description">Mahmoud Abad / Hasht Behesht St</span>
+                            <span class="description">Mahmoud Abad / </span>
+                            <span class="description-2">Hasht Behesht St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-4.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                            <span class="description">Vakil Abad / Rajayi St</span>
+                            <span class="description">Vakil Abad / </span>
+                            <span class="description-2">Rajayi St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-5.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                            <span class="description">Imam reza Blvd / Beheshti St</span>
+                            <span class="description">Imam reza Blvd / </span>
+                            <span class="description-2">Beheshti St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-3.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                            <span class="description">Shams Blvd / Salmani St</span>
+                            <span class="description">Shams Blvd / </span>
+                            <span class="description-2">Salmani St</span>
                         </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-2.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                            <span class="description">Mahmoud Abad / Hasht Behesht St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-4.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                            <span class="description">Vakil Abad / Rajayi St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-5.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                            <span class="description">Imam reza Blvd / Beheshti St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-3.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                            <span class="description">Shams Blvd / Salmani St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-2.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                            <span class="description">Mahmoud Abad / Hasht Behesht St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-4.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                            <span class="description">Vakil Abad / Rajayi St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-5.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                            <span class="description">Imam reza Blvd / Beheshti St</span>
-                        </div>
-                        <div class="grid col-lg-3">
-                            <img src="images/grid-3.jpg" alt="Chicago">
-                            <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                            <span class="description">Shams Blvd / Salmani St</span>
-                        </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-2.jpg" alt="Chicago">
                             <span class="sold-icon">SOLD!</span>
                             <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                            <span class="description">Mahmoud Abad / Hasht Behesht St</span>
+                            <span class="description">Mahmoud Abad / </span>
+                            <span class="description-2">Hasht Behesht St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-4.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                            <span class="description">Vakil Abad / Rajayi St</span>
+                            <span class="description">Vakil Abad / </span>
+                            <span class="description-2">Rajayi St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-5.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                            <span class="description">Imam reza Blvd / Beheshti St</span>
+                            <span class="description">Imam reza Blvd / </span>
+                            <span class="description-2">Beheshti St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-3.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                            <span class="description">Shams Blvd / Salmani St</span>
+                            <span class="description">Shams Blvd / </span>
+                            <span class="description-2">Salmani St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-2.jpg" alt="Chicago">
                             <span class="sold-icon">SOLD!</span>
                             <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                            <span class="description">Mahmoud Abad / Hasht Behesht St</span>
+                            <span class="description">Mahmoud Abad / </span>
+                            <span class="description-2">Hasht Behesht St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-4.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                            <span class="description">Vakil Abad / Rajayi St</span>
+                            <span class="description">Vakil Abad / </span>
+                            <span class="description-2">Rajayi St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-5.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                            <span class="description">Imam reza Blvd / Beheshti St</span>
+                            <span class="description">Imam reza Blvd / </span>
+                            <span class="description-2">Beheshti St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-3.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
-                            <span class="description">Shams Blvd / Salmani St</span>
+                            <span class="description">Shams Blvd / </span>
+                            <span class="description-2">Salmani St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-2.jpg" alt="Chicago">
                             <span class="sold-icon">SOLD!</span>
                             <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
-                            <span class="description">Mahmoud Abad / Hasht Behesht St</span>
+                            <span class="description">Mahmoud Abad / </span>
+                            <span class="description-2">Hasht Behesht St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-4.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Sepid Building</h2></a>
-                            <span class="description">Vakil Abad / Rajayi St</span>
+                            <span class="description">Vakil Abad / </span>
+                            <span class="description-2">Rajayi St</span>
                         </div>
-                        <div class="grid col-lg-3">
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                             <img src="images/grid-5.jpg" alt="Chicago">
                             <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
-                            <span class="description">Imam reza Blvd / Beheshti St</span>
+                            <span class="description">Imam reza Blvd / </span>
+                            <span class="description-2">Beheshti St</span>
+                        </div>
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                            <img src="images/grid-3.jpg" alt="Chicago">
+                            <a href="#"><h2 class="item-title">Amiran Complex</h2></a>
+                            <span class="description">Shams Blvd / </span>
+                            <span class="description-2">Salmani St</span>
+                        </div>
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                            <img src="images/grid-2.jpg" alt="Chicago">
+                            <span class="sold-icon">SOLD!</span>
+                            <a href="#"><h2 class="item-title">Shams Shoping</h2></a>
+                            <span class="description">Mahmoud Abad / </span>
+                            <span class="description-2">Hasht Behesht St</span>
+                        </div>
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                            <img src="images/grid-4.jpg" alt="Chicago">
+                            <a href="#"><h2 class="item-title">Sepid Building</h2></a>
+                            <span class="description">Vakil Abad / </span>
+                            <span class="description-2">Rajayi St</span>
+                        </div>
+                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                            <img src="images/grid-5.jpg" alt="Chicago">
+                            <a href="#"><h2 class="item-title">Ofogh Tower</h2></a>
+                            <span class="description">Imam reza Blvd / </span>
+                            <span class="description-2">Beheshti St</span>
                         </div>
                     </div>
+                </div>
+                <div class="button-more">
+                    <button type="button" class="btn btn-primary section-button">View More</button>
                 </div>
             </div>
         </div>
@@ -303,10 +304,10 @@
                             model text, and a search for 'lorem ipsum' will uncover many web sites still in their
                             infancy.</p>
                         <div class="footer-title"><p>CONTACT US</p></div>
-                        <p>Iran / Mashhad | Imam Khomeini Street Commercial Complex, Office of Marble | Input | 3 floors
-                            | 14 units 5</p>
+                        <a class="address-link" href="https://goo.gl/maps/LHhsnMFxhuJK5WZa6"><p>Iran / Mashhad | Imam
+                            Khomeini Street Commercial Complex, Office of Marble | Input | 3 floors | 14 units 5</p></a>
                         <div class="phone">
-                            <p><strong>+98 25 3292 4051</strong></p>
+                            <a href="tel:+982532924051"><p><strong>+98 25 3292 4051</strong></p></a>
                         </div>
                         <div class="social-icon">
                             <ul class="social-list">
@@ -363,11 +364,11 @@
                 <div class="container-fluid">
                     <div class="row footer-copy-row">
                         <div class="copy-1 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            © REZVAN.COM 2019</br>
+                            <strong>© REZVAN.COM 2019</strong></br>
                             REZVAN is a registered trademark of DENSO WAVE INCORPORATED
                         </div>
                         <div class="copy-2 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                            Design by : <a href="#">Tarsim.inc</a>
+                            <strong>Design by </strong><a href="#">Tarsim.inc</a>
                         </div>
                     </div>
                 </div>

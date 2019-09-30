@@ -1,8 +1,10 @@
 <?php
+/** @var $this View*/
 
 use app\components\MultiLangActiveRecord;
 use app\components\Setting;
 use yii\helpers\Url;
+use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 ?>
@@ -21,32 +23,9 @@ $baseUrl = $this->theme->baseUrl;
                         </div>
                         <p><?= Setting::get(app()->language.'_about') ?></p>
                         <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
-                        <p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p>
-                        <div class="phone">
-                            <p><strong><?= Yii::t('words', 'Tell') ?><br> <?= Setting::get('tell') ?></strong></p>
-                        </div>
-                        <div class="social-icon">
-                            <ul class="social-list">
-
-                                <?php $val = Setting::get('socialNetworks.whatsapp');
-                                echo $val && !empty($val) ? '
-                                <li class="social-item whatsapp"><a href="' . $val . '" target="_blank"><i class="fa fa-whatsapp"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.twitter');
-                                echo $val && !empty($val) ? '
-                                 <li class="social-item twitter"><a href="' . $val . '" target="_blank"><i class="fa fa-twitter"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.instagram');
-                                echo $val && !empty($val) ? '<li class="social-item instagram"><a href="' . $val . '" target="_blank"><i class="fa fa-instagram"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.facebook');
-                                echo $val && !empty($val) ? '<li class="social-item facebook"><a href="' . $val . '" target="_blank"><i class="fa fa-facebook-f"></i></a></li>' : ''; ?>
-
-                                <?php $val = Setting::get('socialNetworks.telegram');
-                                echo $val && !empty($val) ? '<li class="social-item youtube"><a href="' . $val . '" target="_blank"><i class="fa fa-youtube"></i></a></li>' : ''; ?>
-
-                            </ul>
-                        </div>
+                        <a class="address-link" href="<?= Setting::get('address_link') ?>"><p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p></a>
+                        <div class="phone"><a href="tel:<?= str_replace(' ','',Setting::get('tell')) ?>"><p><strong><?= Setting::get('tell') ?></strong></p></a></div>
+                        <?= $this->render('//layouts/_socials')?>
                     </div>
                 </div>
             </div>

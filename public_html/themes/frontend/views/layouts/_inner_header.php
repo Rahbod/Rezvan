@@ -16,6 +16,8 @@ use yii\helpers\Url; ?>
                                 <a href="<?= Url::to(['/site/index']) ?>">
                                     <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>"
                                          alt="<?= app()->name ?>">
+                                    <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-02.png' ?>"
+                                         alt="<?= app()->name ?>">
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
@@ -78,4 +80,24 @@ use yii\helpers\Url; ?>
             </div>
         </div>
     </div>
+    <?php if ($this->context->breadcrumbs): ?>
+        <div class="header-bottom">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p class="breadcrumbs"><?= $this->context->breadcrumbs[0] ?>/</p>
+                        <p class="breadcrumbs-desc">
+                            <strong><?= $this->context->breadcrumbs[1] ?></strong> <?= $this->context->breadcrumbs[2] ?>
+                        </p>
+                    </div>
+
+                    <div class="col-lg-6 right">
+                        <a href="#unit-section" class="unit"><?= trans('words', 'unit') ?></a>
+                        <a href="#map-section" class="on-map"><?= trans('words', 'one map') ?></a>
+                        <a href="#nearby-section" class="near-you"><?= trans('words', 'near you') ?></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
 </header>

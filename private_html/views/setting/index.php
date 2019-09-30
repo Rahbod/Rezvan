@@ -130,7 +130,16 @@ $this->registerJs('
                     ]); ?>
                 </div>
             </div>
+            <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Address Link') ?></label>
 
+                <div class="col-lg-6">
+                    <?php echo Html::textInput('Setting[address_link]', $settings['address_link'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
+                    ]); ?>
+                </div>
+            </div>
         </div>
 
         <div class="m-form__section m-form__section--last">

@@ -31,6 +31,7 @@ use yii\web\View;
  *
  * @property Block[] blocks
  * @property Unit[] units
+ * @property string subtitle_two
  */
 class Project extends Item implements ProjectInterface
 {
@@ -85,6 +86,9 @@ class Project extends Item implements ProjectInterface
             'subtitle' => ['CHAR', ''],
             'ar_subtitle' => ['CHAR', ''],
             'en_subtitle' => ['CHAR', ''],
+            'subtitle_two' => ['CHAR', ''],
+            'ar_subtitle_two' => ['CHAR', ''],
+            'en_subtitle_two' => ['CHAR', ''],
             'image' => ['CHAR', ''],
             'area_size' => ['INTEGER', ''],
             'unit_count' => ['INTEGER', ''],
@@ -106,7 +110,7 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['project_type'], 'required'],
-            [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
+            [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'subtitle_two', 'ar_subtitle_two', 'en_subtitle_two', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer']
         ]);
     }
@@ -121,6 +125,9 @@ class Project extends Item implements ProjectInterface
             'subtitle' => trans('words', 'Subtitle'),
             'en_subtitle' => trans('words', 'En Subtitle'),
             'ar_subtitle' => trans('words', 'Ar Subtitle'),
+            'subtitle_two' => trans('words', 'Subtitle two'),
+            'en_subtitle_two' => trans('words', 'En Subtitle two'),
+            'ar_subtitle_two' => trans('words', 'Ar Subtitle two'),
             'image' => trans('words', 'Image'),
             'begin_date' => trans('words', 'Begin date'),
             'construction_time' => trans('words', 'Construction time'),
@@ -180,6 +187,7 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::formAttributes(), [
             'hr' => self::FORM_SEPARATOR,
             [['subtitle', 'ar_subtitle', 'en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
+            [['subtitle_two', 'ar_subtitle_two', 'en_subtitle_two'], self::FORM_FIELD_TYPE_TEXT],
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getProjectTypeLabels(),
@@ -351,11 +359,7 @@ JS
         foreach ($this->blocks as $block) {
             $type = $block->type;
             /** @var Block $modelClass */
-
-
             $modelClass = Block::$typeModels[$type];
-            if ($unit && ($modelClass == Units::className() || $modelClass == RelatedProjects::className()))
-                continue;
             $block = $modelClass::findOne($block->id);
             $output .= $block->render($view, $project);
         }
@@ -404,11 +408,11 @@ JS
     {
         if (!static::$multiLanguage) {
             if (Yii::$app->language == 'fa')
-                return $this->loc;
+                return $this->location;
             else
-                return $this->{Yii::$app->language . '_subtitle'} ?: $this->subtitle;
+                return $this->{Yii::$app->language . '_location'} ?: $this->location;
         }
-        return $this->subtitle;
+        return $this->location;
     }
 
     public function getPdfUrl($dir)
@@ -417,5 +421,16 @@ JS
         if ($this->pdf_file and is_file($path))
             return alias('@web/') . $dir . '/' . $this->pdf_file;
         return false;
+    }
+
+    public function getSubtitle2Str()
+    {
+        if (!static::$multiLanguage) {
+            if (Yii::$app->language == 'fa')
+                return $this->subtitle_two;
+            else
+                return $this->{Yii::$app->language . '_subtitle_two'} ?: $this->subtitle_two;
+        }
+        return $this->subtitle_two;
     }
 }

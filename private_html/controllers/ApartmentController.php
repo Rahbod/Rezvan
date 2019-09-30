@@ -149,7 +149,14 @@ class ApartmentController extends AuthController
         $this->setTheme('frontend');
         $this->innerPage = true;
 
+        /** @var Project $model */
         $model = $this->findModel($id);
+
+        $this->breadcrumbs = [
+            trans('words','Available Apartments'),
+            $model->getName(),
+            $model->getSubtitleStr(),
+        ];
 
         if($model->project_type == Project::SINGLE_VIEW)
             $this->bodyClass = 'final-project-view';

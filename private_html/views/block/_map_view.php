@@ -11,7 +11,7 @@ use yii\web\View;
 
 $url = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $block->image;
 ?>
-<section class="slide-2">
+<section class="slide-2" id="map-section">
     <div class="picture-slide-4">
         <a target="_blank" rel="nofollow" href="<?= $block->location_link ?>"><img src="<?= $url ?>" alt="<?= $block->name ?>"></a>
     </div>

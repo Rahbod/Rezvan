@@ -9,7 +9,7 @@ use yii\web\View;
 $baseUrl = $this->theme->baseUrl;
 $unit = $block->getUnit();
 ?>
-<section class="slide-4">
+<section class="slide-4" id="unit-section">
     <div class="content">
         <div class="container-fluid">
             <div class="row available">

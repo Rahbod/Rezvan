@@ -16,7 +16,7 @@ $baseUrl = $this->theme->baseUrl;
 $sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->all();
 $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->all();
 ?>
-<section class="slide-4">
+<section class="slide-4" id="unit-section">
     <div class="container-fluid">
         <div class="row">
             <div class="slide-title">
@@ -30,19 +30,17 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
         <?php if ($free): ?>
             <div class="container-fluid">
                 <div class="row available">
-                    <div class="available-left-title col-lg-3">
+                    <div class="available-left-title col-lg-4 col-md-12 col-sm-12 ">
                         <img src="<?= $baseUrl ?>/images/door-icon.png" alt="door">
                         <div class="title-unit">
                             <p><?= trans('words', '<span class="green"><strong>{count} unit </span>free </strong>', ['count' => count($free)]) ?></p>
                             <p><?= trans('words', 'from {total_count} unit', ['total_count' => count($sold) + count($free)]) ?> </p>
                         </div>
                         <div class="desc-unit">
-                            <p>
-                                <?= $project->subtitle ?>
-                            </p>
+                            <p><?= $project->subtitle ?></p>
                         </div>
                     </div>
-                    <div class="available-right-title col-lg-9">
+                    <div class="available-right-title col-lg-8 col-md-12 col-sm-12 ">
                         <div class="item-inner row">
                             <?php foreach ($free as $item): ?>
                                 <div class="items col-lg-11 collapsible collapsed" data-toggle="collapse"

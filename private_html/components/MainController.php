@@ -34,6 +34,8 @@ class MainController extends Controller implements CrudControllerInterface
     public $models;
     public $menus;
 
+    public $breadcrumbs = [];
+
     public function init()
     {
         parent::init();

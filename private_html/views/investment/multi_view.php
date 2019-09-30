@@ -45,21 +45,25 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                         <ul class="icon-list-slider">
                             <div class="item item-1">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-7.png" alt="item-7">
                                 </div>
                             </div>
                             <div class="item item-2">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-4.png" alt="item-3">
                                 </div>
                             </div>
                             <div class="item item-3">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-6.png" alt="item-6">
                                 </div>
                             </div>
                             <div class="item item-4">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-5.png" alt="item-4">
                                 </div>
                             </div>
@@ -71,21 +75,25 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                             </div>
                             <div class="item item-5">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-2.png" alt="item-2">
                                 </div>
                             </div>
                             <div class="item item-6">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-9.png" alt="item-9">
                                 </div>
                             </div>
                             <div class="item item-7">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-3.png" alt="item-3">
                                 </div>
                             </div>
                             <div class="item item-8">
                                 <div class="inner">
+                                    <p class="item-text-hover"><?= '' ?></p>
                                     <img src="<?= $baseUrl ?>/images/item-10.png" alt="item-10">
                                 </div>
                             </div>

@@ -2,9 +2,13 @@
 
 namespace app\models;
 
+use app\components\MainController;
+use app\controllers\ApartmentController;
+use app\controllers\UnitController;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\UnitDetails;
 use Yii;
+use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
@@ -14,6 +18,7 @@ use yii\web\View;
  * @property int $itemID
  * @property int $unit_number
  * @property int project_blocks
+ * @property int $image
  * @property int $floor_number
  * @property int air_conditioner
  * @property int wc
@@ -45,6 +50,7 @@ class Unit extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'image' => ['CHAR', ''],
             'itemID' => ['INTEGER', ''],
             'unit_number' => ['INTEGER', ''],
             'floor_number' => ['INTEGER', ''],
@@ -100,7 +106,7 @@ class Unit extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
-            [['itemID'], 'required'],
+            [['itemID', 'image'], 'required'],
             [
                 ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
                     'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room']
@@ -128,6 +134,7 @@ class Unit extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'image' => trans('words', 'Image'),
             'itemID' => trans('words', 'Project ID'),
             'sort' => trans('words', 'Sort'),
             'unit_number' => trans('words', 'Unit number'),
@@ -235,6 +242,36 @@ class Unit extends Item
                 'containerCssClass' => 'col-sm-12'
             ],
             [['floor_heating', 'iPhone_video', 'elevator', 'split','terrace'], self::FORM_FIELD_TYPE_SWITCH],
+            'sep4' => [
+                'type' => static::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ],
+            'image' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'hint' => 'تصویر کوچک',
+                'containerCssClass' => 'col-sm-6',
+                'temp' => MainController::$tempDir,
+                'path' => UnitController::$imgDir,
+                'filesOptions' =>UnitController::$imageOptions,
+                'options' => [
+                    'url' => Url::to(['upload-image']),
+                    'removeUrl' => Url::to(['delete-image']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'image')],
+                    'options' => [
+                        'createImageThumbnails' => true,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
+                        'acceptedFiles' => 'png, jpeg, jpg',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
         ]);
     }
 
@@ -299,6 +336,11 @@ class Unit extends Item
         return $this->project->getSubtitleStr();
     }
 
+    public function getSubtitle2Str()
+    {
+        return $this->project->getSubtitle2Str();
+    }
+
     public function getFloorNumberStr()
     {
         return trans('words', 'on floor {value}', ['value' => $this->floor_number]);
@@ -360,4 +402,10 @@ class Unit extends Item
         return trans('words', 'have it');
     }
 
+    public function getModelImage()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/unit/') . $this->image))
+            return Yii::getAlias('@web/uploads/unit/') . $this->image;
+        return '';
+    }
 }

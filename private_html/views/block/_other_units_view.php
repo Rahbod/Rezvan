@@ -6,7 +6,10 @@
 
 use app\models\blocks\OtherUnits;
 use app\models\Unit;
-use yii\web\View; ?>
+use yii\web\View;
+
+$baseUrl = $this->theme->baseUrl;
+?>
 <?php if ($units): ?>
     <section class="order-post">
         <div class="container-fluid">
@@ -26,12 +29,11 @@ use yii\web\View; ?>
                                             if (!isset($units[$j]))
                                                 break;
                                             $unit = $units[$j]; ?>
-                                            <div class="grid col-lg-3">
-                                                <div class="img">
-                                                    <a title="<?= $unit->getName() ?>" href="<?= $unit->getUrl() ?>">
-                                                        <?= $unit->getName() ?>
-                                                    </a>
-                                                </div>
+                                            <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                                <img src="<?= $unit->getModelImage() ?>" alt="<?= $unit->getName() ?>">
+                                                <a href="<?= $unit->getUrl() ?>"><h2 class="item-title"><?= $unit->getName() ?></h2></a>
+                                                <span class="description"><?= $unit->getSubtitleStr() ?><?= $unit->getSubtitle2Str()?' / ':'' ?></span>
+                                                <span class="description-2"><?= $unit->getSubtitle2Str() ?></span>
                                             </div>
                                         <?php endfor; ?>
                                     </div>

@@ -20,6 +20,9 @@ class UnitController extends AuthController
 {
     use CrudControllerTrait;
 
+    public static $imgDir = 'uploads/unit';
+    public static $imageOptions = [];
+
     public function getModelName()
     {
         return Unit::className();

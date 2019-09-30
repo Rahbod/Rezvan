@@ -12,7 +12,7 @@ use yii\web\View;
 $baseUrl = $this->theme->baseUrl;
 
 ?>
-<section class="slide-3">
+<section class="slide-3" id="nearby-section">
     <div class="container-fluid">
         <div class="row">
             <div class="slide-title">
