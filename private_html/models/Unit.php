@@ -338,7 +338,7 @@ class Unit extends Item
 
     public function getSubtitle2Str()
     {
-        return $this->project->getSubtitle2Str();
+        return $this->project->getLocationTwoStr();
     }
 
     public function getFloorNumberStr()

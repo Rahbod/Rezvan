@@ -144,15 +144,14 @@ class InvestmentController extends AuthController
         /** @var Investment $model */
         $model = $this->findModel($id);
 
-        $this->breadcrumbs = [
-            trans('words','Available Investments'),
-            $model->getName(),
-            $model->getSubtitleStr(),
-        ];
-
-        if($model->project_type == Project::SINGLE_VIEW)
+        if ($model->project_type == Project::SINGLE_VIEW) {
             $this->bodyClass = 'final-project-view';
-        else
+            $this->breadcrumbs = [
+                trans('words', 'Available Investments'),
+                $model->getName(),
+                $model->getSubtitleStr(),
+            ];
+        } else
             $this->bodyClass = 'more-one';
 
         return $this->render('show', compact('model'));

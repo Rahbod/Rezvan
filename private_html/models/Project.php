@@ -31,7 +31,9 @@ use yii\web\View;
  *
  * @property Block[] blocks
  * @property Unit[] units
- * @property string subtitle_two
+ * @property string location_two
+ * @property string en_location_two
+ * @property string ar_location_two
  */
 class Project extends Item implements ProjectInterface
 {
@@ -86,9 +88,9 @@ class Project extends Item implements ProjectInterface
             'subtitle' => ['CHAR', ''],
             'ar_subtitle' => ['CHAR', ''],
             'en_subtitle' => ['CHAR', ''],
-            'subtitle_two' => ['CHAR', ''],
-            'ar_subtitle_two' => ['CHAR', ''],
-            'en_subtitle_two' => ['CHAR', ''],
+            'location_two' => ['CHAR', ''],
+            'ar_location_two' => ['CHAR', ''],
+            'en_location_two' => ['CHAR', ''],
             'image' => ['CHAR', ''],
             'area_size' => ['INTEGER', ''],
             'unit_count' => ['INTEGER', ''],
@@ -98,6 +100,14 @@ class Project extends Item implements ProjectInterface
             'project_type' => ['INTEGER', ''],
             'pdf_file' => ['CHAR', ''],
             'banner' => ['CHAR', ''],
+            'bg_color' => ['CHAR', ''],
+
+            'floor_number' => ['INTEGER', ''],
+            'unit_number' => ['INTEGER', ''],
+            'elevator' => ['INTEGER', ''],
+            'age_of_the_building' => ['INTEGER', ''],
+            'parking' => ['INTEGER', ''],
+            'usage' => ['INTEGER', ''],
         ]);
     }
 
@@ -110,8 +120,9 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['project_type'], 'required'],
-            [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'subtitle_two', 'ar_subtitle_two', 'en_subtitle_two', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
-            [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer']
+            [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'location_two', 'bg_color', 'ar_location_two', 'en_location_two', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
+            [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer'],
+            [['floor_number', 'unit_number', 'parking', 'elevator', 'age_of_the_building', 'usage'], 'integer']
         ]);
     }
 
@@ -125,9 +136,9 @@ class Project extends Item implements ProjectInterface
             'subtitle' => trans('words', 'Subtitle'),
             'en_subtitle' => trans('words', 'En Subtitle'),
             'ar_subtitle' => trans('words', 'Ar Subtitle'),
-            'subtitle_two' => trans('words', 'Subtitle two'),
-            'en_subtitle_two' => trans('words', 'En Subtitle two'),
-            'ar_subtitle_two' => trans('words', 'Ar Subtitle two'),
+            'location_two' => trans('words', 'Location two'),
+            'en_location_two' => trans('words', 'En Location two'),
+            'ar_location_two' => trans('words', 'Ar Location two'),
             'image' => trans('words', 'Image'),
             'begin_date' => trans('words', 'Begin date'),
             'construction_time' => trans('words', 'Construction time'),
@@ -140,6 +151,14 @@ class Project extends Item implements ProjectInterface
             'sold_count' => trans('words', 'Sold count'),
             'pdf_file' => trans('words', 'Pdf file'),
             'banner' => trans('words', 'Banner'),
+            'bg_color' => trans('words', 'Background color'),
+            'floor_number' => trans('words', 'Floor count'),
+            'unit_number' => trans('words', 'Units count'),
+            'elevator' => trans('words', 'Elevator'),
+            'age_of_the_building' => trans('words', 'Age of the building'),
+            'parking' => trans('words', 'Parking'),
+            'usage' => trans('words', 'Usage'),
+
         ]);
     }
 
@@ -187,7 +206,6 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::formAttributes(), [
             'hr' => self::FORM_SEPARATOR,
             [['subtitle', 'ar_subtitle', 'en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
-            [['subtitle_two', 'ar_subtitle_two', 'en_subtitle_two'], self::FORM_FIELD_TYPE_TEXT],
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getProjectTypeLabels(),
@@ -208,12 +226,21 @@ class Project extends Item implements ProjectInterface
 //                    ]
 //                ]
             ],
-            [['location', 'ar_location', 'en_location'], self::FORM_FIELD_TYPE_TEXT],
+            [['location', 'ar_location', 'en_location', 'location_two', 'ar_location_two', 'en_location_two'], self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
             'unit_count' => self::FORM_FIELD_TYPE_TEXT,
             'free_count' => self::FORM_FIELD_TYPE_TEXT,
             'sold_count' => self::FORM_FIELD_TYPE_TEXT,
+            'bg_color' => self::FORM_FIELD_TYPE_TEXT,
             'sep' => [
+                'type' => self::FORM_SEPARATOR,
+                'containerCssClass' => 'col-sm-12'
+            ],
+            [
+                ['floor_number', 'parking', 'elevator', 'age_of_the_building', 'usage'],
+                ['type' => self::FORM_FIELD_TYPE_TEXT, 'containerCssClass' => 'col-sm-3']
+            ],
+            'sep2' => [
                 'type' => self::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
             ],
@@ -323,6 +350,7 @@ JS
 
     public function getUnitCount($free = false)
     {
+        return $free?$this->free_count:$this->sold_count;
         $q = $this->hasMany(Unit::className(), [Unit::columnGetString('itemID') => 'id']);
         if ($free)
             $q->andWhere([Unit::columnGetString('sold') => 0]);
@@ -338,7 +366,7 @@ JS
             return $this->renderBlocks($view, $this);
         else {
             $className = strtolower($this->formName());
-            if($className == 'otherconstruction')
+            if ($className == 'otherconstruction')
                 $className = 'construction';
             return $view->renderAjax('/' . $className . '/multi_view', ['project' => $this]);
         }
@@ -423,14 +451,14 @@ JS
         return false;
     }
 
-    public function getSubtitle2Str()
+    public function getLocationTwoStr()
     {
         if (!static::$multiLanguage) {
             if (Yii::$app->language == 'fa')
-                return $this->subtitle_two;
+                return $this->location_two;
             else
-                return $this->{Yii::$app->language . '_subtitle_two'} ?: $this->subtitle_two;
+                return $this->{Yii::$app->language . '_location_two'} ?: $this->location_two;
         }
-        return $this->subtitle_two;
+        return $this->location_two;
     }
 }

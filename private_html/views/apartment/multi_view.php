@@ -27,8 +27,8 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                 </div>
                 <div class="title-right">
                     <p class="slide">
-                        <span class="projects"><?= trans('words', '{count} unit', ['count' => $project->getUnitCount()]) ?> / </span>
-                        <span class="available-project"><?= trans('words', 'available<br>unit') ?></span>
+                        <span class="projects"><?= trans('words', '{count} units', ['count' => $project->unit_count]) ?> / </span>
+                        <span class="available-project"><?= trans('words', 'available<br>units') ?></span>
                         <span class="num"><?= $project->getUnitCount(true) ?></span>
                     </p>
                 </div>

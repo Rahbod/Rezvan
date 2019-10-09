@@ -61,7 +61,6 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
                         ],
-
                         ['class' => 'app\components\customWidgets\CustomActionColumn']
                     ],
                 ]); ?>

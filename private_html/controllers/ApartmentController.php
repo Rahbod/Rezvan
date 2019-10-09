@@ -152,14 +152,15 @@ class ApartmentController extends AuthController
         /** @var Project $model */
         $model = $this->findModel($id);
 
-        $this->breadcrumbs = [
-            trans('words','Available Apartments'),
-            $model->getName(),
-            $model->getSubtitleStr(),
-        ];
-
         if($model->project_type == Project::SINGLE_VIEW)
+        {
             $this->bodyClass = 'final-project-view';
+            $this->breadcrumbs = [
+                trans('words','Available Apartments'),
+                $model->getName(),
+                $model->getSubtitleStr(),
+            ];
+        }
         else
             $this->bodyClass = 'more-one';
 

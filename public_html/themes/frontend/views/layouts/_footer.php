@@ -19,7 +19,7 @@ $baseUrl = $this->theme->baseUrl;
                     </div>
                     <div class="col-lg-8 col-md-8  col-sm-12 col-xs-12 text-footer">
                         <div class="footer-title">
-                            <p><?= trans('words', 'ABOUT') ?> <?= trans('words', app()->name)  ?></p>
+                            <p><?= trans('words', 'ABOUT') ?> <?= trans('words', 'Rezvan')  ?></p>
                         </div>
                         <p><?= Setting::get(app()->language.'_about') ?></p>
                         <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
@@ -72,11 +72,11 @@ $baseUrl = $this->theme->baseUrl;
                 <div class="container-fluid">
                     <div class="row footer-copy-row">
                         <div class="copy-1 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            © REZVAN.INFO <?= date('Y') ?></br>
+                            <strong>© REZVAN.INFO <?= date('Y') ?></strong></br>
                             <?= trans('words', 'REZVAN is a registered trademark of DENSO WAVE INCORPORATED') ?>
                         </div>
                         <div class="copy-2 col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                            <?= trans('words', 'Design by') ?> : <a title="<?= trans('words', 'Tarsim.inc') ?>" href="http://tarsiminc.com"><?= trans('words', 'Tarsim.inc') ?></a>
+                            <strong><?= trans('words', 'Design by') ?> </strong><a title="<?= trans('words', 'Tarsim.inc') ?>" href="http://tarsiminc.com"><?= trans('words', 'Tarsim.inc') ?></a>
                         </div>
                     </div>
                 </div>

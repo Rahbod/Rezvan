@@ -46,7 +46,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                                     <h2 class="item-title"><?= Html::encode($projects[0]->getName()) ?></h2>
                                     <span class="first-title"><?= $projects[0]->getSubtitleStr() ?></span>
                                 </a>
-                                <span class="description"><?= $projects[0]->getSubtitle2Str() ?></span>
+                                <span class="description"><?= $projects[0]->getLocationTwoStr() ?></span>
                             </div>
                         <?php endif; ?>
 
@@ -61,8 +61,8 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                                                href="<?= $project->getUrl() ?>">
                                                 <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                             </a>
-                                            <span class="description"><?= $project->getSubtitleStr() ?><?= $project->getSubtitle2Str() ? ' / ' : '' ?></span>
-                                            <span class="description-2"><?= $project->getSubtitle2Str() ?></span>
+                                            <span class="description"><?= $project->getSubtitleStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                            <span class="description-2"><?= $project->getLocationTwoStr() ?></span>
                                         </div>
                                     <?php endif; endforeach; ?>
                             </div>
@@ -84,7 +84,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                     </div>
                 </div>
                 <div class="button-more">
-                    <button type="button" class="btn btn-primary section-button">View More</button>
+                    <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                 </div>
             </div>
         </div>

@@ -4,10 +4,14 @@ namespace app\controllers;
 
 use app\components\CrudControllerTrait;
 use app\models\Project;
+use app\models\projects\Apartment;
+use devgroup\dropzone\RemoveAction;
+use devgroup\dropzone\UploadAction;
 use Yii;
 use app\models\Unit;
 use app\models\UnitSearch;
 use app\components\AuthController;
+use yii\helpers\Html;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\web\Response;
@@ -31,6 +35,28 @@ class UnitController extends AuthController
     public function getSystemActions()
     {
         return ['show'];
+    }
+
+    public function actions()
+    {
+        return [
+            'upload-image' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Unit(), 'image'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('png', 'jpg', 'jpeg')
+                )
+            ],
+            'delete-image' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$imgDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Unit(),
+                'attribute' => 'image',
+                'options' => static::$imageOptions
+            ],
+        ];
     }
 
     /**

@@ -116,19 +116,19 @@ class SiteController extends AuthController
             $searchApartment->name = $term;
             $searchApartment->subtitle = $term;
             $apartmentProvider = $searchApartment->search([]);
-            $apartmentProvider->getPagination()->pageSize = 50;
+            $apartmentProvider->getPagination()->pageSize = 20;
 
             $searchInvestment = new InvestmentSearch();
             $searchInvestment->name = $term;
             $searchInvestment->subtitle = $term;
             $investmentProvider = $searchInvestment->search([]);
-            $investmentProvider->getPagination()->pageSize = 50;
+            $investmentProvider->getPagination()->pageSize = 20;
 
             $searchConstruction = new OtherConstructionSearch();
             $searchConstruction->name = $term;
             $searchConstruction->subtitle = $term;
             $constructionProvider = $searchConstruction->search([]);
-            $constructionProvider->getPagination()->pageSize = 50;
+            $constructionProvider->getPagination()->pageSize = 20;
 
 //            $searchPage = new PageSearch();
 //            $searchPage->name = $term;
@@ -137,8 +137,10 @@ class SiteController extends AuthController
 //            $pageProvider = $searchPage->search([]);
 //            $pageProvider->getPagination()->pageSize = 100;
 
+            $services = Service::find()->all();
+
             return $this->render('search', compact('term', 'investmentProvider',
-                'constructionProvider', 'searchApartment', 'apartmentProvider'));
+                'constructionProvider', 'searchApartment', 'apartmentProvider', 'services'));
         } else
             return $this->goBack();
     }

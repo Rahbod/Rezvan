@@ -64,6 +64,8 @@ class Menu extends Category
 
     public function formAttributes()
     {
+        if($this->isNewRecord || !$this->icon_class)
+            $this->icon_class = 'sprite-services-icon';
         return array_merge(parent::formAttributes(),[
             'parentID' => [
                 'type' => static::FORM_FIELD_TYPE_SELECT,

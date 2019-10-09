@@ -30,7 +30,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
         <?php if ($free): ?>
             <div class="container-fluid">
                 <div class="row available">
-                    <div class="available-left-title col-lg-4 col-md-12 col-sm-12 ">
+                    <div class="available-left-title col-lg-4">
                         <img src="<?= $baseUrl ?>/images/door-icon.png" alt="door">
                         <div class="title-unit">
                             <p><?= trans('words', '<span class="green"><strong>{count} unit </span>free </strong>', ['count' => count($free)]) ?></p>
@@ -40,7 +40,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                             <p><?= $project->subtitle ?></p>
                         </div>
                     </div>
-                    <div class="available-right-title col-lg-8 col-md-12 col-sm-12 ">
+                    <div class="available-right-title col-lg-8">
                         <div class="item-inner row">
                             <?php foreach ($free as $item): ?>
                                 <div class="items col-lg-11 collapsible collapsed" data-toggle="collapse"
@@ -183,8 +183,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
         <?php if ($sold): ?>
             <div class="container-fluid">
                 <div class="row sold">
-                    <div class="sold-left-title col-lg-3">
-
+                    <div class="sold-left-title col-lg-4">
                         <p class="sold-title">
                             <?= trans('words', '<span class="red"><strong>{count} unit</strong></span> SOLD', ['count' => count($sold)]) ?>
                         </p>

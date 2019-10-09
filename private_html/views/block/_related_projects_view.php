@@ -38,7 +38,8 @@ $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
                                                 <a href="<?= $apartment->getUrl() ?>">
                                                     <h2 class="item-title"><?= $apartment->getName() ?></h2>
                                                 </a>
-                                                <span class="description"><?= $apartment->getSubtitleStr() ?></span>
+                                                <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr()?' / ':'' ?></span>
+                                                <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
                                             </div>
                                         <?php endfor; ?>
                                     </div>

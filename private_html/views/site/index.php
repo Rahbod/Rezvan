@@ -18,7 +18,6 @@ $availableApartmentsCounts = isset($availableApartments) ? count($availableApart
 $availableInvestmentsCounts = isset($availableInvestments) ? count($availableInvestments) : 0;
 $availableConstructionsCounts = isset($availableConstructions) ? count($availableConstructions) : 0;
 $serviceCounts = isset($services) ? count($services) : null;
-
 ?>
 <section class="slider">
     <div class="container">
@@ -77,7 +76,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
                                                 <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
                                             </a>
-                                            <span class="description"><?= Html::encode($apartment->location) ?></span>
+                                            <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                             <div class="overly">
                                                 <div class="item unit">
                                                     <p class="title-1"><?= $apartment->area_size ?></p>
@@ -88,7 +87,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                          alt="item-1">
                                                 </div>
                                                 <div class="item item-2">
-                                                    <img src="<?= alias('@web/themes/frontend/images/item-2.png') ?>"
+                                                    <img src="<?= alias('@web/themes/frontend/images/item-2-w.png') ?>"
                                                          alt="item-2">
                                                 </div>
                                                 <div class="item item-3">
@@ -119,11 +118,11 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         </div>
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
                                             <div class="row">
-                                                <?php for ($j = $i; $j < 4; $j++): ?>
+                                                <?php for ($j = $i + 1; $j <= $i + 4; $j++): ?>
                                                     <?php if (!isset($availableApartments[$j]))
                                                         break;
                                                     $apartment = $availableApartments[$j]; ?>
-                                                    <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                         <img src="<?= $apartment->getModelImage() ?>"
                                                              alt="<?= Html::encode($apartment->getName()) ?>">
                                                         <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
@@ -131,7 +130,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                             <h2 class="item-title">
                                                                 <?= Html::encode($apartment->getName()) ?></h2>
                                                         </a>
-                                                        <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
+                                                        <span class="description"><?= Html::encode($apartment->getLocationStr()) ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                                        <span class="description-2"><?= $apartment->getLocationTwoStr() ?: '' ?></span>
                                                     </div>
                                                 <?php endfor; ?>
                                             </div>
@@ -203,19 +203,19 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 left-post-slider">
                                             <div class="row">
-                                                <?php for ($j = $i; $j <$i+ 4; $j++): ?>
+                                                <?php for ($j = $i; $j < $i + 4; $j++): ?>
                                                     <?php
                                                     if (!isset($availableInvestments[$j])) break;
                                                     $investment = $availableInvestments[$j];
                                                     ?>
-                                                    <div class="grid col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                         <img src="<?= $investment->getModelImage() ?>"
                                                              alt="<?= $investment->getName() ?>">
                                                         <a href="<?= $investment->getUrl(); ?>">
                                                             <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                         </a>
-                                                        <span class="description"><?= $investment->getLocationStr() ?> / </span>
-                                                        <span class="description-2"><?= $investment->getLocationStr() ?></span>
+                                                        <span class="description"><?= $investment->getLocationStr() ?><?= $investment->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                                        <span class="description-2"><?= $investment->getLocationTwoStr() ?></span>
                                                     </div>
                                                 <?php endfor; ?>
                                             </div>
@@ -295,7 +295,7 @@ $serviceCounts = isset($services) ? count($services) : null;
     </section>
 <?php endif; ?>
 
-<?php if (isset($services) && $serviceCounts > 0 ):?>
+<?php if (isset($services) && $serviceCounts > 0): ?>
     <section class="slide-3">
         <div class="container-fluid">
             <div class="row">
@@ -323,7 +323,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         <?php for ($i = 0; $i < $serviceCounts; $i = $i + 3): ?>
                             <div class="carousel-item col-lg-12 col-md-12 col-sm-12 col-xs-12 <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="row">
-                                    <?php for ($j = $i; $j <$i+ 4; $j++): ?>
+                                    <?php for ($j = $i; $j < $i + 3; $j++): ?>
                                         <?php
                                         if (!isset($services[$j])) break;
                                         $service = $services[$j];
@@ -331,11 +331,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         <div class="col-sm-12 col-md-4 col-lg-4">
                                             <a href="<?= $service->getUrl() ?>"
                                                title="<?= Html::encode($service->getName()) ?>">
-                                                <h2 class="item-title"><?= Html::encode($service->getName()) ?></h2>
+                                                <h2 class="item-title"><?= $service->getName() ?></h2>
                                             </a>
-                                            <span class="description">
-                                            <?= Html::encode($service->getDescriptionStr()) ?>
-                                        </span>
+                                            <span class="description"><?= Html::encode($service->getDescriptionStr()) ?></span>
                                             <a href="<?= $service->getUrl() ?>"
                                                title="<?= Html::encode($service->getName()) ?>">
                                                 <button type="button" class="btn btn-primary slider-button">
@@ -347,7 +345,6 @@ $serviceCounts = isset($services) ? count($services) : null;
                                 </div>
                             </div>
                         <?php endfor; ?>
-
                     </div>
                     <a class="carousel-control-prev" href="#slide-3" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -369,7 +366,8 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <h2 class="slide"><?= trans('words', 'other construction') ?></h2>
+                        <img src="<?= $baseUrl.'/images/investment.png' ?>" alt="investment-icon">
+                        <h2 class="slide"><?= trans('words', '<strong>other</strong> construction') ?></h2>
                     </div>
                 </div>
 
@@ -391,7 +389,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <?php for ($j = $i; $j <$i+ 4; $j++): ?>
+                                        <?php for ($j = $i; $j < $i + 4; $j++): ?>
                                             <?php
                                             if (!isset($availableConstructions[$j])) break;
                                             $construction = $availableConstructions[$j];

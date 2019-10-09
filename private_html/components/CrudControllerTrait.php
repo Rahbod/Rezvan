@@ -163,7 +163,7 @@ trait CrudControllerTrait
 
         /** @var Item $model */
         $model = clone $base;
-        $model->scenario = 'clone';
+//        $model->scenario = 'clone';
 
         $model->setOldAttributes([]);
         $model->id = null;

@@ -19,9 +19,9 @@ use yii\helpers\Url;
 <div class="m-portlet__body">
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-    <div class="col-sm-12 text-danger">
-        <?= $form->errorSummary($model) ?>
-    </div>
+    <!--    <div class="col-sm-12 text-danger">-->
+    <!--        --><?//= $form->errorSummary($model) ?>
+    <!--    </div>-->
 
     <div class="row">
         <div class="col-sm-12">

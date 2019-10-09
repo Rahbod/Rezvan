@@ -277,8 +277,8 @@ class MainController extends Controller implements CrudControllerInterface
             $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
         }
         $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/contactus'], 'visible' => $permissions || app()->user->can('messageContactus')];
-        $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || app()->user->can('messageSuggestions')];
-        $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || app()->user->can('messageComplaints')];
+//        $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || app()->user->can('messageSuggestions')];
+//        $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || app()->user->can('messageComplaints')];
         $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || app()->user->can('messageDepartment')];
 
         return [
@@ -320,11 +320,11 @@ class MainController extends Controller implements CrudControllerInterface
 //                    ['label' => trans('words', 'Video Gallery'), 'url' => ['/gallery/index-video'], 'visible' => $permissions || app()->user->can('galleryIndexVideo')],
 //                ]
 //            ],
-            [
-                'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . trans('words', 'Categories') . '</span>',
-                'url' => ['/category/index'],
-                'visible' => $permissions || app()->user->can('categoryIndex')
-            ],
+//            [
+//                'label' => '<i class="m-menu__link-icon fa fa-th"></i><span class="m-menu__link-text">' . trans('words', 'Categories') . '</span>',
+//                'url' => ['/category/index'],
+//                'visible' => $permissions || app()->user->can('categoryIndex')
+//            ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . trans('words', 'Messages') . '</span>',
                 'items' => $contactLinks,
