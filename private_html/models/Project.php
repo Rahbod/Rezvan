@@ -108,6 +108,9 @@ class Project extends Item implements ProjectInterface
             'age_of_the_building' => ['INTEGER', ''],
             'parking' => ['INTEGER', ''],
             'usage' => ['INTEGER', ''],
+            'view' => ['CHAR', 'INTEGER'],
+            'direction' => ['INTEGER', ''],
+            'unit_per_floor_number' => ['INTEGER', ''],
         ]);
     }
 
@@ -122,7 +125,7 @@ class Project extends Item implements ProjectInterface
             [['project_type'], 'required'],
             [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'location_two', 'bg_color', 'ar_location_two', 'en_location_two', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer'],
-            [['floor_number', 'unit_number', 'parking', 'elevator', 'age_of_the_building', 'usage'], 'integer']
+            [['unit_per_floor_number', 'direction', 'view', 'floor_number', 'unit_number', 'parking', 'elevator', 'age_of_the_building', 'usage'], 'integer']
         ]);
     }
 
@@ -158,7 +161,9 @@ class Project extends Item implements ProjectInterface
             'age_of_the_building' => trans('words', 'Age of the building'),
             'parking' => trans('words', 'Parking'),
             'usage' => trans('words', 'Usage'),
-
+            'view' => trans('words', 'View'),
+            'direction' => trans('words', 'Construction direction'),
+            'unit_per_floor_number' => trans('words', 'Unit per floor number'),
         ]);
     }
 
@@ -237,9 +242,12 @@ class Project extends Item implements ProjectInterface
                 'containerCssClass' => 'col-sm-12'
             ],
             [
-                ['floor_number', 'parking', 'elevator', 'age_of_the_building', 'usage'],
+                ['floor_number', 'parking', 'elevator', 'age_of_the_building', 'unit_per_floor_number'],
                 ['type' => self::FORM_FIELD_TYPE_TEXT, 'containerCssClass' => 'col-sm-3']
             ],
+            'usage' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'user', 'containerCssClass' => 'col-sm-3'],
+            'view' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'view', 'containerCssClass' => 'col-sm-3'],
+            'direction' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'direction', 'containerCssClass' => 'col-sm-3'],
             'sep2' => [
                 'type' => self::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
@@ -350,7 +358,7 @@ JS
 
     public function getUnitCount($free = false)
     {
-        return $free?$this->free_count:$this->sold_count;
+        return $free ? $this->free_count : $this->sold_count;
         $q = $this->hasMany(Unit::className(), [Unit::columnGetString('itemID') => 'id']);
         if ($free)
             $q->andWhere([Unit::columnGetString('sold') => 0]);

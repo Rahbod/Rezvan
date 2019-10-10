@@ -8,6 +8,12 @@ use yii\web\View;
 /** @var Unit $model */
 
 $baseUrl = $this->theme->baseUrl;
+
+$this->breadcrumbs = [
+    trans('words','Available Apartments'),
+    $model->getName(),
+    $model->getSubtitleStr(),
+];
 ?>
 
 <div class="overly">

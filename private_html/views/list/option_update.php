@@ -1,25 +1,38 @@
 <?php
 
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Lists */
-/* @var $parent app\models\Lists */
 
-Pjax::begin([
-    'id' => 'list-modal',
-    'options' => [
-        'class' => 'custom-modal list-modal',
-        'data-pjax' => true
-    ],
-    'enablePushState' => false,
-    'enableReplaceState' => false,
-    'timeout' => false,
+
+$this->title = trans('words', 'Update Lists: {name}', [
+    'name' => $model->name,
 ]);
+$this->params['breadcrumbs'][] = ['label' => trans('words', 'Lists'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $model->name;
+$this->params['breadcrumbs'][] = trans('words', 'Update');
+?>
 
-echo $this->renderAjax('_option_form', [
-    'model' => $model,
-    'parent' => $parent,
-]);
 
-Pjax::end();
+<div class="m-portlet m-portlet--tab">
+    <div class="m-portlet__head">
+        <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+						<span class="m-portlet__head-icon m--hide">
+						<i class="la la-gear"></i>
+						</span>
+                <h3 class="m-portlet__head-text">
+                    <?= Html::encode($this->title) ?>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <!--begin::Form-->
+    <?= $this->render('_option_form', [
+        'model' => $model,
+    ]) ?>
+    <!--end::Form-->
+</div>
+

@@ -9,6 +9,7 @@ use yii\widgets\Pjax;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = trans('words', 'List options "{parent}"', ['parent' => $model->name]);
+$this->params['breadcrumbs'][] = ['label' => '<span class="m-nav__link-text">' . trans('words', 'Lists') . '</span>', 'url' => ['index'], 'class' => 'm-nav__link'];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="page-index">
@@ -62,6 +63,17 @@ $this->params['breadcrumbs'][] = $this->title;
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
                             'template' => '{update} {delete}',
+                            'buttons' => [
+                                'update' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-edit text-success" ></span >', ['list/update-option', 'id' => $model->id],
+                                        [
+                                            'class' => '',
+                                            'title' => "ویرایش",
+                                            'data-pjax' => 0
+                                        ]
+                                    );
+                                },
+                            ]
                         ]
                     ],
                 ]); ?>

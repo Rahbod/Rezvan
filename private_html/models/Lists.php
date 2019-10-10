@@ -29,7 +29,7 @@ class Lists extends Category
     {
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
-            ['slug', 'required', 'except' => 'option-insert'],
+            ['slug', 'required', 'except' => ['option-insert', 'option-update']],
             ['slug', 'string'],
         ]);
     }
