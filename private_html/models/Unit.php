@@ -97,6 +97,18 @@ class Unit extends Item
         ]);
     }
 
+    public function __get($name)
+    {
+        $val = parent::__get($name);
+        if(in_array($name, array_keys($this->dynaDefaults))) {
+            $types = $this->formAttributes();
+            if (isset($types[$name]) && isset($types[$name]['listSlug'])) {
+                $option = Lists::find()->andWhere(['id' => (int)$val])->one();
+                return $option ? $option->getName() : null;
+            }
+        }
+        return $val;
+    }
 
     /**
      * {@inheritdoc}

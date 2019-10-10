@@ -23,9 +23,6 @@ $unit = $block->getUnit();
                             <p><?= trans('words', '<span class="green"><strong>unit {unit_number}</strong></span><strong>available</strong>', ['unit_number' => $unit->unit_number]) ?></p>
                             <p><?= trans('words', 'from {all_units} units / ON FLOOR {floor}', ['all_units' => $unit->number_of_units,'floor'=>$unit->floor_number]) ?> </p>
                         </div>
-
-<!--                        <p><span class="green"><strong>unit 1</strong></span><strong>available</strong></p>-->
-<!--                        <p>from 8 unit / ON FLOOR 2</p>-->
                     </div>
                     <div class="desc-unit">
                         <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
@@ -35,36 +32,36 @@ $unit = $block->getUnit();
                     <div class="item-inner">
                         <div class="items">
                             <div class="item item-1">
-                                <p class="item-1">UNIT <?= $unit->unit_number ?></p>
-                                <p class="item-1"><?= $unit->area_size ?> Metr</p>
+                                <p class="item-1"><?= $unit->getName() ?></p>
+                                <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meter') ?></p>
                             </div>
                             <div class="item item-2">
-                                <img src="<?= $baseUrl ?>/images/item-2.png" alt="item-2">
-                                <span class="item-2">on floor <?= $unit->floor_number ?></span>
+                                <img src="<?= $baseUrl.'/images/item-2.png' ?>" alt="item-2">
+                                <span class="item-2"><?= $unit->getFloorNumberStr() ?></span>
                             </div>
                             <div class="item item-3">
-                                <img src="<?= $baseUrl ?>/images/item-3.png" alt="item-3">
-                                <span class="item-2">have <?= $unit->bed_room ?> rooms</span>
+                                <img src="<?= $baseUrl.'/images/item-3.png' ?>" alt="item-3">
+                                <span class="item-2"><?= $unit->getBedRoomStr() ?></span>
                             </div>
                             <div class="item item-4">
-                                <img src="<?= $baseUrl ?>/images/item-4.png" alt="item-4">
-                                <span class="item-2">have <?= $unit->air_conditioner ?> air conditions</span>
+                                <img src="<?= $baseUrl.'/images/item-4.png' ?>" alt="item-4">
+                                <span class="item-2"><?= $unit->getAirConditionerStr() ?></span>
                             </div>
                             <div class="item item-5">
-                                <img src="<?= $baseUrl ?>/images/item-5.png" alt="item-5">
-                                <span class="item-2">have <?= $unit->wc ?> wc</span>
+                                <img src="<?= $baseUrl.'/images/item-5.png' ?>" alt="item-5">
+                                <span class="item-2"><?= $unit->getWcStr() ?></span>
                             </div>
                             <div class="item item-6">
-                                <img src="<?= $baseUrl ?>/images/item-6.png" alt="item-6">
-                                <span class="item-2">have <?= $unit->bath_room ?> seprat bathroom</span>
+                                <img src="<?= $baseUrl.'/images/item-6.png' ?>" alt="item-6">
+                                <span class="item-2"><?= $unit->getBathRoomStr() ?></span>
                             </div>
                             <div class="item item-7">
-                                <img src="<?= $baseUrl ?>/images/item-7.png" alt="item-7">
-                                <span class="item-2">have <?= $unit->parking ?> parking</span>
+                                <img src="<?= $baseUrl.'/images/item-7.png' ?>" alt="item-7">
+                                <span class="item-2"><?= $unit->getParkingStr() ?></span>
                             </div>
                             <div class="item item-8">
-                                <img src="<?= $baseUrl ?>/images/item-8.png" alt="item-8">
-                                <span class="item-2">have <?= $unit->radiator ?> Radiator</span>
+                                <img src="<?= $baseUrl.'/images/item-8.png' ?>" alt="item-8">
+                                <span class="item-2"><?= $unit->getRadiatorStr() ?></span>
                             </div>
                         </div>
                         <div class="item-list">
@@ -72,7 +69,7 @@ $unit = $block->getUnit();
                                 <tbody>
                                 <tr>
                                     <td><?= trans('words', 'Foundation') ?></td>
-                                    <td><?= $unit->area_size ?> M</td>
+                                    <td><?= $unit->area_size ?> <?= trans('words', 'Meter') ?></td>
 
                                     <td><?= trans('words', 'Water score') ?></td>
                                     <td>has or not</td>
