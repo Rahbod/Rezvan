@@ -350,7 +350,7 @@ JS
 
     public function getUnitCount($free = false)
     {
-        return $free?$this->free_count:$this->sold_count;
+        return $free ? $this->free_count : $this->sold_count;
         $q = $this->hasMany(Unit::className(), [Unit::columnGetString('itemID') => 'id']);
         if ($free)
             $q->andWhere([Unit::columnGetString('sold') => 0]);
@@ -460,5 +460,13 @@ JS
                 return $this->{Yii::$app->language . '_location_two'} ?: $this->location_two;
         }
         return $this->location_two;
+    }
+
+    public function hasField($name)
+    {
+        if(empty($name))
+            return false;
+        $fields = array_keys($this->dynaDefaults);
+        return in_array($name, $fields) && $this->$name !== null;
     }
 }
