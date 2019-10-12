@@ -56,12 +56,14 @@ class Unit extends Item
             'floor_number' => ['INTEGER', ''],
             'air_conditioner' => ['INTEGER', ''],
             'wc' => ['INTEGER', ''],
+            'toilet' => ['INTEGER', ''],
             'bath_room' => ['INTEGER', ''],
             'parking' => ['INTEGER', ''],
             'radiator' => ['INTEGER', ''],
             'location' => ['CHAR', ''],
             'bed_room' => ['CHAR', ''],
-//            'services' => ['CHAR', ''],
+            'master_bed_room' => ['CHAR', ''],
+            'elevator' => ['INTEGER', ''],
             'sold' => ['INTEGER', ''],
             'project_blocks' => ['INTEGER', ''],
             // unit sort field
@@ -69,29 +71,28 @@ class Unit extends Item
 
             //first column
             'area_size' => ['INTEGER', ''],//Foundation
-            'view' => ['CHAR', 'INTEGER'],
             'type_of_document' => ['INTEGER', ''],
-            'number_of_assignments' => ['INTEGER', ''],
             'cabinets' => ['INTEGER', ''],
+            'usage' => ['INTEGER', ''],
 
             //second column
-            'water_score' => ['INTEGER', ''],
-            'store' => ['INTEGER', ''],
-            'floor_heating' => ['INTEGER', ''],
+            'water_point' => ['INTEGER', ''],
+            'telephone_point' => ['INTEGER', ''],
+            'warehouse' => ['INTEGER', ''],
+            'surface' => ['INTEGER', ''],
+            'heating_system' => ['INTEGER', ''],
+            'cooling_system' => ['INTEGER', ''],
             'iPhone_video' => ['INTEGER', ''],
-            'elevator' => ['INTEGER', ''],
             'terrace' => ['INTEGER', ''],
-//            'floor' => ['INTEGER', ''],
 
             //third column
             'number_of_floors' => ['INTEGER', ''],
-            'property_direction' => ['INTEGER', ''],
             'age_of_the_building' => ['INTEGER', ''],
             'state' => ['INTEGER', ''],
             'type_of_use' => ['INTEGER', ''],
             'wall' => ['INTEGER', ''],
-            'gas_points' => ['INTEGER', ''],
-            'electricity_rating' => ['INTEGER', ''],
+            'gas_point' => ['INTEGER', ''],
+            'power_point' => ['INTEGER', ''],
             'split' => ['INTEGER', ''],
         ]);
     }
@@ -119,20 +120,16 @@ class Unit extends Item
             [['itemID', 'image'], 'required'],
             [
                 ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
-                    'air_conditioner', 'wc', 'parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room']
+                    'air_conditioner', 'wc', 'toilet','parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room', 'master_bed_room']
                 , 'integer'],
             [['project_blocks'], 'default', 'value' => 0],
             [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort', 'price'], 'integer'],
             [['location', 'services'], 'string'],
+            [['elevator', 'surface', 'type_of_use', 'cabinets', 'number_of_floors', 'usage'], 'integer'],
             [
-                ['type_of_use', 'number_of_assignments',
-                    'cabinets', 'number_of_floors']
-                , 'integer'],
-
-            [
-                ['view', 'type_of_document', 'water_score',
-                    'store', 'floor_heating', 'iPhone_video', 'elevator', 'terrace',
-                    'state', 'wall', 'gas_points', 'electricity_rating', 'split'
+                ['type_of_document', 'water_point', 'telephone_point',
+                    'warehouse', 'heating_system', 'cooling_system', 'iPhone_video', 'terrace',
+                    'state', 'wall', 'gas_point', 'power_point', 'split'
                 ]
                 , 'integer'],
         ]);
@@ -151,42 +148,42 @@ class Unit extends Item
             'floor_number' => trans('words', 'Floor number'),
             'area_size' => trans('words', 'Area size'),
             'location' => trans('words', 'Location'),
-            'unit_per_floor_number' => trans('words', 'Unit per floor number'),
-//            'services' => trans('words', 'Services'),
             'air_conditioner' => trans('words', 'Air conditioner'),
             'wc' => trans('words', 'WC'),
+            'toilet' => trans('words', 'Toilet'),
             'bath_room' => trans('words', 'Bath room'),
-            'Parking' => trans('words', 'Parking'),
+            'parking' => trans('words', 'Parking'),
             'radiator' => trans('words', 'Radiator'),
             'sold' => trans('words', 'Sold'),
             'project_blocks' => trans('words', 'Use project blocks'),
             'bed_room' => trans('words', 'Bed room'),
+            'master_bed_room' => trans('words', 'Master bed room'),
             'price' => trans('words', 'Price'),
+            'usage' => trans('words', 'Usage'),
+            'surface' => trans('words', 'Surface'),
+            'elevator' => trans('words', 'Elevator'),
 
             //first column
-            'view' => trans('words', 'View'),
             'type_of_document' => trans('words', 'type of Document'),
-            'number_of_assignments' => trans('words', 'Number of assignments'),
             'cabinets' => trans('words', 'Cabinets'),
 
             //second column
-            'water_score' => trans('words', 'Water Score'),
-            'store' => trans('words', 'Store'),
-            'floor_heating' => trans('words', 'Floor heating'),
+            'warehouse' => trans('words', 'Warehouse'),
+            'heating_system' => trans('words', 'Heating system'),
+            'cooling_system' => trans('words', 'Cooling system'),
             'iPhone_video' => trans('words', 'IPhone Video'),
-            'elevator' => trans('words', 'Elevator'),
             'terrace' => trans('words', 'Terrace'),
-//            'floor' => trans('words),',
 
             //third column
             'number_of_floors' => trans('words', 'Number of floors'),
-            'property_direction' => trans('words', 'Property direction'),
             'age_of_the_building' => trans('words', 'Age of the building'),
             'state' => trans('words', 'state'),
             'type_of_use' => trans('words', 'Type of use'),
             'wall' => trans('words', 'Wall'),
-            'gas_points' => trans('words', 'Gas points'),
-            'electricity_rating' => trans('words', 'Electricity rating'),
+            'water_point' => trans('words', 'Water point'),
+            'telephone_point' => trans('words', 'Telephone point'),
+            'gas_point' => trans('words', 'Gas point'),
+            'power_point' => trans('words', 'Power point'),
             'split' => trans('words', 'Split'),
 
         ]);
@@ -227,32 +224,38 @@ class Unit extends Item
                 'containerCssClass' => 'col-sm-12'
             ],
             'price' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'تومان'],
-            [['sold','project_blocks'], static::FORM_FIELD_TYPE_SWITCH],
+            [['sold', 'project_blocks'], static::FORM_FIELD_TYPE_SWITCH],
             'sep2' => [
                 'type' => static::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
             ],
-            [['radiator', 'parking', 'bath_room',
-                'wc', 'air_conditioner', 'floor_number', 'unit_number',
-                'unit_per_floor_number', 'bed_room'], self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
-            [[ 'number_of_assignments', 'number_of_floors'], self::FORM_FIELD_TYPE_TEXT],
+            [['floor_number', 'bed_room', 'master_bed_room', 'bath_room', 'wc', 'toilet', 'warehouse', 'radiator', 'parking', 'air_conditioner', 'unit_number'], self::FORM_FIELD_TYPE_TEXT],
+            [['number_of_floors'], self::FORM_FIELD_TYPE_TEXT],
             // lists
-            'type_of_use' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_use'],
-            'view' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'view'],
-            'type_of_document' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_document'],
-            'cabinets' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cabinets'],
-            'store' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'store'],
-            'state' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'state'],
-            'user' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'user'],
+            'surface' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'surface'],
+            'heating_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'heating_system'],
+            'cooling_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cooling_system'],
             'wall' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'wall'],
-            [['water_score', 'gas_points', 'electricity_rating'], ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'scores']],
+            'cabinets' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cabinets'],
+            'usage' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'usage'],
+//            'type_of_use' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_use'],
+//            'type_of_document' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_document'],
+//            'state' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'state'],
             'sep3' => [
                 'type' => static::FORM_SEPARATOR,
+                'label' => 'امکانات',
                 'containerCssClass' => 'col-sm-12'
             ],
-            [['floor_heating', 'iPhone_video', 'elevator', 'split','terrace'], self::FORM_FIELD_TYPE_SWITCH],
+            [['iPhone_video', 'elevator', 'split', 'terrace'], ['type' => self::FORM_FIELD_TYPE_SWITCH, 'containerCssClass' => 'col-sm-3']],
             'sep4' => [
+                'type' => static::FORM_SEPARATOR,
+                'label' => 'امتیازات انشعاب',
+                'containerCssClass' => 'col-sm-12'
+            ],
+//            [['water_point', 'gas_point', 'power_point', 'telephone_point'], ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'scores', 'containerCssClass' => 'col-sm-3']],
+            [['water_point', 'gas_point', 'power_point', 'telephone_point'], ['type' => self::FORM_FIELD_TYPE_SWITCH, 'containerCssClass' => 'col-sm-3']],
+            'sep5' => [
                 'type' => static::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
             ],
@@ -262,7 +265,7 @@ class Unit extends Item
                 'containerCssClass' => 'col-sm-6',
                 'temp' => MainController::$tempDir,
                 'path' => UnitController::$imgDir,
-                'filesOptions' =>UnitController::$imageOptions,
+                'filesOptions' => UnitController::$imageOptions,
                 'options' => [
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),
@@ -377,6 +380,13 @@ class Unit extends Item
         return trans('words', 'have a wc');
     }
 
+    public function getToiletStr()
+    {
+        if ((int)$this->toilet > 1)
+            return trans('words', 'have {value} toilet', ['value' => $this->toilet]);
+        return trans('words', 'have a toilet');
+    }
+
     public function getBathRoomStr()
     {
         if ((int)$this->bath_room > 1)
@@ -403,12 +413,12 @@ class Unit extends Item
         return Url::to(['/unit/show', 'id' => $this->id]);
     }
 
-    public function getWaterScorerStr()
+    public function getWaterPointStr()
     {
-        if ((int)$this->water_score == 0)
+        if ((int)$this->water_point == 0)
             return trans('words', 'has not');
-        elseif ((int)$this->water_score > 1)
-            return trans('words', 'have {value}', ['value' => $this->water_score]);
+        elseif ((int)$this->water_point > 1)
+            return trans('words', 'have {value}', ['value' => $this->water_point]);
         return trans('words', 'have it');
     }
 

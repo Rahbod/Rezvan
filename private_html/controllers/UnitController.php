@@ -37,6 +37,11 @@ class UnitController extends AuthController
         return ['show'];
     }
 
+    public function uploaderAttributes()
+    {
+        return ['image' => ['dir' => self::$imgDir, 'options' => self::$imageOptions]];
+    }
+
     public function actions()
     {
         return [
@@ -95,12 +100,13 @@ class UnitController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (app()->request->post()){
+        if (app()->request->post()) {
             $model->load(app()->request->post());
             if ($model->save()) {
+                $this->saveUploaderAttributes($model);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
-            }else
+            } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
@@ -126,12 +132,14 @@ class UnitController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (app()->request->post()){
+        if (app()->request->post()) {
+            $oldUploaderValues = $this->getOldUploaderValues($model);
             $model->load(app()->request->post());
             if ($model->save()) {
+                $this->editUploaderAttributes($model, $oldUploaderValues);
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['index', 'id' => $model->itemID]);
-            }else
+            } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
@@ -139,7 +147,6 @@ class UnitController extends AuthController
             'model' => $model,
         ]);
     }
-
 
 
     public function actionShow($id)

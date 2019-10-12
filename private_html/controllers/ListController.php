@@ -173,6 +173,7 @@ class ListController extends AuthController implements CrudControllerInterface
     {
         $model = $this->findModel($id);
         $parent = $this->findModel($model->parentID);
+        $model->scenario = 'option-update';
 
         if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
             $model->load(Yii::$app->request->post());
@@ -183,7 +184,7 @@ class ListController extends AuthController implements CrudControllerInterface
         if (Yii::$app->request->post()) {
             if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(['options', 'id' => $id]);
+                return $this->redirect(['options', 'id' => $parent->id]);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
