@@ -113,7 +113,7 @@ class Video extends Block
                         'dictDefaultMessage' => 'جهت آپلود ویدئو کلیک کنید',
                         'acceptedFiles' => 'mp4',
                         'maxFiles' => 1,
-                        'maxFileSize' => 50,
+                        'maxFileSize' => 200,
                     ],
                 ]
             ],
@@ -126,8 +126,8 @@ class Video extends Block
             return $this->link;
 
         $videoUrl = alias('@web').'/'.BlockController::$videoDir.'/'.$this->video;
-        $posterUrl = alias('@web').'/'.BlockController::$imgDir.'/'.$this->poster;
-        return Html::tag('video', $videoUrl,[
+        $posterUrl = alias('@web').'/'.BlockController::$imgDir.'/'.$this->image;
+        return Html::tag('video', Html::tag('source','',['src' => $videoUrl, 'type' => 'video/mp4']),[
             'controls' => true,
             'poster' => $posterUrl,
             'preload' => 'none'
