@@ -23,6 +23,7 @@ AppAsset::register($this);
     <link href="<?= $this->theme->baseUrl . '/style.css' ?>" rel="stylesheet">
     <?php if (app()->language != 'en'): ?>
         <link href="<?= $this->theme->baseUrl . '/rtl.css' ?>" rel="stylesheet"><?php endif; ?>
+    <link href="<?= $this->theme->baseUrl . '/custom.css' ?>" rel="stylesheet">
 </head>
 <?php
 

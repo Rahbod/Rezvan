@@ -10,7 +10,7 @@ use yii\web\View;
 $baseUrl = $this->theme->baseUrl;
 $withValue = isset($withValue) ? $withValue : false;
 ?>
-<?php if ($withValue): ?>
+<?php if (!$withValue): ?>
     <div class="item unit">
         <p class="title-1"><?= $model->area_size ?></p>
         <p class="title-2"><?= trans('words', 'Meter') ?></p>

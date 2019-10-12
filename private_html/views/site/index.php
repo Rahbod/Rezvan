@@ -71,6 +71,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $apartment->getModelImage() ?>"
                                                  alt="<?= Html::encode($apartment->getName()) ?>">
+                                            <?php if ($apartment->free_count == 0): ?><span
+                                                    class="sold-icon">SOLD!</span><?php endif; ?>
                                             <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
                                                title="<?= Html::encode($apartment->getName()) ?>">
                                                 <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
@@ -78,9 +80,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                             </a>
                                             <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                             <div class="overly">
-                                                <div class="overly">
-                                                    <?= $this->render('//site/_project_side', ['model' => $apartment]) ?>
-                                                </div>
+                                                <?= $this->render('//site/_project_side', ['model' => $apartment]) ?>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
@@ -178,6 +178,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                         <img src="<?= $investment->getModelImage() ?>"
                                                              alt="<?= $investment->getName() ?>">
+                                                        <?php if ($investment->free_count == 0): ?><span
+                                                                class="sold-icon">SOLD!</span><?php endif; ?>
                                                         <a href="<?= $investment->getUrl(); ?>">
                                                             <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                         </a>
@@ -238,7 +240,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
                     </div>
                 </div>
-                <div id="slide-3" class="carousel slide" data-ride="carousel">
+                <div id="slide-3" class="carousel slide w-100" data-ride="carousel">
                     <ul class="carousel-indicators">
                         <?php $pageNumber = 1;
 
@@ -298,7 +300,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl.'/images/investment.png' ?>" alt="investment-icon">
+                        <img src="<?= $baseUrl . '/images/investment.png' ?>" alt="investment-icon">
                         <h2 class="slide"><?= trans('words', '<strong>other</strong> construction') ?></h2>
                     </div>
                 </div>
@@ -361,10 +363,8 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <button type="button"
                                     class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                         </a>
-
                     </div>
                 </div>
-
             </div>
         </div>
     </section>

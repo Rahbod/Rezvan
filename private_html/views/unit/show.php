@@ -9,7 +9,7 @@ use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 
-$this->breadcrumbs = [
+$this->context->breadcrumbs = [
     trans('words','Available Apartments'),
     $model->getName(),
     $model->getSubtitleStr(),
