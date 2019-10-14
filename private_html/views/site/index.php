@@ -134,7 +134,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= alias('@web/themes/frontend/images/apartment-icon.png') ?>"
+                        <img src="<?= alias('@web/themes/frontend/images/investment.png') ?>"
                              alt="apartment-icon">
                         <h2 class="slide"><?= trans('words', '<strong>available </strong> investment') ?></h2>
                     </div>
@@ -218,7 +218,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         </a>
 
                     </div>
-                    <div class="button-more col-lg-4 col-md-4 col-sm-4">
+                    <div class="button-more">
                         <a href="<?= Url::to(['/investment/list']) ?>" title="<?= trans('words', 'View More') ?>">
                             <button type="button"
                                     class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>

@@ -80,6 +80,9 @@ class Project extends Item implements ProjectInterface
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             // define common fields in project types
+            'description' => ['CHAR', ''],
+            'ar_description' => ['CHAR', ''],
+            'en_description' => ['CHAR', ''],
             'begin_date' => ['CHAR', ''],
             'construction_time' => ['CHAR', ''],
             'location' => ['CHAR', ''],
@@ -122,7 +125,8 @@ class Project extends Item implements ProjectInterface
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
-            [['project_type'], 'required'],
+            [['project_type'], 'required', 'except' => 'clone'],
+            [['description', 'ar_description', 'en_description'], 'string'],
             [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'location_two', 'bg_color', 'ar_location_two', 'en_location_two', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer'],
             [['unit_per_floor_number', 'direction', 'view', 'floor_number', 'unit_number', 'parking', 'elevator', 'age_of_the_building', 'usage'], 'integer']
@@ -136,6 +140,9 @@ class Project extends Item implements ProjectInterface
     {
         return array_merge(parent::attributeLabels(), [
             'project_type' => trans('words', 'Project type'),
+            'description' => trans('words', 'Building Description'),
+            'ar_description' => trans('words', 'Ar Building Description'),
+            'en_description' => trans('words', 'En Building Description'),
             'subtitle' => trans('words', 'Subtitle'),
             'en_subtitle' => trans('words', 'En Subtitle'),
             'ar_subtitle' => trans('words', 'Ar Subtitle'),
@@ -210,6 +217,11 @@ class Project extends Item implements ProjectInterface
     {
         return array_merge(parent::formAttributes(), [
             'hr' => self::FORM_SEPARATOR,
+            [['description', 'ar_description', 'en_description'],
+                [
+                    'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
+                    'options' => ['dir' => 'auto', 'rows' => 5]
+                ]],
             [['subtitle', 'ar_subtitle', 'en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
@@ -422,6 +434,13 @@ JS
         return $output;
     }
 
+    public function getDescriptionSrc()
+    {
+        if (!static::$multiLanguage && Yii::$app->language != 'fa')
+            return $this->{Yii::$app->language . '_description'} ?: $this->description;
+        return $this->description;
+    }
+
     public function getPosterSrc()
     {
         if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/apartment/') . $this->image))
@@ -472,7 +491,7 @@ JS
 
     public function hasField($name)
     {
-        if(empty($name))
+        if (empty($name))
             return false;
         $fields = array_keys($this->dynaDefaults);
         return in_array($name, $fields) && $this->$name !== null;

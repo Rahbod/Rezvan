@@ -25,7 +25,7 @@ class UnitController extends AuthController
     use CrudControllerTrait;
 
     public static $imgDir = 'uploads/unit';
-    public static $imageOptions = [];
+    public static $imageOptions = ['thumbnail' => ['width' => 260, 'height' => 130]];
 
     public function getModelName()
     {

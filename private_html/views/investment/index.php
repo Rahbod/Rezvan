@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{block} {unit} {update} {delete}',
+                            'template' => '{block} {unit} {clone} {update} {delete}',
                             'buttons' => [
                                 'block' => function ($url, $model, $key) {
                                     return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index', 'id' => $model->id],
@@ -99,6 +99,16 @@ $this->params['breadcrumbs'][] = $this->title;
                                             'aria-label' => "unit",
                                             'data-pjax' => 0
 
+                                        ]
+                                    );
+                                },
+
+                                'clone' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-copy text-primary" ></span >', ['clone', 'id' => $model['id']], [
+                                            'class' => '',
+                                            'title' => "تکثیر",
+                                            'aria-label' => "clone",
+                                            'data-pjax' => 0,
                                         ]
                                     );
                                 },

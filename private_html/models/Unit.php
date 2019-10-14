@@ -3,7 +3,6 @@
 namespace app\models;
 
 use app\components\MainController;
-use app\controllers\ApartmentController;
 use app\controllers\UnitController;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\UnitDetails;
@@ -50,6 +49,9 @@ class Unit extends Item
     {
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
+            'description' => ['CHAR', ''],
+            'ar_description' => ['CHAR', ''],
+            'en_description' => ['CHAR', ''],
             'image' => ['CHAR', ''],
             'itemID' => ['INTEGER', ''],
             'unit_number' => ['INTEGER', ''],
@@ -100,7 +102,7 @@ class Unit extends Item
     public function __get($name)
     {
         $val = parent::__get($name);
-        if(in_array($name, array_keys($this->dynaDefaults))) {
+        if (in_array($name, array_keys($this->dynaDefaults))) {
             $types = $this->formAttributes();
             if (isset($types[$name]) && isset($types[$name]['listSlug'])) {
                 $option = Lists::find()->andWhere(['id' => (int)$val])->one();
@@ -117,21 +119,19 @@ class Unit extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
-            [['itemID', 'image'], 'required'],
+            [['itemID'], 'required', 'except' => 'clone'],
+            [['image', 'description', 'ar_description', 'en_description'], 'string'],
             [
                 ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
-                    'air_conditioner', 'wc', 'toilet','parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room', 'master_bed_room']
+                    'air_conditioner', 'wc', 'toilet', 'parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room', 'master_bed_room']
                 , 'integer'],
             [['project_blocks'], 'default', 'value' => 0],
             [['itemID', 'unit_number', 'floor_number', 'area_size', 'sort', 'price'], 'integer'],
             [['location', 'services'], 'string'],
-            [['elevator', 'surface', 'type_of_use', 'cabinets', 'number_of_floors', 'usage'], 'integer'],
-            [
-                ['type_of_document', 'water_point', 'telephone_point',
-                    'warehouse', 'heating_system', 'cooling_system', 'iPhone_video', 'terrace',
-                    'state', 'wall', 'gas_point', 'power_point', 'split'
-                ]
-                , 'integer'],
+            [['elevator', 'surface', 'type_of_use', 'cabinets', 'number_of_floors', 'usage', 'type_of_document', 'water_point', 'telephone_point',
+                'warehouse', 'heating_system', 'cooling_system', 'iPhone_video', 'terrace',
+                'state', 'wall', 'gas_point', 'power_point', 'split'
+            ], 'string'],
         ]);
     }
 
@@ -141,6 +141,9 @@ class Unit extends Item
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'description' => trans('words', 'Building Description'),
+            'ar_description' => trans('words', 'Ar Building Description'),
+            'en_description' => trans('words', 'En Building Description'),
             'image' => trans('words', 'Image'),
             'itemID' => trans('words', 'Project ID'),
             'sort' => trans('words', 'Sort'),
@@ -219,6 +222,11 @@ class Unit extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
+            [['description', 'ar_description', 'en_description'],
+                [
+                    'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
+                    'options' => ['dir' => 'auto', 'rows' => 5]
+                ]],
             'sep' => [
                 'type' => static::FORM_SEPARATOR,
                 'containerCssClass' => 'col-sm-12'
@@ -231,7 +239,7 @@ class Unit extends Item
             ],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
             [['floor_number', 'bed_room', 'master_bed_room', 'bath_room', 'wc', 'toilet', 'warehouse', 'radiator', 'parking', 'air_conditioner', 'unit_number'], self::FORM_FIELD_TYPE_TEXT],
-            [['number_of_floors'], self::FORM_FIELD_TYPE_TEXT],
+//            [['number_of_floors'], self::FORM_FIELD_TYPE_TEXT],
             // lists
             'surface' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'surface'],
             'heating_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'heating_system'],
@@ -247,7 +255,7 @@ class Unit extends Item
                 'label' => 'امکانات',
                 'containerCssClass' => 'col-sm-12'
             ],
-            [['iPhone_video', 'elevator', 'split', 'terrace'], ['type' => self::FORM_FIELD_TYPE_SWITCH, 'containerCssClass' => 'col-sm-3']],
+            [['iPhone_video', 'elevator', 'terrace'], ['type' => self::FORM_FIELD_TYPE_SWITCH, 'containerCssClass' => 'col-sm-3']],
             'sep4' => [
                 'type' => static::FORM_SEPARATOR,
                 'label' => 'امتیازات انشعاب',
@@ -366,6 +374,27 @@ class Unit extends Item
         return trans('words', 'have a room');
     }
 
+    public function getElevatorStr()
+    {
+        if ((int)$this->elevator > 1)
+            return trans('words', 'have {value} elevators', ['value' => $this->elevator]);
+        return trans('words', 'have a elevator');
+    }
+
+    public function getNumberOfUnitsStr()
+    {
+        if ((int)$this->number_of_units > 1)
+            return trans('words', 'have {value} elevators', ['value' => $this->number_of_units]);
+        return trans('words', 'have a elevator');
+    }
+
+    public function getNumberOfFloorsStr()
+    {
+        if ((int)$this->number_of_floors > 1)
+            return trans('words', 'have {value} floors', ['value' => $this->number_of_floors]);
+        return trans('words', 'have a floors');
+    }
+
     public function getAirConditionerStr()
     {
         if ((int)$this->air_conditioner > 1)
@@ -422,10 +451,31 @@ class Unit extends Item
         return trans('words', 'have it');
     }
 
-    public function getModelImage()
+    public function getTerraceStr()
     {
+        if ((int)$this->terrace == 0)
+            return trans('words', 'has not');
+        return trans('words', 'have it');
+    }
+
+    public function getPropertyDirectionStr()
+    {
+//        $slug = $this->formAttributes()
+    }
+
+    public function getModelImage($thumb = false)
+    {
+        if ($thumb && isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/unit/thumbs/260x130/') . $this->image))
+            return Yii::getAlias('@web/uploads/unit/thumbs/260x130/') . $this->image;
         if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/unit/') . $this->image))
             return Yii::getAlias('@web/uploads/unit/') . $this->image;
         return '';
+    }
+
+    public function getDescriptionSrc()
+    {
+        if (!static::$multiLanguage && Yii::$app->language != 'fa')
+            return $this->{Yii::$app->language . '_description'} ?: $this->description;
+        return $this->description;
     }
 }
