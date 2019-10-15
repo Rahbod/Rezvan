@@ -20,7 +20,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl ?>/images/apartment-icon-w.png" alt="investment-icon">
+                        <img src="<?= $baseUrl ?>/images/investment.png" alt="investment-icon">
                         <div class="text">
                             <h2 class="slide"><?= trans('words', '<strong>available </strong> investment') ?></h2>
                         </div>
@@ -44,7 +44,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                                 <a title="<?= Html::encode($projects[0]->getName()) ?>"
                                    href="<?= $projects[0]->getUrl() ?>">
                                     <h2 class="item-title"><?= Html::encode($projects[0]->getName()) ?></h2>
-                                    <span class="first-title"><?= $projects[0]->getSubtitleStr() ?></span>
+                                    <span class="first-title"><?= $projects[0]->getLocationStr() ?></span>
                                 </a>
                                 <span class="description"><?= $projects[0]->getLocationTwoStr() ?></span>
                             </div>
@@ -54,14 +54,14 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                             <div class="row">
                                 <?php foreach ($projects as $key => $project):
                                     if ($key && $key > 0 && $key < 5) : ?>
-                                        <div class="grid col-lg-6">
+                                        <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $project->getModelImage() ?>"
                                                  alt="<?= Html::encode($project->getName()) ?> ">
                                             <a title="<?= Html::encode($project->getName()) ?>"
                                                href="<?= $project->getUrl() ?>">
                                                 <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                             </a>
-                                            <span class="description"><?= $project->getSubtitleStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                            <span class="description"><?= $project->getLocationStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
                                             <span class="description-2"><?= $project->getLocationTwoStr() ?></span>
                                         </div>
                                     <?php endif; endforeach; ?>
@@ -70,21 +70,22 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
 
                         <?php foreach ($projects as $key => $project):
                             if ($key && $key > 4) : ?>
-                                <div class="grid col-lg-3">
+                                <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                     <img src="<?= $project->getModelImage() ?>"
                                          alt="<?= Html::encode($project->getName()) ?> ">
                                     <a title="<?= Html::encode($project->getName()) ?>"
                                        href="<?= $project->getUrl() ?>">
                                         <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                     </a>
-                                    <span class="description"><?= $project->getLocationStr() ?></span>
+                                    <span class="description"><?= $project->getLocationStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                    <span class="description-2"><?= $project->getLocationTwoStr() ?></span>
                                 </div>
                             <?php endif; endforeach; ?>
-
                     </div>
                 </div>
                 <div class="button-more">
-                    <button type="button" class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
+                    <button type="button"
+                            class="btn btn-primary section-button"><?= trans('words', 'View More') ?></button>
                 </div>
             </div>
         </div>

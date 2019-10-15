@@ -11,7 +11,7 @@ $this->title = trans('words', 'Update Lists: {name}', [
     'name' => $model->name,
 ]);
 $this->params['breadcrumbs'][] = ['label' => trans('words', 'Lists'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['options', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = trans('words', 'Update');
 ?>
 

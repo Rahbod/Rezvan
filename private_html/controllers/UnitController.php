@@ -148,6 +148,15 @@ class UnitController extends AuthController
         ]);
     }
 
+    public function actionDelete($id)
+    {
+        $model = $this->findModel($id);
+        $this->deleteUploaderAttributes($model);
+        $model->delete();
+
+        return $this->redirect(['index', 'id' => $model->itemID]);
+    }
+
 
     public function actionShow($id)
     {

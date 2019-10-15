@@ -23,7 +23,7 @@ use yii\helpers\Url; ?>
                             </h1>
                         </div>
                         <!-- .site-branding -->
-                        <?php $this->render('//layouts/_socials') ?>
+                        <?= $this->render('//layouts/_socials') ?>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">
@@ -56,7 +56,7 @@ use yii\helpers\Url; ?>
                                     <form role="search" method="get" class="search-form clearfix"
                                           action="<?= Url::to(['/site/search']) ?>">
                                         <input type="search" class="search-field"
-                                               placeholder="<?= trans('words', 'Search') ?>" value="" name="query"
+                                               placeholder="<?= trans('words', 'Search') ?>" value="<?= Yii::$app->request->getQueryParam('query') ?>" name="query"
                                                title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>

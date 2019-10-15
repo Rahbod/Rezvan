@@ -65,11 +65,18 @@ class Service extends Page
 
     public function formAttributes()
     {
-        return array_merge(parent::formAttributes(), [
+        return array_merge(Item::formAttributes(), [
             [
                 ['description', 'ar_description', 'en_description'],
                 ['type' => static::FORM_FIELD_TYPE_TEXT_AREA, 'containerCssClass' => 'col-sm-4']
-            ]
+            ],
+            [['body', 'ar_body', 'en_body'], [
+                'type' => static::FORM_FIELD_TYPE_TEXT_EDITOR,
+                'containerCssClass' => 'col-sm-12',
+                'options' => [
+                    'options' => ['rows' => 30]
+                ]
+            ]],
         ]);
     }
 

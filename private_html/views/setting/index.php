@@ -225,7 +225,7 @@ $this->registerJs('
                 <div class="form-group m-form__group row">
                     <?php echo Html::label(trans('words', $key), '', ['class' => 'col-lg-2 col-form-label']) ?>
                     <div class="col-lg-6">
-                        <?php echo Html::textInput('Setting[socialNetworks]['.$key.']', $socialNetwork, ['class' => 'form-control m-input m-input__solid text-right', 'dir' => 'ltr',]); ?>
+                        <?php echo Html::textInput('Setting[socialNetworks]['.$key.']', $socialNetwork, ['class' => 'form-control m-input m-input__solid text-right', 'dir' => 'ltr','type' => 'url']); ?>
                     </div>
                 </div>
             <?php endforeach; ?>

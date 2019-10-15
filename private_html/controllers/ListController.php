@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\components\CrudControllerInterface;
 use app\models\Lists;
 use app\models\ListsSearch;
+use creocoder\nestedsets\NestedSetsBehavior;
 use Yii;
 use app\components\CrudControllerTrait;
 use app\components\Setting;
@@ -106,6 +107,13 @@ class ListController extends AuthController implements CrudControllerInterface
             'model' => $model,
         ]);
     }
+
+//    public function actionDelete($id)
+//    {
+//        /** @var NestedSetsBehavior $model */
+//        $model = Lists::findOne($id);
+//        $model->deleteWithChildren();
+//    }
 
     /**
      * Lists all list options models.

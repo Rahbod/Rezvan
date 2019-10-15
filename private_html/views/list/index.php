@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn'],
 
                         'name',
-                        'slu',
+                        'slug',
                         [
                             'attribute' => 'created',
                             'value' => function ($model) {

@@ -27,7 +27,7 @@ $baseUrl = $this->theme->baseUrl;
                             </h1>
                         </div>
                         <!-- .site-branding -->
-                        <?php $this->render('//layouts/_socials') ?>
+                        <?= $this->render('//layouts/_socials') ?>
                     </div>
                 </div>
                 <div class="col-lg-10 col-md-10">

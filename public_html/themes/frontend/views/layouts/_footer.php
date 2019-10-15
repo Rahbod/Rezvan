@@ -23,7 +23,7 @@ $baseUrl = $this->theme->baseUrl;
                         </div>
                         <p><?= Setting::get(app()->language.'_about') ?></p>
                         <div class="footer-title"><p><?= trans('words', 'CONTACT US') ?></p></div>
-                        <a class="address-link" href="<?= Setting::get('address_link') ?>"><p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p></a>
+                        <a class="address-link" target="_blank" href="<?= Setting::get('address_link') ?>"><p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p></a>
                         <div class="phone"><a href="tel:<?= str_replace(' ','',Setting::get('tell')) ?>"><p><strong><?= Setting::get('tell') ?></strong></p></a></div>
                         <?= $this->render('//layouts/_socials')?>
                     </div>

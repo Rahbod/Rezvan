@@ -122,7 +122,7 @@ class ConstructionController extends AuthController
         $this->setTheme('frontend');
 
         $this->innerPage = true;
-        $this->bodyClass = 'more-one';
+        $this->bodyClass = 'more-one list';
 
         /** @var OtherConstruction[] $projects */
         $projects = OtherConstruction::find()->orderBy([

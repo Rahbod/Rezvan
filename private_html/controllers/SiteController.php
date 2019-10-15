@@ -4,6 +4,8 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\models\Item;
+use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
 use app\models\projects\Investment;
@@ -26,8 +28,8 @@ class SiteController extends AuthController
     {
         return [
             'index',
-            'contact',
-            'about',
+//            'contact',
+//            'about',
         ];
     }
 
@@ -107,8 +109,10 @@ class SiteController extends AuthController
 
     public function actionSearch()
     {
-        $this->bodyClass = 'more-one';
         $this->innerPage = true;
+        $this->bodyClass = 'more-one list';
+
+        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
         $term = Yii::$app->request->getQueryParam('query');
         if ($term && !empty($term)) {
@@ -118,17 +122,17 @@ class SiteController extends AuthController
             $apartmentProvider = $searchApartment->search([]);
             $apartmentProvider->getPagination()->pageSize = 20;
 
-            $searchInvestment = new InvestmentSearch();
-            $searchInvestment->name = $term;
-            $searchInvestment->subtitle = $term;
-            $investmentProvider = $searchInvestment->search([]);
-            $investmentProvider->getPagination()->pageSize = 20;
-
-            $searchConstruction = new OtherConstructionSearch();
-            $searchConstruction->name = $term;
-            $searchConstruction->subtitle = $term;
-            $constructionProvider = $searchConstruction->search([]);
-            $constructionProvider->getPagination()->pageSize = 20;
+//            $searchInvestment = new InvestmentSearch();
+//            $searchInvestment->name = $term;
+//            $searchInvestment->subtitle = $term;
+//            $investmentProvider = $searchInvestment->search([]);
+//            $investmentProvider->getPagination()->pageSize = 20;
+//
+//            $searchConstruction = new OtherConstructionSearch();
+//            $searchConstruction->name = $term;
+//            $searchConstruction->subtitle = $term;
+//            $constructionProvider = $searchConstruction->search([]);
+//            $constructionProvider->getPagination()->pageSize = 20;
 
 //            $searchPage = new PageSearch();
 //            $searchPage->name = $term;
@@ -137,10 +141,15 @@ class SiteController extends AuthController
 //            $pageProvider = $searchPage->search([]);
 //            $pageProvider->getPagination()->pageSize = 100;
 
-            $services = Service::find()->all();
+//            $services = Service::find()->all();
 
-            return $this->render('search', compact('term', 'investmentProvider',
-                'constructionProvider', 'searchApartment', 'apartmentProvider', 'services'));
+            return $this->render('//apartment/list', [
+                'projects' => $apartmentProvider->getModels(),
+                'availableApartments' => $availableApartments,
+            ]);
+
+//            return $this->render('search', compact('term', 'investmentProvider',
+//                'constructionProvider', 'searchApartment', 'apartmentProvider', 'services'));
         } else
             return $this->goBack();
     }
@@ -160,7 +169,9 @@ class SiteController extends AuthController
 
         $availableApartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
         $availableInvestments = Investment::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
-        $availableConstructions = OtherConstruction::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])->all();
+        $availableConstructions = OtherConstruction::find()->orderBy(['id' => SORT_DESC,])
+//            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
+            ->all();
 
         return $this->render('index', compact(['slides', 'apartmentCounts', 'investmentCounts',
             'constructionCounts', 'availableApartments', 'availableInvestments', 'availableConstructions', 'services']));
@@ -171,26 +182,40 @@ class SiteController extends AuthController
      *
      * @return Response|string
      */
-    public function actionContact()
-    {
-        $this->innerPage = true;
-        $this->bodyClass = 'text-page';
-
-        return $this->render('contact', ['availableApartments' => ($this->getProjects())]);
-
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        $this->innerPage = true;
-        $this->bodyClass = 'text-page';
-        return $this->render('about', ['availableApartments' => ($this->getProjects())]);
-    }
+//    public function actionContact()
+//    {
+//        $this->setTheme('frontend');
+//        $this->innerPage = true;
+//        $this->bodyClass = 'text-page';
+//        $this->headerClass = 'header-style-2';
+//        $this->mainTag = 'main-text-page';
+//
+//        $model = Page::find()->one();
+//
+//        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+//
+//        return $this->render('//page/show', compact('availableApartments', 'model'));
+//    }
+//
+//    /**
+//     * Displays about page.
+//     *
+//     * @return string
+//     */
+//    public function actionAbout()
+//    {
+//        $this->setTheme('frontend');
+//        $this->innerPage = true;
+//        $this->bodyClass = 'text-page';
+//        $this->headerClass = 'header-style-2';
+//        $this->mainTag = 'main-text-page';
+//
+//        $model = Page::find()->one();
+//
+//        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+//
+//        return $this->render('//page/show', compact('availableApartments', 'model'));
+//    }
 
 
     public function getProjects()

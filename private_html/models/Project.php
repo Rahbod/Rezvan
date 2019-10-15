@@ -257,7 +257,7 @@ class Project extends Item implements ProjectInterface
                 ['floor_number', 'parking', 'elevator', 'age_of_the_building', 'unit_per_floor_number'],
                 ['type' => self::FORM_FIELD_TYPE_TEXT, 'containerCssClass' => 'col-sm-3']
             ],
-            'usage' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'user', 'containerCssClass' => 'col-sm-3'],
+            'usage' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'usage', 'containerCssClass' => 'col-sm-3'],
             'view' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'view', 'containerCssClass' => 'col-sm-3'],
             'direction' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'direction', 'containerCssClass' => 'col-sm-3'],
             'sep2' => [

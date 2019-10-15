@@ -129,7 +129,7 @@ class ApartmentController extends AuthController
         $this->setTheme('frontend');
 
         $this->innerPage = true;
-        $this->bodyClass = 'more-one';
+        $this->bodyClass = 'more-one list';
 
         /** @var Apartment[] $projects */
         $projects = Apartment::find()->orderBy([

@@ -52,41 +52,24 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             </div>
             <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
                 <div class="carousel-inner">
-                    <?php
-                    for ($i = 0; $i < $apartmentCounts; $i = $i + 3): ?>
+                    <?php for ($i = 0; $i < $apartmentCounts; $i = $i + 4): ?>
                         <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                             <div class="posts">
                                 <div class="row">
-                                    <?php
-                                    if (!isset($availableApartments[$i])) break;
-                                    $apartment = $availableApartments[$i];
-                                    ?>
-                                    <div class="grid col-lg-4">
-                                        <div class="img">
+                                    <?php for ($j = $i; $j < $i+ 4; $j++):
+                                        if (!isset($availableApartments[$j]))
+                                            break;
+                                        $apartment = $availableApartments[$j]; ?>
+                                        <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                             <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->getName()) ?>">
+                                                 alt="<?= $apartment->getName() ?>">
+                                            <a href="<?= $apartment->getUrl() ?>">
+                                                <h2 class="item-title"><?= $apartment->getName() ?></h2>
+                                            </a>
+                                            <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr()?' / ':'' ?></span>
+                                            <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
                                         </div>
-                                    </div>
-
-                                    <?php if (!isset($availableApartments[$i + 1])) break;
-                                    $apartment = $availableApartments[$i + 1];
-                                    ?>
-                                    <div class="grid col-lg-4">
-                                        <div class="img">
-                                            <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->getName()) ?>">
-                                        </div>
-                                    </div>
-
-                                    <?php if (!isset($availableApartments[$i + 2])) break;
-                                    $apartment = $availableApartments[$i + 2];
-                                    ?>
-                                    <div class="grid col-lg-4">
-                                        <div class="img">
-                                            <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= Html::encode($apartment->getName()) ?>">
-                                        </div>
-                                    </div>
+                                    <?php endfor; ?>
                                 </div>
                             </div>
                         </div>

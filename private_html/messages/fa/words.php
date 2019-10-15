@@ -359,6 +359,7 @@ return [
     'on floor {value}' => 'طبقه {value}',
     'have {value} rooms' => 'دارای {value} اتاق خواب',
     'have {value} floors' => 'دارای {value} طبقه',
+    'have {value} units' => 'دارای {value} واحد',
     'have {value} air conditions' => 'دارای {value} رادیاتور',
     'have {value} wc' => 'دارای {value} سرویس بهداشتی',
     'have {value} toilet' => 'دارای {value} توالت فرنگی',
@@ -366,9 +367,11 @@ return [
     'have {value} parking spaces' => 'دارای {value} پارکینگ',
     'have {value} radiators' => 'دارای {value} رادیاتور',
     'have {value} elevators' => 'دارای {value} آسانسور',
+    'have {value} warehouses' => 'دارای {value} انبار',
 
     'have a room' => 'یک خوابه',
-    'have a floors' => 'یک طبقه',
+    'have a floor' => 'یک طبقه',
+    'have a unit' => 'تک واحدی',
     'have a elevator' => 'یک آسانسور',
     'have a air condition' => 'دارای رادیاتور',
     'have a wc' => 'دارای سرویس بهداشتی',
@@ -376,6 +379,7 @@ return [
     'have a bathroom' => 'دارای حمام مجزا',
     'have a parking' => 'دارای پارکینگ',
     'have a radiator' => 'دارای رادیاتور',
+    'have a warehouse' => 'دارای انبار',
 
     // nearby access labels
     'IMAM REZA shrine' => 'حرم امام رضا',
@@ -390,6 +394,7 @@ return [
     'Update investment: {name}' => 'ویرایش پروژه: {name}',
 
     //    lists
+    'Lists' => 'لیست های پویا',
     'Create List option: {parent}' => 'ایجاد گزینه لیست: {parent}',
     'Update List option: {parent}' => 'ویرایش گزینه لیست: {parent}',
     'List options "{parent}"' => 'گزینه های لیست "{parent}"',

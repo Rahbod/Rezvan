@@ -1,6 +1,8 @@
 <div class="social-icon">
     <ul class="social-list">
         <?php use app\components\Setting;
+        use yii\helpers\Url;
+
         $val = Setting::get('socialNetworks.whatsapp');
         echo $val && !empty($val) ? '<li class="social-item whatsapp"><a href="' . $val . '" target="_blank"><i class="fa fa-whatsapp"></i></a></li>' : ''; ?>
 
