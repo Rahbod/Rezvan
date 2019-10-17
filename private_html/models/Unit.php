@@ -374,92 +374,105 @@ class Unit extends Item
     public function getBedRoomStr()
     {
         if ((int)$this->bed_room > 1)
-            return trans('words', 'have {value} rooms', ['value' => $this->bed_room]);
-        return trans('words', 'have a room');
+            return $this->bed_room;
+//            return trans('words', 'have {value} rooms', ['value' => $this->bed_room]);
+        return $this->bed_room == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getIPhoneStr()
     {
         if ((int)$this->iPhone_video > 1)
-            return trans('words', 'have {value} iPhone video', ['value' => $this->iPhone_video]);
-        return trans('words', 'have it');
+            return $this->iPhone_video;
+//            return trans('words', 'have {value} iPhone video', ['value' => $this->iPhone_video]);
+        return $this->iPhone_video == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getMasterBedRoomStr()
     {
         if ((int)$this->master_bed_room > 1)
-            return trans('words', 'have {value} master bedrooms', ['value' => $this->master_bed_room]);
-        return trans('words', 'have a master bedroom');
+            return $this->master_bed_room;
+//            return trans('words', 'have {value} master bedrooms', ['value' => $this->master_bed_room]);
+        return $this->master_bed_room == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getElevatorStr()
     {
         if ((int)$this->elevator > 1)
-            return trans('words', 'have {value} elevators', ['value' => $this->elevator]);
-        return trans('words', 'have a elevator');
+            return $this->elevator;
+//            return trans('words', 'have {value} elevators', ['value' => $this->elevator]);
+        return $this->elevator == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getWarehouseStr()
     {
         if ((int)$this->warehouse > 1)
-            return trans('words', 'have {value} warehouses', ['value' => $this->warehouse]);
-        return trans('words', 'have a warehouse');
+            return $this->warehouse;
+//            return trans('words', 'have {value} warehouses', ['value' => $this->warehouse]);
+        return $this->warehouse == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getNumberOfUnitsStr()
     {
         if ((int)$this->number_of_units > 1)
-            return trans('words', 'have {value} units', ['value' => $this->number_of_units]);
-        return trans('words', 'have a units');
+            return $this->number_of_units;
+//            return trans('words', 'have {value} units', ['value' => $this->number_of_units]);
+        return $this->number_of_units == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getNumberOfFloorsStr()
     {
         if ((int)$this->number_of_floors > 1)
-            return trans('words', 'have {value} floors', ['value' => $this->number_of_floors]);
-        return trans('words', 'have a floors');
+            return $this->number_of_floors;
+//            return trans('words', 'have {value} floors', ['value' => $this->number_of_floors]);
+        return $this->number_of_floors == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getAirConditionerStr()
     {
         if ((int)$this->air_conditioner > 1)
-            return trans('words', 'have {value} air conditions', ['value' => $this->air_conditioner]);
-        return trans('words', 'have a air condition');
+            return $this->air_conditioner;
+//            return trans('words', 'have {value} air conditions', ['value' => $this->air_conditioner]);
+        return $this->air_conditioner == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getWcStr()
     {
         if ((int)$this->wc > 1)
-            return trans('words', 'have {value} wc', ['value' => $this->wc]);
-        return trans('words', 'have a wc');
+            return $this->wc;
+//            return trans('words', 'have {value} wc', ['value' => $this->wc]);
+        return $this->wc == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getToiletStr()
     {
         if ((int)$this->toilet > 1)
-            return trans('words', 'have {value} toilet', ['value' => $this->toilet]);
-        return trans('words', 'have a toilet');
+            return $this->toilet;
+//            return trans('words', 'have {value} toilet', ['value' => $this->toilet]);
+        return $this->toilet == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getBathRoomStr()
     {
         if ((int)$this->bath_room > 1)
-            return trans('words', 'have {value} separate bathroom', ['value' => $this->bath_room]);
-        return trans('words', 'have a bathroom');
+            return $this->bath_room;
+//            return trans('words', 'have {value} separate bathroom', ['value' => $this->bath_room]);
+        return $this->bath_room == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getParkingStr()
     {
         if ((int)$this->parking > 1)
-            return trans('words', 'have {value} parking spaces', ['value' => $this->parking]);
-        return trans('words', 'have a parking');
+            return $this->parking;
+//            return trans('words', 'have {value} parking spaces', ['value' => $this->parking]);
+        return $this->parking == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getRadiatorStr()
     {
         if ((int)$this->radiator > 1)
-            return trans('words', 'have {value} radiators', ['value' => $this->radiator]);
-        return trans('words', 'have a radiator');
+            return $this->radiator;
+//            return trans('words', 'have {value} radiators', ['value' => $this->radiator]);
+        return $this->radiator == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getUrl()
@@ -469,18 +482,41 @@ class Unit extends Item
 
     public function getWaterPointStr()
     {
-        if ((int)$this->water_point == 0)
-            return trans('words', 'has not');
-        elseif ((int)$this->water_point > 1)
-            return trans('words', 'have {value}', ['value' => $this->water_point]);
-        return trans('words', 'have it');
+        if ((int)$this->water_point > 1)
+            return $this->water_point;
+//            return trans('words', 'have {value}', ['value' => $this->water_point]);
+        return $this->water_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+    }
+
+    public function getGasPointStr()
+    {
+        if ((int)$this->gas_point > 1)
+            return $this->gas_point;
+//            return trans('words', 'have {value}', ['value' => $this->gas_point]);
+        return $this->gas_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+    }
+
+    public function getPowerPointStr()
+    {
+        if ((int)$this->power_point > 1)
+            return $this->power_point;
+//            return trans('words', 'have {value}', ['value' => $this->power_point]);
+        return $this->power_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+    }
+
+    public function getTelephonePointStr()
+    {
+        if ((int)$this->telephone_point > 1)
+            return $this->telephone_point;
+//            return trans('words', 'have {value}', ['value' => $this->telephone_point]);
+        return $this->telephone_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getTerraceStr()
     {
         if ((int)$this->terrace == 0)
             return trans('words', 'has not');
-        return trans('words', 'have it');
+        return $this->terrace == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getListValueStr($field)

@@ -38,6 +38,9 @@ class ItemQuery extends MultiLangActiveQuery
             ]);
         }
 
+        if (!$this->orderBy)
+            $this->orderBy(['item.id' => SORT_DESC]);
+
         return parent::all($db);
     }
 
@@ -86,8 +89,9 @@ class ItemQuery extends MultiLangActiveQuery
             else
                 $this->andWhere([Item::columnGetString("{$lang}_status", "item", "INTEGER") => Item::STATUS_PUBLISHED]);
         }
-//        if (!$this->orderBy)
-//            $this->orderBy(['item.id' => SORT_DESC]);
+
+        if (!$this->orderBy)
+            $this->orderBy(['item.id' => SORT_DESC]);
         return $this;
     }
 }

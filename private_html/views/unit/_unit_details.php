@@ -12,7 +12,7 @@ $baseUrl = $this->theme->baseUrl;
     <tbody>
     <tr>
         <td><?= trans('words', 'Foundation') ?></td>
-        <td><?= $model->area_size ?> <?= trans('words', 'Meter') ?></td>
+        <td><?= $model->area_size ?> <?= trans('words', 'Meters') ?></td>
 
         <td><?= trans('words', 'Floor number') ?></td>
         <td><?= $model->getFloorNumberStr() ?></td>
@@ -46,15 +46,38 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= trans('words', 'Wall') ?></td>
         <td><?= $model->getWallStr() ?></td>
 
+        <td><?= trans('words', 'IPhone Video') ?></td>
+        <td><?= $model->getIPhoneStr() ?></td>
+    </tr>
+    <tr>
+        <td><?= trans('words', 'Wc') ?></td>
+        <td><?= $model->getWcStr() ?></td>
+
+        <td><?= trans('words', 'Toilet') ?></td>
+        <td><?= $model->getToiletStr() ?></td>
+
+        <td><?= trans('words', 'Bath room') ?></td>
+        <td><?= $model->getBathRoomStr() ?></td>
+
         <td><?= trans('words', 'Terrace') ?></td>
         <td><?= $model->getTerraceStr() ?></td>
     </tr>
     <tr>
+        <td><?= trans('words', 'Gas point') ?></td>
+        <td><?= $model->getGasPointStr() ?></td>
+
+        <td><?= trans('words', 'Power point') ?></td>
+        <td><?= $model->getPowerPointStr() ?></td>
+
+        <td><?= trans('words', 'Telephone point') ?></td>
+        <td><?= $model->getTelephonePointStr() ?></td>
+
         <td><?= trans('words', 'Water point') ?></td>
         <td><?= $model->getWaterPointStr() ?></td>
-
-        <td><?= trans('words', 'Number of floors') ?></td>
-        <td><?= $model->getNumberOfFloorsStr() ?></td>
+    </tr>
+    <tr>
+        <td><?= trans('words', 'Cabinets') ?></td>
+        <td><?= $model->getCabinetsStr() ?></td>
 
         <td><?= trans('words', 'Terrace') ?></td>
         <td><?= $model->getTerraceStr() ?></td>

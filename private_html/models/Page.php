@@ -85,7 +85,7 @@ class Page extends Item
 
     public function getUrl()
     {
-        return Url::to(['/page/show', 'id' => $this->id, 'title' => encodeUrl($this->name)]);
+        return Url::to(['/page/show', 'id' => $this->id, 'title' => encodeUrl($this->getName())]);
     }
 
     public function formAttributes()
@@ -160,5 +160,12 @@ class Page extends Item
                 return $this->{Yii::$app->language . '_body'} ?: $this->body;
         }
         return $this->body;
+    }
+
+    public function getModelImage()
+    {
+        if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/page/') . $this->image))
+            return Yii::getAlias('@web/uploads/page/') . $this->image;
+        return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
 }

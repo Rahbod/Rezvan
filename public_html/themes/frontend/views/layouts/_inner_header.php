@@ -55,7 +55,7 @@ use yii\helpers\Url; ?>
                                 <div class="search-box clearfix">
                                     <form role="search" method="get" class="search-form clearfix"
                                           action="<?= Url::to(['/site/search']) ?>">
-                                        <input type="search" class="search-field"
+                                        <input dir="auto" type="search" class="search-field"
                                                placeholder="<?= trans('words', 'Search') ?>" value="<?= Yii::$app->request->getQueryParam('query') ?>" name="query"
                                                title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
@@ -93,7 +93,7 @@ use yii\helpers\Url; ?>
 
                     <div class="col-lg-6 right">
                         <a href="#unit-section" class="unit"><?= trans('words', 'unit') ?></a>
-                        <a href="#map-section" class="on-map"><?= trans('words', 'one map') ?></a>
+                        <a href="#map-section" class="on-map"><?= trans('words', 'on map') ?></a>
                         <a href="#nearby-section" class="near-you"><?= trans('words', 'near you') ?></a>
                     </div>
                 </div>

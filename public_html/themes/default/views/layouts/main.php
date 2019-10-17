@@ -18,7 +18,7 @@ AppAsset::register($this);
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?= Html::csrfMetaTags() ?>
-    <title><?= (($this->title) ? $this->title . ' - ': ''). Yii::$app->name; ?></title>
+    <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
     <script>
         WebFont.load({
@@ -33,6 +33,7 @@ AppAsset::register($this);
 
     <?php $this->registerAssetBundle(yii\web\JqueryAsset::className(), \yii\web\View::POS_HEAD); ?>
 
+    <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/bootstrap-datepicker.css', [], 'bootstrap-datepicker-css'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.css', [], 'fullcalendar'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/fontiran.css', [], 'fontiran'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/flag-icon.css', [], 'flag-icon'); ?>
@@ -42,13 +43,16 @@ AppAsset::register($this);
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/demo/default/base/style.bundle.rtl.css', [], 'style'); ?>
     <?php $this->registerCssFile($this->theme->baseUrl . '/assets/vendors/base/selectize.bootstrap3.css', [], 'selectize-css'); ?>
 
+    <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/base/bootstrap-datepicker.js', ['depends' => [JqueryAsset::className()]], 'bootstrap-datepicker-js'); ?>
+    <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/base/bootstrap-datepicker.fa.js', ['depends' => [JqueryAsset::className()]], 'bootstrap-datepicker-fa-js'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/base/vendors.bundle.js', [], 'vendors'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/demo/default/base/scripts.bundle.js', [], 'scripts'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/custom/fullcalendar/fullcalendar.bundle.js', [], 'full-calendar'); ?>
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/app/js/dashboard.js', [], 'dashboard'); ?>
+    <?php $this->registerJsFile($this->theme->baseUrl . '/assets/app/js/custom.js', [], 'custom'); ?>
 
     <?php $this->registerJsFile($this->theme->baseUrl . '/assets/vendors/base/selectize.js', [], 'selectize'); ?>
-    <?php $this->head();?>
+    <?php $this->head(); ?>
 </head>
 
 <!-- begin::Body -->
@@ -58,7 +62,7 @@ AppAsset::register($this);
 <!-- begin:: Page -->
 <div class="m-grid m-grid--hor m-grid--root m-page">
     <!-- BEGIN: Header -->
-    <?php echo $this->render('_header');?>
+    <?php echo $this->render('_header'); ?>
     <!-- END: Header -->
 
     <!-- begin::Body -->
@@ -70,7 +74,7 @@ AppAsset::register($this);
         </button>
         <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
             <!-- BEGIN: Aside Menu -->
-            <?php echo $this->render('_side_menu');?>
+            <?php echo $this->render('_side_menu'); ?>
             <!-- END: Aside Menu -->
         </div>
 
@@ -89,7 +93,7 @@ AppAsset::register($this);
     <!-- end:: Body -->
 
     <!-- begin::Footer -->
-    <?php echo $this->render('_footer');?>
+    <?php echo $this->render('_footer'); ?>
 
     <!-- end::Footer -->
 </div>

@@ -61,7 +61,23 @@ $this->params['breadcrumbs'][] = $this->title;
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'buttons' => [
+
+                                'view' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-eye text-info" ></span >', ['show', 'id' => $model->id],
+                                        [
+                                            'class' => '',
+                                            'title' => "نمایش",
+                                            'aria-label' => "view",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                            ]
+                        ]
                     ],
                 ]); ?>
             </div>

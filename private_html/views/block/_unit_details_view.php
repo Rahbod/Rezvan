@@ -13,14 +13,14 @@ $unit = $block->getUnit();
     <div class="content">
         <div class="container-fluid">
             <div class="row available">
-                <div class="available-left-title col-lg-4">
+                <div class="available-left-title col-lg-3">
                     <div class="title-left">
                         <p class="slide"><?= trans('words','<strong>Current status</strong><br> of the UNIT {unit_number}',['unit_number' => $unit->unit_number]) ?></p>
                     </div>
                     <img src="<?= $baseUrl .'/images/door-icon.png' ?>" alt="door">
                     <div class="title-unit">
                         <div class="title-unit">
-                            <p><?= trans('words', '<span class="green"><strong>unit {unit_number}</strong></span><strong>available</strong>', ['unit_number' => $unit->unit_number]) ?></p>
+                            <p><?= trans('words', '<span class="green"><strong>unit {unit_number}</strong></span> <strong>available</strong>', ['unit_number' => $unit->unit_number]) ?></p>
                             <p><?= trans('words', 'from {all_units} units / ON FLOOR {floor}', ['all_units' => $unit->number_of_units,'floor'=>$unit->floor_number]) ?> </p>
                         </div>
                     </div>
@@ -28,7 +28,7 @@ $unit = $block->getUnit();
                         <p><?= $unit->getDescriptionSrc() ?></p>
                     </div>
                 </div>
-                <div class="available-right-title col-lg-8 col-md-12 col-sm-12 ">
+                <div class="available-right-title col-lg-9 col-md-12 col-sm-12 ">
                     <div class="item-inner">
                         <div class="items">
                             <?= $this->render('//unit/_unit_items', ['model' => $unit]) ?>

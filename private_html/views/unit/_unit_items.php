@@ -11,7 +11,7 @@ $baseUrl = $this->theme->baseUrl;
 <?php if (isset($sold) && $sold): ?>
     <div class="item item-1">
         <p class="item-1"><?= $model->getName() ?></p>
-        <p class="item-1"><?= $model->area_size ?> <?= trans('words', 'Meter') ?></p>
+        <p class="item-1"><?= $model->area_size ?> <?= trans('words', 'Meters') ?></p>
     </div>
     <div class="item item-2">
         <img src="<?= $baseUrl . '/images/item-2-l.png' ?>" alt="item-2">
@@ -45,7 +45,7 @@ $baseUrl = $this->theme->baseUrl;
 <?php else: ?>
     <div class="item item-1">
         <p class="item-1"><?= $model->getName() ?></p>
-        <p class="item-1"><?= $model->area_size ?> <?= trans('words', 'Meter') ?></p>
+        <p class="item-1"><?= $model->area_size ?> <?= trans('words', 'Meters') ?></p>
     </div>
     <div class="item item-2">
         <img src="<?= $baseUrl . '/images/item-2.png' ?>" alt="item-2">

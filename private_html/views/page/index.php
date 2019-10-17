@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -27,7 +28,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                     <li class="m-portlet__nav-item">
-                        <a href="<?= \yii\helpers\Url::to(['create'])?>" class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
+                        <a href="<?= \yii\helpers\Url::to(['create']) ?>"
+                           class="btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon m-btn--air">
 						<span>
 							<i class="la la-plus"></i>
 							<span><?= trans('words', 'Create Page') ?></span>
@@ -50,19 +52,35 @@ $this->params['breadcrumbs'][] = $this->title;
                         'name',
                         [
                             'attribute' => 'created',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return jDateTime::date('Y/m/d', $model->created);
                             }
                         ],
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {
-                                return \app\models\Page::getStatusLabels($model->status,true);
+                                return \app\models\Page::getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
                             'filter' => \app\models\Page::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'buttons' => [
+
+                                'view' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-eye text-info" ></span >', ['show', 'id' => $model->id],
+                                        [
+                                            'class' => '',
+                                            'title' => "نمایش",
+                                            'aria-label' => "view",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                            ]
+                        ]
                     ],
                 ]); ?>
             </div>

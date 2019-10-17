@@ -72,7 +72,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                                 <div class="items">
                                     <div class="item item-1">
                                         <p class="item-1"><?= $unit->getName() ?></p>
-                                        <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meter') ?></p>
+                                        <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meters') ?></p>
                                     </div>
                                     <div class="item item-2">
                                         <img src="<?= $baseUrl ?>/images/item-2.png" alt="item-2">
@@ -125,7 +125,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                                 <div class="items">
                                     <div class="item item-1">
                                         <p class="item-1"><?= $unit->getName() ?></p>
-                                        <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meter') ?></p>
+                                        <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meters') ?></p>
                                     </div>
                                     <div class="item item-2">
                                         <img src="<?= $baseUrl ?>/images/item-2-l.png" alt="item-2">

@@ -78,8 +78,20 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
-                            'template' => '{block} {unit} {update} {delete}',
+                            'template' => '{block} {unit} {view} {update} {delete}',
                             'buttons' => [
+                                'view' => function ($url, $model, $key) {
+                                    return Html::a('<span class="fas fa-eye text-info" ></span >', ['show', 'id' => $model->id],
+                                        [
+                                            'class' => '',
+                                            'title' => "نمایش",
+                                            'aria-label' => "view",
+                                            'target' => '_blank',
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
                                 'block' => function ($url, $model, $key) {
                                     return Html::a('<span class="fas fa-bars text-warning" ></span >', ['block/index', 'id' => $model->id],
                                         [

@@ -30,10 +30,19 @@
 #header.fixed-menu{
     top: 0;
 }
-.fixed-menu + main{
+.final-project-view .fixed-menu + main,
+.more-one .fixed-menu + main{
     margin-top: 160px;
 }
 
 .list .project-list{
     min-height: 1000px;
+}
+
+.header-bottom *{
+    text-transform: uppercase;
+}
+
+input.search-field{
+    text-align: start;
 }

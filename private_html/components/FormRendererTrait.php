@@ -126,11 +126,11 @@ trait FormRendererTrait
                     $items = ArrayHelper::map($list_options, 'id', 'name');
             }
 
-            $options['prompt'] = isset($options['prompt'])?$options['prompt']:"انتخاب کنید";
+            $options['prompt'] = isset($options['prompt']) ? $options['prompt'] : "انتخاب کنید";
 
             if (!$items)
                 $field['hint'] = "لیست خالی است. " . Html::a('ایجاد لیست', ['/list/create', 'slug' => $field['listSlug'], 'label' => $model->getAttributeLabel($field['attribute'])]);
-            else if(!isset($field['hint']))
+            else if (!isset($field['hint']))
                 $field['hint'] = Html::a('ویرایش لیست', ['/list/create', 'slug' => $field['listSlug']]);
         }
         $attribute = $field['attribute'];
@@ -148,6 +148,7 @@ trait FormRendererTrait
             unset($field['hint']);
         }
 
+        $prefixField = '';
         switch ($type) {
             case static::FORM_SEPARATOR:
                 Html::addCssClass($options, 'm-form__heading');
@@ -180,29 +181,59 @@ trait FormRendererTrait
                 $obj = $form->field($model, $attribute, $fieldOptions)->checkbox($options, false);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_EDITOR:
+                if (!isset($options['options']['dir']))
+                    $options['options']['dir'] = 'auto';
                 $options['options']['tabindex'] = $options['tabindex'];
                 unset($options['tabindex']);
                 $obj = $form->field($model, $attribute, $fieldOptions)->widget(TinyMce::className(), $options);
                 break;
             case static::FORM_FIELD_TYPE_TEXT_AREA:
+                if (!isset($options['dir']))
+                    $options['dir'] = 'auto';
                 $obj = $form->field($model, $attribute, $fieldOptions)->textarea($options);
                 break;
             case static::FORM_FIELD_TYPE_PASSWORD:
+                if (!isset($options['dir']))
+                    $options['dir'] = 'auto';
                 $obj = $form->field($model, $attribute, $fieldOptions)->passwordInput($options);
                 break;
             case static::FORM_FIELD_TYPE_LANGUAGE_SELECT:
                 $obj = $form->field($model, $attribute, $fieldOptions)->dropDownList(MultiLangActiveRecord::$langArray, $options);
                 break;
             case static::FORM_FIELD_TYPE_DATE:
-                $options['htmlOptions']['tabindex'] = $options['tabindex'];
-                unset($options['tabindex']);
-                $obj = $form->field($model, $attribute)->widget(jalaliDatePicker::className(), $options);
+                Html::addCssClass($options, 'datepicker form-control m-input m-input--solid');
+                $prefixField = \yii\bootstrap\Html::tag('div', Html::textInput("", $this->$attribute ?: "", [
+                    'class' => $options['class'],
+                    'tabindex' => $options['tabindex'],
+                    'data-value' => $model->$attribute,
+                    'data-config' => [
+                        'autoClose' => true,
+                        'observer' => true,
+                        'navigator' => [
+                            'text' => [
+                                'btnNextText' => trans('words', 'base.next'),
+                                'btnPrevText' => trans('words', 'base.previous'),
+                            ]
+                        ],
+                        'timePicker' => [
+                            'enabled' => false
+                        ],
+                        'altField' => '#' . \yii\bootstrap\Html::getInputId($model, $attribute),
+                        'dateFormat' => 'yy/mm/dd',
+                        'altFormat' => '@',
+                        'alignByRightSide' => true,
+                        'initialValue' => false,
+                    ]
+                ]), ['class' => 'row']);
+                $obj = $form->field($model, $attribute, ['options' => ['class' => '']])->hiddenInput()->label(false);
                 break;
             case static::FORM_FIELD_TYPE_TAG:
             case static::FORM_FIELD_TYPE_TIME:
             case static::FORM_FIELD_TYPE_DATETIME:
             case static::FORM_FIELD_TYPE_TEXT:
             default:
+                if (!isset($options['dir']))
+                    $options['dir'] = 'auto';
                 $obj = $form->field($model, $attribute, $fieldOptions)->textInput($options);
                 break;
         }
@@ -221,7 +252,7 @@ trait FormRendererTrait
             $obj->hint($hint);
 
         Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
-        $fieldHtml = Html::tag('div', $obj, $containerOptions);
+        $fieldHtml = Html::tag('div', $prefixField . $obj, $containerOptions);
         $output .= strtr($template, ['{field}' => $fieldHtml]);
         return $output;
     }

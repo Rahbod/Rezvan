@@ -19,7 +19,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             
             <div class="row">
                 <div class="title">
-                    <h1><strong><?= Html::encode($this->title) ?></strong></h1>
+                    <h1><strong><?= strip_tags($this->title) ?></strong></h1>
                 </div>
             </div>
         </div>
@@ -30,12 +30,10 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
                         <p><strong>
-                                <?= trans('words', $model->name) ?>
+                                <?= trans('words', $model->getName()) ?>
                             </strong></p>
-                        <img src="<?= $model->image ?>" alt="">
-                        <p>
-                            <?= Html::decode($model->body) ?>
-                        </p>
+                        <img src="<?= $model->getModelImage() ?>" alt="">
+                        <p><?= Html::decode($model->getBodyStr()) ?></p>
                     </div>
                 </div>
             </div>

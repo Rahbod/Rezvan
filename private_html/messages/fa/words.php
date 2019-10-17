@@ -322,7 +322,7 @@ return [
     'Floor count' => 'تعداد طبقات',
     'Units count' => 'تعداد واحدها',
     'Air conditioner' => 'خنک کننده هوا',
-    'Meter' => 'متر',
+    'Meters' => 'متر',
     'related projects' => 'پروژه های مرتبط',
     'projects' => 'پروژه ها',
     'Pdf file' => 'فایل pdf',
@@ -342,7 +342,7 @@ return [
     '<span class="green"><strong>{count} unit </span>free </strong>' => 'واحدهای موجود {count}',
     '<span class="red"><strong>{count} unit</strong></span> SOLD' => 'واحدهای فروخته شده {count}',
 
-    '<span class="green"><strong>unit {unit_number}</strong></span><strong>available</strong>' => '<span class="green"><strong>واحد {unit_number}</strong></span><strong>موجود</strong>',
+    '<span class="green"><strong>unit {unit_number}</strong></span> <strong>available</strong>' => '<span class="green"><strong>واحد {unit_number}</strong></span><strong>موجود</strong>',
     'from {all_units} units / ON FLOOR {floor}' => 'از {all_units} واحد / در طبقه {floor}',
 
     'About {value} km distance' => 'حدود {value} کیلومتر',
@@ -418,7 +418,7 @@ return [
     'Next' => 'بعدی',
     'COMPANY REGISTRATION' => 'ثبت نام شرکت',
     'unit' => 'واحد',
-    'one map' => 'روی نقشه',
+    'on map' => 'روی نقشه',
     'near you' => 'نزدیک شما',
 
     //site : index ->slide-2
