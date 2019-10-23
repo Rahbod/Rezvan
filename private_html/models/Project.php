@@ -231,6 +231,8 @@ class Project extends Item implements ProjectInterface
             'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'بر حسب ماه'],
             'begin_date' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
+                'hint' => '2019/10/01',
+                'options' => ['placeholder' => '2019/10/01']
 //                'type' => self::FORM_FIELD_TYPE_DATE,
 //                'options' => [
 //                    'options' => array(

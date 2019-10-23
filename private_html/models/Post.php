@@ -72,7 +72,7 @@ class Post extends Item
             [['summary'], 'string'],
             [['publish_date'], 'safe'],
             ['seen', 'default', 'value' => 0],
-            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
         ]);
     }
 

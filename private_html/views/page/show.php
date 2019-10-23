@@ -8,7 +8,7 @@ use app\models\Page;
 use app\models\projects\Apartment;
 use yii\helpers\Html;
 
-$this->title = $model->getName();
+$this->title = strip_tags($model->getName());
 
 $baseUrl = $this->theme->baseUrl;
 $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
@@ -19,7 +19,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             
             <div class="row">
                 <div class="title">
-                    <h1><strong><?= strip_tags($this->title) ?></strong></h1>
+                    <h1><strong><?= $this->title ?></strong></h1>
                 </div>
             </div>
         </div>
@@ -29,9 +29,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
             <div class="row">
                 <div class="main-section-page">
                     <div class="txt-post-page-test">
-                        <p><strong>
-                                <?= trans('words', $model->getName()) ?>
-                            </strong></p>
+                        <p><strong><?= $model->getName() ?></strong></p>
                         <img src="<?= $model->getModelImage() ?>" alt="">
                         <p><?= Html::decode($model->getBodyStr()) ?></p>
                     </div>

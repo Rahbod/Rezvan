@@ -51,7 +51,7 @@ class Page extends Item
             [['body'], 'required'],
             [['image', 'en_body', 'ar_body'], 'string'],
             [['type'], 'default', 'value' => static::$typeName],
-            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
         ]);
     }
 

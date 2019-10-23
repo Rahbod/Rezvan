@@ -48,7 +48,7 @@ class Slide extends Item
             [['image'], 'required'],
             [['link'], 'string'],
             [['en_name', 'ar_name'], 'string'],
-            ['modelID', 'default', 'value' => Model::findOne(['name' => self::$modelName])->id],
+            ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
         ]);
     }
 
