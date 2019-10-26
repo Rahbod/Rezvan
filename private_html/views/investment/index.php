@@ -49,7 +49,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'name',
-
+                        [
+                            'attribute' => 'special',
+                            'value' => function ($model) {
+                                return \app\models\Slide::getStatusLabels($model->special?:0,true);
+                            },
+                            'format' => 'raw',
+                            'filter' => false
+                        ],
                         [
                             'attribute' => 'status',
                             'value' => function ($model) {

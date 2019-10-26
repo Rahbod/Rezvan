@@ -565,4 +565,5 @@ return [
     'Mobile Number' => 'شماره موبایل',
     'Phone Number' => 'شماره تلفن',
     'Details' => 'توضیحات',
+    'Special Project' => 'پروژه شاخص',
 ];

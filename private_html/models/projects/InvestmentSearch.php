@@ -65,6 +65,9 @@ class InvestmentSearch extends Investment
             $query->orFilterWhere(['like', self::columnGetString($lang . '_subtitle'), $this->subtitle]);
         }
 
+        $query->addOrderBy([self::columnGetString('special') => SORT_DESC])
+            ->addOrderBy(['id' => SORT_DESC]);
+
         return $dataProvider;
     }
 }

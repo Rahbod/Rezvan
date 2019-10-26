@@ -13,7 +13,6 @@ $baseUrl = $this->theme->baseUrl;
 $apartmentCounts = isset($projects) ? count($projects) : 0;
 
 ?>
-
 <?php if (isset($projects)): ?>
     <section class="full-slide">
         <div class="container-fluid">

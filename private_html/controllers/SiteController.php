@@ -167,9 +167,9 @@ class SiteController extends AuthController
         $services = Service::find()->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-        $availableApartments = Apartment::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-        $availableInvestments = Investment::find()->orderBy(['id' => SORT_DESC,])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
-        $availableConstructions = OtherConstruction::find()->orderBy(['id' => SORT_DESC,])
+        $availableApartments = Apartment::find()->orderBy([Apartment::columnGetString('special') => SORT_DESC,'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableInvestments = Investment::find()->orderBy([Investment::columnGetString('special') => SORT_DESC,'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
+        $availableConstructions = OtherConstruction::find()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC,'id' => SORT_DESC])
 //            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
             ->all();
 

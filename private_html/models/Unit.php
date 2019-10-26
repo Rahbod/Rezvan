@@ -461,10 +461,10 @@ class Unit extends Item
 
     public function getParkingStr()
     {
-        if ((int)$this->parking > 1)
-            return $this->parking;
-//            return trans('words', 'have {value} parking spaces', ['value' => $this->parking]);
-        return $this->parking == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+//        if ((int)$this->parking > 1)
+//            return $this->parking;
+        return  $this->parking;
+//        return $this->parking == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getRadiatorStr()

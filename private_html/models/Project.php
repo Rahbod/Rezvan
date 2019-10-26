@@ -34,6 +34,7 @@ use yii\web\View;
  * @property string location_two
  * @property string en_location_two
  * @property string ar_location_two
+ * @property int special
  */
 class Project extends Item implements ProjectInterface
 {
@@ -80,6 +81,7 @@ class Project extends Item implements ProjectInterface
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             // define common fields in project types
+            'special' => ['INTEGER', ''],
             'description' => ['CHAR', ''],
             'ar_description' => ['CHAR', ''],
             'en_description' => ['CHAR', ''],
@@ -126,6 +128,8 @@ class Project extends Item implements ProjectInterface
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['project_type'], 'required', 'except' => 'clone'],
+            [['special'], 'integer'],
+            [['special'], 'default', 'value' => 0],
             [['description', 'ar_description', 'en_description'], 'string'],
             [['banner', 'pdf_file', 'subtitle', 'ar_subtitle', 'en_subtitle', 'location_two', 'bg_color', 'ar_location_two', 'en_location_two', 'begin_date', 'construction_time', 'location', 'en_location', 'ar_location', 'image'], 'string'],
             [['area_size', 'unit_count', 'free_count', 'sold_count', 'project_type'], 'integer'],
@@ -139,6 +143,7 @@ class Project extends Item implements ProjectInterface
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'special' => trans('words', 'Special Project'),
             'project_type' => trans('words', 'Project type'),
             'description' => trans('words', 'Building Description'),
             'ar_description' => trans('words', 'Ar Building Description'),
@@ -228,6 +233,7 @@ class Project extends Item implements ProjectInterface
                 'items' => self::getProjectTypeLabels(),
                 'options' => ['id' => 'project_type']
             ],
+            'special' => self::FORM_FIELD_TYPE_SWITCH,
             'construction_time' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'بر حسب ماه'],
             'begin_date' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
@@ -498,5 +504,21 @@ JS
             return false;
         $fields = array_keys($this->dynaDefaults);
         return in_array($name, $fields) && $this->$name !== null;
+    }
+
+    public function beforeSave($insert)
+    {
+        if($this->special) {
+            /** @var Project $modelClass */
+            $modelClass = get_called_class();
+            /** @var Project $lastSpec */
+            $lastSpec = $modelClass::find()->andWhere([self::columnGetString('special') => 1])->one();
+            if($lastSpec) {
+                $lastSpec->special = 0;
+                $lastSpec->save();
+            }
+        }
+
+        return parent::beforeSave($insert);
     }
 }
