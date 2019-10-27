@@ -19,6 +19,7 @@ AppAsset::register($this);
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <link href="<?= $this->theme->baseUrl . '/assets/css/all.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/assets/css/font-awesome.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/style.css' ?>" rel="stylesheet">
     <?php if (app()->language != 'en'): ?>
@@ -42,7 +43,7 @@ if ($pageName == 'more-one') {
 
 ?>
 
-<body class="<?= app()->controller->bodyClass ?>">
+<body class="<?= app()->controller->bodyClass ?><?= app()->language != 'en'?' rtl':'' ?>">
 <?php $this->beginBody(); ?>
 
 <?php if (app()->controller->innerPage)
