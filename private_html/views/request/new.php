@@ -19,8 +19,8 @@ use yii\helpers\Html;
     <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
     <div class="row">
-        <?= $model->formRenderer($form,'{field}', 'col-sm-4') ?>
-        <?= $model->formRenderer($form,'{field}', 'col-sm-4', 'formGeneralAttributes') ?>
+        <?= $model->formRenderer($form,'{field}', 'col-sm-3') ?>
+        <?= $model->formRenderer($form,'{field}', 'col-sm-3', 'formGeneralAttributes') ?>
     </div>
 
 </div>
