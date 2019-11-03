@@ -10,6 +10,7 @@ use app\components\customWidgets\CustomActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $basePhrases [] */
+/* @var $enPhrases [] */
 /* @var $destPhrases [] */
 
 $this->title = trans('words', 'Translate Management');
@@ -77,7 +78,9 @@ $this->params['breadcrumbs'][] = $this->title;
                     }
                     ?>
                     <div class="form-group m-form__group row">
-                        <?php echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label', 'encode' => true]) ?>
+                        <?php //echo Html::label($phrase, '', ['class' => 'col-lg-2 col-form-label', 'encode' => true]) ?>
+                        <label class="col-lg-2 col-form-label" dir="auto"><?php echo Html::encode($phrase) ?></label>
+                        <?php if($currLang != 'en'): ?><label class="col-lg-2 col-form-label" dir="auto"><?php echo Html::encode(isset($enPhrases[$key])?$enPhrases[$key]:$key) ?></label><?php endif; ?>
                         <div class="col-lg-6">
                             <?php echo Html::textarea("new_phrases[$key]", $value, [
                                 'class' => 'form-control m-input m-input__solid',

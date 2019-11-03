@@ -214,6 +214,7 @@ nav#menu-main {
 	font-size: 13px;
     padding-left: 10px;
     padding-right: 10px;
+	display: inline-block;
 }
 #menu-main li:hover a {
     color: #ba8c65;
@@ -372,7 +373,7 @@ li.social-item {
 		width: 100%;
 		border: 0;
 		transition: 0.3s;
-		height: 60px;
+		height: 61px;
 	}
 	#header.fixed-menu .col-lg-2 {
 		border: 0!important;
@@ -553,6 +554,7 @@ span.available-project {
 #slide-1 .carousel-inner .grid>a>img, #slide-2 .carousel-inner .grid>a>img {
 	border-radius: 30px;
 	width: 100%;
+	object-fit: cover;
 }
 #slide-1 .carousel-inner {
     margin-bottom: 50px;
@@ -655,9 +657,10 @@ a.carousel-control-prev i.fas, a.carousel-control-next i.fas {
     overflow: hidden;
     padding: 0;
     border-radius: 30px;
+    height: 500px;
 }
 .grid.little-post>a>img {
-    max-height: 185px;
+    height: 185px;
 }
 .grid:hover a, #slide-3 .carousel-item .col-sm-12.col-md-4.col-lg-4:hover h2, #slide-2 .grid a:hover {
     color: #ba8c65!important;
@@ -728,6 +731,7 @@ a.carousel-control-prev i.fas, a.carousel-control-next i.fas {
 }
 .grid.little-post {
     padding: 10px;
+	height: 250px;
 }
 
 /* Section 3 */
@@ -805,7 +809,8 @@ a.carousel-control-prev i.fas, a.carousel-control-next i.fas {
 
 #slide-3 a, .slide-3 h2.item-title {
     color: #847a6d;
-    line-height: 1.7;
+    line-height: 1;
+    padding-bottom: 10px;
 }
 #slide-3 a:hover {
     text-decoration: none;
@@ -1047,6 +1052,7 @@ h2#txt-order-post {
 #order-post img {
     border-radius: 20px;
 	width: 100%;
+	height: 190px;
 }
 
 /* More One */
@@ -1559,6 +1565,7 @@ h3.title-building-access {
     line-height: 1.2;
     padding-top: 10px;
     color: #6a6969;
+	text-align: justify;
 }
 .final-project-view .available-left-title {
     padding-top: 35px;
@@ -1603,6 +1610,9 @@ h3.title-building-access {
 
 .final-project-view .available {
     margin-bottom: 30px;
+}
+.available-right-title {
+    padding-bottom: 50px;
 }
 .final-project-view .sold {
     margin-bottom: 120px;
@@ -1700,12 +1710,12 @@ table.item-list-view {
  **/
 .final-project-view .download {
    position: fixed;
-    top: 520px;
+    top: 540px;
     z-index: 20;
 }
 .final-project-view .overly {
    position: fixed;
-    top: 65px;
+    top: 95px;
     width: 5%;
     height: 440px;
     border-radius: 25px 0 0 25px;

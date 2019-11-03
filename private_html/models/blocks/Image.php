@@ -14,6 +14,7 @@ use yii\web\View;
  * This is the model class for table "item".
  *
  * @property string image
+ * @property string link
  */
 class Image extends Block
 {
@@ -24,6 +25,7 @@ class Image extends Block
         parent::init();
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'image' => ['CHAR', ''],
+            'link' => ['CHAR', ''],
         ]);
     }
 
@@ -36,7 +38,7 @@ class Image extends Block
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
             ['image', 'required', 'except' => 'clone'],
-            ['image', 'string'],
+            [['link','image'], 'string'],
         ]);
     }
 
@@ -46,6 +48,7 @@ class Image extends Block
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
+            'link' => trans('words', 'Link'),
             'image' => trans('words', 'Image')
         ]);
     }
@@ -78,6 +81,11 @@ class Image extends Block
                         'maxFileSize' => 0.5,
                     ],
                 ]
+            ],
+            'link' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'containerCssClass' => 'col-sm-12',
+                'options' => ['dir' => 'auto']
             ],
         ]);
     }

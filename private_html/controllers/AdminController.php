@@ -91,6 +91,8 @@ class AdminController extends AuthController
         $currLang = Yii::$app->request->getQueryParam('lang');
         $baseMessagePath = alias("@app/messages/{$baseLang}/words.php");
         $basePhrases = include $baseMessagePath;
+        $enMessagePath = alias("@app/messages/en/words.php");
+        $enPhrases = include $enMessagePath;
         $destMessagePath = alias("@app/messages/{$currLang}/words.php");
         if (!is_dir(alias("@app/messages/{$currLang}")))
             mkdir(alias("@app/messages/{$currLang}/"), 0755, true);
@@ -113,6 +115,6 @@ class AdminController extends AuthController
             return $this->refresh();
         }
 
-        return $this->render('translate', compact('basePhrases', 'destPhrases'));
+        return $this->render('translate', compact('currLang','basePhrases', 'destPhrases','enPhrases'));
     }
 }

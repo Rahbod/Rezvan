@@ -16,6 +16,8 @@ $baseUrl = $this->theme->baseUrl;
 $sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->all();
 $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->all();
 ?>
+
+<?php if($sold || $free):?>
 <section class="slide-4" id="unit-section">
     <div class="container-fluid">
         <div class="row">
@@ -97,3 +99,4 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
         <?php endif; ?>
     </div>
 </section>
+<?php endif;

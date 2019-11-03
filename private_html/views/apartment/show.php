@@ -9,7 +9,7 @@ use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 ?>
-<div class="fade show">
+<div class="fade show d-none">
     <div class="overly">
         <?= $this->render('//site/_project_side', compact('model')) ?>
     </div>

@@ -1,18 +1,18 @@
 @font-face{
 	font-family:AGC;
-	weight:300
+	font-weight:300;
 	font-style: normal;
 	src:url(assets/fonts/noorbank/AGCLight.ttf)  format('truetype');
 }
 @font-face{
 	font-family:AGC;
-	weight:400
+	font-weight:400;
 	font-style: normal;
 	src:url(assets/fonts/noorbank/AGCRegular.ttf)  format('truetype');
 }
 @font-face{
 	font-family:AGC;
-	weight:600
+	font-weight:600;
 	font-style: normal;
 	src:url(assets/fonts/noorbank/AGCBold.ttf)  format('truetype');
 }
@@ -52,6 +52,9 @@ input.search-field {
     line-height: 0.7;
 }
 .title-left {
+    float: right;
+}
+.final-project-view .title-left {
     float: right;
 }
 .title-right {
@@ -215,6 +218,28 @@ h2.item-title {
 .item.item-7.liner:before {
     transform-origin: 65% 550%;
 }
+.final-project-view .overly {
+    border-radius: 0 25px 25px 0;
+}
+.item-list-view tr td {
+    padding-left: 0;
+	padding-right: 20px;
+}
+.item-list-view tr td:nth-child(2), .item-list-view tr td:nth-child(4), .item-list-view tr td:nth-child(6) {
+    border-right: 0;
+	border-left: 1px solid #989797;
+    padding-left: 0;
+	padding-right: 10px;
+}
+.final-project-view .title-unit {
+    padding-left: 0;
+	padding-right: 40px;
+}
+.final-project-view.special .title-left p.slide {
+    text-align: left;
+    padding-right: 0;
+	padding-left: 60px;
+}
 @media (min-width: 992px) {
 	.home section.slide-3>.container-fluid {
 		min-height: 1000px;
@@ -231,6 +256,9 @@ h2.item-title {
 	ul.main-menu, ul#main-navigation {
 		float: left;
 		padding-right: 0;
+	}
+	.header-bottom .col-lg-6.right {
+		text-align: left;
 	}
 }
 @media (max-width: 768px) {

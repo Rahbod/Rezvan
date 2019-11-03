@@ -175,7 +175,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12 order-12">
                                             <a href="<?= $investment->getUrl() ?>"
                                                title="<?= Html::encode($investment->getName()) ?>">
                                                 <img src="<?= $investment->getModelImage() ?>"
@@ -192,7 +192,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 </div>
                                             </a>
                                         </div>
-                                        <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 right-post-slider">
+                                        <div class="col-lg-6 col-md-6  col-sm-12 col-xs-12 left-post-slider">
                                             <div class="row">
                                                 <?php for ($j = $i + 1; $j <= $i + 4; $j++): ?>
                                                     <?php if (!isset($availableInvestments[$j]))
@@ -332,7 +332,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                title="<?= Html::encode($service->getName()) ?>">
                                                 <h2 class="item-title"><?= $service->getName() ?></h2>
                                             </a>
-                                            <span class="description"><?= Html::encode($service->getDescriptionStr()) ?></span>
+                                            <p class="description"><?= Html::encode($service->getDescriptionStr()) ?></p>
                                             <a href="<?= $service->getUrl() ?>"
                                                title="<?= Html::encode($service->getName()) ?>">
                                                 <button type="button" class="btn btn-primary slider-button">
