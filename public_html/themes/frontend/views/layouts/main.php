@@ -18,12 +18,18 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
+
+    <?php if (app()->language != 'en'): ?>
+        <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/rtl/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <?php else: ?>
+        <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/css/bootstrap.min.css' ?>" rel="stylesheet">
+    <?php endif; ?>
+
     <link href="<?= $this->theme->baseUrl . '/assets/css/all.css' ?>" rel="stylesheet">
-    <link href="<?= $this->theme->baseUrl . '/assets/css/font-awesome.min.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/style.css' ?>" rel="stylesheet">
     <?php if (app()->language != 'en'): ?>
-        <link href="<?= $this->theme->baseUrl . '/rtl.css' ?>" rel="stylesheet"><?php endif; ?>
+        <link href="<?= $this->theme->baseUrl . '/rtl.css' ?>" rel="stylesheet">
+    <?php endif; ?>
     <link href="<?= $this->theme->baseUrl . '/custom.css' ?>" rel="stylesheet">
 </head>
 <?php

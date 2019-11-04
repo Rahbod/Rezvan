@@ -35,7 +35,7 @@ $baseUrl = $this->theme->baseUrl;
                             </div>
                             <div class="col-lg-10 right">
                                 <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>
-                                <p class="desc-building-access"><?= trans('words', 'About {value} km distance', ['value' => $block->{$field . '_distance'}]) ?></p>
+                                <p class="desc-building-access"><?= $block->getDistance($field); ?></p>
                             </div>
                         </div>
                     <?php if ($block->{$field . '_link'}): ?></a><?php endif; ?>

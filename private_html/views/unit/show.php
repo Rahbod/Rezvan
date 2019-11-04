@@ -15,8 +15,8 @@ $this->context->breadcrumbs = [
     $model->getSubtitleStr(),
 ];
 ?>
-
-<div class="overly">
+<div class="fade show">
+    <div class="overly">
     <div class="item unit">
         <p class="title-1"><?= $model->area_size ?></p>
         <p class="title-2"><?= trans('words', 'Meters') ?></p>
@@ -45,6 +45,7 @@ $this->context->breadcrumbs = [
     <div class="item item-8">
         <img src="<?= $baseUrl ?>/images/item-8-w.png" alt="item-8">
     </div>
+</div>
 </div>
 <?= $model->render($this) ?>
 

@@ -13,8 +13,8 @@ use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 
-$sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->all();
-$free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->all();
+$sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
+$free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
 ?>
 
 <?php if($sold || $free):?>

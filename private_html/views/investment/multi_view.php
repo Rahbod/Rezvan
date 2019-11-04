@@ -11,8 +11,8 @@ use app\controllers\InvestmentController;
 use app\models\projects\Investment;
 use app\models\Unit;
 
-$sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->all();
-$free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->all();
+$sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
+$free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
 ?>
 <section class="full-slide">
     <div class="container-fluid">
@@ -121,38 +121,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                         <div class="item-inner">
                             <?php foreach ($free as $unit): ?>
                                 <div class="items">
-                                    <div class="item item-1">
-                                        <p class="item-1"><?= $unit->getName() ?></p>
-                                        <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meters') ?></p>
-                                    </div>
-                                    <div class="item item-2">
-                                        <img src="<?= $baseUrl ?>/images/item-2.png" alt="item-2">
-                                        <span class="item-2"><?= $unit->getFloorNumberStr() ?></span>
-                                    </div>
-                                    <div class="item item-3">
-                                        <img src="<?= $baseUrl ?>/images/item-3.png" alt="item-3">
-                                        <span class="item-2"><?= $unit->getBedRoomStr() ?></span>
-                                    </div>
-                                    <div class="item item-4">
-                                        <img src="<?= $baseUrl ?>/images/item-4.png" alt="item-4">
-                                        <span class="item-2"><?= $unit->getAirConditionerStr() ?></span>
-                                    </div>
-                                    <div class="item item-5">
-                                        <img src="<?= $baseUrl ?>/images/item-5.png" alt="item-5">
-                                        <span class="item-2"><?= $unit->getWcStr() ?></span>
-                                    </div>
-                                    <div class="item item-6">
-                                        <img src="<?= $baseUrl ?>/images/item-6.png" alt="item-6">
-                                        <span class="item-2"><?= $unit->getBathRoomStr() ?></span>
-                                    </div>
-                                    <div class="item item-7">
-                                        <img src="<?= $baseUrl ?>/images/item-7.png" alt="item-7">
-                                        <span class="item-2"><?= $unit->getParkingStr() ?></span>
-                                    </div>
-                                    <div class="item item-8">
-                                        <img src="<?= $baseUrl ?>/images/item-8.png" alt="item-8">
-                                        <span class="item-2"><?= $unit->getRadiatorStr() ?></span>
-                                    </div>
+                                    <?= $this->render('//unit/_unit_items', ['model' => $unit]) ?>
                                     <div class="item link-more">
                                         <a href="<?= $unit->getUrl() ?>"
                                            class="more"><?= trans('words', 'More ...') ?></a>
@@ -174,38 +143,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->al
                         <div class="item-inner">
                             <?php foreach ($sold as $unit): ?>
                                 <div class="items">
-                                    <div class="item item-1">
-                                        <p class="item-1"><?= $unit->getName() ?></p>
-                                        <p class="item-1"><?= $unit->area_size ?> <?= trans('words', 'Meters') ?></p>
-                                    </div>
-                                    <div class="item item-2">
-                                        <img src="<?= $baseUrl ?>/images/item-2-l.png" alt="item-2">
-                                        <span class="item-2"><?= $unit->getFloorNumberStr() ?></span>
-                                    </div>
-                                    <div class="item item-3">
-                                        <img src="<?= $baseUrl ?>/images/item-3-l.png" alt="item-3">
-                                        <span class="item-2"><?= $unit->getBedRoomStr() ?></span>
-                                    </div>
-                                    <div class="item item-4">
-                                        <img src="<?= $baseUrl ?>/images/item-4-l.png" alt="item-4">
-                                        <span class="item-2"><?= $unit->getAirConditionerStr() ?></span>
-                                    </div>
-                                    <div class="item item-5">
-                                        <img src="<?= $baseUrl ?>/images/item-5-l.png" alt="item-5">
-                                        <span class="item-2"><?= $unit->getWcStr() ?></span>
-                                    </div>
-                                    <div class="item item-6">
-                                        <img src="<?= $baseUrl ?>/images/item-6-l.png" alt="item-6">
-                                        <span class="item-2"><?= $unit->getBathRoomStr() ?></span>
-                                    </div>
-                                    <div class="item item-7">
-                                        <img src="<?= $baseUrl ?>/images/item-7-l.png" alt="item-7">
-                                        <span class="item-2"><?= $unit->getParkingStr() ?></span>
-                                    </div>
-                                    <div class="item item-8">
-                                        <img src="<?= $baseUrl ?>/images/item-8-l.png" alt="item-8">
-                                        <span class="item-2"><?= $unit->getRadiatorStr() ?></span>
-                                    </div>
+                                    <?= $this->render('//unit/_unit_items', ['model' => $unit, 'sold' => true]) ?>
                                     <div class="item link-more">
                                         <a href="<?= $unit->getUrl() ?>"
                                            class="more"><?= trans('words', 'More ...') ?></a>

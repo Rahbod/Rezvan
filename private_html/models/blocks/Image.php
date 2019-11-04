@@ -38,7 +38,8 @@ class Image extends Block
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
             ['image', 'required', 'except' => 'clone'],
-            [['link','image'], 'string'],
+            [['link'], 'string'],
+            [['image'], 'safe'],
         ]);
     }
 
@@ -77,7 +78,7 @@ class Image extends Block
                         'dictViewFile' => '',
                         'dictDefaultMessage' => 'جهت آپلود تصویر کلیک کنید',
                         'acceptedFiles' => 'png, jpeg, jpg',
-                        'maxFiles' => 1,
+                        'maxFiles' => 30,
                         'maxFileSize' => 0.5,
                     ],
                 ]

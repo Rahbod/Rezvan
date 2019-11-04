@@ -42,7 +42,3 @@
 .header-bottom *{
     text-transform: uppercase;
 }
-
-input.search-field{
-    text-align: start;
-}

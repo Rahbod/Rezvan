@@ -62,7 +62,7 @@ class NearbyAccess extends Block
         $dyna_fields = [];
         foreach (self::$fields as $field) {
             $dyna_fields[$field . '_link'] = ['CHAR', '']; // field values is link of google nearby searches
-            $dyna_fields[$field . '_distance'] = ['INTEGER', '']; // field values is KM distance
+            $dyna_fields[$field . '_distance'] = ['CHAR', '']; // field values is KM distance
         }
 
         $this->dynaDefaults = array_merge($this->dynaDefaults, $dyna_fields, [
@@ -85,7 +85,7 @@ class NearbyAccess extends Block
         return array_merge(parent::rules(), [
             ['type', 'default', 'value' => self::$typeName],
             [$dyna_string_rules, 'string'],
-            [$dyna_integer_rules, 'integer']
+            [$dyna_integer_rules, 'string']
         ]);
     }
 
@@ -157,5 +157,12 @@ class NearbyAccess extends Block
     {
         /** @var $project Project */
         return $view->render('//block/_nearby_access_view', ['block' => $this]);
+    }
+
+    public function getDistance($field)
+    {
+        $value = (float)$this->{$field . '_distance'} < 1?(int)(1000 * (float)$this->{$field . '_distance'}):$this->{$field . '_distance'};
+        $text = (float)$this->{$field . '_distance'} < 1?'About {value} meters distance':'About {value} km distance';
+        return trans('words', $text, ['value' => $value]);
     }
 }

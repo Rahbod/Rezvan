@@ -303,6 +303,7 @@ return [
     'from {all_units} units / ON FLOOR {floor}' => 'از {all_units} واحد / در طبقه {floor}',
 
     'About {value} km distance' => 'حدود {value} کیلومتر',
+    'About {value} meters distance' => 'حدود {value} متر',
 
     '{count} projects' => ' پروژه ها {count}',
     '{count} units' => ' واحدها {count}',
@@ -337,6 +338,13 @@ return [
     'have a parking' => 'دارای پارکینگ',
     'have a radiator' => 'دارای رادیاتور',
     'have a warehouse' => 'دارای انبار',
+
+    'no rooms' => 'بدون اتاق',
+    'no air conditioner' => 'بدون تهویه',
+    'no wc' => 'بدون سرویس بهداشتی',
+    'no bathroom' => 'بدون حمام',
+    'no parking' => 'بدون پارکینگ',
+    'no radiator' => 'بدون رادیاتور',
 
     // nearby access labels
     'IMAM REZA shrine' => 'حرم امام رضا',

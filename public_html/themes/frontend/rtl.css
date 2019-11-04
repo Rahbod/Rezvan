@@ -1,29 +1,11 @@
-@font-face{
-	font-family:AGC;
-	font-weight:300;
-	font-style: normal;
-	src:url(assets/fonts/noorbank/AGCLight.ttf)  format('truetype');
-}
-@font-face{
-	font-family:AGC;
-	font-weight:400;
-	font-style: normal;
-	src:url(assets/fonts/noorbank/AGCRegular.ttf)  format('truetype');
-}
-@font-face{
-	font-family:AGC;
-	font-weight:600;
-	font-style: normal;
-	src:url(assets/fonts/noorbank/AGCBold.ttf)  format('truetype');
-}
-
+@import "assets/css/droidarabickufi.css";
 html {
 	direction: rtl;
 }
 
 body {
     text-align: right;
-	font-family:AGC!important;
+	font-family:Droid Arabic Kufi!important;
     letter-spacing: 0;
 }
 .offset-10 {
@@ -43,7 +25,11 @@ form.search-form:before {
 input.search-field {
     padding-left: 5px;
     padding-right: 35px;
-	text-align: left;
+	text-align: right;
+}
+.header-style-2 input.search-field {
+    padding-right: 20px;
+	
 }
 .social-list {
     padding-right: 0;
@@ -158,13 +144,24 @@ footer>.container-fluid {
 a#lang-select, .copy-1, .text-footer p, .footer-copy-row, #footer-menu a {
     font-size: 13px;
 	text-align: justify;
+    line-height: 1.5;
 }
 #menu-main a {
+    font-size: 14px;
+}
+span.sold-icon, span.projects {
     font-size: 16px;
 }
 span.available-project {
-    line-height: 1;
-    padding-top: 5px;
+    line-height: 1.3;
+    padding-top: 0px;
+	text-align: left;
+}
+.more-one .title-right .slide {
+    margin-top: 10px;
+}
+.more-one h2.available-title {
+    margin-bottom: 1rem;
 }
 .copy-2 {
     text-align: left;
@@ -185,7 +182,10 @@ button.btn.btn-primary.section-button {
 .title-left h2.slide {
     padding-right: 15px;
     padding-left: 0;
-	padding-top: 15px;
+	padding-top: 5px;
+}
+.more-one .title-left h2.slide {
+    line-height: 1.6;
 }
 .dropdown-toggle::after {
     margin-right: 0.255em;
@@ -194,12 +194,11 @@ button.btn.btn-primary.section-button {
 .home .slide-4 span.description, #slide-3 .carousel-item .col-sm-12.col-md-4.col-lg-4 {
     text-align: justify;
 }
-a#lang-select {
+.home #slide-3 span.description {
     font-size: 14px;
 }
-.link-more a.more {
-	right: unset;
-    left: 155px;
+a#lang-select {
+    font-size: 14px;
 }
 .list.rtl span.sold-icon {
     font-size: 13px;
@@ -209,6 +208,7 @@ h2.item-title {
 }
 .first-post h2.item-title {
     font-size: 1.6rem;
+	line-height: 2;
 }
 .download {
 	right: unset;
@@ -233,12 +233,54 @@ h2.item-title {
 }
 .final-project-view .title-unit {
     padding-left: 0;
-	padding-right: 40px;
+	padding-right: 25px;
 }
 .final-project-view.special .title-left p.slide {
-    text-align: left;
     padding-right: 0;
-	padding-left: 60px;
+	line-height: 1.4;
+}
+.slide-4 .grid.col-lg-3 {
+    height: 445px;
+}
+.slide-4 .grid.col-lg-3:hover span.description {
+    font-size: 13px;
+    line-height: 1.5;
+}
+.home .slide-4 span.description {
+    height: 55px;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.bg-slide h1.center-text {
+    line-height: 1.3;
+}
+.final-project-view .desc-unit {
+    line-height: 1.5;
+}
+.content .items .item {
+    width: 11%;
+}
+.content .items .item.item-1 {
+    padding-right: 20px;
+}
+.final-project-view p.desc-building-access {
+    line-height: 1.3;
+}
+h3.title-building-access {
+    line-height: 1.5;
+}
+.final-project-view .title-unit p {
+    line-height: 1.2;
+}
+.final-project-view .available .item p.item-1:nth-child(1), .content .item p.item-1:nth-child(1) {
+    line-height: 1;
+}
+.item-list-view tr td:nth-child(8) {
+    padding-left: 20px;
+    padding-right: unset;
+}
+.grid.little-post span.description {
+    font-weight: 300;
 }
 @media (min-width: 992px) {
 	.home section.slide-3>.container-fluid {

@@ -9,14 +9,34 @@ use app\models\blocks\Image;
 use yii\helpers\Html;
 use yii\web\View;
 
-$path = alias('@webroot') . DIRECTORY_SEPARATOR . BlockController::$imgDir . DIRECTORY_SEPARATOR . $block->image;
-$url = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $block->image;
-if ($block->image && is_file($path)):
-    ?>
-    <section class="slide-2">
-        <div class="picture-slide-1">
-            <img src="<?= $url ?>" alt="<?= Html::encode($block->name) ?>">
-        </div>
-    </section>
-<?php
+if (!is_array($block->image)):
+    $path = alias('@webroot') . DIRECTORY_SEPARATOR . BlockController::$imgDir . DIRECTORY_SEPARATOR . $block->image;
+    $url = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $block->image;
+    if ($block->image && is_file($path)):
+        ?>
+        <section class="slide-2">
+            <div class="picture-slide-1">
+                <img src="<?= $url ?>" alt="<?= Html::encode($block->name) ?>">
+            </div>
+        </section>
+    <?php
+    endif;
+else:
+    if ($block->image):
+        ?>
+        <section class="slide-2">
+            <?php foreach ($block->image as $item):
+                $path = alias('@webroot') . DIRECTORY_SEPARATOR . BlockController::$imgDir . DIRECTORY_SEPARATOR . $item;
+                $url = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $item;
+                if (is_file($path)):
+                    ?>
+                    <div class="picture-slide-1">
+                        <img src="<?= $url ?>" alt="<?= Html::encode($block->name) ?>">
+                    </div>
+                <?php
+                endif;
+            endforeach; ?>
+        </section>
+    <?php
+    endif;
 endif;

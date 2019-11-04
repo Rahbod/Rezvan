@@ -289,6 +289,7 @@ trait CrudControllerTrait
             (new UploadedFiles($options['dir'], $model->$attribute, $options['options']))
                 ->removeAll(true);
     }
+
     /********************************************** End DropZone Field types ******************************************/
 
     public function getEventRoute($name)

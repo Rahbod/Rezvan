@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\UnitController;
+use app\models\blocks\NearbyAccess;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\UnitDetails;
 use Yii;
@@ -102,9 +103,9 @@ class Unit extends Item
 
     public function __call($name, $params)
     {
-        if (strpos($name,'Str',0) === strlen($name)-3) {
-            $name = strtolower(substr($name,3,-3));
-            if(in_array($name, array_keys($this->dynaDefaults))) {
+        if (strpos($name, 'Str', 0) === strlen($name) - 3) {
+            $name = strtolower(substr($name, 3, -3));
+            if (in_array($name, array_keys($this->dynaDefaults))) {
                 $types = $this->formAttributes();
                 if (isset($types[$name]) && isset($types[$name]['listSlug'])) {
                     $option = Lists::find()->andWhere(['id' => (int)$this->$name])->one();
@@ -273,8 +274,8 @@ class Unit extends Item
             ],
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                'hint' => 'تصویر کوچک',
-                'containerCssClass' => 'col-sm-6',
+                'hint' => 'تصویر کوچک، سایز: 260 در 130 پیکسل',
+                'containerCssClass' => 'col-sm-12',
                 'temp' => MainController::$tempDir,
                 'path' => UnitController::$imgDir,
                 'filesOptions' => UnitController::$imageOptions,
@@ -333,6 +334,7 @@ class Unit extends Item
      */
     public function renderBlocks($view, $unit)
     {
+        $have_nearby = false;
         $output = '';
         foreach ($this->blocks as $block) {
             $type = $block->type;
@@ -340,9 +342,21 @@ class Unit extends Item
             $modelClass = Block::$typeModels[$type];
             $block = $modelClass::findOne($block->id);
             $output .= $block->render($view, $unit);
+
+            if ($modelClass === NearbyAccess::className())
+                $have_nearby = true;
         }
 
         // render static unit blocks
+
+        // render default nearby accesses
+        /** @var NearbyAccess $block */
+        if(!$have_nearby) {
+            $block = NearbyAccess::find()->andWhere([Block::columnGetString('itemID') => $this->itemID])->one();
+            if ($block)
+                $output .= $block->render($view, $this->project);
+        }
+
         // render unit details
         $block = new UnitDetails($this);
         $output .= $block->render($view);
@@ -371,12 +385,16 @@ class Unit extends Item
         return trans('words', 'on floor {value}', ['value' => $this->floor_number]);
     }
 
-    public function getBedRoomStr()
+    public function getBedRoomStr($string = false)
     {
+        if ($string)
+            return $this->bed_room > 0 ?
+                trans('words', 'have {value} rooms', ['value' => $this->bed_room]) :
+                trans('words', 'no rooms');
+
         if ((int)$this->bed_room > 1)
             return $this->bed_room;
-//            return trans('words', 'have {value} rooms', ['value' => $this->bed_room]);
-        return $this->bed_room == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->bed_room == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getIPhoneStr()
@@ -384,7 +402,7 @@ class Unit extends Item
         if ((int)$this->iPhone_video > 1)
             return $this->iPhone_video;
 //            return trans('words', 'have {value} iPhone video', ['value' => $this->iPhone_video]);
-        return $this->iPhone_video == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->iPhone_video == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getMasterBedRoomStr()
@@ -392,7 +410,7 @@ class Unit extends Item
         if ((int)$this->master_bed_room > 1)
             return $this->master_bed_room;
 //            return trans('words', 'have {value} master bedrooms', ['value' => $this->master_bed_room]);
-        return $this->master_bed_room == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->master_bed_room == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getElevatorStr()
@@ -400,7 +418,7 @@ class Unit extends Item
         if ((int)$this->elevator > 1)
             return $this->elevator;
 //            return trans('words', 'have {value} elevators', ['value' => $this->elevator]);
-        return $this->elevator == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->elevator == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getWarehouseStr()
@@ -408,7 +426,7 @@ class Unit extends Item
         if ((int)$this->warehouse > 1)
             return $this->warehouse;
 //            return trans('words', 'have {value} warehouses', ['value' => $this->warehouse]);
-        return $this->warehouse == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->warehouse == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getNumberOfUnitsStr()
@@ -416,7 +434,7 @@ class Unit extends Item
         if ((int)$this->number_of_units > 1)
             return $this->number_of_units;
 //            return trans('words', 'have {value} units', ['value' => $this->number_of_units]);
-        return $this->number_of_units == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->number_of_units == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getNumberOfFloorsStr()
@@ -424,23 +442,29 @@ class Unit extends Item
         if ((int)$this->number_of_floors > 1)
             return $this->number_of_floors;
 //            return trans('words', 'have {value} floors', ['value' => $this->number_of_floors]);
-        return $this->number_of_floors == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->number_of_floors == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
-    public function getAirConditionerStr()
+    public function getAirConditionerStr($string = false)
     {
+        if ($string)
+            return $this->air_conditioner > 0 ?
+                trans('words', 'have {value} air conditions', ['value' => $this->air_conditioner]) :
+                trans('words', 'no air conditioner');
         if ((int)$this->air_conditioner > 1)
             return $this->air_conditioner;
-//            return trans('words', 'have {value} air conditions', ['value' => $this->air_conditioner]);
-        return $this->air_conditioner == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->air_conditioner == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
-    public function getWcStr()
+    public function getWcStr($string = false)
     {
+        if ($string)
+            return $this->wc > 0 ?
+                trans('words', 'have {value} wc', ['value' => $this->wc]) :
+                trans('words', 'no wc');
         if ((int)$this->wc > 1)
             return $this->wc;
-//            return trans('words', 'have {value} wc', ['value' => $this->wc]);
-        return $this->wc == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->wc == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getToiletStr()
@@ -448,31 +472,42 @@ class Unit extends Item
         if ((int)$this->toilet > 1)
             return $this->toilet;
 //            return trans('words', 'have {value} toilet', ['value' => $this->toilet]);
-        return $this->toilet == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->toilet == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
-    public function getBathRoomStr()
+    public function getBathRoomStr($string = false)
     {
+        if ($string)
+            return $this->bath_room > 0 ?
+                trans('words', 'have {value} separate bathroom', ['value' => $this->bath_room]) :
+                trans('words', 'no bathroom');
+
         if ((int)$this->bath_room > 1)
             return $this->bath_room;
-//            return trans('words', 'have {value} separate bathroom', ['value' => $this->bath_room]);
-        return $this->bath_room == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->bath_room == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
-    public function getParkingStr()
+    public function getParkingStr($string = false)
     {
-//        if ((int)$this->parking > 1)
-//            return $this->parking;
-        return  $this->parking;
+        if ($string)
+            return $this->parking > 0 ?
+                trans('words', 'have {value} parking', ['value' => $this->parking]) :
+                trans('words', 'no parking');
+
+        return $this->parking;
 //        return $this->parking == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
     }
 
-    public function getRadiatorStr()
+    public function getRadiatorStr($string = false)
     {
+        if ($string)
+            return $this->radiator > 0 ?
+                trans('words', 'have {value} radiators', ['value' => $this->radiator]) :
+                trans('words', 'no radiator');
+
         if ((int)$this->radiator > 1)
             return $this->radiator;
-//            return trans('words', 'have {value} radiators', ['value' => $this->radiator]);
-        return $this->radiator == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->radiator == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getUrl()
@@ -485,7 +520,7 @@ class Unit extends Item
         if ((int)$this->water_point > 1)
             return $this->water_point;
 //            return trans('words', 'have {value}', ['value' => $this->water_point]);
-        return $this->water_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->water_point == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getGasPointStr()
@@ -493,7 +528,7 @@ class Unit extends Item
         if ((int)$this->gas_point > 1)
             return $this->gas_point;
 //            return trans('words', 'have {value}', ['value' => $this->gas_point]);
-        return $this->gas_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->gas_point == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getPowerPointStr()
@@ -501,7 +536,7 @@ class Unit extends Item
         if ((int)$this->power_point > 1)
             return $this->power_point;
 //            return trans('words', 'have {value}', ['value' => $this->power_point]);
-        return $this->power_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->power_point == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getTelephonePointStr()
@@ -509,14 +544,14 @@ class Unit extends Item
         if ((int)$this->telephone_point > 1)
             return $this->telephone_point;
 //            return trans('words', 'have {value}', ['value' => $this->telephone_point]);
-        return $this->telephone_point == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->telephone_point == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getTerraceStr()
     {
         if ((int)$this->terrace == 0)
             return trans('words', 'has not');
-        return $this->terrace == 1?'<i class="text-success fa fa-check-circle"></i>':'<i class="text-danger fa fa-times-circle"></i>';
+        return $this->terrace == 1 ? '<i class="text-success fa fa-check-circle"></i>' : '<i class="text-danger fa fa-times-circle"></i>';
     }
 
     public function getListValueStr($field)

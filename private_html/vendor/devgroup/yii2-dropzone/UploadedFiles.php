@@ -191,6 +191,8 @@ class UploadedFiles
      */
     public function update($oldFilename, $newFilename, $newFilePath, $isArray = false)
     {
+        if(!$isArray)
+            $isArray = is_array($newFilename);
         if ($isArray) {
             if (!is_array($newFilename))
                 $newFilename = Json::decode($newFilename);
