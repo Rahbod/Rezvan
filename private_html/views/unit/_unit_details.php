@@ -50,7 +50,7 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= $model->getIPhoneStr() ?></td>
     </tr>
     <tr>
-        <td><?= trans('words', 'Wc') ?></td>
+        <td><?= trans('words', 'wc') ?></td>
         <td><?= $model->getWcStr() ?></td>
 
         <td><?= trans('words', 'Toilet') ?></td>

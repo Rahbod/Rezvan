@@ -120,10 +120,10 @@ class NearbyAccess extends Block
             'hospital'=> trans('words', 'hospital'),
             'metro'=> trans('words', 'metro'),
             'laundry'=> trans('words', 'laundry'),
-            'airport'=> trans('words', 'airport'),
+            'airport'=> trans('words', 'Airport'),
             'gas'=> trans('words', 'gas'),
             'bank'=> trans('words', 'bank'),
-            'restaurant'=> trans('words', 'restaurant'),
+            'restaurant'=> trans('words', 'Restaurant'),
         ]);
     }
 

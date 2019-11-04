@@ -19,7 +19,7 @@ $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
             <div class="row">
                 <div class="title-order-post">
                     <h2 id="txt-order-post">
-                        <strong><?= trans('words', 'other Projects') ?></strong>
+                        <strong><?= trans('words', 'other projects') ?></strong>
                     </h2>
                 </div>
                 <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">

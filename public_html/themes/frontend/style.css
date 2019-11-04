@@ -225,6 +225,9 @@ nav#menu-main {
 #menu-main .menu-item:hover {
     border-bottom: 1px solid #ba8c65;
 }
+#main-navigation li {
+    margin-left: 23px;
+}
 
 /* Main Menu - Sprit Icon */
 
@@ -405,7 +408,7 @@ li.social-item {
 		margin-right: auto;
 		margin-left: auto;
 		display: block;
-		max-height: 52px;
+		max-height: 48px;
 	}
 	.fixed-menu .header-bottom {
 		background-color: #3a383b;

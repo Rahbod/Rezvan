@@ -191,8 +191,8 @@ class UploadedFiles
      */
     public function update($oldFilename, $newFilename, $newFilePath, $isArray = false)
     {
-        if(!$isArray)
-            $isArray = is_array($newFilename);
+        if (!$isArray)
+            $isArray = is_array($newFilename) && count($newFilename) > 1;
         if ($isArray) {
             if (!is_array($newFilename))
                 $newFilename = Json::decode($newFilename);
@@ -219,17 +219,17 @@ class UploadedFiles
 
     public function updateAll($oldFiles, $newFiles, $newFilePath, $relativePath = '')
     {
-        if(!empty($relativePath))
+        if (!empty($relativePath))
             $relativePath = "$relativePath/";
 
         foreach ($oldFiles as $item) {
             if (!in_array($item, $newFiles))
                 $this->remove($item, true);
         }
-        
+
         foreach ($newFiles as $item) {
             if (!in_array($item, $oldFiles) && is_file($this->normalizePath($newFilePath) . $item)) {
-                $this->saveFile($this->normalizePath($newFilePath) . $item, $this->getPath(). $relativePath . $item);
+                $this->saveFile($this->normalizePath($newFilePath) . $item, $this->getPath() . $relativePath . $item);
                 $this->add($item);
             }
         }
@@ -317,7 +317,7 @@ class UploadedFiles
         $h = isset($this->getOption('thumbnail')['height']) && $this->getOption('thumbnail')['height'] ? $this->getOption('thumbnail')['height'] : 150;
         $path = $newPath ? $this->normalizePath($newPath) : $this->_path;
 
-        if(!isset($this->getOption('thumbnail')['replaceOrigin']) || $this->getOption('thumbnail')['replaceOrigin'] == false)
+        if (!isset($this->getOption('thumbnail')['replaceOrigin']) || $this->getOption('thumbnail')['replaceOrigin'] == false)
             $path .= 'thumbs' . DIRECTORY_SEPARATOR . "{$w}x{$h}" . DIRECTORY_SEPARATOR;
 
         if ($newPath)

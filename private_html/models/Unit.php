@@ -157,7 +157,7 @@ class Unit extends Item
             'area_size' => trans('words', 'Area size'),
             'location' => trans('words', 'Location'),
             'air_conditioner' => trans('words', 'Air conditioner'),
-            'wc' => trans('words', 'WC'),
+            'wc' => trans('words', 'wc'),
             'toilet' => trans('words', 'Toilet'),
             'bath_room' => trans('words', 'Bath room'),
             'parking' => trans('words', 'Parking'),
