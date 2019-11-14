@@ -32,7 +32,6 @@ class SiteController extends AuthController
         return [
             'index',
             'contact',
-            'captcha',
 //            'about',
         ];
     }

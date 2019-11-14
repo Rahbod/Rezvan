@@ -44,6 +44,7 @@ $this->registerJs("
             <div class="col-lg-12 bottom-section">
                 <div class="back-general-post massage row">
                     <?= $model->formRenderer($form,'{field}', 'col-lg-3') ?>
+                    <?= $this->render('//layouts/_socials') ?>
                 </div>
                 <div class="buttons">
                     <div class="captcha">

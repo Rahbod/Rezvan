@@ -37,6 +37,13 @@ class RequestController extends AuthController implements CrudControllerInterfac
         ]);
     }
 
+    public function getMenuActions()
+    {
+        return [
+            'new'
+        ];
+    }
+
     public function actions()
     {
         return [
