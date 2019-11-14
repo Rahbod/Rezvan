@@ -540,4 +540,5 @@ return [
     'CAPTCHA' => 'کد امنیتی',
     'More DETAILS' => 'توضیحات بیشتر',
     'Requests' => 'درخواست ها',
+    'Request Status' => 'وضعیت درخواست',
 ];

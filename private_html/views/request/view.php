@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="m-portlet__head-tools">
             <ul class="m-portlet__nav">
                 <li class="m-portlet__nav-item">
-                    <?= Html::a('<span><i class="far fa-trash-alt"></i><span>'.trans('words', 'Delete').'</span></span>', ['delete', 'id' => $model->id], [
+                    <?= Html::a('<span><i class="far fa-trash-alt"></i><span>' . trans('words', 'Delete') . '</span></span>', ['delete', 'id' => $model->id], [
                         'class' => 'btn btn-accent m-btn m-btn--custom m-btn--pill m-btn--icon btn-danger',
                         'encode' => false,
                         'data' => [
@@ -66,7 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
-                    'status',
+                    [
+                        'attribute' => 'status',
+                        'value' => function ($model) {
+                            return $model->getStatusLabels($model->status,true);
+                        },
+                        'format' => 'raw'
+                    ],
                     'name',
                     'email',
                     'mobile',
@@ -86,13 +92,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 foreach ($model->dynaDefaults as $key => $config):
                     if (in_array($key, ['email', 'mobile', 'phone', 'details']))
                         continue;
-                    $text = $model->$key == 1?'<i class="text-success fa fa-check-circle" style="vertical-align: middle"></i>':'<i class="text-danger fa fa-times-circle" style="vertical-align: middle"></i>';
-                ?>
-                <div class="col-sm-3 mb-1" <?= $model->$key == 1?' style="background-color:#f0f0f0;border-radius:3px"':'' ?>>
-                    <label class="float-left mt-2 mb-2"><?= $model->getAttributeLabel($key) ?></label>
-                    <span class="float-right mt-2 mb-2"><?= $text ?></span>
-                </div>
-                <?php endforeach;?>
+                    $text = $model->$key == 1 ? '<i class="text-success fa fa-check-circle" style="vertical-align: middle"></i>' : '<i class="text-danger fa fa-times-circle" style="vertical-align: middle"></i>';
+                    ?>
+                    <div class="col-sm-3 mb-1" <?= $model->$key == 1 ? ' style="background-color:#f0f0f0;border-radius:3px"' : '' ?>>
+                        <label class="float-left mt-2 mb-2"><?= $model->getAttributeLabel($key) ?></label>
+                        <span class="float-right mt-2 mb-2"><?= $text ?></span>
+                    </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>

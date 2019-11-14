@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
+use app\components\customWidgets\CustomCaptchaAction;
 use app\models\Request;
 use app\components\AuthController;
 use Yii;
@@ -18,6 +19,8 @@ class RequestController extends AuthController implements CrudControllerInterfac
 {
     use CrudControllerTrait; // add crud functions [index, create, update, delete]
 
+    public $defaultAction = 'new';
+
     /**
      * @inheritDoc
      */
@@ -29,7 +32,44 @@ class RequestController extends AuthController implements CrudControllerInterfac
     public function getSystemActions()
     {
         return array_merge(parent::getSystemActions(),[
-            'new'
+            'new',
+            'captcha'
+        ]);
+    }
+
+    public function actions()
+    {
+        return [
+            'captcha' => [
+                'class' => CustomCaptchaAction::className(),
+                'setTheme' => true,
+                'width' => 130,
+                'height' => 40,
+                'transparent' => true,
+                'onlyNumber' => true,
+                'foreColor' => 0xba8d64,
+                'minLength'=>4,
+                'maxLength'=>4,
+                'fontFile' => '@webroot/themes/frontend/assets/fonts/OpenSans-ExtraBold.ttf'
+            ],
+        ];
+    }
+
+    /**
+     * Displays a single Slide model.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionView($id)
+    {
+        $model =$this->findModel($id);
+        if($model->status == Request::STATUS_UNREAD){
+            $model->status = Request::STATUS_PENDING;
+            $model->save();
+        }
+        return $this->render('view', [
+            'model' => $model,
         ]);
     }
 
@@ -71,6 +111,7 @@ class RequestController extends AuthController implements CrudControllerInterfac
         $this->mainTag = 'main-submit-page';
 
         $model = new Request();
+        $model->setScenario('new');
 
         if (app()->request->isAjax and !app()->request->isPjax) {
             $model->load(app()->request->post());

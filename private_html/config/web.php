@@ -101,6 +101,7 @@ $config = [
                 '<language:\w+>/<controller:\w+>/<action:\w+>' => 'site/change-lang',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>/<id:\d+>/<title:.*>' => '<controller>/<action>',
+                'request' => 'request/new',
                 '<controller:\w+>' => '<controller>/index',
                 '<language:\w{2}>/<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
                 '<module:\w+>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',

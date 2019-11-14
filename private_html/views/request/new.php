@@ -7,6 +7,9 @@ use app\components\FormRendererTrait;
 use yii\helpers\Html;
 
 
+$this->registerJs("
+    $('#request-verifycode-image').trigger('click');
+");
 
 ?>
 
@@ -56,7 +59,7 @@ use yii\helpers\Html;
                 <div class="buttons">
                     <div class="captcha">
                         <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
-                            'captchaAction' => ['/user/captcha'],
+                            'captchaAction' => ['/request/captcha'],
                             'template' => '{image}{url}{input}',
                             'linkOptions' => ['label' => trans('words', 'CAPTCHA'), 'class' => 'btn btn-primary capatcha-button'],
                             'options' => [
@@ -76,4 +79,5 @@ use yii\helpers\Html;
         </div>
     </div>
 </section>
+
 

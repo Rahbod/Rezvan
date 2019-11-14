@@ -9,6 +9,7 @@ use app\models\Field;
 use app\models\Menu;
 use app\models\Model;
 use app\models\Reception;
+use app\models\Request;
 use app\models\User;
 use app\models\UserRequest;
 use Yii;
@@ -281,6 +282,11 @@ class MainController extends Controller implements CrudControllerInterface
 //        $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || app()->user->can('messageComplaints')];
         $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || app()->user->can('messageDepartment')];
 
+
+        // unread requests
+        $unreadCount = Request::find()->andWhere(['status' => Request::STATUS_UNREAD])->count();
+        $unreadCount = $unreadCount>0?'<span class="m-badge m-badge--danger float-right">'.$unreadCount.'</span>':'';
+
         return [
             [
                 'label' => '<i class="m-menu__link-icon flaticon-line-graph"></i><span class="m-menu__link-text">' . trans('words', 'Dashboard') . '</span>',
@@ -326,7 +332,7 @@ class MainController extends Controller implements CrudControllerInterface
 //                'visible' => $permissions || app()->user->can('categoryIndex')
 //            ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>',
+                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>'.$unreadCount,
                 'url' => ['/request/index'],
                 'visible' => $permissions || app()->user->can('requestIndex')
             ],

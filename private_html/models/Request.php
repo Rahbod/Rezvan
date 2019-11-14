@@ -20,6 +20,8 @@ class Request extends Item
     public static $multiLanguage = false;
     public static $modelName = 'request';
 
+    public $verifyCode;
+
     /**
      * {@inheritdoc}
      */
@@ -31,10 +33,10 @@ class Request extends Item
     public function init()
     {
         parent::init();
-        $this->status = self::STATUS_UNREAD;
+        preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
+        if (!$matches)
+            $this->status = self::STATUS_UNREAD;
         $this->dynaDefaults = [
-            'seen' => ['INTEGER', ''],
-
             // contact fields
             'email' => ['CHAR', ''],
             'mobile' => ['CHAR', ''],
@@ -110,7 +112,8 @@ class Request extends Item
             [['email', 'mobile', 'phone', 'details'], 'string'],
             ['email', 'email'],
             ['userID', 'default', 'value' => 1],
-            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'], 'integer']
+            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'], 'integer'],
+            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/request/captcha', 'on' => 'new'],
         ]);
     }
 
@@ -121,6 +124,9 @@ class Request extends Item
     {
         return [
             'name' => trans('words', 'First name and Last name'),
+            'status' => trans('words', 'Request Status'),
+            'created' => trans('words', 'Created'),
+            'verifyCode' => trans('words', 'Verify Code'),
             // contact fields
             'email' => trans('words', 'E-Mail'),
             'mobile' => trans('words', 'Mobile Number'),
@@ -230,5 +236,41 @@ class Request extends Item
                 ]
             ]
         ];
+    }
+
+    public static function getStatusLabels($status = null, $html = false)
+    {
+        $statusLabels = [
+            self::STATUS_UNREAD => 'خوانده نشده',
+            self::STATUS_PENDING => 'در حال بررسی',
+            self::STATUS_REVIEWED => 'بررسی شده',
+            self::STATUS_CALLED => 'اطلاع رسانی شده',
+        ];
+        if (is_null($status))
+            return $statusLabels;
+
+        if ($html) {
+            switch ($status) {
+                case self::STATUS_UNREAD:
+                    $class = 'danger';
+                    break;
+                case self::STATUS_PENDING:
+                    $class = 'warning';
+                    break;
+                case self::STATUS_REVIEWED:
+                    $class = 'primary';
+                    break;
+                case self::STATUS_CALLED:
+                    $class = 'success';
+                    break;
+            }
+            return "<span class='text-{$class}'>$statusLabels[$status]</span>";
+        }
+        return $statusLabels[$status];
+    }
+
+    public static function getStatusFilter()
+    {
+        return self::getStatusLabels();
     }
 }

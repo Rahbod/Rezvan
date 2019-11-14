@@ -71,7 +71,7 @@ else
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 
-<script src="<?= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?>"></script>
+<!--<script src="--><?//= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?><!--"></script>-->
 <script src="<?= $this->theme->baseUrl . '/assets/bootstrap/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/assets/js/custom.js' ?>"></script>
 </body>

@@ -34,7 +34,7 @@ class CustomCaptcha extends Captcha
         }
         $image = Html::img($route, $this->imageOptions);
 
-        $refresh_a = \yii\helpers\Html::a($this->linkOptions['label'], '#', $this->linkOptions);
+        $refresh_a = \yii\helpers\Html::a($this->linkOptions['label'], $route, $this->linkOptions);
 
         echo strtr($this->template, [
             '{input}' => $input,
