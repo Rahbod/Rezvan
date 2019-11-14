@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return jDateTime::date('Y/m/d', $model->created);
                             }
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        ['class' => 'app\components\customWidgets\CustomActionColumn', 'template' => '{view} {delete}']
                     ],
                 ]); ?>
             </div>

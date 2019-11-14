@@ -7,6 +7,7 @@ use app\components\CrudControllerTrait;
 use app\models\Request;
 use app\components\AuthController;
 use Yii;
+use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -29,6 +30,37 @@ class RequestController extends AuthController implements CrudControllerInterfac
     {
         return array_merge(parent::getSystemActions(),[
             'new'
+        ]);
+    }
+
+    /**
+     * Updates an existing Slide model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if (app()->request->isAjax and !app()->request->isPjax) {
+            $model->load(app()->request->post());
+            app()->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (app()->request->post()) {
+            $model->load(app()->request->post());
+            if ($model->save()) {
+                app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(app()->request->post('return') == 'view'?['view', 'id' => $model->id]:['index']);
+            } else
+                app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('update', [
+            'model' => $model
         ]);
     }
 

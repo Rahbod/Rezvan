@@ -12,6 +12,11 @@ use Yii;
  */
 class Request extends Item
 {
+    const STATUS_UNREAD = 0;
+    const STATUS_PENDING = 1;
+    const STATUS_REVIEWED = 2;
+    const STATUS_CALLED = 3;
+
     public static $multiLanguage = false;
     public static $modelName = 'request';
 
@@ -26,7 +31,10 @@ class Request extends Item
     public function init()
     {
         parent::init();
+        $this->status = self::STATUS_UNREAD;
         $this->dynaDefaults = [
+            'seen' => ['INTEGER', ''],
+
             // contact fields
             'email' => ['CHAR', ''],
             'mobile' => ['CHAR', ''],
@@ -100,6 +108,8 @@ class Request extends Item
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['email', 'mobile', 'phone', 'details'], 'string'],
+            ['email', 'email'],
+            ['userID', 'default', 'value' => 1],
             [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'], 'integer']
         ]);
     }
@@ -188,7 +198,7 @@ class Request extends Item
     public function formAttributes()
     {
         return [
-            [['name','email', 'mobile', 'phone'], [
+            [['name', 'email', 'mobile', 'phone'], [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
                 'fieldOptions' => [
                     'inputOptions' => ['class' => 'input'],
@@ -201,7 +211,7 @@ class Request extends Item
                 'fieldOptions' => [
                     'labelOptions' => ['class' => 'register-label'],
                 ],
-                'options' => ['class' => 'message-input','rows' => 6]
+                'options' => ['class' => 'message-input', 'rows' => 6]
             ],
         ];
     }

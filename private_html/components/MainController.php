@@ -326,6 +326,11 @@ class MainController extends Controller implements CrudControllerInterface
 //                'visible' => $permissions || app()->user->can('categoryIndex')
 //            ],
             [
+                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>',
+                'url' => ['/request/index'],
+                'visible' => $permissions || app()->user->can('requestIndex')
+            ],
+            [
                 'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . trans('words', 'Messages') . '</span>',
                 'items' => $contactLinks,
             ],

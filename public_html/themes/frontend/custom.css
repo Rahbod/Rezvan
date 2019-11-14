@@ -42,3 +42,8 @@
 .header-bottom *{
     text-transform: uppercase;
 }
+
+.form-control-feedback{
+    color: #d00;
+    font-size: 0.9rem;
+}

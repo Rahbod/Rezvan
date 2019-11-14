@@ -539,4 +539,5 @@ return [
     '<strong>GENERAL</strong> PROPERTY SPECIFICATIONS' => '<strong>مشخصات</strong> عمومی',
     'CAPTCHA' => 'کد امنیتی',
     'More DETAILS' => 'توضیحات بیشتر',
+    'Requests' => 'درخواست ها',
 ];
