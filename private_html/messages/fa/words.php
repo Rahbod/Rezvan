@@ -541,4 +541,8 @@ return [
     'More DETAILS' => 'توضیحات بیشتر',
     'Requests' => 'درخواست ها',
     'Request Status' => 'وضعیت درخواست',
+
+    // contact
+    '<strong>CONTACT</strong> US' => '<strong>تماس</strong> با ما',
+    'contact_us_text' => 'contact_us_text',
 ];

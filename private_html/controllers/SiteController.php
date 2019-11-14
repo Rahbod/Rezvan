@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\models\ContactForm;
 use app\models\Item;
+use app\models\Message;
 use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
@@ -18,6 +20,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
+use yii\widgets\ActiveForm;
 
 //use Symfony\Component\EventDispatcher\Tests\Service;
 
@@ -28,7 +31,8 @@ class SiteController extends AuthController
     {
         return [
             'index',
-//            'contact',
+            'contact',
+            'captcha',
 //            'about',
         ];
     }
@@ -70,15 +74,19 @@ class SiteController extends AuthController
             ],
             'captcha' => [
                 'class' => CustomCaptchaAction::className(),
+                'setTheme' => true,
+                'width' => 130,
+                'height' => 40,
                 'transparent' => true,
                 'onlyNumber' => true,
-                'foreColor' => 0x2040A0,
-                'minLength' => 3,
-                'maxLength' => 3,
-//                'fontFile' => '@webroot/themes/default/assets/vendors/base/fonts/IranSans/ttf/fa-num/IRANSansWeb.ttf'
+                'foreColor' => 0x555555,
+                'minLength' => 4,
+                'maxLength' => 4,
+                'fontFile' => '@webroot/themes/frontend/assets/fonts/OpenSans-Bold.ttf'
             ],
         ];
     }
+
 
 //    public function actionError()
 //    {
@@ -167,9 +175,9 @@ class SiteController extends AuthController
         $services = Service::find()->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-        $availableApartments = Apartment::find()->orderBy([Apartment::columnGetString('special') => SORT_DESC,'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-        $availableInvestments = Investment::find()->orderBy([Investment::columnGetString('special') => SORT_DESC,'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
-        $availableConstructions = OtherConstruction::find()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC,'id' => SORT_DESC])
+        $availableApartments = Apartment::find()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableInvestments = Investment::find()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
+        $availableConstructions = OtherConstruction::find()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])
 //            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
             ->all();
 
@@ -182,20 +190,42 @@ class SiteController extends AuthController
      *
      * @return Response|string
      */
-//    public function actionContact()
-//    {
-//        $this->setTheme('frontend');
-//        $this->innerPage = true;
-//        $this->bodyClass = 'text-page';
-//        $this->headerClass = 'header-style-2';
-//        $this->mainTag = 'main-text-page';
-//
-//        $model = Page::find()->one();
-//
-//        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-//
-//        return $this->render('//page/show', compact('availableApartments', 'model'));
-//    }
+    public function actionContact()
+    {
+        $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->mainTag = 'main-submit-page';
+
+        $model = new ContactForm();
+
+        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
+            $model->load(Yii::$app->request->post());
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (Yii::$app->request->post()) {
+            $model->load(Yii::$app->request->post());
+            if ($model->validate()) {
+
+                $message = new Message();
+                $message->name = $model->name;
+                $message->tel = $model->tel;
+                $message->subject = $model->subject;
+                $message->email = $model->email;
+                $message->body = $model->body;
+                $message->save();
+
+                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
+                return $this->refresh();
+            } else
+                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('contact', [
+            'model' => $model,
+        ]);
+    }
 //
 //    /**
 //     * Displays about page.

@@ -22,9 +22,10 @@ use app\components\DynamicActiveRecord;
  */
 class Message extends DynamicActiveRecord
 {
-    const TYPE_CONTACT_US = 'cnt';
-    const TYPE_SUGGESTIONS = 'sgn';
-    const TYPE_COMPLAINTS = 'cmp';
+    const STATUS_UNREAD = 0;
+    const STATUS_PENDING = 1;
+    const STATUS_REVIEWED = 2;
+    const STATUS_CALLED = 3;
 
     /**
      * {@inheritdoc}
@@ -37,6 +38,10 @@ class Message extends DynamicActiveRecord
     public function init()
     {
         parent::init();
+        preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
+        if (!$matches)
+            $this->type = self::STATUS_UNREAD;
+
         $this->dynaDefaults = array_merge($this->dynaDefaults, [
             'subject' => ['CHAR', ''],
             'email' => ['CHAR', ''],
@@ -54,8 +59,10 @@ class Message extends DynamicActiveRecord
     public function rules()
     {
         return array_merge(parent::rules(), [
-            [['name', 'body'], 'required'],
-            [['type', 'dyna', 'email', 'subject', 'country', 'city', 'address'], 'string'],
+            [['name','email', 'body', 'subject'], 'required'],
+            [['dyna', 'email', 'subject', 'country', 'city', 'address'], 'string'],
+            ['type', 'default', 'value' => self::STATUS_UNREAD],
+            ['email', 'email'],
             [['name'], 'string', 'max' => 511],
             [['tel'], 'string', 'max' => 15],
             [['body'], 'string'],
@@ -73,7 +80,7 @@ class Message extends DynamicActiveRecord
     {
         return array_merge(parent::attributeLabels(), [
             'id' => trans('words', 'ID'),
-            'type' => trans('words', 'Type'),
+            'type' => trans('words', 'Status'),
             'created' => trans('words', 'Created'),
             'name' => trans('words', 'Name and Family'),
             'email' => trans('words', 'Email'),
@@ -88,17 +95,6 @@ class Message extends DynamicActiveRecord
         ]);
     }
 
-    public static function getStatusLabels($status = null)
-    {
-        $statusLabels = [
-            self::TYPE_CONTACT_US => 'تماس باما',
-            self::TYPE_SUGGESTIONS => 'انتقادات و پیشنهادات',
-            self::TYPE_COMPLAINTS => 'شکایات',
-        ];
-        if (is_null($status))
-            return $statusLabels;
-        return $statusLabels[$status];
-    }
 
     public function getDepartment()
     {
@@ -129,5 +125,41 @@ class Message extends DynamicActiveRecord
         if (is_null($id))
             return $subjects;
         return $subjects[$id];
+    }
+
+    public static function getStatusLabels($status = null, $html = false)
+    {
+        $statusLabels = [
+            self::STATUS_UNREAD => 'خوانده نشده',
+            self::STATUS_PENDING => 'در حال بررسی',
+            self::STATUS_REVIEWED => 'بررسی شده',
+            self::STATUS_CALLED => 'اطلاع رسانی شده',
+        ];
+        if (is_null($status))
+            return $statusLabels;
+
+        if ($html) {
+            switch ($status) {
+                case self::STATUS_UNREAD:
+                    $class = 'danger';
+                    break;
+                case self::STATUS_PENDING:
+                    $class = 'warning';
+                    break;
+                case self::STATUS_REVIEWED:
+                    $class = 'primary';
+                    break;
+                case self::STATUS_CALLED:
+                    $class = 'success';
+                    break;
+            }
+            return "<span class='text-{$class}'>$statusLabels[$status]</span>";
+        }
+        return $statusLabels[$status];
+    }
+
+    public static function getStatusFilter()
+    {
+        return self::getStatusLabels();
     }
 }

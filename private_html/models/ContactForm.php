@@ -2,24 +2,23 @@
 
 namespace app\models;
 
+use app\components\FormRendererDefinition;
+use app\components\FormRendererTrait;
 use Yii;
 use yii\base\Model;
 
 /**
  * ContactForm is the model behind the contact form.
  */
-class ContactForm extends Model
+class ContactForm extends Model implements FormRendererDefinition
 {
+    use FormRendererTrait;
+
     public $name;
     public $email;
+    public $tel;
     public $subject;
     public $body;
-    public $department_id;
-    public $tel;
-    public $degree;
-    public $country;
-    public $city;
-    public $address;
     public $verifyCode;
 
 
@@ -30,17 +29,16 @@ class ContactForm extends Model
     {
         return [
             // name, email, subject and body are required
-            [['name', 'email', 'body', 'tel'], 'required'],
-            [['department_id'], 'required', 'on' => 'default'],
-            [['subject'], 'required', 'on' => 'sgn-scenario'],
-            [['department_id'], 'default', 'value' => Department::find()->one()->id, 'except' => 'default'],
+            [['name', 'email', 'body', 'tel', 'subject'], 'required'],
+//            [['department_id'], 'required', 'on' => 'default'],
+//            [['department_id'], 'default', 'value' => Department::find()->one()->id, 'except' => 'default'],
             // email has to be a valid email address
             ['email', 'email'],
-            [['degree'], 'integer', 'max' => 10],
-            [['country', 'city'], 'string', 'max' => 50],
-            [['address'], 'string'],
+//            [['degree'], 'integer', 'max' => 10],
+//            [['country', 'city'], 'string', 'max' => 50],
+//            [['address'], 'string'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha'],
+            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/site/captcha'],
         ];
     }
 
@@ -50,12 +48,13 @@ class ContactForm extends Model
     public function attributeLabels()
     {
         return [
-            'name' => trans('words', 'Name and Family'),
-            'email' => trans('words', 'Email'),
-            'subject' => trans('words', 'Subject'),
-            'body' => trans('words', 'Body'),
+            'name' => trans('words', 'First name and Last name'),
+            'email' => trans('words', 'E-Mail'),
+            'tel' => trans('words', 'MOBILE NUMBER'),
+            'body' => trans('words', 'MESSAGE TEXT'),
+            'subject' => trans('words', 'SUBJECT'),
+
             'department_id' => trans('words', 'Department ID'),
-            'tel' => trans('words', 'Tel'),
             'verifyCode' => trans('words', 'Verify Code'),
             'degree' => trans('words', 'Degree'),
             'country' => trans('words', 'Country'),
@@ -82,5 +81,27 @@ class ContactForm extends Model
             return true;
         }
         return false;
+    }
+
+
+    public function formAttributes()
+    {
+        return [
+            [['name', 'email', 'tel', 'subject'], [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ]],
+            'body' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
+                'containerCssClass' => 'col-lg-12',
+                'fieldOptions' => [
+                    'labelOptions' => ['class' => 'register-label'],
+                ],
+                'options' => ['class' => 'message-input', 'rows' => 6]
+            ],
+        ];
     }
 }

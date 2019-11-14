@@ -47,10 +47,10 @@ class RequestController extends AuthController implements CrudControllerInterfac
                 'height' => 40,
                 'transparent' => true,
                 'onlyNumber' => true,
-                'foreColor' => 0xba8d64,
+                'foreColor' => 0x555555,
                 'minLength'=>4,
                 'maxLength'=>4,
-                'fontFile' => '@webroot/themes/frontend/assets/fonts/OpenSans-ExtraBold.ttf'
+                'fontFile' => '@webroot/themes/frontend/assets/fonts/OpenSans-Bold.ttf'
             ],
         ];
     }

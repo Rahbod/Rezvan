@@ -1,5 +1,8 @@
 <?php
 
+use app\components\customWidgets\CustomActiveForm;
+use app\models\Message;
+use app\models\Request;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -43,23 +46,49 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
     <div class="m-portlet__body">
         <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+        <?php $form = CustomActiveForm::begin([
+            'id' => 'menu-form',
+            'action' => ['update', 'id' => $model->id],
+            'enableAjaxValidation' => true,
+            'enableClientValidation' => true,
+            'validateOnSubmit' => true,
+        ]);
+        echo Html::hiddenInput('return', 'view');
+        ?>
+        <div class="row">
+            <div class="col-sm-3">
+                <?= $form->field($model, 'type')->dropDownList(Message::getStatusLabels()) ?>
+            </div>
+            <div class="col-sm-3">
+                <div style="margin-top: 40px">
+                    <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+                </div>
+            </div>
+        </div>
+        <?php CustomActiveForm::end(); ?>
+        <br>
+        <br>
+
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([
                 'model' => $model,
                 'attributes' => [
                     [
                         'attribute' => 'type',
-                        'value' => \app\models\Message::getStatusLabels($model->type),
+                        'value' => function ($model) {
+                            return $model->getStatusLabels($model->type,true);
+                        },
                         'format' => 'raw'
                     ],
-                    [
-                        'attribute' => 'department_id',
-                        'value' => $model->department->name,
-                    ],
-                    [
-                        'attribute' => 'created',
-                        'value' => jDateTime::date('Y/m/d', $model->created)
-                    ],
+//                    [
+//                        'attribute' => 'type',
+//                        'value' => \app\models\Message::getStatusLabels($model->type),
+//                        'format' => 'raw'
+//                    ],
+//                    [
+//                        'attribute' => 'department_id',
+//                        'value' => $model->department->name,
+//                    ],
                     'name',
                     'email',
                     'tel',
@@ -71,6 +100,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         'format' => 'raw'
                     ],
                     'body:ntext',
+
+                    [
+                        'attribute' => 'created',
+                        'value' => jDateTime::date('Y/m/d', $model->created)
+                    ],
                 ],
             ]) ?>
         </div>
