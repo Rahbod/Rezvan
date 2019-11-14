@@ -531,4 +531,12 @@ return [
     'Phone Number' => 'شماره تلفن',
     'Details' => 'توضیحات',
     'Special Project' => 'پروژه شاخص',
+
+    // request page
+    'REGISTER YOUR REQUEST' => 'ثبت درخواست',
+    '<b>REGISTER</b> YOUR PROPERTY DETAILS' => '<b>جزئيات خاص</b> خود را ثبت كنيد',
+    'register_your_property_details_text' => 'register_your_property_details_text',
+    '<b>GENERAL</b> PROPERTY SPECIFICATIONS' => '<b>مشخصات</b> عمومی',
+    '<b>GENERAL</b> PROPERTY SPECIFICATIONS' => '<b>مشخصات</b> عمومی',
+
 ];

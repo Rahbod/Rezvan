@@ -18,6 +18,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="<?= $this->theme->baseUrl.'/favicon.ico' ?>"/>
 
     <?php if (app()->language != 'en'): ?>
         <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/rtl/css/bootstrap.min.css' ?>" rel="stylesheet">

@@ -35,6 +35,8 @@ class RequestController extends AuthController implements CrudControllerInterfac
     public function actionNew()
     {
         $this->setTheme('frontend');
+        $this->innerPage = true;
+        $this->mainTag = 'main-submit-page';
 
         $model = new Request();
 
