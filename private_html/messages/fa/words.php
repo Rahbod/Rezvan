@@ -534,9 +534,9 @@ return [
 
     // request page
     'REGISTER YOUR REQUEST' => 'ثبت درخواست',
-    '<b>REGISTER</b> YOUR PROPERTY DETAILS' => '<b>جزئيات خاص</b> خود را ثبت كنيد',
+    '<strong>REGISTER</strong> YOUR PROPERTY DETAILS' => '<strong>جزئيات خاص</strong> خود را ثبت كنيد',
     'register_your_property_details_text' => 'register_your_property_details_text',
-    '<b>GENERAL</b> PROPERTY SPECIFICATIONS' => '<b>مشخصات</b> عمومی',
-    '<b>GENERAL</b> PROPERTY SPECIFICATIONS' => '<b>مشخصات</b> عمومی',
-
+    '<strong>GENERAL</strong> PROPERTY SPECIFICATIONS' => '<strong>مشخصات</strong> عمومی',
+    'CAPTCHA' => 'کد امنیتی',
+    'More DETAILS' => 'توضیحات بیشتر',
 ];

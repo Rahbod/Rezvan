@@ -279,8 +279,11 @@ h3.title-building-access {
     padding-left: 20px;
     padding-right: unset;
 }
-.grid.little-post span.description {
+.grid.little-post span.description, .grid.little-post span.description-2 {
     font-weight: 300;
+}
+li.menu-item {
+    margin-left: 23px;
 }
 @media (min-width: 992px) {
 	.home section.slide-3>.container-fluid {
@@ -318,4 +321,9 @@ h3.title-building-access {
 		margin-left: 0;
 		margin-right: auto;
 	}
+}
+
+label.switch  {
+    cursor: pointer;
+    float: left;
 }

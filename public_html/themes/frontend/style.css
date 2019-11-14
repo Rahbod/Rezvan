@@ -2055,41 +2055,44 @@ footer .social-item a {
  	width: 0;
  	visibility: hidden;
 }
-.switch label {
-  	cursor: pointer;
-  	text-indent: -9999px;
-  	width: 55px;
-  	height: 30px;
-  	background-color: #3abfa4;
-  	margin: 0 auto;
-  	justify-content: center;
-  	align-items: center;
-	border-radius: 100px;
-	position: relative;
-	float: right;
+label.switch  {
+    cursor: pointer;
+    float: right;
 }
-.switch label:after {
-	content: '';
-	background: #fff;
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	position: absolute;
-	top: 5px;
-	left: 4px;
-	transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
+label.switch .slider:after {
+    content: '';
+    background: #fff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    right: 4px;
+    transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
 }
-.switch input:checked + label {
-  background: #aab7bf;
+label.switch .slider {
+    text-indent: -9999px;
+    width: 55px;
+    height: 30px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    position: relative;
+    float: right;
+    background: #aab7bf;
 }
-.switch input:checked + label:after {
-  left: calc(100% - 5px);
-  transform: translateX(-100%);
+label.switch input:checked + .slider {
+    background-color: #3abfa4;
+}
+label.switch input:checked + .slider:after {
+    right: calc(100% - 5px);
+    transform: translateX(100%);
 }
 .back-general-post.massage .col-lg-3 {
     margin-bottom: 15px;
 }
-.name, .email, .phone-number, .mobile-number, .details {
+.name, .email, .phone-number, .mobile-number, .details ,.register-label{
 	display: block;
     font-weight: 600;
     text-transform: uppercase;
@@ -2117,7 +2120,7 @@ footer .social-item a {
 .submit, .captcha {
     display: inline-block;
 }
-.submit button, .captcha button {
+.submit button, .captcha .btn {
     font-weight: 700;
     font-size: 18px;
     line-height: 1.5;
@@ -2128,17 +2131,17 @@ button.btn.btn-primary.submit-button {
     border: 0;
     padding-right: 70px;
 }
-button.btn.btn-primary.capatcha-button {
+.btn.btn-primary.capatcha-button {
     background-color: #fff;
     color: #ba8d64;
     border: 0;
     padding-right: 70px;
 }
-button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):active, button.btn.btn-primary.submit-button:hover, button.btn.btn-primary.capatcha-button:not(:disabled):not(.disabled):active, button.btn.btn-primary.capatcha-button:hover {
+button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):active, button.btn.btn-primary.submit-button:hover, .btn.btn-primary.capatcha-button:not(:disabled):not(.disabled):active, .btn.btn-primary.capatcha-button:hover {
     background-color: #906e4e;
     color: #fff;
 }
-button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, button.btn.btn-primary.capatcha-button:not(:disabled):not(.disabled):focus {
+button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.btn-primary.capatcha-button:not(:disabled):not(.disabled):focus {
     box-shadow: none;
 }
 .submit {

@@ -115,7 +115,7 @@ class Request extends Item
             'email' => trans('words', 'E-Mail'),
             'mobile' => trans('words', 'Mobile Number'),
             'phone' => trans('words', 'Phone Number'),
-            'details' => trans('words', 'Details'),
+            'details' => trans('words', 'More DETAILS'),
 
             // general fields
             'building_age' => trans('words', 'Age of the building'),
@@ -188,8 +188,21 @@ class Request extends Item
     public function formAttributes()
     {
         return [
-            [['name','email', 'mobile', 'phone'], self::FORM_FIELD_TYPE_TEXT],
-            'details' => ['type' => self::FORM_FIELD_TYPE_TEXT_AREA, 'containerCssClass' => 'col-sm-12', 'options' => ['rows' => 6]],
+            [['name','email', 'mobile', 'phone'], [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ]],
+            'details' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
+                'containerCssClass' => 'col-lg-12',
+                'fieldOptions' => [
+                    'labelOptions' => ['class' => 'register-label'],
+                ],
+                'options' => ['class' => 'message-input','rows' => 6]
+            ],
         ];
     }
 
@@ -198,7 +211,13 @@ class Request extends Item
         return [
             [
                 ['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'],
-                self::FORM_FIELD_TYPE_SWITCH
+                [
+                    'type' => self::FORM_FIELD_TYPE_SWITCH,
+                    'fieldOptions' => [
+                        'inputOptions' => ['class' => 'container_toggle'],
+                        'labelOptions' => ['class' => ''],
+                    ]
+                ]
             ]
         ];
     }
