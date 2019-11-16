@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\components\Setting;
 use app\models\ContactForm;
 use app\models\Item;
 use app\models\Message;
@@ -213,7 +214,8 @@ class SiteController extends AuthController
                 $message->subject = $model->subject;
                 $message->email = $model->email;
                 $message->body = $model->body;
-                $message->save();
+                if($message->save())
+                    $model->contact(Setting::get('email'));
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->refresh();
