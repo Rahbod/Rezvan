@@ -536,4 +536,18 @@ return [
     'Phone Number' => 'شماره تلفن',
     'Details' => 'توضیحات',
     'Special Project' => 'پروژه شاخص',
+
+    // request page
+    'REGISTER YOUR REQUEST' => 'ثبت درخواست',
+    '<strong>REGISTER</strong> YOUR PROPERTY DETAILS' => '<strong>جزئيات خاص</strong> خود را ثبت كنيد',
+    'register_your_property_details_text' => 'register_your_property_details_text',
+    '<strong>GENERAL</strong> PROPERTY SPECIFICATIONS' => '<strong>مشخصات</strong> عمومی',
+    'CAPTCHA' => 'کد امنیتی',
+    'More DETAILS' => 'توضیحات بیشتر',
+    'Requests' => 'درخواست ها',
+    'Request Status' => 'وضعیت درخواست',
+
+    // contact
+    '<strong>CONTACT</strong> US' => '<strong>تماس</strong> با ما',
+    'contact_us_text' => 'contact_us_text',
 ];

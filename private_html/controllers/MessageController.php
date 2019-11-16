@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Department;
 use app\models\DepartmentSearch;
+use app\models\Request;
 use Yii;
 use app\models\Message;
 use app\models\MessageSearch;
@@ -47,10 +48,9 @@ class MessageController extends AuthController
      * Lists all Message models.
      * @return mixed
      */
-    public function actionContactus()
+    public function actionIndex()
     {
         $searchModel = new MessageSearch();
-        $searchModel->type = Message::TYPE_CONTACT_US;
         if(Yii::$app->request->getQueryParam('id'))
             $searchModel->department_id = Yii::$app->request->getQueryParam('id');
 
@@ -63,53 +63,51 @@ class MessageController extends AuthController
     }
 
     /**
-     * Lists all Message models.
-     * @return mixed
-     */
-    public function actionSuggestions()
-    {
-        $searchModel = new MessageSearch();
-        $searchModel->type = Message::TYPE_SUGGESTIONS;
-        if(Yii::$app->request->getQueryParam('id'))
-            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Lists all Message models.
-     * @return mixed
-     */
-    public function actionComplaints()
-    {
-        $searchModel = new MessageSearch();
-        $searchModel->type = Message::TYPE_COMPLAINTS;
-        if(Yii::$app->request->getQueryParam('id'))
-            $searchModel->department_id = Yii::$app->request->getQueryParam('id');
-
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
-
-    /**
-     * Displays a single Message model.
+     * Displays a single Slide model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id)
     {
+        $model =$this->findModel($id);
+        if($model->type == Message::STATUS_UNREAD){
+            $model->type = Message::STATUS_PENDING;
+            $model->save();
+        }
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+        ]);
+    }
+
+    /**
+     * Updates an existing Slide model.
+     * If update is successful, the browser will be redirected to the 'view' page.
+     * @param integer $id
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    public function actionUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if (app()->request->isAjax and !app()->request->isPjax) {
+            $model->load(app()->request->post());
+            app()->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
+
+        if (app()->request->post()) {
+            $model->load(app()->request->post());
+            if ($model->save()) {
+                app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
+                return $this->redirect(app()->request->post('return') == 'view'?['view', 'id' => $model->id]:['index']);
+            } else
+                app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
+        }
+
+        return $this->render('update', [
+            'model' => $model
         ]);
     }
 
@@ -142,36 +140,6 @@ class MessageController extends AuthController
         ]);
     }
 
-    /**
-     * Updates an existing Message model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if (Yii::$app->request->isAjax and !Yii::$app->request->isPjax) {
-            $model->load(Yii::$app->request->post());
-            Yii::$app->response->format = Response::FORMAT_JSON;
-            return ActiveForm::validate($model);
-        }
-
-        if (Yii::$app->request->post()){
-            $model->load(Yii::$app->request->post());
-            if ($model->save()) {
-                Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
-                return $this->redirect(['view', 'id' => $model->id]);
-            }else
-                Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
 
     /**
      * Deletes an existing Message model.

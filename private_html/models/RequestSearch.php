@@ -59,13 +59,17 @@ class RequestSearch extends Request
 
         // grid filtering conditions
         $query->andFilterWhere([
-            self::columnGetString('email') => $this->email,
-            self::columnGetString('mobile') => $this->mobile,
-            self::columnGetString('phone') => $this->phone,
             self::columnGetString('details') => $this->details,
+            'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['regexp', 'name', Helper::persian2Arabic($this->name)]);
+        $query->andFilterWhere(['regexp', self::columnGetString('mobile'), $this->mobile]);
+        $query->andFilterWhere(['regexp', self::columnGetString('phone'), $this->phone]);
+        $query->andFilterWhere(['regexp', self::columnGetString('email'), $this->email]);
+
+        $query->addOrderBy(['status' => SORT_ASC])
+            ->addOrderBy(['id' => SORT_ASC]);
 
         return $dataProvider;
     }

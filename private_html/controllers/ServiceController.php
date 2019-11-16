@@ -39,13 +39,6 @@ class ServiceController extends AuthController
         return Service::className();
     }
 
-    public function getMenuActions()
-    {
-        return [
-            'list'
-        ];
-    }
-
     public function getSystemActions()
     {
         return [

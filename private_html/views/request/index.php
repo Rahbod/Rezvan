@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Request;
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
@@ -36,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn'],
                         'name',
                         'mobile',
+                        'email',
                         'phone',
                         [
                             'attribute' => 'created',
@@ -43,7 +45,15 @@ $this->params['breadcrumbs'][] = $this->title;
                                 return jDateTime::date('Y/m/d', $model->created);
                             }
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn']
+                        [
+                            'attribute' => 'status',
+                            'value' => function($model){
+                                return $model->getStatusLabels($model->status, true);
+                            },
+                            'format' => 'raw',
+                            'filter' => Request::getStatusFilter()
+                        ],
+                        ['class' => 'app\components\customWidgets\CustomActionColumn', 'template' => '{view} {delete}']
                     ],
                 ]); ?>
             </div>

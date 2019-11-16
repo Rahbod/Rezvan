@@ -130,4 +130,10 @@ return [
     'investment.list' => 'نمایش سرمایه گذاری ها',
     'construction.list' => 'نمایش دیگر سازه ها',
     'site.about' => 'درباره ما',
+    'apartment' => 'آپارتمان ها',
+    'investment' => 'سرمایه گذاری',
+    'construction' => 'دیگر سازه ها',
+    'request' => 'ثبت درخواست',
+    'request.new' => 'درخواست جدید',
+
 ];

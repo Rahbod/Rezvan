@@ -18,6 +18,7 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <title><?= (($this->title) ? $this->title . ' - ' : '') . Yii::$app->name; ?></title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="<?= $this->theme->baseUrl.'/favicon.ico' ?>"/>
 
     <?php if (app()->language != 'en'): ?>
         <link href="<?= $this->theme->baseUrl . '/assets/bootstrap/rtl/css/bootstrap.min.css' ?>" rel="stylesheet">
@@ -70,7 +71,7 @@ else
 <?php echo $this->render('_public_alert'); ?>
 <?php $this->endBody(); ?>
 
-<script src="<?= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?>"></script>
+<!--<script src="--><?//= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?><!--"></script>-->
 <script src="<?= $this->theme->baseUrl . '/assets/bootstrap/js/bootstrap.min.js' ?>"></script>
 <script src="<?= $this->theme->baseUrl . '/assets/js/custom.js' ?>"></script>
 </body>

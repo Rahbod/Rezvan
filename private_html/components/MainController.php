@@ -7,8 +7,10 @@ use app\models\Cooperation;
 use app\models\Department;
 use app\models\Field;
 use app\models\Menu;
+use app\models\Message;
 use app\models\Model;
 use app\models\Reception;
+use app\models\Request;
 use app\models\User;
 use app\models\UserRequest;
 use Yii;
@@ -273,13 +275,19 @@ class MainController extends Controller implements CrudControllerInterface
         }
 
         $contactLinks = [];
-        foreach (Department::find()->valid()->all() as $item) {
-//            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
-        }
-        $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/contactus'], 'visible' => $permissions || app()->user->can('messageContactus')];
+//        foreach (Department::find()->valid()->all() as $item) {
+////            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
+//        }
+        $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/index'], 'visible' => $permissions || app()->user->can('messageContactus')];
 //        $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || app()->user->can('messageSuggestions')];
 //        $contactLinks[] = ['label' => 'شکایات', 'url' => ['/message/complaints'], 'visible' => $permissions || app()->user->can('messageComplaints')];
-        $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || app()->user->can('messageDepartment')];
+//        $contactLinks[] = ['label' => 'مدیریت بخش ها', 'url' => ['/message/department'], 'visible' => $permissions || app()->user->can('messageDepartment')];
+        $contactCount = Message::find()->andWhere(['type' => Message::STATUS_UNREAD])->count();
+        $contactCount = $contactCount>0?'<span class="m-badge m-badge--danger float-right">'.$contactCount.'</span>':'';
+
+        // unread requests
+        $unreadCount = Request::find()->andWhere(['status' => Request::STATUS_UNREAD])->count();
+        $unreadCount = $unreadCount>0?'<span class="m-badge m-badge--danger float-right">'.$unreadCount.'</span>':'';
 
         return [
             [
@@ -326,8 +334,14 @@ class MainController extends Controller implements CrudControllerInterface
 //                'visible' => $permissions || app()->user->can('categoryIndex')
 //            ],
             [
-                'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . trans('words', 'Messages') . '</span>',
-                'items' => $contactLinks,
+                'label' => '<i class="m-menu__link-icon fa fa-envelope"></i><span class="m-menu__link-text">' . trans('words', 'Requests') . '</span>'.$unreadCount,
+                'url' => ['/request/index'],
+                'visible' => $permissions || app()->user->can('requestIndex')
+            ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-comments"></i><span class="m-menu__link-text">' . trans('words', 'Messages') . '</span>'.$contactCount,
+                'url' => ['/message/index'],
+                'visible' => $permissions || app()->user->can('messageIndex')
             ],
             [
                 'label' => '<i class="m-menu__link-icon fa fa-users"></i><span class="m-menu__link-text">کاربران</span>',

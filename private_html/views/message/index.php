@@ -47,24 +47,24 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
-                        'id',
                         'name',
-//                        [
-//                            'attribute' => 'type',
-//                            'value' => function ($model) {
-//                                return \app\models\Message::getStatusLabels($model->type);
-//                            },
-//                            'filter' => \app\models\Message::getStatusLabels()
-//                        ],
-                        [
-                            'attribute' => 'department_id',
-                            'value' => function ($model) {
-                                return $model->department->name;
-                            },
-                            'filter' => \yii\helpers\ArrayHelper::map(\app\models\Department::find()->all(), 'id', 'name'),
-                            'visible' => !Yii::$app->request->getQueryParam('id')
-                        ],
                         'tel',
+                        'subject',
+                        [
+                            'attribute' => 'type',
+                            'value' => function ($model) {
+                                return \app\models\Message::getStatusLabels($model->type, true);
+                            },
+                            'format' => 'raw',
+                            'filter' => \app\models\Message::getStatusLabels()
+                        ],
+
+                        [
+                            'attribute' => 'created',
+                            'value' => function($model){
+                                return jDateTime::date('Y/m/d', $model->created);
+                            }
+                        ],
                         [
                             'class' => 'app\components\customWidgets\CustomActionColumn',
                             'template' => '{view} {delete}'

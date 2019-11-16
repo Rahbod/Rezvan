@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\Helper;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\Message;
@@ -59,15 +60,17 @@ class MessageSearch extends Message
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
+            'type' => $this->type,
             self::columnGetString('department_id') => $this->department_id,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'type', $this->type])
-            ->andFilterWhere(['like', 'tel', $this->tel])
-            ->andFilterWhere(['like', 'body', $this->body])
-            ->andFilterWhere(['like', 'dyna', $this->dyna])
-            ->andFilterWhere(['like', 'created', $this->created]);
+        $query->andFilterWhere(['regexp', 'name', Helper::persian2Arabic($this->name)]);
+        $query->andFilterWhere(['regexp', 'tel', $this->tel]);
+        $query->andFilterWhere(['regexp', self::columnGetString('subject'), $this->subject]);
+        $query->andFilterWhere(['regexp', self::columnGetString('email'), $this->email]);
+
+        $query->addOrderBy(['type' => SORT_ASC])
+            ->addOrderBy(['id' => SORT_ASC]);
 
         return $dataProvider;
     }

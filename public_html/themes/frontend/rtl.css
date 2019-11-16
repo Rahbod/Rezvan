@@ -322,3 +322,8 @@ li.menu-item {
 		margin-right: auto;
 	}
 }
+
+label.switch  {
+    cursor: pointer;
+    float: left;
+}

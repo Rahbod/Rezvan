@@ -12,8 +12,15 @@ use Yii;
  */
 class Request extends Item
 {
+    const STATUS_UNREAD = 0;
+    const STATUS_PENDING = 1;
+    const STATUS_REVIEWED = 2;
+    const STATUS_CALLED = 3;
+
     public static $multiLanguage = false;
     public static $modelName = 'request';
+
+    public $verifyCode;
 
     /**
      * {@inheritdoc}
@@ -26,6 +33,9 @@ class Request extends Item
     public function init()
     {
         parent::init();
+        preg_match('/(app\\\\models\\\\)(\w*)(Search)/', $this::className(), $matches);
+        if (!$matches)
+            $this->status = self::STATUS_UNREAD;
         $this->dynaDefaults = [
             // contact fields
             'email' => ['CHAR', ''],
@@ -100,7 +110,10 @@ class Request extends Item
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['email', 'mobile', 'phone', 'details'], 'string'],
-            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'], 'integer']
+            ['email', 'email'],
+            ['userID', 'default', 'value' => 1],
+            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'], 'integer'],
+            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/request/captcha', 'on' => 'new'],
         ]);
     }
 
@@ -111,11 +124,14 @@ class Request extends Item
     {
         return [
             'name' => trans('words', 'First name and Last name'),
+            'status' => trans('words', 'Request Status'),
+            'created' => trans('words', 'Created'),
+            'verifyCode' => trans('words', 'Verify Code'),
             // contact fields
             'email' => trans('words', 'E-Mail'),
             'mobile' => trans('words', 'Mobile Number'),
             'phone' => trans('words', 'Phone Number'),
-            'details' => trans('words', 'Details'),
+            'details' => trans('words', 'More DETAILS'),
 
             // general fields
             'building_age' => trans('words', 'Age of the building'),
@@ -188,8 +204,21 @@ class Request extends Item
     public function formAttributes()
     {
         return [
-            [['name','email', 'mobile', 'phone'], self::FORM_FIELD_TYPE_TEXT],
-            'details' => ['type' => self::FORM_FIELD_TYPE_TEXT_AREA, 'containerCssClass' => 'col-sm-12', 'options' => ['rows' => 6]],
+            [['name', 'email', 'mobile', 'phone'], [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ]],
+            'details' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
+                'containerCssClass' => 'col-lg-12',
+                'fieldOptions' => [
+                    'labelOptions' => ['class' => 'register-label'],
+                ],
+                'options' => ['class' => 'message-input', 'rows' => 6]
+            ],
         ];
     }
 
@@ -198,8 +227,50 @@ class Request extends Item
         return [
             [
                 ['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'],
-                self::FORM_FIELD_TYPE_SWITCH
+                [
+                    'type' => self::FORM_FIELD_TYPE_SWITCH,
+                    'fieldOptions' => [
+                        'inputOptions' => ['class' => 'container_toggle'],
+                        'labelOptions' => ['class' => ''],
+                    ]
+                ]
             ]
         ];
+    }
+
+    public static function getStatusLabels($status = null, $html = false)
+    {
+        $statusLabels = [
+            self::STATUS_UNREAD => 'خوانده نشده',
+            self::STATUS_PENDING => 'در حال بررسی',
+            self::STATUS_REVIEWED => 'بررسی شده',
+            self::STATUS_CALLED => 'اطلاع رسانی شده',
+        ];
+        if (is_null($status))
+            return $statusLabels;
+
+        if ($html) {
+            switch ($status) {
+                case self::STATUS_UNREAD:
+                    $class = 'danger';
+                    break;
+                case self::STATUS_PENDING:
+                    $class = 'warning';
+                    break;
+                case self::STATUS_REVIEWED:
+                    $class = 'primary';
+                    break;
+                case self::STATUS_CALLED:
+                    $class = 'success';
+                    break;
+            }
+            return "<span class='text-{$class}'>$statusLabels[$status]</span>";
+        }
+        return $statusLabels[$status];
+    }
+
+    public static function getStatusFilter()
+    {
+        return self::getStatusLabels();
     }
 }
