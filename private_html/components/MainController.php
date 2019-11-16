@@ -274,7 +274,7 @@ class MainController extends Controller implements CrudControllerInterface
 
         $contactLinks = [];
         foreach (Department::find()->valid()->all() as $item) {
-            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
+//            $contactLinks[] = ['label' => "پیام های {$item->name}", 'url' => ['/message/index', 'id' => $item->id], 'visible' => $permissions || app()->user->can('messageIndex')];
         }
         $contactLinks[] = ['label' => 'پیام های تماس با ما', 'url' => ['/message/contactus'], 'visible' => $permissions || app()->user->can('messageContactus')];
 //        $contactLinks[] = ['label' => 'انتقادات و پیشنهادات', 'url' => ['/message/suggestions'], 'visible' => $permissions || app()->user->can('messageSuggestions')];
