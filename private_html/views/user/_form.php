@@ -26,27 +26,7 @@ use app\components\customWidgets\CustomActiveForm;
 
         <?= $form->errorSummary($model) ?>
 
-        <?= $form->field($model, 'image')->widget(\devgroup\dropzone\DropZone::className(), [
-            'url' => \yii\helpers\Url::to(['upload-image']), // upload url
-            'removeUrl' => \yii\helpers\Url::to(['delete-image']), // upload url
-            'storedFiles' => isset($storedFiles) ? $storedFiles : [], // stores files
-            'eventHandlers' => [], // dropzone event handlers
-            'sortable' => false, // sortable flag
-            'sortableOptions' => [], // sortable options
-            'htmlOptions' => ['class' => 'single'], // container html options
-            'options' => [ // dropzone js options
-                'dictRemoveFile' => trans('words', 'Delete'),
-                'dictDefaultMessage' => trans('words', 'Add Image'),
-                'addRemoveLinks' => true,
-                'acceptedFiles' => array('jpg', 'jpeg', 'png'),
-                'maxFiles' => 1,
-                'thumbnailWidth' => 150,
-                'thumbnailHeight' => 220,
-            ],
-        ]) ?>
-        <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
         <div class="row">
-
             <div class="col-sm-4">
                 <?php if ($model->isNewRecord): ?>
                     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
@@ -68,6 +48,9 @@ use app\components\customWidgets\CustomActiveForm;
             <div class="col-sm-4">
                 <?= $form->field($model, 'roleID')->dropDownList($roles, ['prompt' => 'نقش کاربر را انتخاب کنید']) ?>
             </div>
+            <div class="col-sm-4">
+                <?php echo $form->field($model, 'status', ['template' => '{label}<label class="switch">{input}<span class="slider round"></span></label>{error}'])->checkbox([], false) ?>
+            </div>
         </div>
 
         <div class="row">
@@ -78,8 +61,6 @@ use app\components\customWidgets\CustomActiveForm;
     <div class="m-portlet__foot m-portlet__foot--fit">
         <div class="m-form__actions">
             <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
-
-            <button type="reset" class="btn btn-secondary"><?= trans('words', 'Reset'); ?></button>
         </div>
     </div>
 

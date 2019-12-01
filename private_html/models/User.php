@@ -31,7 +31,6 @@ use yii\web\IdentityInterface;
  * @property integer $gender
  * @property integer $address
  * @property integer $birthDate
- * @property integer $reception_type
  *
  */
 class User extends DynamicActiveRecord implements IdentityInterface
@@ -73,7 +72,6 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
             'updated' => ['DATETIME', ''],
             'lastLogin' => ['DATETIME', ''],
-            'reception_type' => ['CHAR', ''],
         ]);
     }
 
@@ -82,13 +80,6 @@ class User extends DynamicActiveRecord implements IdentityInterface
         return [
             'name' => ['type' => self::FORM_FIELD_TYPE_TEXT],
             'email' => ['type' => self::FORM_FIELD_TYPE_TEXT],
-            'hr' => ['type' => static::FORM_SEPARATOR],
-            'reception_type' => [
-                'type' => self::FORM_FIELD_TYPE_SELECT,
-                'items' => Reception::getReceptionTypeLabels(),
-                'options' => ['prompt' => 'دسترسی پذیرش را در صورت نیاز انتخاب نمایید'],
-                'containerCssClass' => 'col-sm-12'
-            ],
         ];
     }
 
@@ -128,7 +119,6 @@ class User extends DynamicActiveRecord implements IdentityInterface
             [['status', 'nationalCode', 'memCode', 'gender'], 'integer'],
             [['name', 'username', 'password'], 'string', 'max' => 255],
             [['nationalCode'], 'string', 'max' => 10],
-            [['reception_type'], 'string'],
             [['phone'], 'string', 'min' => 11, 'max' => 11],
             [['username'], 'unique'],
             [['email'], 'email'],
@@ -147,7 +137,7 @@ class User extends DynamicActiveRecord implements IdentityInterface
 
     public function checkPassword($attribute)
     {
-        if (!$this->validatePassword($this->oldPassword, $this->password))
+        if (!$this->validatePassword($this->oldPassword))
             $this->addError($attribute, trans('words', 'user.wrongOldPassword'));
     }
 
@@ -157,8 +147,8 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => trans('words', 'base.id'),
-            'name' => trans('words', 'user.name'),
+            'id' => trans('words', 'ID'),
+            'name' => trans('words', 'Name'),
             'username' => trans('words', 'user.username'),
             'password' => trans('words', 'user.password'),
             'repeatPassword' => trans('words', 'user.repeatPassword'),
@@ -166,12 +156,12 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'newPassword' => trans('words', 'user.newPassword'),
             'dyna' => 'Dyna',
             'created' => trans('words', 'base.created'),
-            'status' => trans('words', 'base.status'),
+            'status' => trans('words', 'Status'),
             'roleID' => trans('words', 'user.roleID'),
             'email' => trans('words', 'user.email'),
             'phone' => trans('words', 'user.phone'),
             'text' => trans('words', 'base.text'),
-            'image' => trans('words', 'user.image'),
+            'image' => trans('words', 'Image'),
             'groups' => trans('words', 'user.groups'),
             'group' => trans('words', 'user.group'),
             'nationalCode' => trans('words', 'user.nationalCode'),
@@ -181,7 +171,6 @@ class User extends DynamicActiveRecord implements IdentityInterface
             'birthDate' => trans('words', 'user.birthDate'),
             'verifyCode' => trans('words', 'verifyCode'),
             'verification_code' => trans('words', 'Verification code'),
-            'reception_type' => trans('words', 'Reception type permission'),
         ];
     }
 
@@ -265,8 +254,6 @@ class User extends DynamicActiveRecord implements IdentityInterface
     public function beforeSave($insert)
     {
         $this->updated = date(Yii::$app->params['dbDateTimeFormat']);
-        if ($this->scenario != 'delete-user' && $this->scenario != 'change-password')
-            $this->birthDate = date(Yii::$app->params['dbDateTimeFormat'], $this->birthDate);
 
         if ($this->scenario == 'change-password')
             $this->password = $this->newPassword;

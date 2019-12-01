@@ -29,7 +29,7 @@ input.search-field {
 }
 .header-style-2 input.search-field {
     padding-right: 20px;
-	
+
 }
 .social-list {
     padding-right: 0;
@@ -135,7 +135,7 @@ footer>.container-fluid {
     background-position-x: 60%;
 }
 #footer-menu {
-    margin: 10px auto 0 10%;
+    margin: 10px 0 0 0;
 }
 #footer-menu a {
     padding-right: 15px;
@@ -233,7 +233,10 @@ h2.item-title {
 }
 .final-project-view .title-unit {
     padding-left: 0;
-	padding-right: 25px;
+	padding-right: 45px;
+}
+.final-project-view .available-left-title img {
+    padding-top: 5px;
 }
 .final-project-view.special .title-left p.slide {
     padding-right: 0;
@@ -304,6 +307,17 @@ li.menu-item {
 	}
 	.header-bottom .col-lg-6.right {
 		text-align: left;
+		padding-left: 0;
+	}
+	#header.fixed-menu #site-logo-2 {
+		margin-right: 0;
+	}
+	.header-bottom .right a {
+		padding-right: 25px;
+		padding-left: 0;
+	}
+	#header.fixed-menu .col-lg-10.col-md-10 {
+		padding-left: 5px;
 	}
 }
 @media (max-width: 768px) {
@@ -326,4 +340,61 @@ li.menu-item {
 label.switch  {
     cursor: pointer;
     float: left;
+}
+.footer-right .col-lg-2.offset-10 {
+    padding-left: 6%;
+}
+.header-top .col-lg-10.col-md-10 {
+    padding-right: 15px;
+	padding-left: 5%;
+}
+.back-general-post.massage, .back-general-post.select {
+    margin-right: -15px !important;
+}
+.register-text h2 strong {
+    font-size: 26px;
+}
+
+.switch label {
+    float: left;
+}
+select.form-control.radius {
+    margin-bottom: 2px;
+    float: left;
+    height: 30px;
+    font-size: 13px;
+    padding: 0;
+    padding-right: 5px;
+}
+#main-footer li:last-child {
+    margin-left: 0;
+	margin-right: auto;
+}
+#main-footer li:first-child {
+    margin-right: 0;
+	margin-left: auto;
+}
+#main-footer li:last-child a {
+    padding-left: 0;
+}
+.footer-right nav.navbar.navbar-expand-lg {
+    float: left;
+}
+.footer-right nav.navbar.navbar-expand-lg, footer a#lang-select {
+    padding-left: unset;
+	padding-right: 0;
+}
+.footer-right .container-fluid>.row {
+    padding-left: 10%;
+	padding-right: 0;
+}
+.copy-2, .footer-right .container-fluid>.row>.col-lg-12 {
+    padding-left: 0 !important;
+	padding-right: 15px !important;
+}
+.back-general-post .col-lg-6.gray {
+    border-radius: 20px 0 0 20px;
+}
+.header-style-2.fixed-menu li.menu-item:last-child {
+    margin-left: 0;
 }

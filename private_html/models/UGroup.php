@@ -105,4 +105,23 @@ class UGroup extends CustomActiveRecord
             return $statusLabels;
         return $statusLabels[$status];
     }
+
+    /**
+     * configure attributes options for render in crud form
+     * example: [
+     *      'attribute name' => [
+     *          'type' => self::FORM_FIELD_TYPE_TEXT,
+     *          'label' => false,
+     *          'options' => [
+     *              'placeholder' => $this->getAttributeLabel('name')
+     *          ]
+     *      ],
+     * ]
+     *
+     * @return array
+     */
+    public function formAttributes()
+    {
+        return [];
+    }
 }

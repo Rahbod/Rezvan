@@ -225,6 +225,9 @@ class UserController extends AuthController
         }
         $model->delete();
 
+        $auth = Yii::$app->authManager;
+        $auth->revoke($auth->getRole($model->roleID), $model->id);
+
         Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.deleteSuccessMsg')]);
 
         return $this->redirect(['index']);

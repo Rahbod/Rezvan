@@ -42,10 +42,10 @@ $baseUrl = $this->theme->baseUrl;
                         <?php endfor; ?>
                     </div>
                     <a class="carousel-control-prev" href="#order-post" data-slide="prev">
-                        <span class="carousel-control-prev-icon"></span>
+                        <i class="fas fa-angle-left"></i>
                     </a>
                     <a class="carousel-control-next" href="#order-post" data-slide="next">
-                        <span class="carousel-control-next-icon"></span>
+                        <i class="fas fa-angle-right"></i>
                     </a>
                 </div>
             </div>

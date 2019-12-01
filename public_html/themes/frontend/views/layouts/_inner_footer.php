@@ -25,10 +25,10 @@ use yii\helpers\Url; ?>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-7  col-sm-12 col-xs-12 footer-right">
+            <div class="col-lg-7 footer-right">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-2 offset-10 col-md-2  col-sm-12 col-xs-12">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <nav class="navbar navbar-expand-lg">
                                 <div class="collapse navbar-collapse" id="language">
                                     <ul class="navbar-nav">

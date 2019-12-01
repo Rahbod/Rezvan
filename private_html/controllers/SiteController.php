@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\components\MultiLangActiveRecord;
 use app\components\Setting;
 use app\models\ContactForm;
 use app\models\Item;
@@ -95,7 +96,7 @@ class SiteController extends AuthController
 
     public function actionChangeLang($language = false, $controller = false, $action = false)
     {
-        if ($language) {
+        if ($language && in_array($language, array_keys(MultiLangActiveRecord::$langArray))) {
             Yii::$app->language = $language;
             Yii::$app->session->set('language', $language);
             $cookie = new \yii\web\Cookie([
