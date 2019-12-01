@@ -2119,12 +2119,10 @@ footer .social-item a {
  	width: 0;
  	visibility: hidden;
 }
-.switch label {
+.switch label.switch{
   	cursor: pointer;
-  	text-indent: -9999px;
   	width: 55px;
   	height: 25px;
-  	background-color: #3abfa4;
   	margin: 0 auto;
   	justify-content: center;
   	align-items: center;
@@ -2132,7 +2130,20 @@ footer .social-item a {
 	position: relative;
 	float: right;
 }
-.switch label:after {
+.switch label.switch span{
+  	cursor: pointer;
+  	text-indent: -9999px;
+  	width: 55px;
+  	height: 25px;
+  	background-color: #aab7bf;
+  	margin: 0 auto;
+  	justify-content: center;
+  	align-items: center;
+	border-radius: 100px;
+	position: relative;
+	float: right;
+}
+.switch label.switch span:after {
 	content: '';
 	background: #fff;
 	width: 17px;
@@ -2140,15 +2151,15 @@ footer .social-item a {
     border-radius: 50%;
     position: absolute;
     top: 4px;
-    left: 4px;
+    right: 4px;
 	transition: cubic-bezier(0.68, -0.55, 0.27, 01.55) 320ms;
 }
-.switch input:checked + label {
-  background: #aab7bf;
+label.switch input:checked + span {
+  background: #3abfa4;
 }
-.switch input:checked + label:after {
-  left: calc(100% - 5px);
-  transform: translateX(-100%);
+label.switch input:checked + span:after {
+  right: calc(100% - 5px);
+  transform: translateX(100%);
 }
 select.form-control.radius {
     width: 50%;

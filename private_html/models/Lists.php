@@ -46,7 +46,7 @@ class Lists extends Category
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(),[
-            'slug' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'visible' => !app()->session->has('slug')]
+            'slug' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'visible' => app()->session->has('slug')]
         ]);
     }
 

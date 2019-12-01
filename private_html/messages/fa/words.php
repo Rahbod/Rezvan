@@ -539,6 +539,12 @@ return [
     'Phone Number' => 'شماره تلفن',
     'Details' => 'توضیحات',
     'Special Project' => 'پروژه شاخص',
+    'From' => 'از',
+    'To' => 'تا',
+    'Area' => 'زیربنا',
+    'Type of buy' => 'نوع ارائه',
+    'Type of unit' => 'نوع واحد',
+    'City' => 'شهر',
 
     // request page
     'REGISTER YOUR REQUEST' => 'ثبت درخواست',

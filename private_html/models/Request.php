@@ -8,6 +8,8 @@ use Yii;
  * This is the model class for table "item".
  * @property $image string
  * @property $link string
+ * @property $heating_system int
+ * @property $cooling_system int
  *
  */
 class Request extends Item
@@ -54,16 +56,16 @@ class Request extends Item
             'parking' => ['INTEGER', ''],
             'warehouse' => ['INTEGER', ''],
             'closet' => ['INTEGER', ''],
-            'terrace' => ['INTEGER', ''],
-            'iPhone_video' => ['INTEGER', ''],
-            'security_door' => ['INTEGER', ''],
-            'electric_door' => ['INTEGER', ''],
-            'toilet' => ['INTEGER', ''],
-            'wallpaper' => ['INTEGER', ''],
-            'desktop_case' => ['INTEGER', ''],
-            'cuban_panel' => ['INTEGER', ''],
-            'hood' => ['INTEGER', ''],
-            'master_bath' => ['INTEGER', ''],
+//            'terrace' => ['INTEGER', ''],
+//            'iPhone_video' => ['INTEGER', ''],
+//            'security_door' => ['INTEGER', ''],
+//            'electric_door' => ['INTEGER', ''],
+//            'toilet' => ['INTEGER', ''],
+//            'wallpaper' => ['INTEGER', ''],
+//            'desktop_case' => ['INTEGER', ''],
+//            'cuban_panel' => ['INTEGER', ''],
+//            'hood' => ['INTEGER', ''],
+//            'master_bath' => ['INTEGER', ''],
             'camera' => ['INTEGER', ''],
             'jacuzzi' => ['INTEGER', ''],
             'sauna' => ['INTEGER', ''],
@@ -72,33 +74,47 @@ class Request extends Item
             'shelf' => ['INTEGER', ''],
             'wc' => ['INTEGER', ''],
             'protective_shutters' => ['INTEGER', ''],
-            'juice_house' => ['INTEGER', ''],
-            'alarm' => ['INTEGER', ''],
-            'fire_announcement' => ['INTEGER', ''],
-            'water_well' => ['INTEGER', ''],
-            'round_the_wall' => ['INTEGER', ''],
-            'water_cooler' => ['INTEGER', ''],
-            'heater' => ['INTEGER', ''],
-            'package' => ['INTEGER', ''],
-            'water_heater' => ['INTEGER', ''],
-            'air_conditioner' => ['INTEGER', ''],
-            'heating' => ['INTEGER', ''],
-            'floor_heating' => ['INTEGER', ''],
-            'chiller' => ['INTEGER', ''],
-            'radiator' => ['INTEGER', ''],
-            'restaurant' => ['INTEGER', ''],
-            'kitchen' => ['INTEGER', ''],
-            'lobby' => ['INTEGER', ''],
-            'enough_coffee' => ['INTEGER', ''],
-            'landry' => ['INTEGER', ''],
-            'television' => ['INTEGER', ''],
-            'refrigerator' => ['INTEGER', ''],
-            'oven' => ['INTEGER', ''],
-            'single_kitchen' => ['INTEGER', ''],
-            'iranian_service' => ['INTEGER', ''],
-            'furniture' => ['INTEGER', ''],
-            'safe_box' => ['INTEGER', ''],
-            'bathroom' => ['INTEGER', ''],
+//            'juice_house' => ['INTEGER', ''],
+//            'alarm' => ['INTEGER', ''],
+//            'fire_announcement' => ['INTEGER', ''],
+//            'water_well' => ['INTEGER', ''],
+//            'round_the_wall' => ['INTEGER', ''],
+//            'water_cooler' => ['INTEGER', ''],
+//            'heater' => ['INTEGER', ''],
+//            'package' => ['INTEGER', ''],
+//            'water_heater' => ['INTEGER', ''],
+//            'air_conditioner' => ['INTEGER', ''],
+//            'heating' => ['INTEGER', ''],
+//            'floor_heating' => ['INTEGER', ''],
+//            'chiller' => ['INTEGER', ''],
+//            'radiator' => ['INTEGER', ''],
+//            'restaurant' => ['INTEGER', ''],
+//            'kitchen' => ['INTEGER', ''],
+//            'lobby' => ['INTEGER', ''],
+//            'enough_coffee' => ['INTEGER', ''],
+//            'landry' => ['INTEGER', ''],
+//            'television' => ['INTEGER', ''],
+//            'refrigerator' => ['INTEGER', ''],
+//            'oven' => ['INTEGER', ''],
+//            'single_kitchen' => ['INTEGER', ''],
+//            'iranian_service' => ['INTEGER', ''],
+//            'furniture' => ['INTEGER', ''],
+//            'safe_box' => ['INTEGER', ''],
+//            'bathroom' => ['INTEGER', ''],
+
+            'heating_system' => ['INTEGER', ''],
+            'cooling_system' => ['INTEGER', ''],
+            'city' => ['INTEGER', ''],
+            'type_of_buy' => ['INTEGER', ''],
+            'type_of_unit' => ['INTEGER', ''],
+            'price_from' => ['CHAR', ''],
+            'price_to' => ['CHAR', ''],
+            'currency' => ['INTEGER', ''],
+            'area_from' => ['CHAR', ''],
+            'area_to' => ['CHAR', ''],
+            'area_unit' => ['INTEGER', ''],
+            'building_old' => ['INTEGER', ''],
+            'unit_room' => ['INTEGER', ''],
         ];
     }
 
@@ -112,7 +128,7 @@ class Request extends Item
             [['email', 'mobile', 'phone', 'details'], 'string'],
             ['email', 'email'],
             ['userID', 'default', 'value' => 1],
-            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'], 'integer'],
+            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom','heating_system', 'cooling_system'], 'integer'],
             ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/request/captcha', 'on' => 'new'],
         ]);
     }
@@ -189,6 +205,14 @@ class Request extends Item
             'furniture' => trans('words', 'Furniture'),
             'safe_box' => trans('words', 'Safe box'),
             'bathroom' => trans('words', 'Bathroom'),
+
+            'heating_system' => trans('words', 'Heating system'),
+            'cooling_system' => trans('words', 'Cooling system'),
+            'price_from' => trans('words', 'Price'),
+            'area_from' => trans('words', 'Area'),
+            'type_of_buy' => trans('words', 'Type of buy'),
+            'type_of_unit' => trans('words', 'Type of unit'),
+            'city' => trans('words', 'City'),
         ];
     }
 
@@ -222,11 +246,11 @@ class Request extends Item
         ];
     }
 
-    public function formGeneralAttributes()
+    public function formGeneralAttributesLeft()
     {
         return [
             [
-                ['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom'],
+                ['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet'],
                 [
                     'type' => self::FORM_FIELD_TYPE_SWITCH,
                     'fieldOptions' => [
@@ -235,6 +259,37 @@ class Request extends Item
                     ]
                 ]
             ]
+        ];
+    }
+
+    public function formGeneralAttributesLeftGray()
+    {
+        return [
+            [
+                ['camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters'],
+                [
+                    'type' => self::FORM_FIELD_TYPE_SWITCH,
+                    'fieldOptions' => [
+                        'inputOptions' => ['class' => 'container_toggle'],
+                        'labelOptions' => ['class' => ''],
+                    ]
+                ]
+            ],
+            'heating_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'heating_system', 'hint' => '', 'options' => ['class' => 'form-control radius', 'prompt' => false]],
+            'cooling_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cooling_system', 'hint' => '', 'options' => ['class' => 'form-control radius', 'prompt' => false]],
+        ];
+    }
+
+    public function formGeneralAttributesRight()
+    {
+        return [
+            'city' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'city', 'hint' => '', 'options' => ['class' => 'form-control', 'prompt' => false]],
+            'type_of_buy' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_buy', 'hint' => '', 'options' => ['class' => 'form-control', 'prompt' => false]],
+            'type_of_unit' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_unit', 'hint' => '', 'options' => ['class' => 'form-control', 'prompt' => false]],
+            'price_from' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline', 'placeholder' => trans('words','From')]],
+            'area_from' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline', 'placeholder' => trans('words','From')]],
+            'building_old' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline']],
+            'unit_room' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline']],
         ];
     }
 

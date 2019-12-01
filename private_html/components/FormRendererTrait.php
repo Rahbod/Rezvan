@@ -123,10 +123,15 @@ trait FormRendererTrait
             if ($list) {
                 $list_options = Lists::find()->andWhere(['parentID' => $list->id])->all();
                 if ($list_options)
-                    $items = ArrayHelper::map($list_options, 'id', 'name');
+                    $items = ArrayHelper::map($list_options, 'id', function ($model) {
+                        return $model->getName();
+                    });
             }
 
-            $options['prompt'] = isset($options['prompt']) ? $options['prompt'] : "انتخاب کنید";
+            if (!isset($options['prompt']) || $options['prompt'])
+                $options['prompt'] = isset($options['prompt']) ? $options['prompt'] : "";
+            else
+                unset($options['prompt']);
 
             if (!$items)
                 $field['hint'] = "لیست خالی است. " . Html::a('ایجاد لیست', ['/list/create', 'slug' => $field['listSlug'], 'label' => $model->getAttributeLabel($field['attribute'])]);
@@ -250,6 +255,12 @@ trait FormRendererTrait
 
         if ($hint)
             $obj->hint($hint);
+
+        if (isset($field['labelOptions']))
+            $obj->labelOptions = $field['labelOptions'];
+
+        if (isset($field['template']))
+            $obj->template = $field['template'];
 
         Html::addCssClass($containerOptions, empty($containerCssClass) ? ($field['type'] !== static::FORM_SEPARATOR ? $allContainerCssClass : 'col-sm-12') : $containerCssClass);
         $fieldHtml = Html::tag('div', $prefixField . $obj, $containerOptions);
