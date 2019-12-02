@@ -98,6 +98,17 @@ $this->registerJs('
             </div>
 
             <div class="form-group m-form__group row">
+                <label class="col-lg-2 col-form-label"><?= trans('words', 'Request email') ?></label>
+
+                <div class="col-lg-6">
+                    <?php echo Html::textInput('Setting[request_email]', $settings['request_email'], [
+                        'class' => 'form-control m-input m-input__solid text-left',
+                        'dir' => 'ltr',
+                    ]); ?>
+                </div>
+            </div>
+
+            <div class="form-group m-form__group row">
                 <label class="col-lg-2 col-form-label"><?= trans('words', 'About Footer') ?></label>
 
                 <div class="col-lg-6">

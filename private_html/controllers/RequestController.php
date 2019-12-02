@@ -5,9 +5,12 @@ namespace app\controllers;
 use app\components\CrudControllerInterface;
 use app\components\CrudControllerTrait;
 use app\components\customWidgets\CustomCaptchaAction;
+use app\components\Setting;
+use app\models\ContactForm;
 use app\models\Request;
 use app\components\AuthController;
 use Yii;
+use yii\swiftmailer\Mailer;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
@@ -31,7 +34,7 @@ class RequestController extends AuthController implements CrudControllerInterfac
 
     public function getSystemActions()
     {
-        return array_merge(parent::getSystemActions(),[
+        return array_merge(parent::getSystemActions(), [
             'new',
             'captcha'
         ]);
@@ -55,8 +58,8 @@ class RequestController extends AuthController implements CrudControllerInterfac
                 'transparent' => true,
                 'onlyNumber' => true,
                 'foreColor' => 0x555555,
-                'minLength'=>4,
-                'maxLength'=>4,
+                'minLength' => 4,
+                'maxLength' => 4,
                 'fontFile' => '@webroot/themes/frontend/assets/fonts/OpenSans-Bold.ttf'
             ],
         ];
@@ -70,8 +73,8 @@ class RequestController extends AuthController implements CrudControllerInterfac
      */
     public function actionView($id)
     {
-        $model =$this->findModel($id);
-        if($model->status == Request::STATUS_UNREAD){
+        $model = $this->findModel($id);
+        if ($model->status == Request::STATUS_UNREAD) {
             $model->status = Request::STATUS_PENDING;
             $model->save();
         }
@@ -101,7 +104,7 @@ class RequestController extends AuthController implements CrudControllerInterfac
             $model->load(app()->request->post());
             if ($model->save()) {
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(app()->request->post('return') == 'view'?['view', 'id' => $model->id]:['index']);
+                return $this->redirect(app()->request->post('return') == 'view' ? ['view', 'id' => $model->id] : ['index']);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -129,6 +132,14 @@ class RequestController extends AuthController implements CrudControllerInterfac
         if (app()->request->post()) {
             $model->load(app()->request->post());
             if ($model->save()) {
+                if (Setting::get('request_email')) {
+                    Yii::$app->mailer->compose('layouts/request_mail', ['model' => $model])
+                        ->setTo(Setting::get('request_email'))
+                        ->setFrom(['noreply@rezvan.info' => $model->name])
+                        ->setSubject('درخواست جدید')
+                        ->send();
+                }
+
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
                 return $this->refresh();
             } else

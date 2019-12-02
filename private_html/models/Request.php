@@ -3,11 +3,16 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "item".
  * @property $image string
  * @property $link string
+ * @property $email string
+ * @property $mobile string
+ * @property $phone string
+ * @property $details string
  * @property $heating_system int
  * @property $cooling_system int
  *
@@ -128,7 +133,9 @@ class Request extends Item
             [['email', 'mobile', 'phone', 'details'], 'string'],
             ['email', 'email'],
             ['userID', 'default', 'value' => 1],
-            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom','heating_system', 'cooling_system'], 'integer'],
+            [['building_age', 'shopping', 'rent', 'mortgages', 'floor', 'facilities', 'elevator', 'parking', 'warehouse', 'closet', 'terrace', 'iPhone_video', 'security_door', 'electric_door', 'toilet', 'wallpaper', 'desktop_case', 'cuban_panel', 'hood', 'master_bath', 'camera', 'jacuzzi', 'sauna', 'swimming_pool', 'showcase', 'shelf', 'wc', 'protective_shutters', 'juice_house', 'alarm', 'fire_announcement', 'water_well', 'round_the_wall', 'water_cooler', 'heater', 'package', 'water_heater', 'air_conditioner', 'heating', 'floor_heating', 'chiller', 'radiator', 'restaurant', 'kitchen', 'lobby', 'enough_coffee', 'landry', 'television', 'refrigerator', 'oven', 'single_kitchen', 'iranian_service', 'furniture', 'safe_box', 'bathroom', 'heating_system', 'cooling_system'], 'integer'],
+            [['city', 'type_of_buy', 'type_of_unit', 'currency', 'area_unit'], 'integer'],
+            [['price_from', 'price_to', 'area_from', 'area_to', 'building_old', 'unit_room'], 'string'],
             ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/request/captcha', 'on' => 'new'],
         ]);
     }
@@ -157,7 +164,7 @@ class Request extends Item
             'floor' => trans('words', 'Floor'),
             'facilities' => trans('words', 'Facilities'),
             'elevator' => trans('words', 'Elevator'),
-            'parking' => trans('words', 'Parking lot'),
+            'parking' => trans('words', 'Parking'),
             'warehouse' => trans('words', 'Warehouse'),
             'closet' => trans('words', 'Closet'),
             'terrace' => trans('words', 'Terrace'),
@@ -213,6 +220,7 @@ class Request extends Item
             'type_of_buy' => trans('words', 'Type of buy'),
             'type_of_unit' => trans('words', 'Type of unit'),
             'city' => trans('words', 'City'),
+            'unit_room' => trans('words', 'Unit rooms'),
         ];
     }
 
@@ -241,7 +249,7 @@ class Request extends Item
                 'fieldOptions' => [
                     'labelOptions' => ['class' => 'register-label'],
                 ],
-                'options' => ['class' => 'message-input', 'rows' => 6]
+                'options' => ['class' => 'message-input', 'rows' => 10]
             ],
         ];
     }
@@ -275,8 +283,8 @@ class Request extends Item
                     ]
                 ]
             ],
-            'heating_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'heating_system', 'hint' => '', 'options' => ['class' => 'form-control radius', 'prompt' => false]],
-            'cooling_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cooling_system', 'hint' => '', 'options' => ['class' => 'form-control radius', 'prompt' => false]],
+            'heating_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'heating_system', 'hint' => '', 'labelOptions' => ['class' => ''], 'options' => ['class' => 'form-control radius', 'prompt' => false]],
+            'cooling_system' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'cooling_system', 'hint' => '', 'labelOptions' => ['class' => ''], 'options' => ['class' => 'form-control radius', 'prompt' => false]],
         ];
     }
 
@@ -286,8 +294,8 @@ class Request extends Item
             'city' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'city', 'hint' => '', 'options' => ['class' => 'form-control', 'prompt' => false]],
             'type_of_buy' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_buy', 'hint' => '', 'options' => ['class' => 'form-control', 'prompt' => false]],
             'type_of_unit' => ['type' => self::FORM_FIELD_TYPE_SELECT, 'listSlug' => 'type_of_unit', 'hint' => '', 'options' => ['class' => 'form-control', 'prompt' => false]],
-            'price_from' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline', 'placeholder' => trans('words','From')]],
-            'area_from' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline', 'placeholder' => trans('words','From')]],
+            'price_from' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline', 'placeholder' => trans('words', 'From')]],
+            'area_from' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline', 'placeholder' => trans('words', 'From')]],
             'building_old' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline']],
             'unit_room' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'options' => ['class' => 'form-control select-inline']],
         ];
@@ -327,5 +335,10 @@ class Request extends Item
     public static function getStatusFilter()
     {
         return self::getStatusLabels();
+    }
+
+    public function getUrl()
+    {
+        return Url::to(['/request/view', 'id' => $this->id], true);
     }
 }

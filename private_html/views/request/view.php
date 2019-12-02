@@ -1,7 +1,9 @@
 <?php
 
 use app\components\customWidgets\CustomActiveForm;
+use app\models\Lists;
 use app\models\Request;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
@@ -69,7 +71,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'status',
                         'value' => function ($model) {
-                            return $model->getStatusLabels($model->status,true);
+                            return $model->getStatusLabels($model->status, true);
                         },
                         'format' => 'raw'
                     ],
@@ -90,12 +92,46 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="row">
                 <?php
                 foreach ($model->dynaDefaults as $key => $config):
-                    if (in_array($key, ['email', 'mobile', 'phone', 'details']))
+                    if (in_array($key, [
+                        'email', 'mobile', 'phone', 'details',
+                        'heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit',
+                        'price_from', 'price_to', 'currency',
+                        'area_from', 'area_to', 'area_unit',
+                        'building_old', 'unit_room'
+                    ]))
                         continue;
                     $text = $model->$key == 1 ? '<i class="text-success fa fa-check-circle" style="vertical-align: middle"></i>' : '<i class="text-danger fa fa-times-circle" style="vertical-align: middle"></i>';
                     ?>
                     <div class="col-sm-3 mb-1" <?= $model->$key == 1 ? ' style="background-color:#f0f0f0;border-radius:3px"' : '' ?>>
                         <label class="float-left mt-2 mb-2"><?= $model->getAttributeLabel($key) ?></label>
+                        <span class="float-right mt-2 mb-2"><?= $text ?></span>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <hr>
+            <div class="row">
+                <?php
+                $otherFields = ['heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit',
+                    'price_from', 'area_from', 'building_old', 'unit_room'];
+                foreach ($otherFields as $field):
+                    if (in_array($field, ['heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit'])) {
+                        $option = Lists::findOne($model->$field);
+                        $text = $option->name;
+                    } elseif ($field == 'price_from') {
+                        $currency = Lists::findOne($model->currency);
+                        $currency = $currency->name;
+                        $text = trans('words', 'From') . ': ' . $model->$field?number_format((float)$model->$field):'' . ' ' . $currency .
+                            ' - ' . trans('words', 'To') . ': ' . $model->price_to?number_format((float)$model->price_to):'' . ' ' . $currency;
+                    } elseif ($field == 'area_from') {
+                        $area_unit = Lists::findOne($model->area_unit);
+                        $area_unit = $area_unit->name;
+                        $text = trans('words', 'From') . ': ' . $model->$field . ' ' . $area_unit .
+                            ' - ' . trans('words', 'To') . ': ' . $model->area_to . ' ' . $area_unit;
+                    }else
+                        $text = $model->$field;
+                    ?>
+                    <div class="col-sm-3 mb-1" <?= $model->$key == 1 ? ' style="background-color:#f0f0f0;border-radius:3px"' : '' ?>>
+                        <label class="float-left mt-2 mb-2"><?= $model->getAttributeLabel($field) ?></label>
                         <span class="float-right mt-2 mb-2"><?= $text ?></span>
                     </div>
                 <?php endforeach; ?>

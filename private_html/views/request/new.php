@@ -119,7 +119,7 @@ $this->registerJs("
             </div>
 
             <div class="col-lg-12 bottom-section">
-                <h2><strong>Contact</strong> Information</h2>
+                <h2><?= trans('words', '<strong>CONTACT</strong> INFORMATION') ?></h2>
                 <div class="back-general-post massage row">
                     <?= $model->formRenderer($form, '{field}', 'col-lg-3') ?>
                 </div>
@@ -148,3 +148,8 @@ $this->registerJs("
 </section>
 
 
+<style>
+    .form-group{
+        margin-bottom: 5px;
+    }
+</style>

@@ -545,16 +545,19 @@ return [
     'Type of buy' => 'نوع ارائه',
     'Type of unit' => 'نوع واحد',
     'City' => 'شهر',
+    'Unit rooms' => 'تعداد اتاق',
 
     // request page
     'REGISTER YOUR REQUEST' => 'ثبت درخواست',
     '<strong>REGISTER</strong> YOUR PROPERTY DETAILS' => '<strong>جزئيات خاص</strong> خود را ثبت كنيد',
     'register_your_property_details_text' => 'register_your_property_details_text',
     '<strong>GENERAL</strong> PROPERTY SPECIFICATIONS' => '<strong>مشخصات</strong> عمومی',
+    '<strong>CONTACT</strong> INFORMATION' => '<strong>اطلاعات</strong> تماس',
     'CAPTCHA' => 'کد امنیتی',
     'More DETAILS' => 'توضیحات بیشتر',
     'Requests' => 'درخواست ها',
     'Request Status' => 'وضعیت درخواست',
+    'Request email' => 'ایمیل اطلاع رسانی درخواست جدید',
 
     // contact
     '<strong>CONTACT</strong> US' => '<strong>تماس</strong> با ما',
