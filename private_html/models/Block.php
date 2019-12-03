@@ -52,6 +52,7 @@ class Block extends Item implements BlockInterface
 //        self::TYPE_RELATED_PROJECTS => 'app\models\blocks\RelatedProjects',
     ];
 
+
     public function init()
     {
         parent::init();
