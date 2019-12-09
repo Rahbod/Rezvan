@@ -13,7 +13,7 @@ use yii\web\View;
 /**
  * This is the model class for table "item".
  *
- * @property string image
+ * @property array image
  * @property string link
  */
 class Gallery extends Block
