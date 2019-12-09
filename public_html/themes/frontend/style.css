@@ -94,7 +94,7 @@ body {
     padding-top: 10px;
 }
 .header-top {
-    min-height: 59px;
+    min-height: 60px;
 	padding: 0 5%;
 }
 .header-inner {
@@ -1026,6 +1026,7 @@ a.carousel-control-prev i.fas, a.carousel-control-next i.fas {
 
 .main-section-page {
     padding: 0 8%;
+	width: 100%;
 }
 .text-page .main-text-page {
     background-color: #f5f2ef;
@@ -2078,9 +2079,10 @@ footer .social-item a {
 }
 .back-general-post select {
     text-transform: uppercase;
-    background-color: #ddd;
+    background-color: #fff;
     margin-bottom: 5px;
     color: #999;
+    padding: 0 5px;
 }
 .back-general-post label {
     margin: 0;
@@ -2254,7 +2256,7 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
     font-weight: 500;
     line-height: 2;
 }
-#request-verifycode {
+.captcha input {
 	border: 0;
     font-weight: 700;
     font-size: 18px;
@@ -2276,6 +2278,11 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
 	.item span {
 		width: 90px;
 		padding-left: 5px;
+	}
+}
+@media (max-width:1600px) {
+	#footer-menu a {
+		padding-left: 0!important;
 	}
 }
 @media (max-width:1440px) {

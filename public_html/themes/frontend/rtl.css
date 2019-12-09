@@ -292,10 +292,6 @@ li.menu-item {
 	.home section.slide-3>.container-fluid {
 		min-height: 1000px;
 	}
-	.offset-lg-10 {
-		margin-right: 83.333333%;
-		margin-left: unset;
-	}
 }
 @media (min-width: 769px) {
 	#menu-main .navbar, .search-container {
@@ -397,4 +393,30 @@ select.form-control.radius {
 }
 .header-style-2.fixed-menu li.menu-item:last-child {
     margin-left: 0;
+}
+.massage.back-general-post .col-lg-3 input, .massage.back-general-post .col-lg-12 textarea {
+    padding-right: 10px;
+    text-align: right;
+}
+input.form-control {
+    padding-right: 5px!important;
+}
+.buttons {
+    text-align: left;
+    padding-left: 15px;
+}
+@media (max-width:1600px) {
+	#footer-menu a {
+		padding-right: 0!important;
+	}
+	#main-footer li:first-child a {
+		padding-right: 15px!important;
+	}
+}
+.btn.btn-primary.capatcha-button {
+    border-radius: .25rem 0 0 .25rem;
+}
+.captcha input {
+    line-height: 2.1;
+    margin-right: 15px;
 }
