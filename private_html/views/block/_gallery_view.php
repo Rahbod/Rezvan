@@ -11,7 +11,7 @@ use app\models\Item;
 use yii\helpers\Html;
 use yii\web\View;
 
-if ($block->image && isset($_GET['debug'])):
+if ($block->image):
     $count = count($block->image);
     ?>
     <section class="slide-2 carousel slide" id="gallery-<?= $block->id ?>" data-ride="carousel">

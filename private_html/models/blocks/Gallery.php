@@ -28,7 +28,6 @@ class Gallery extends Block
         ]);
     }
 
-
     /**
      * {@inheritdoc}
      */

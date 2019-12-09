@@ -156,6 +156,21 @@ use yii\helpers\Html;
                                             </tr>
                                         </table></td>
                                 </tr>
+                                <tr style="border-collapse:collapse;">
+                                    <td align="left" style="Margin:0;padding-top:5px;padding-bottom:5px;padding-left:30px;padding-right:30px;border-radius:0px 0px 10px 10px;background-position:left top;">
+                                        <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                                            <tr style="border-collapse:collapse;">
+                                                <td width="540" align="center" valign="top" style="padding:0;Margin:0;">
+                                                    <table cellpadding="0" cellspacing="0" width="100%" style="mso-table-lspace:0pt;mso-table-rspace:0pt;border-collapse:collapse;border-spacing:0px;">
+                                                        <tr style="border-collapse:collapse;">
+                                                            <td align="left" style="padding:0;Margin:0;">
+                                                            <small>Rezvan.info &copy; <?= date('Y', time()) ?></small>
+                                                            </td>
+                                                        </tr>
+                                                    </table></td>
+                                            </tr>
+                                        </table></td>
+                                </tr>
                             </table></td>
                     </tr>
                 </table></td>
