@@ -10,6 +10,6 @@ use yii\helpers\Html;
 use yii\web\View;
 
 ?>
-<section class="slide-2 video-slide">
+<section class="slide-2 video-slide" id="video-section-<?= $block->id ?>">
     <div class="picture-slide-1"><?= $block->getContent() ?></div>
 </section>

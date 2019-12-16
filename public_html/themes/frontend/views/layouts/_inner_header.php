@@ -100,19 +100,19 @@ use yii\helpers\Url; ?>
                     </div>
 
                     <div class="col-lg-6 right">
-                        <?php if (isset($this->context->submenu['gallery'])): ?>
-                            <a href="#gallery-section" class="unit"><?= trans('words', 'gallery') ?></a>
+                        <?php if (isset($this->context->submenu['gallery']) && $this->context->submenu['gallery']): ?>
+                            <a href="#gallery-<?= $this->context->submenu['gallery']->id ?>>" class="unit"><?= trans('words', 'gallery') ?></a>
                         <?php endif; ?>
-                        <?php if (isset($this->context->submenu['video'])): ?>
-                            <a href="#video-section" class="unit"><?= trans('words', 'video') ?></a>
+                        <?php if (isset($this->context->submenu['video']) && $this->context->submenu['video']): ?>
+                            <a href="#video-section-<?= $this->context->submenu['video']->id ?>" class="unit"><?= trans('words', 'video') ?></a>
                         <?php endif; ?>
-                        <?php if (isset($this->context->submenu['unit'])): ?>
+                        <?php if (isset($this->context->submenu['unit']) && $this->context->submenu['unit']): ?>
                             <a href="#unit-section" class="unit"><?= trans('words', 'unit') ?></a>
                         <?php endif; ?>
-                        <?php if (isset($this->context->submenu['map'])): ?>
+                        <?php if (isset($this->context->submenu['map']) && $this->context->submenu['map']): ?>
                             <a href="#map-section" class="on-map"><?= trans('words', 'on map') ?></a>
                         <?php endif; ?>
-                        <?php if (isset($this->context->submenu['nearby'])): ?>
+                        <?php if (isset($this->context->submenu['nearby']) && $this->context->submenu['nearby']): ?>
                             <a href="#nearby-section" class="near-you"><?= trans('words', 'near you') ?></a>
                         <?php endif; ?>
                     </div>
