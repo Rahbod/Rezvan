@@ -389,6 +389,8 @@ return [
     'Previous' => 'قبلی',
     'Next' => 'بعدی',
     'COMPANY REGISTRATION' => 'ثبت نام شرکت',
+    'gallery' => 'گالری تصاویر',
+    'video' => 'ویدئو',
     'unit' => 'واحد',
     'on map' => 'روی نقشه',
     'near you' => 'نزدیک شما',

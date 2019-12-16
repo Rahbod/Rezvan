@@ -107,3 +107,14 @@ li.menu-item {
 .more-one .collapse-link-more a.more:hover{
     color: #777;
 }
+
+.rtl .carousel-control-prev{
+    left: auto;
+    right: 0;
+    transform: rotate(180deg);
+}
+.rtl .carousel-control-next{
+    left: 0;
+    right: auto;
+    transform: rotate(180deg);
+}
