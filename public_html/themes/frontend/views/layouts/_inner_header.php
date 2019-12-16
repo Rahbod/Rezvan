@@ -101,19 +101,19 @@ use yii\helpers\Url; ?>
 
                     <div class="col-lg-6 right">
                         <?php if (isset($this->context->submenu['gallery']) && $this->context->submenu['gallery']): ?>
-                            <a href="#gallery-<?= $this->context->submenu['gallery']->id ?>>" class="unit"><?= trans('words', 'gallery') ?></a>
+                            <a href="#gallery-<?= $this->context->submenu['gallery']->id ?>" class="unit lazy-scroll"><?= trans('words', 'gallery') ?></a>
                         <?php endif; ?>
                         <?php if (isset($this->context->submenu['video']) && $this->context->submenu['video']): ?>
-                            <a href="#video-section-<?= $this->context->submenu['video']->id ?>" class="unit"><?= trans('words', 'video') ?></a>
+                            <a href="#video-section-<?= $this->context->submenu['video']->id ?>" class="unit lazy-scroll"><?= trans('words', 'video') ?></a>
                         <?php endif; ?>
                         <?php if (isset($this->context->submenu['unit']) && $this->context->submenu['unit']): ?>
-                            <a href="#unit-section" class="unit"><?= trans('words', 'unit') ?></a>
+                            <a href="#unit-section" class="unit lazy-scroll"><?= trans('words', 'unit') ?></a>
                         <?php endif; ?>
                         <?php if (isset($this->context->submenu['map']) && $this->context->submenu['map']): ?>
-                            <a href="#map-section" class="on-map"><?= trans('words', 'on map') ?></a>
+                            <a href="#map-section" class="on-map lazy-scroll"><?= trans('words', 'on map') ?></a>
                         <?php endif; ?>
                         <?php if (isset($this->context->submenu['nearby']) && $this->context->submenu['nearby']): ?>
-                            <a href="#nearby-section" class="near-you"><?= trans('words', 'near you') ?></a>
+                            <a href="#nearby-section" class="near-you lazy-scroll"><?= trans('words', 'near you') ?></a>
                         <?php endif; ?>
                     </div>
                 </div>
