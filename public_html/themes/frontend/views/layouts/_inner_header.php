@@ -14,13 +14,17 @@ use yii\helpers\Url; ?>
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
                                 <a href="<?= Url::to(['/site/index']) ?>">
-                                    <?php if(app()->language == 'ar'):?>
-                                        <img id="site-logo" src="<?= $baseUrl . '/images/logo-ar.png' ?>" alt="<?= app()->name ?>">
-                                        <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-ar-2.png' ?>" alt="<?= app()->name ?>">
-                                    <?php else:?>
-                                        <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
-                                        <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-02.png' ?>" alt="<?= app()->name ?>">
-                                    <?php endif;?>
+                                    <?php if (app()->language == 'ar'): ?>
+                                        <img id="site-logo" src="<?= $baseUrl . '/images/logo-ar.png' ?>"
+                                             alt="<?= app()->name ?>">
+                                        <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-ar-2.png' ?>"
+                                             alt="<?= app()->name ?>">
+                                    <?php else: ?>
+                                        <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>"
+                                             alt="<?= app()->name ?>">
+                                        <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-02.png' ?>"
+                                             alt="<?= app()->name ?>">
+                                    <?php endif; ?>
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
@@ -59,7 +63,8 @@ use yii\helpers\Url; ?>
                                     <form role="search" method="get" class="search-form clearfix"
                                           action="<?= Url::to(['/site/search']) ?>">
                                         <input dir="auto" type="search" class="search-field"
-                                               placeholder="<?= trans('words', 'Search') ?>" value="<?= Yii::$app->request->getQueryParam('query') ?>" name="query"
+                                               placeholder="<?= trans('words', 'Search') ?>"
+                                               value="<?= Yii::$app->request->getQueryParam('query') ?>" name="query"
                                                title="<?= trans('words', 'Search') ?>:" autocomplete="off">
                                         <input type="submit" class="search-submit" value="Search">
                                     </form>
@@ -95,9 +100,21 @@ use yii\helpers\Url; ?>
                     </div>
 
                     <div class="col-lg-6 right">
-                        <a href="#unit-section" class="unit"><?= trans('words', 'unit') ?></a>
-                        <a href="#map-section" class="on-map"><?= trans('words', 'on map') ?></a>
-                        <a href="#nearby-section" class="near-you"><?= trans('words', 'near you') ?></a>
+                        <?php if (isset($this->context->submenu['gallery'])): ?>
+                            <a href="#gallery-section" class="unit"><?= trans('words', 'gallery') ?></a>
+                        <?php endif; ?>
+                        <?php if (isset($this->context->submenu['video'])): ?>
+                            <a href="#video-section" class="unit"><?= trans('words', 'video') ?></a>
+                        <?php endif; ?>
+                        <?php if (isset($this->context->submenu['unit'])): ?>
+                            <a href="#unit-section" class="unit"><?= trans('words', 'unit') ?></a>
+                        <?php endif; ?>
+                        <?php if (isset($this->context->submenu['map'])): ?>
+                            <a href="#map-section" class="on-map"><?= trans('words', 'on map') ?></a>
+                        <?php endif; ?>
+                        <?php if (isset($this->context->submenu['nearby'])): ?>
+                            <a href="#nearby-section" class="near-you"><?= trans('words', 'near you') ?></a>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

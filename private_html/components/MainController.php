@@ -36,6 +36,7 @@ class MainController extends Controller implements CrudControllerInterface
     public $models;
     public $menus;
 
+    public $submenu = [];
     public $breadcrumbs = [];
 
     public function init()

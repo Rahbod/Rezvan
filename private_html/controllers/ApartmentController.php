@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\CrudControllerTrait;
+use app\models\Block;
 use app\models\Page;
 use app\models\Project;
 use app\models\projects\Apartment;
@@ -152,16 +153,22 @@ class ApartmentController extends AuthController
         /** @var Project $model */
         $model = $this->findModel($id);
 
-        if($model->project_type == Project::SINGLE_VIEW)
-        {
+        if ($model->project_type == Project::SINGLE_VIEW) {
             $this->bodyClass = 'final-project-view';
             $this->breadcrumbs = [
-                trans('words','Available Apartments'),
+                trans('words', 'Available Apartments'),
                 $model->getName(),
                 $model->getSubtitleStr(),
             ];
-        }
-        else
+
+            $this->submenu = [
+                'gallery' => $model->hasBlock(Block::TYPE_GALLERY),
+                'video' => $model->hasBlock(Block::TYPE_VIDEO),
+                'unit' => true,
+                'map' => $model->hasBlock(Block::TYPE_MAP_VIEW),
+                'nearby' => $model->hasBlock(Block::TYPE_NEARBY_ACCESS),
+            ];
+        } else
             $this->bodyClass = 'more-one';
 
         return $this->render('show', compact('model'));

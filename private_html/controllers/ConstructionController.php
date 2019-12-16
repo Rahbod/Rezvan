@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\components\AuthController;
 use app\components\CrudControllerTrait;
+use app\models\Block;
 use app\models\Project;
 use app\models\projects\OtherConstruction;
 use devgroup\dropzone\RemoveAction;
@@ -151,6 +152,14 @@ class ConstructionController extends AuthController
                 trans('words', 'Other Construction'),
                 $model->getName(),
                 $model->getSubtitleStr(),
+            ];
+
+            $this->submenu = [
+                'gallery' => $model->hasBlock(Block::TYPE_GALLERY),
+                'video' => $model->hasBlock(Block::TYPE_VIDEO),
+                'unit' => true,
+                'map' => $model->hasBlock(Block::TYPE_MAP_VIEW),
+                'nearby' => $model->hasBlock(Block::TYPE_NEARBY_ACCESS),
             ];
         } else
             $this->bodyClass = 'more-one';

@@ -120,11 +120,18 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                         </div>
                         <div class="item-inner">
                             <?php foreach ($free as $unit): ?>
-                                <div class="items">
+                                <div class="items collapsed" data-toggle="collapse" data-target="#item-<?= $unit->id ?>">
                                     <?= $this->render('//unit/_unit_items', ['model' => $unit]) ?>
                                     <div class="item link-more">
-                                        <a href="<?= $unit->getUrl() ?>"
-                                           class="more"><?= trans('words', 'More ...') ?></a>
+                                        <a class="more"><?= trans('words', 'More ...') ?></a>
+                                    </div>
+                                    <div id="item-<?= $unit->id ?>" class="item-list w-100 collapse" style="">
+                                        <?= $this->render('//unit/_unit_details', ['model' => $unit]) ?>
+
+                                        <div class="collapse-link-more">
+                                            <a href="<?= $unit->getUrl() ?>"
+                                               class="more"><?= trans('words', 'More ...') ?></a>
+                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
@@ -142,11 +149,18 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                         </div>
                         <div class="item-inner">
                             <?php foreach ($sold as $unit): ?>
-                                <div class="items">
+                                <div class="items collapsed" data-toggle="collapse" data-target="#item-<?= $unit->id ?>">
                                     <?= $this->render('//unit/_unit_items', ['model' => $unit, 'sold' => true]) ?>
                                     <div class="item link-more">
-                                        <a href="<?= $unit->getUrl() ?>"
-                                           class="more"><?= trans('words', 'More ...') ?></a>
+                                        <a class="more"><?= trans('words', 'More ...') ?></a>
+                                    </div>
+                                    <div id="item-<?= $unit->id ?>" class="item-list w-100 collapse" style="">
+                                        <?= $this->render('//unit/_unit_details', ['model' => $unit]) ?>
+
+                                        <div class="collapse-link-more">
+                                            <a href="<?= $unit->getUrl() ?>"
+                                               class="more"><?= trans('words', 'More ...') ?></a>
+                                        </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>

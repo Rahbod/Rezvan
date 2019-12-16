@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\components\CrudControllerTrait;
+use app\models\Block;
 use app\models\Project;
 use app\models\projects\Apartment;
 use devgroup\dropzone\RemoveAction;
@@ -165,6 +166,14 @@ class UnitController extends AuthController
         $this->bodyClass = 'final-project-view special';
 
         $model = $this->findModel($id);
+
+        $this->submenu = [
+            'gallery' => $model->hasBlock(Block::TYPE_GALLERY),
+            'video' => $model->hasBlock(Block::TYPE_VIDEO),
+            'unit' => true,
+            'map' => $model->hasBlock(Block::TYPE_MAP_VIEW),
+            'nearby' => $model->hasBlock(Block::TYPE_NEARBY_ACCESS),
+        ];
 
         return $this->render('show', compact('model'));
     }

@@ -372,6 +372,11 @@ JS
         return $this->hasMany(Block::className(), [Block::columnGetString('itemID') => 'id'])->orderBy([Block::columnGetString('sort') => SORT_ASC]);
     }
 
+    public function hasBlock($type)
+    {
+        return Block::find()->andWhere(['type' => $type, self::columnGetString('itemID') => $this->id])->exists();
+    }
+
     public function getUnits()
     {
         return $this->hasMany(Unit::className(), [Unit::columnGetString('itemID') => 'id']);

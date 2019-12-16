@@ -590,4 +590,9 @@ class Unit extends Item
             return $this->{Yii::$app->language . '_description'} ?: $this->description;
         return $this->description;
     }
+
+    public function hasBlock($type)
+    {
+        return Block::find()->andWhere(['type' => $type, self::columnGetString('itemID') => $this->id])->exists();
+    }
 }
