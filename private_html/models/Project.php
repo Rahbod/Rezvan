@@ -374,7 +374,7 @@ JS
 
     public function hasBlock($type)
     {
-        return Block::find()->andWhere(['type' => $type, self::columnGetString('itemID') => $this->id])->orderBy([Block::columnGetString('sort') => SORT_ASC])->one();
+        return Block::find()->andWhere(['type' => $type, Block::columnGetString('itemID') => $this->id])->orderBy([Block::columnGetString('sort') => SORT_ASC])->one();
     }
 
     public function getUnits()
