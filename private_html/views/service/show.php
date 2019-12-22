@@ -57,13 +57,13 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                                             break;
                                         $apartment = $availableApartments[$j]; ?>
                                         <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                            <img src="<?= $apartment->getModelImage() ?>"
-                                                 alt="<?= $apartment->getName() ?>">
                                             <a href="<?= $apartment->getUrl() ?>">
+                                                <img src="<?= $apartment->getModelImage() ?>"
+                                                     alt="<?= $apartment->getName() ?>">
                                                 <h2 class="item-title"><?= $apartment->getName() ?></h2>
+                                                <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                                <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
                                             </a>
-                                            <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
-                                            <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
                                         </div>
                                     <?php endfor; ?>
                                 </div>

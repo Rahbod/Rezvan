@@ -17,9 +17,9 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= trans('words', 'Floor number') ?></td>
         <td><?= $model->getFloorNumberStr() ?></td>
 
-        <td><?= trans('words', 'Wall') ?></td>
-        <td><?= $model->getWallStr() ?></td>
-        
+        <td><?= trans('words', 'wc') ?></td>
+        <td><?= $model->getWcStr() ?></td>
+
         <td><?= trans('words', 'Gas point') ?></td>
         <td><?= $model->getGasPointStr() ?></td>
     </tr>
@@ -27,21 +27,21 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= trans('words', 'Surface') ?></td>
         <td><?= $model->getSurfaceStr() ?></td>
 
+        <td><?= trans('words', 'Bed room') ?></td>
+        <td><?= $model->getBedRoomStr() ?></td>
+
         <td><?= trans('words', 'Parking') ?></td>
         <td><?= $model->getParkingStr() ?></td>
-
-        <td><?= trans('words', 'Cabinets') ?></td>
-        <td><?= $model->getCabinetsStr() ?></td>
 
         <td><?= trans('words', 'Power point') ?></td>
         <td><?= $model->getPowerPointStr() ?></td>
     </tr>
     <tr>
-        <td><?= trans('words', 'Heating system') ?></td>
-        <td><?= $model->getHeating_systemStr() ?></td>
+        <td><?= trans('words', 'Cabinets') ?></td>
+        <td><?= $model->getCabinetsStr() ?></td>
 
-        <td><?= trans('words', 'Cooling system') ?></td>
-        <td><?= $model->getCooling_systemStr() ?></td>
+        <td><?= trans('words', 'Master bed room') ?></td>
+        <td><?= $model->getMasterBedRoomStr() ?></td>
 
         <td><?= trans('words', 'Elevator') ?></td>
         <td><?= $model->getElevatorStr() ?></td>
@@ -50,8 +50,8 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= $model->getWaterPointStr() ?></td>
     </tr>
     <tr>
-        <td><?= trans('words', 'wc') ?></td>
-        <td><?= $model->getWcStr() ?></td>
+        <td><?= trans('words', 'Wall') ?></td>
+        <td><?= $model->getWallStr() ?></td>
 
         <td><?= trans('words', 'Toilet') ?></td>
         <td><?= $model->getToiletStr() ?></td>
@@ -63,8 +63,8 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= $model->getTelephonePointStr() ?></td>
     </tr>
     <tr>
-        <td><?= trans('words', 'Bed room') ?></td>
-        <td><?= $model->getBedRoomStr() ?></td>
+        <td><?= trans('words', 'Heating system') ?></td>
+        <td><?= $model->getHeating_systemStr() ?></td>
 
         <td><?= trans('words', 'Bath room') ?></td>
         <td><?= $model->getBathRoomStr() ?></td>
@@ -76,8 +76,8 @@ $baseUrl = $this->theme->baseUrl;
         <td><?= $model->getIPhoneStr() ?></td>
     </tr>
     <tr>
-        <td><?= trans('words', 'Master bed room') ?></td>
-        <td><?= $model->getMasterBedRoomStr() ?></td>
+        <td><?= trans('words', 'Cooling system') ?></td>
+        <td><?= $model->getCooling_systemStr() ?></td>
     </tr>
     </tbody>
 </table>
