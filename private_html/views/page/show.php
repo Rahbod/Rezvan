@@ -25,7 +25,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
         </div>
     </div>
     <div class="main-content">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="main-section-page">
                     <div class="txt-post-page-test">

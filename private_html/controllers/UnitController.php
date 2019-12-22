@@ -173,6 +173,7 @@ class UnitController extends AuthController
             'unit' => true,
             'map' => $model->hasBlock(Block::TYPE_MAP_VIEW),
             'nearby' => $model->hasBlock(Block::TYPE_NEARBY_ACCESS),
+            'contact' => $model->hasBlock(Block::TYPE_CONTACT),
         ];
 
         return $this->render('show', compact('model'));

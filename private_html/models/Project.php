@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
+use app\models\blocks\Contact;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\RelatedProjects;
 use app\models\blocks\UnitDetails;
@@ -418,7 +419,7 @@ JS
             $project->unit = $unit;
 
         $output = '';
-        foreach ($this->blocks as $block) {
+        foreach ($this->getBlocks()->andWhere(['!=', 'type', Block::TYPE_CONTACT])->all() as $block) {
             $type = $block->type;
             /** @var Block $modelClass */
             $modelClass = Block::$typeModels[$type];
@@ -426,11 +427,18 @@ JS
             $output .= $block->render($view, $project);
         }
 
+        /** @var Contact $contactBlock */
+        $contactBlock = Contact::find()->andWhere([Block::columnGetString('itemID') => $this->id])->orderBy([Block::columnGetString('sort') => SORT_ASC])->one();
+
         // render static unit blocks
         if ($project->unit) {
             // render unit details
             $block = new UnitDetails($project->unit);
             $output .= $block->render($view);
+
+            // render contact block
+            if($contactBlock)
+                $output .= $contactBlock->render($view, $project);
 
             // render other units
             $block = new OtherUnits($project->unit);
@@ -439,6 +447,10 @@ JS
             // render project units
             $block = new Units();
             $output .= $block->render($view, $this);
+
+            // render contact block
+            if($contactBlock)
+                $output .= $contactBlock->render($view, $project);
 
             // render related projects
             $block = new RelatedProjects();
@@ -513,12 +525,12 @@ JS
 
     public function beforeSave($insert)
     {
-        if($this->special) {
+        if ($this->special) {
             /** @var Project $modelClass */
             $modelClass = get_called_class();
             /** @var Project $lastSpec */
             $lastSpec = $modelClass::find()->andWhere([self::columnGetString('special') => 1])->one();
-            if($lastSpec) {
+            if ($lastSpec) {
                 $lastSpec->special = 0;
                 $lastSpec->save();
             }

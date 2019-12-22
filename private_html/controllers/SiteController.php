@@ -34,6 +34,7 @@ class SiteController extends AuthController
         return [
             'index',
             'contact',
+            'coming-soon'
 //            'about',
         ];
     }
@@ -62,6 +63,10 @@ class SiteController extends AuthController
                 ],
             ],
         ];
+    }
+    
+    public function actionComingSoon(){
+        return $this->renderPartial('coming_soon');
     }
 
     /**

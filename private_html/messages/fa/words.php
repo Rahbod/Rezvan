@@ -61,6 +61,7 @@ return [
     'Content' => 'محتوا',
     'Module Name' => 'نام ماژول',
     'Gallery' => 'گالری تصاویر',
+    'Contact' => 'تماس با ما',
     'show' => 'نمایش',
     'Link' => 'پیوند',
     'Embed code' => 'اسکریپت ویدئو',
@@ -290,6 +291,7 @@ return [
     'Pdf file' => 'فایل pdf',
     'Download As<br><strong>PDF</strong>' => '<strong>دانلود فایل pdf</strong>',
     'More ...' => 'بیشتر ...',
+    'For more details ...' => 'توضیحات بیشتر ...',
 
     // blocks
     '<strong>Current status</strong></br> of the building' => '<strong>وضعیت فعلی</strong></br> آپارتمان',

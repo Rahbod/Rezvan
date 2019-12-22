@@ -4,6 +4,7 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\UnitController;
+use app\models\blocks\Contact;
 use app\models\blocks\NearbyAccess;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\UnitDetails;
@@ -336,7 +337,7 @@ class Unit extends Item
     {
         $have_nearby = false;
         $output = '';
-        foreach ($this->blocks as $block) {
+        foreach ($this->getBlocks()->andWhere(['!=', 'type', Block::TYPE_CONTACT])->all() as $block) {
             $type = $block->type;
             /** @var Block $modelClass */
             $modelClass = Block::$typeModels[$type];
@@ -360,6 +361,12 @@ class Unit extends Item
         // render unit details
         $block = new UnitDetails($this);
         $output .= $block->render($view);
+
+        // render contact block
+        /** @var Contact $contactBlock */
+        $contactBlock = Contact::find()->andWhere([Block::columnGetString('itemID') => $this->id])->orderBy([Block::columnGetString('sort') => SORT_ASC])->one();
+        if($contactBlock)
+            $output .= $contactBlock->render($view);
 
         // render other units
         $block = new OtherUnits($this);

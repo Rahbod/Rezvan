@@ -21,8 +21,8 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                 <div class="title-left">
                     <img src="<?= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">
                     <div class="text">
-                        <h2 class="slide"><?= trans('words', '<strong>available </strong> apartment') ?></h2><br>
-                        <span class="slide"><strong><?= $project->getName() . ' ' . $project->getSubtitleStr() ?></strong></span>
+                        <span class="slide"><strong><?= $project->getName() ?></strong></span><br>
+                        <h2 class="slide"><?= trans('words', '<strong>available </strong> apartment').' / '.$project->getSubtitleStr() ?></h2>
                     </div>
                 </div>
                 <div class="title-right">
@@ -130,7 +130,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
 
                                         <div class="collapse-link-more">
                                             <a href="<?= $unit->getUrl() ?>"
-                                               class="more"><?= trans('words', 'More ...') ?></a>
+                                               class="more"><?= trans('words', 'For more details ...') ?></a>
                                         </div>
                                     </div>
                                 </div>
@@ -159,7 +159,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
 
                                         <div class="collapse-link-more">
                                             <a href="<?= $unit->getUrl() ?>"
-                                               class="more"><?= trans('words', 'More ...') ?></a>
+                                               class="more"><?= trans('words', 'For more details ...') ?></a>
                                         </div>
                                     </div>
                                 </div>

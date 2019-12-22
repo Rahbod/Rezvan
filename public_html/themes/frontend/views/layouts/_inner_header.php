@@ -51,7 +51,7 @@ use yii\helpers\Url; ?>
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
                                                 <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
                                                     <a class="dropdown-item"
-                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $val ?></a>
                                                 <?php endforeach; ?>
                                             </div>
                                         </li>
@@ -114,6 +114,9 @@ use yii\helpers\Url; ?>
                         <?php endif; ?>
                         <?php if (isset($this->context->submenu['nearby']) && $this->context->submenu['nearby']): ?>
                             <a href="#nearby-section" class="near-you lazy-scroll"><?= trans('words', 'near you') ?></a>
+                        <?php endif; ?>
+                        <?php if (isset($this->context->submenu['contact']) && $this->context->submenu['contact']): ?>
+                            <a href="#contact-section" class="near-you lazy-scroll"><?= trans('words', 'Contact') ?></a>
                         <?php endif; ?>
                     </div>
                 </div>

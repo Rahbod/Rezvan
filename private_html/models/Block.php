@@ -24,6 +24,7 @@ class Block extends Item implements BlockInterface
     const TYPE_MAP_VIEW = 4;
     const TYPE_NEARBY_ACCESS = 5;
     const TYPE_GALLERY = 6;
+    const TYPE_CONTACT = 7;
 //    const TYPE_UNITS_BLOCK = 6;
 //    const TYPE_RELATED_PROJECTS = 7;
 
@@ -37,6 +38,7 @@ class Block extends Item implements BlockInterface
         self::TYPE_MAP_VIEW => 'Map view',
         self::TYPE_NEARBY_ACCESS => 'Nearby access',
         self::TYPE_GALLERY => 'Gallery',
+        self::TYPE_CONTACT => 'Contact',
 //        self::TYPE_UNITS_BLOCK => 'Units block',
 //        self::TYPE_RELATED_PROJECTS => 'Related projects block',
     ];
@@ -48,6 +50,7 @@ class Block extends Item implements BlockInterface
         self::TYPE_MAP_VIEW => 'app\models\blocks\Map',
         self::TYPE_NEARBY_ACCESS => 'app\models\blocks\NearbyAccess',
         self::TYPE_GALLERY => 'app\models\blocks\Gallery',
+        self::TYPE_CONTACT => 'app\models\blocks\Contact',
 //        self::TYPE_UNITS_BLOCK => 'app\models\blocks\Units',
 //        self::TYPE_RELATED_PROJECTS => 'app\models\blocks\RelatedProjects',
     ];
