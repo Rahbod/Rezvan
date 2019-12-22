@@ -197,7 +197,8 @@ class ServiceController extends AuthController
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
-        $this->bodyClass = 'text-page';
+
+        $this->bodyClass = 'text-page more-one list';
         $this->headerClass = 'header-style-2';
         $this->mainTag = 'main-text-page';
 

@@ -15,12 +15,10 @@ $baseUrl = $this->theme->baseUrl;
 $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
 ?>
 <section class="main-text">
-    <div class="title-page">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="title">
-                    <h1><strong><?= $this->title ?></strong></h1>
-                </div>
+    <div class="slide-title">
+        <div class="title-left">
+            <div class="text">
+                <h2 class="slide"><strong><?= $this->title ?></strong></h2>
             </div>
         </div>
     </div>

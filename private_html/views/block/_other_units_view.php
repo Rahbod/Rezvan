@@ -30,9 +30,9 @@ $baseUrl = $this->theme->baseUrl;
                                                 break;
                                             $unit = $units[$j]; ?>
                                             <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
-                                                <a href="<?= $unit->getUrl() ?>"><h2 class="item-title">
+                                                <a href="<?= $unit->getUrl() ?>">
                                                     <img src="<?= $unit->getModelImage(true) ?>" alt="<?= $unit->getName() ?>">
-                                                    <?= $unit->getName() ?></h2>
+                                                    <h2 class="item-title"><?= $unit->getName() ?></h2>
                                                     <span class="description"><?= $unit->getSubtitleStr() ?><?= $unit->getSubtitle2Str()?' / ':'' ?></span>
                                                     <span class="description-2"><?= $unit->getSubtitle2Str() ?></span>
                                                 </a>
