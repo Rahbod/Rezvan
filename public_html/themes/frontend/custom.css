@@ -158,3 +158,8 @@ li.menu-item {
 .rtl.more-one .title-left span.slide{
     padding-right: 10px;
 }
+
+.final-project-view .bg-slide>.container-fluid{
+    left: 0;
+    right: 0;
+}
