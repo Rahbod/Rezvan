@@ -63,6 +63,7 @@ class Image extends Block
                 'temp' => MainController::$tempDir,
                 'path' => BlockController::$imgDir,
                 'filesOptions' => BlockController::$imageOptions,
+                'hint' => 'حداقل عرض تصویر: 1920 پیکسل',
                 'options' => [
                     'name' => Html::getInputName(new Block(), 'image'),
                     'url' => Url::to(['upload-image']),
