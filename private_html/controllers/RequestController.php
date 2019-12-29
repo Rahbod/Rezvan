@@ -73,9 +73,14 @@ class RequestController extends AuthController implements CrudControllerInterfac
      */
     public function actionView($id)
     {
+        /** @var Request $model */
         $model = $this->findModel($id);
         if ($model->status == Request::STATUS_UNREAD) {
             $model->status = Request::STATUS_PENDING;
+            $model->save();
+        }
+        if(is_null($model->user_lang)){
+            $model->user_lang = 'ar';
             $model->save();
         }
         return $this->render('view', [

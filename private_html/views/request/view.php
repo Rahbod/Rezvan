@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php
                 foreach ($model->dynaDefaults as $key => $config):
                     if (in_array($key, [
-                        'email', 'mobile', 'phone', 'details',
+                        'email', 'mobile', 'phone', 'details', 'user_lang',
                         'heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit',
                         'price_from', 'price_to', 'currency',
                         'area_from', 'area_to', 'area_unit',
