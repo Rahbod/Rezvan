@@ -34,6 +34,7 @@ class SiteController extends AuthController
         return [
             'index',
             'contact',
+            'infography',
             'coming-soon'
 //            'about',
         ];
@@ -258,5 +259,13 @@ class SiteController extends AuthController
     public function getProjects()
     {
         return Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+    }
+
+    public function actionInfography()
+    {
+        $this->setTheme('frontend');
+        $this->layout = 'infography';
+
+        return $this->render('info');
     }
 }

@@ -129,6 +129,7 @@ return [
     'apartment.list' => 'نمایش آپارتمان ها',
     'investment.list' => 'نمایش سرمایه گذاری ها',
     'construction.list' => 'نمایش دیگر سازه ها',
+    'site.infography' => 'اینفوگرافی',
     'site.about' => 'درباره ما',
     'apartment' => 'آپارتمان ها',
     'investment' => 'سرمایه گذاری',

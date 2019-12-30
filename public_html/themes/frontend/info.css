@@ -1,0 +1,272 @@
+#icon-info-1, .icon-info {
+    display: inline-block;
+}
+.icon-info-box {
+    padding-right: 0;
+}
+#icon-info-2 {
+    height: 9vw;
+	vertical-align: top;
+}
+#icon-info-1 {
+        width: 4vw;
+    padding: 0 1vw 0 0;
+    vertical-align: sub;
+}
+.logo-3 .header-inner {
+    margin: 5px;
+    text-align: center;
+}
+#site-logo-3 {
+    width: 9vw;
+}
+p.icon-info {
+    color: #e23131;
+    font-weight: 600;
+    font-size: 1.3vw;
+    padding: 2.5vw 0;
+    margin: 0;
+}
+#header.fixed-menu {
+    background-color: #f3f3f3!important;
+}
+#header {
+	height: unset !important;
+}
+.fixed-menu .icon-info-box {
+    padding-right: 0 !important;
+}
+.fixed-menu #icon-info-2 {
+    height: 60px;
+}
+.fixed-menu #icon-info-1 {
+    width: 3vw;
+}
+.fixed-menu .icon-info {
+    font-size: 12px;
+    padding: 5px 0;
+}
+.fixed-menu #site-logo-3 {
+    width: 50px;
+}
+section.main-info {
+    min-height: 1450px;
+}
+#way {
+	width: 99%;
+    float: right;
+    min-width: 1890px;
+}
+.way {
+	overflow: hidden;
+    width: 100%;
+    position: absolute;
+    right: 0;
+    top: 30vw;
+    animation-name: way;
+    animation-duration: 13s;
+    animation-timing-function: linear;
+}
+@keyframes way {
+  0%   {width: 0;height:2.66vw;}
+  10%  {width: 15vw;height:2.66vw;}
+  19%  {width: 30vw;height: 2.66vw;}
+  25%  {width: 30vw;height:5.2vw;}
+  35%  {width: 30vw;height: 7.9vw;}
+  45%  {width: 30vw;height: 9.5vw;}
+  55%  {width: 53vw;height: 14vw;}
+  65%  {width: 53vw;height: 23.3vw;}
+  75%  {width: 70vw;height: 78%;}
+  90%  {width: 100%;height:82%;}
+  100% {width: 100%;height:100%;}
+}
+.first-icon {overflow: hidden;width: 31vw;position: absolute;right: 0;top: 15vw;animation-name: first-icon;animation-duration: 1s;animation-timing-function: cubic-bezier(0, 0.01, 0.01, 0.5);}
+@keyframes first-icon {
+  0%   {transform: scale(0);}
+  30%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#first-icon {width: 47%;margin-right: 30%;}
+.first-icon-text {position: absolute;z-index: 2;top: 2vw;left: 38%;}
+p.icon-text {font-size: 5vw;font-weight: 600;z-index: 1000;font-family: arial;color: #fff;}
+.first-desc {overflow: hidden;width: 11vw;position: absolute;right: 24vw;top: 18vw;}
+
+#first-icon-desc {float: right;width: 3vw;;animation-name: first-icon-desc;animation-duration: 2s;animation-timing-function: cubic-bezier(0, 0.01, 0.01, 0.5);}
+@keyframes first-icon-desc {
+  0%   {transform: scale(0);}
+  50%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+.first-desc p.desc-title {animation-name: first-desc-title;animation-duration: 3s;animation-timing-function: cubic-bezier(0, 0.01, 0.01, 0.5);}
+@keyframes first-desc-title {
+  0%   {transform: scale(0);}
+  50%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+.first-desc p.desc-text {animation-name: first-desc-text;animation-duration: 3.5s;animation-timing-function: cubic-bezier(0, 0.01, 0.01, 0.5);}
+@keyframes first-desc-text {
+  0%   {transform: scale(0);}
+  50%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+.description-text {float: right;text-align: right;clear: both;}
+p.desc-title {color: #357bb7;font-size: 1.1vw;font-weight: 800;margin-bottom: 0;margin-top: 5px;}
+p.desc-text {font-size: 1vw;font-weight: 600;margin: 0;}
+.second-item {
+    direction: rtl;
+}
+.second-icon {overflow: hidden;width: 17vw;position: absolute;left: 37vw;top: 22vw;animation-name: second-icon;animation-duration: 4s;animation-timing-function: linear;}
+#second-icon {width: 15vw;}
+@keyframes second-icon {
+  0%   {transform: scale(0);}
+  60%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+.second-icon-text {position: absolute;z-index: 2;top: 3vw;left: 36%;}
+.second-desc p.desc-title {color:#17acda;animation-name: second-desc-title;animation-duration: 6s;animation-timing-function: linear;}
+.second-desc {overflow: hidden;width: 15%;position: absolute;left: 25%;top: 23vw;}
+#second-icon-desc {float: right;width: 4vw;animation-name: second-icon-desc;animation-duration: 5s;animation-timing-function: linear;}
+@keyframes second-icon-desc {
+  0%   {transform: translateX(-150%) scale(0)}
+  70%  {transform: translateX(-100%) scale(0)}
+  100% {transform: translateX(0) scale(1)}
+}
+.second-desc {}
+@keyframes second-desc-title {
+  0%   {transform: translateX(-150%) scale(0)}
+  70%  {transform: translateX(-100%) scale(0)}
+  100% {transform: translateX(0) scale(1)}
+}
+.second-desc p.desc-text {animation-name: second-desc-text;animation-duration: 6.5s;animation-timing-function: linear;}
+@keyframes second-desc-text {
+  0%   {transform: translateX(-150%) scale(0)}
+  70%  {transform: translateX(-100%) scale(0)}
+  100% {transform: translateX(0) scale(1)}
+}
+.third-icon {overflow: hidden;width: 15vw;position: absolute;right: 2vw;top: 43vw;animation-name: third-icon;animation-duration: 6.5s;animation-timing-function: linear;}
+#third-icon {width: 14vw;}
+@keyframes third-icon {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+.third-icon-text {position: absolute;z-index: 2;top: 3vw;left: 36%;}
+.third-desc {overflow: hidden;width: 15%;position: absolute;right: 17%;top: 54vw;animation-name: third-desc;animation-duration: 7s;animation-timing-function: linear;}
+.third-desc p.desc-title {color:#5449b1;}
+@keyframes third-desc {
+  0%   {transform: translateX(3000px);}
+  70%  {transform: translateX(2500px);}
+  100% {transform: translateX(0);}
+}
+#third-icon-desc {float: right;width: 5vw;}
+.fourth-icon {overflow: hidden;width: 16vw;position: absolute;left: 24vw;top: 38vw;animation-name: fourth-icon;animation-duration: 8s;animation-timing-function: linear;}
+@keyframes fourth-icon {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#fourth-icon {width: 14vw;}
+.fourth-icon-text {position: absolute;z-index: 2;top: 3vw;left: 36%;}
+.fourth-desc {overflow: hidden;width: 15%;position: absolute;left: 10%;top: 42vw;}
+.fourth-desc p.desc-title {color:#c53496;animation-name: fourth-desc-title;animation-duration: 9s;animation-timing-function: linear;}
+.fourth-desc p.desc-text {animation-name: fourth-desc-text;animation-duration: 10s;animation-timing-function: linear;}
+@keyframes fourth-desc-title {
+  0%   {transform: scale(0);}
+  70%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+@keyframes fourth-desc-text {
+  0%   {transform: scale(0);}
+  70%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#fourth-icon-desc {float: right;width: 4vw;animation-name: fourth-icon-desc;animation-duration: 10s;animation-timing-function: linear;}
+@keyframes fourth-icon-desc {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+.fifth-icon {overflow: hidden;width: 16vw;position: absolute;left: 55vw;top: 65vw;animation-name: fifth-icon;animation-duration: 10s;animation-timing-function: linear;}
+@keyframes fifth-icon {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#fifth-icon {width: 14vw;}
+.fifth-icon-text {position: absolute;z-index: 2;top: 3vw;left: 36%;}
+.fifth-desc {overflow: hidden;width: 15%;position: absolute;left: 42%;top: 68vw;animation-name: fifth-desc;animation-duration: 12s;animation-timing-function: linear;}
+.fifth-desc p.desc-title {color:#fb9e0f;}
+@keyframes fifth-desc {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#fifth-icon-desc {float: right;width: 4vw;}
+.sixth-icon {overflow: hidden;width: 18vw;position: absolute;left: 12vw;top: 79vw;animation-name: sixth-icon;animation-duration: 12s;animation-timing-function: linear;}
+@keyframes sixth-icon {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#sixth-icon {width: 17vw;}
+.sixth-icon-text {position: absolute;z-index: 2;top: 3vw;left: 36%;}
+.sixth-desc {overflow: hidden;width: 15%;position: absolute;left: 27%;top: 88vw;animation-name: sixth-desc;animation-duration: 13s;animation-timing-function: linear;}
+.sixth-desc p.desc-title {color:#9cbe13;}
+@keyframes sixth-desc {
+  0%   {transform: scale(0);}
+  90%  {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+#sixth-icon-desc {float: right;width: 3vw;}
+.way-line {overflow: hidden;width: 100%;position: absolute;top: 10vw;right: 0;}
+#way-line {position: absolute;top: 15vw;right: 0px;width: 95%;animation-name: way-line;animation-duration: 13s;animation-timing-function: linear;}
+@keyframes way-line {
+  0%   {opacity: 0;}
+  90%  {opacity: 0;}
+  100% {opacity: 1;}
+}
+.footnote {
+    bottom: 5vw;
+    padding-right: 30px;
+    position: relative;
+	height: 0;
+}
+.footnote h3 {
+    font-size: 2vw;
+	color: red;
+}
+.footnote p {
+    font-size: 1vw;
+	margin: 0;
+    line-height: 2;
+}
+.footer-info {
+    background: url(images/footer-bg-info.png) top center no-repeat;
+    background-size: cover;
+	min-height: 25vw;
+}
+.footer-right-box {
+    text-align: left;
+    font-size: 0.7vw;
+    line-height: 2;
+    margin-top: 14vw;
+	direction: ltr;
+}
+.footer-right-box h3 {
+    font-size: 1vw;
+    font-weight: 600;
+}
+.footer-right-box p {
+    margin: 0;
+}
+.footer-left-box {
+    margin-top: 12vw;
+    border-right: 1px solid;
+}
+.footer-right-box .social-item a {
+    color: #4b4742;
+    font-size: 1vw;
+}
+.social-icon {
+    position: absolute;
+}
