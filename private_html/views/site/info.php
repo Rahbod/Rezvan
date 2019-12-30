@@ -2,6 +2,7 @@
 /** @var $this View */
 
 use app\components\Setting;
+use yii\helpers\Url;
 use yii\web\View;
 
 ?>
@@ -20,7 +21,7 @@ use yii\web\View;
                 <div class="header-inner clearfix">
                     <div id="site-branding" class="site-branding">
                         <h1 id="site-title" class="logo img-logo">
-                            <a href="#">
+                            <a href="<?= Url::to(['/site/index']) ?>" title="<?= app()->name ?>">
                                 <img id="site-logo-3" src="<?= $this->theme->baseUrl ?>/images/Logo-3.png" alt="rezvan">
                                 <span class="site-title"><?= app()->name ?></span>
                             </a>
@@ -156,12 +157,13 @@ use yii\web\View;
                     <a class="address-link" target="_blank" href="<?= Setting::get('address_link') ?>">
                         <p><?= Setting::get(app()->language == 'fa' ? 'address' : app()->language . '_address') ?></p>
                     </a>
-                    <a href="tel:<?= str_replace(' ', '', Setting::get('tell')) ?>"><p><?= Setting::get('tell') ?></p>
-                    </a>
+                    <a href="tel:<?= str_replace(' ', '', Setting::get('tell')) ?>"><p><?= Setting::get('tell') ?></p></a>
                     <?= $this->render('//layouts/_socials') ?>
                 </div>
                 <div class="col-6 footer-left-box">
-                    <img id="site-logo-3" src="<?= $this->theme->baseUrl ?>/images/Logo-3.png" alt="rezvan">
+                    <a href="<?= Url::to(['/site/index']) ?>" title="<?= app()->name ?>">
+                        <img id="site-logo-3" src="<?= $this->theme->baseUrl ?>/images/Logo-3.png" alt="rezvan">
+                    </a>
                 </div>
             </div>
         </div>

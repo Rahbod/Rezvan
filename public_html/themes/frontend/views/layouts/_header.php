@@ -19,7 +19,7 @@ $baseUrl = $this->theme->baseUrl;
                     <div class="header-inner clearfix">
                         <div id="site-branding" class="site-branding">
                             <h1 id="site-title" class="logo img-logo">
-                                <a href="<?= Url::to(['/site/index']) ?>" <?= app()->name ?>>
+                                <a href="<?= Url::to(['/site/index']) ?>" title="<?= app()->name ?>">
                                     <?php if(app()->language == 'ar'):?>
                                         <img id="site-logo" src="<?= $baseUrl . '/images/logo-ar.png' ?>" alt="<?= app()->name ?>">
                                         <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-ar-2.png' ?>" alt="<?= app()->name ?>">
