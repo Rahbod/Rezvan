@@ -52,7 +52,7 @@ $baseUrl = $this->theme->baseUrl;
                                             <div class="dropdown-menu" aria-labelledby="lang-select">
                                                 <?php foreach (MultiLangActiveRecord::$showLangArray as $key => $val): ?>
                                                     <a class="dropdown-item"
-                                                       href="<?= Url::to(["/$key"]) ?>"><?= $key ?></a>
+                                                       href="<?= Url::to(["/$key"]) ?>"><?= $val ?></a>
                                                 <?php endforeach; ?>
                                             </div>
                                         </li>

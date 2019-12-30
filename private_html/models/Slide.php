@@ -83,6 +83,7 @@ class Slide extends Item
                 'temp' => MainController::$tempDir,
                 'path' => ListController::$imgDir,
                 'filesOptions' => ListController::$imageOptions,
+                'hint' => 'حداقل سایز تصویر: 1920 در 1080 پیکسل',
                 'options' => [
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),

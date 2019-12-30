@@ -55,6 +55,7 @@ class Investment extends Project
                 'temp' => MainController::$tempDir,
                 'path' => InvestmentController::$imgDir,
                 'filesOptions' => InvestmentController::$imageOptions,
+                'hint' => 'حداقل سایز تصویر: 600 در 600 پیکسل',
                 'options' => [
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),

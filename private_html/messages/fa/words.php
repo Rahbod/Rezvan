@@ -550,6 +550,7 @@ return [
     'Type of unit' => 'نوع واحد',
     'City' => 'شهر',
     'Unit rooms' => 'تعداد اتاق',
+    'Building old' => 'سن بنا',
 
     // request page
     'REGISTER YOUR REQUEST' => 'ثبت درخواست',

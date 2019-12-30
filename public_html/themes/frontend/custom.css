@@ -64,6 +64,7 @@ li.menu-item {
     margin-right: 15px;
 }
 
+#header.header-style-1,
 .final-project-view #header.header-style-2 {
     z-index: 1;
 }
@@ -76,12 +77,25 @@ li.menu-item {
     background-color: #fff !important;
 }
 
+.more-one .sold .items.collapsed:hover {
+    background-color: #c24040 !important;
+}
+
+.more-one .sold .items:not(.collapsed):hover {
+    background-color: #000 !important;
+}
+
 .more-one .content .items:not(.collapsed):hover .item {
     opacity: 1 !important;
 }
 
-.more-one .content .items:not(.collapsed):hover .item-1 {
+.more-one .available .items:not(.collapsed):hover .item-1 {
     color: #82aa23 !important;
+}
+
+.sold .item p.item-1:nth-child(1),
+.more-one .sold .items:not(.collapsed):hover .item-1 {
+    color: #c24040 !important;
 }
 
 .more-one .content .items:not(.collapsed):hover .link-more {
@@ -117,4 +131,35 @@ li.menu-item {
     left: 0;
     right: auto;
     transform: rotate(180deg);
+}
+
+.slider .carousel-indicators{
+    padding:0 !important;
+}
+
+.rtl .project-list{
+    background: url(images/project-bg-rtl.png) no-repeat center top;
+    background-size: 100%;
+}
+
+.more-one .slide-title{
+    min-height: 79px;
+    display:block;
+    overflow: hidden;
+}
+
+.more-one .sold .collapse-link-more a.more{
+    color: #777;
+}
+.more-one .sold .collapse-link-more a.more:hover{
+    color: #aaa;
+}
+
+.rtl.more-one .title-left span.slide{
+    padding-right: 10px;
+}
+
+.final-project-view .bg-slide>.container-fluid{
+    left: 0;
+    right: 0;
 }

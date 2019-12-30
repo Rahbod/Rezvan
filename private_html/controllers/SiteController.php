@@ -201,6 +201,7 @@ class SiteController extends AuthController
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
+        $this->bodyClass = 'more-one list';
         $this->mainTag = 'main-submit-page';
 
         $model = new ContactForm();

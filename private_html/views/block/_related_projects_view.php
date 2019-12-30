@@ -7,11 +7,25 @@
 /** @var $apartment Apartment */
 
 use app\controllers\ApartmentController;
+use app\controllers\ConstructionController;
+use app\controllers\InvestmentController;
 use app\models\blocks\Banner;
+use app\models\Project;
 use app\models\projects\Apartment;
+use app\models\projects\Investment;
+use app\models\projects\OtherConstruction;
 use yii\web\View;
 
-$baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
+switch ($project->type) {
+    case Project::TYPE_INVESTMENT:
+        $baseUrl = alias('@web') . '/' . InvestmentController::$imgDir . '/';
+        break;
+    case Project::TYPE_OTHER_CONSTRUCTION:
+        $baseUrl = alias('@web') . '/' . ConstructionController::$imgDir . '/';
+        break;
+    default:
+        $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
+}
 ?>
 <?php if ($projects): ?>
     <section class="order-post">
@@ -28,7 +42,7 @@ $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <?php for ($j = $i; $j < $i+ 4; $j++):
+                                        <?php for ($j = $i; $j < $i + 4; $j++):
                                             if (!isset($projects[$j]))
                                                 break;
                                             $apartment = $projects[$j]; ?>
@@ -37,7 +51,7 @@ $baseUrl = alias('@web') . '/' . ApartmentController::$imgDir . '/';
                                                     <img src="<?= $baseUrl . $apartment->image ?>"
                                                          alt="<?= $apartment->getName() ?>">
                                                     <h2 class="item-title"><?= $apartment->getName() ?></h2>
-                                                    <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr()?' / ':'' ?></span>
+                                                    <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
                                                     <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
                                                 </a>
                                             </div>

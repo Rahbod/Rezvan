@@ -12,12 +12,11 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
 ?>
 
 <section class="main-text">
-    <div class="title-page">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="title">
-                    <h1><strong><?= Html::encode($this->title) ?></strong> Rezvan</h1>
-                </div>
+    <div class="slide-title">
+        <div class="title-left">
+            <!--<img src="<?//= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">-->
+            <div class="text">
+                <h2 class="slide"><strong><?= Html::encode($this->title) ?></strong> Rezvan</strong></h2>
             </div>
         </div>
     </div>

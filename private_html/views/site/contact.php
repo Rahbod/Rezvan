@@ -16,13 +16,11 @@ $this->registerJs("
 ?>
 
 <section class="main-submit">
-    <div class="title-page">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="title">
-                    <i></i>
-                    <h1><strong><?= trans('words', 'CONTACT US') ?></strong></h1>
-                </div>
+    <div class="slide-title">
+        <div class="title-left">
+            <!--<img src="<?//= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">-->
+            <div class="text">
+                <h2 class="slide"><strong><?= trans('words', 'CONTACT US') ?></strong></h2>
             </div>
         </div>
     </div>

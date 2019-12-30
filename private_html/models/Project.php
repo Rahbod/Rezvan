@@ -276,7 +276,7 @@ class Project extends Item implements ProjectInterface
             ],
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                'hint' => 'تصویر کوچک',
+                'hint' => 'حداقل سایز تصویر: 600 در 600 پیکسل',
                 'containerCssClass' => 'col-sm-6',
                 'temp' => MainController::$tempDir,
                 'path' => ApartmentController::$imgDir,
@@ -327,7 +327,7 @@ class Project extends Item implements ProjectInterface
             ],
             'banner' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
-                'hint' => 'تصویر کاور برای پروژه های چند معرفی',
+                'hint' => 'تصویر کاور برای پروژه های چند معرفی، حداقل سایز تصویر: 1920 در 1080 پیکسل',
                 'containerCssClass' => 'col-sm-12 banner-container d-none',
                 'temp' => MainController::$tempDir,
                 'path' => ApartmentController::$imgDir,
