@@ -38,7 +38,7 @@ class ContactForm extends Model implements FormRendererDefinition
 //            [['country', 'city'], 'string', 'max' => 50],
 //            [['address'], 'string'],
             // verifyCode needs to be entered correctly
-            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/site/captcha'],
+//            ['verifyCode', 'captcha', 'skipOnEmpty' => false, 'captchaAction' => '/site/captcha'],
         ];
     }
 
@@ -73,7 +73,7 @@ class ContactForm extends Model implements FormRendererDefinition
         if ($this->validate()) {
             Yii::$app->mailer->compose()
                 ->setTo($email)
-                ->setFrom([$this->email => $this->name])
+                ->setFrom(['noreply@rezvan.info' => app()->name])
                 ->setSubject($this->subject)
                 ->setTextBody($this->body)
                 ->send();
