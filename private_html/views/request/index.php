@@ -36,9 +36,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'name',
-                        'mobile',
                         'email',
-                        'phone',
+                        [
+                            'attribute' => 'mobile',
+                            'value' => function($model){
+                                return "<span dir='auto'>{$model->mobile}</span>";
+                            },
+                            'format' => 'raw',
+                        ],
+                        [
+                            'attribute' => 'phone',
+                            'value' => function($model){
+                                return "<span dir='auto'>{$model->phone}</";
+                            },
+                            'format' => 'raw',
+                        ],
                         [
                             'attribute' => 'created',
                             'value' => function($model){

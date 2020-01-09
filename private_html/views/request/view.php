@@ -77,8 +77,20 @@ $this->params['breadcrumbs'][] = $this->title;
                     ],
                     'name',
                     'email',
-                    'mobile',
-                    'phone',
+                    [
+                        'attribute' => 'mobile',
+                        'value' => function($model){
+                            return "<span dir='auto'>{$model->mobile}</span>";
+                        },
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'phone',
+                        'value' => function($model){
+                            return "<span dir='auto'>{$model->phone}</";
+                        },
+                        'format' => 'raw',
+                    ],
                     'details',
                     [
                         'attribute' => 'created',
@@ -114,7 +126,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 $otherFields = ['heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit',
                     'price_from', 'area_from', 'building_old', 'unit_room'];
                 foreach ($otherFields as $field):
-                    if (in_array($field, ['heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit'])) {
+                    if (in_array($field, ['building_old', 'heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit'])) {
                         $option = Lists::findOne($model->$field);
                         $text = $option->name;
                     } elseif ($field == 'price_from') {
