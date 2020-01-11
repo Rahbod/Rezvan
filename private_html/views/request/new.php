@@ -129,6 +129,7 @@ $this->registerJs("
             <div class="col-lg-12 bottom-section">
                 <h2><?= trans('words', '<strong>CONTACT</strong> INFORMATION') ?></h2>
                 <div class="back-general-post massage row">
+                    <div class="error col-12 form-control-feedback"><?= $form->errorSummary($model); ?></div>
                     <?= $model->formRenderer($form, '{field}', 'col-lg-3') ?>
                 </div>
                 <div class="buttons">

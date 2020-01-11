@@ -132,6 +132,8 @@ class Request extends Item
     {
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
+            [['email', 'mobile'], 'required'],
+            [['price_from', 'price_to', 'area_from', 'area_to', 'unit_room'], 'required'],
             [['email', 'mobile', 'phone', 'details'], 'string'],
             ['email', 'email'],
             ['userID', 'default', 'value' => 1],
@@ -217,7 +219,9 @@ class Request extends Item
 
             'heating_system' => trans('words', 'Heating system'),
             'cooling_system' => trans('words', 'Cooling system'),
+            'price_to' => trans('words', 'Price'),
             'price_from' => trans('words', 'Price'),
+            'area_to' => trans('words', 'Area'),
             'area_from' => trans('words', 'Area'),
             'type_of_buy' => trans('words', 'Type of buy'),
             'type_of_unit' => trans('words', 'Type of unit'),
