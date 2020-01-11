@@ -98,7 +98,7 @@ class PageController extends AuthController
         $model->seen++;
         $model->save(false);
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableApartments = Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
 
         return $this->render('show', [
             'model' => $model,

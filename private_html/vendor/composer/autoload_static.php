@@ -86,6 +86,7 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
+            'yii2tech\\html2pdf\\' => 18,
         ),
         'v' => 
         array (
@@ -212,6 +213,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'yii2tech\\html2pdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/yii2tech/html2pdf/src',
         ),
         'voime\\GoogleMaps\\' => 
         array (

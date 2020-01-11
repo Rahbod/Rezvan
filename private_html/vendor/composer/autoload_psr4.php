@@ -14,6 +14,7 @@ return array(
     'yii\\composer\\' => array($vendorDir . '/yiisoft/yii2-composer'),
     'yii\\bootstrap\\' => array($vendorDir . '/yiisoft/yii2-bootstrap/src'),
     'yii\\' => array($vendorDir . '/yiisoft/yii2'),
+    'yii2tech\\html2pdf\\' => array($vendorDir . '/yii2tech/html2pdf/src'),
     'voime\\GoogleMaps\\' => array($vendorDir . '/voime/yii2-google-maps'),
     'ruskid\\csvimporter\\' => array($vendorDir . '/ruskid/yii2-csv-importer'),
     'richardfan\\sortable\\' => array($vendorDir . '/richardfan1126/yii2-sortable-gridview'),

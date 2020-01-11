@@ -127,7 +127,7 @@ class SiteController extends AuthController
         $this->innerPage = true;
         $this->bodyClass = 'more-one list';
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
+        $availableApartments = Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
         $term = Yii::$app->request->getQueryParam('query');
         if ($term && !empty($term)) {
@@ -174,17 +174,17 @@ class SiteController extends AuthController
     {
         $this->bodyClass = 'home';
 
-        $apartmentCounts = Apartment::find()->count();
-        $investmentCounts = Investment::find()->count();
-        $constructionCounts = OtherConstruction::find()->count();
+        $apartmentCounts = Apartment::find()->valid()->count();
+        $investmentCounts = Investment::find()->valid()->count();
+        $constructionCounts = OtherConstruction::find()->valid()->count();
 
 //        $services = Service::find()->where(['=','name','SERVICES'])->orderBy(['id' => SORT_DESC,])->all();
         $services = Service::find()->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-        $availableApartments = Apartment::find()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-        $availableInvestments = Investment::find()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
-        $availableConstructions = OtherConstruction::find()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])
+        $availableApartments = Apartment::find()->valid()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableInvestments = Investment::find()->valid()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
+        $availableConstructions = OtherConstruction::find()->valid()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])
 //            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
             ->all();
 
@@ -259,7 +259,7 @@ class SiteController extends AuthController
 
     public function getProjects()
     {
-        return Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        return Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
     }
 
     public function actionInfography()

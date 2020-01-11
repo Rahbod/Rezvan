@@ -29,7 +29,8 @@
         "ruskid/yii2-csv-importer": "dev-master",
         "faravaghi/yii2-jalali-datepicker": "*",
         "moonlandsoft/yii2-phpexcel": "*",
-        "linslin/yii2-curl": "*"
+        "linslin/yii2-curl": "*",
+        "yii2tech/html2pdf": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

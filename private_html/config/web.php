@@ -135,6 +135,16 @@ $config = [
                 ],
             ],
         ],
+        'html2pdf' => [
+            'class' => 'yii2tech\html2pdf\Manager',
+            'viewPath' => '@app/pdf',
+            'converter' => [
+                'class' => 'yii2tech\html2pdf\converters\Wkhtmltopdf',
+                'defaultOptions' => [
+                    'pageSize' => 'A4'
+                ],
+            ]
+        ],
     ],
     'params' => $params,
 ];

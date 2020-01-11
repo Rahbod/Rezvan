@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b231ea6e5424f56608fb43ad2df1562c",
+    "content-hash": "970980c8881d28ebe504499c7b375d1b",
     "packages": [
         {
             "name": "2amigos/yii2-tinymce-widget",
@@ -131,7 +131,7 @@
             "version": "3.3.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:jquery/jquery-dist.git",
+                "url": "https://github.com/jquery/jquery-dist.git",
                 "reference": "9e8ec3d10fad04748176144f108d7355662ae75e"
             },
             "dist": {
@@ -150,12 +150,12 @@
             "version": "2.1.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/metafizzy/infinite-scroll.git",
+                "url": "git@github.com:paulirish/infinite-scroll.git",
                 "reference": "f0d9eecb55a428b2fd4027964a22b84633ba6e3e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/metafizzy/infinite-scroll/zipball/f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
+                "url": "https://api.github.com/repos/paulirish/infinite-scroll/zipball/f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
                 "reference": "f0d9eecb55a428b2fd4027964a22b84633ba6e3e",
                 "shasum": null
             },
@@ -169,12 +169,12 @@
             "version": "1.12.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:components/jqueryui.git",
+                "url": "git@github.com:jquery/jquery-ui.git",
                 "reference": "44ecf3794cc56b65954cc19737234a3119d036cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/jqueryui/zipball/44ecf3794cc56b65954cc19737234a3119d036cc",
+                "url": "https://api.github.com/repos/jquery/jquery-ui/zipball/44ecf3794cc56b65954cc19737234a3119d036cc",
                 "reference": "44ecf3794cc56b65954cc19737234a3119d036cc",
                 "shasum": null
             },
@@ -191,7 +191,7 @@
             "version": "v1.3.2",
             "source": {
                 "type": "git",
-                "url": "git@github.com:bestiejs/punycode.js.git",
+                "url": "https://github.com/bestiejs/punycode.js.git",
                 "reference": "38c8d3131a82567bfef18da09f7f4db68c84f8a3"
             },
             "dist": {
@@ -207,7 +207,7 @@
             "version": "2.0.7.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:yiisoft/jquery-pjax.git",
+                "url": "https://github.com/yiisoft/jquery-pjax.git",
                 "reference": "aef7b953107264f00234902a3880eb50dafc48be"
             },
             "dist": {
@@ -1306,6 +1306,59 @@
                 "yii2"
             ],
             "time": "2016-04-13T12:58:11+00:00"
+        },
+        {
+            "name": "yii2tech/html2pdf",
+            "version": "1.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yii2tech/html2pdf.git",
+                "reference": "c38755d55777ab671d31d8724ef385d60fdbb298"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yii2tech/html2pdf/zipball/c38755d55777ab671d31d8724ef385d60fdbb298",
+                "reference": "c38755d55777ab671d31d8724ef385d60fdbb298",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "~2.0.14"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.27|^5.0|^6.0"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "yii2tech\\html2pdf\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com"
+                }
+            ],
+            "description": "Provides support for HTML to PDF and PHP to PDF conversion",
+            "keywords": [
+                "conversion",
+                "convert",
+                "html2pdf",
+                "pdf",
+                "php2pdf",
+                "template",
+                "yii2"
+            ],
+            "time": "2019-10-17T11:02:50+00:00"
         },
         {
             "name": "yiisoft/yii2",

@@ -133,11 +133,11 @@ class ApartmentController extends AuthController
         $this->bodyClass = 'more-one list';
 
         /** @var Apartment[] $projects */
-        $projects = Apartment::find()->orderBy([
+        $projects = Apartment::find()->valid()->orderBy([
             'id' => SORT_DESC,
         ])->all();
 
-        $availableApartments = Apartment::find()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
+        $availableApartments = Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->count();
 
         return $this->render('list', [
             'projects' => $projects,
