@@ -86,11 +86,14 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
             'yii\\composer\\' => 13,
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
-            'yii2tech\\html2pdf\\' => 18,
         ),
         'v' => 
         array (
             'voime\\GoogleMaps\\' => 17,
+        ),
+        's' => 
+        array (
+            'setasign\\Fpdi\\' => 14,
         ),
         'r' => 
         array (
@@ -116,6 +119,7 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'k' => 
         array (
             'kartik\\select2\\' => 15,
+            'kartik\\mpdf\\' => 12,
             'kartik\\base\\' => 12,
         ),
         'f' => 
@@ -158,6 +162,7 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         ),
         'M' => 
         array (
+            'Mpdf\\' => 5,
             'Matrix\\' => 7,
         ),
         'G' => 
@@ -214,13 +219,13 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
         ),
-        'yii2tech\\html2pdf\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/yii2tech/html2pdf/src',
-        ),
         'voime\\GoogleMaps\\' => 
         array (
             0 => __DIR__ . '/..' . '/voime/yii2-google-maps',
+        ),
+        'setasign\\Fpdi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/setasign/fpdi/src',
         ),
         'ruskid\\csvimporter\\' => 
         array (
@@ -251,6 +256,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'kartik\\select2\\' => 
         array (
             0 => __DIR__ . '/..' . '/kartik-v/yii2-widget-select2/src',
+        ),
+        'kartik\\mpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/kartik-v/yii2-mpdf/src',
         ),
         'kartik\\base\\' => 
         array (
@@ -335,6 +344,10 @@ class ComposerStaticInitb6e2e5fcbedc0ea6a91859b1c014a8a7
         'PhpOffice\\PhpSpreadsheet\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'Mpdf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mpdf/mpdf/src',
         ),
         'Matrix\\' => 
         array (

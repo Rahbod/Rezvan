@@ -16,6 +16,7 @@ use app\models\projects\Investment;
 use app\models\projects\InvestmentSearch;
 use app\models\projects\OtherConstruction;
 use app\models\projects\OtherConstructionSearch;
+use app\models\Request;
 use app\models\Service;
 use app\models\Slide;
 use Yii;
@@ -65,8 +66,9 @@ class SiteController extends AuthController
             ],
         ];
     }
-    
-    public function actionComingSoon(){
+
+    public function actionComingSoon()
+    {
         return $this->renderPartial('coming_soon');
     }
 
@@ -222,7 +224,7 @@ class SiteController extends AuthController
                 $message->subject = $model->subject;
                 $message->email = $model->email;
                 $message->body = $model->body;
-                if($message->save())
+                if ($message->save())
                     $model->contact(Setting::get('email'));
 
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
@@ -268,5 +270,14 @@ class SiteController extends AuthController
         $this->layout = 'infography';
 
         return $this->render('info');
+    }
+
+    public function actionPdf()
+    {
+        $this->setTheme('default');
+
+        app()->html2pdf
+            ->render('//request/view', ['model' => Request::find()->one(), 'pdf_mode' => true])
+            ->saveAs('@webroot/uploads/pdf/output.pdf');
     }
 }

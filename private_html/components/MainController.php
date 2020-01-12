@@ -86,9 +86,9 @@ class MainController extends Controller implements CrudControllerInterface
                 return true;
 
         if ($isPermissionName)
-            return $permissions || app()->user->can($action);
+            return app()->user->can($action);
         else
-            return $permissions || app()->user->can($this->id . ucfirst($action));
+            return app()->user->can($this->id . ucfirst($action));
     }
 
 

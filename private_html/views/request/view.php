@@ -9,11 +9,13 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Request */
+/* @var $pdf_mode bool */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => trans('words', 'Requests'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
+$pdf_mode = isset($pdf_mode)?$pdf_mode:false;
 ?>
 <div class="m-portlet m-portlet--mobile">
     <div class="m-portlet__head">
@@ -40,30 +42,32 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
     <div class="m-portlet__body">
-        <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
+        <?php if(!$pdf_mode):?>
+            <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
 
-        <?php $form = CustomActiveForm::begin([
-            'id' => 'menu-form',
-            'action' => ['update', 'id' => $model->id],
-            'enableAjaxValidation' => true,
-            'enableClientValidation' => true,
-            'validateOnSubmit' => true,
-        ]);
-        echo Html::hiddenInput('return', 'view');
-        ?>
-        <div class="row">
-            <div class="col-sm-3">
-                <?= $form->field($model, 'status')->dropDownList(Request::getStatusLabels()) ?>
-            </div>
-            <div class="col-sm-3">
-                <div style="margin-top: 40px">
-                    <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+            <?php $form = CustomActiveForm::begin([
+                'id' => 'menu-form',
+                'action' => ['update', 'id' => $model->id],
+                'enableAjaxValidation' => true,
+                'enableClientValidation' => true,
+                'validateOnSubmit' => true,
+            ]);
+            echo Html::hiddenInput('return', 'view');
+            ?>
+            <div class="row">
+                <div class="col-sm-3">
+                    <?= $form->field($model, 'status')->dropDownList(Request::getStatusLabels()) ?>
+                </div>
+                <div class="col-sm-3">
+                    <div style="margin-top: 40px">
+                        <?= Html::submitButton(trans('words', 'Save'), ['class' => 'btn btn-success']) ?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php CustomActiveForm::end(); ?>
-        <br>
-        <br>
+            <?php CustomActiveForm::end(); ?>
+            <br>
+            <br>
+        <?php endif;?>
         <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
             <?= DetailView::widget([
                 'model' => $model,

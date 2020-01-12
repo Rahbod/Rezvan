@@ -129,13 +129,13 @@ return array (
       '@moonland/phpexcel' => $vendorDir . '/moonlandsoft/yii2-phpexcel',
     ),
   ),
-  'yii2tech/html2pdf' => 
+  'kartik-v/yii2-mpdf' => 
   array (
-    'name' => 'yii2tech/html2pdf',
-    'version' => '1.0.7.0',
+    'name' => 'kartik-v/yii2-mpdf',
+    'version' => '9999999-dev',
     'alias' => 
     array (
-      '@yii2tech/html2pdf' => $vendorDir . '/yii2tech/html2pdf/src',
+      '@kartik/mpdf' => $vendorDir . '/kartik-v/yii2-mpdf/src',
     ),
   ),
 );
