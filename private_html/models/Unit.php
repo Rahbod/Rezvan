@@ -602,4 +602,12 @@ class Unit extends Item
     {
         return Block::find()->andWhere(['type' => $type, Block::columnGetString('itemID') => $this->id])->orderBy([Block::columnGetString('sort') => SORT_ASC])->one();
     }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        foreach ($this->blocks as $block)
+            $block->delete();
+    }
 }

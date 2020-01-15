@@ -2,7 +2,9 @@
 
 namespace app\models;
 
+use app\controllers\BlockController;
 use app\models\blocks\BlockInterface;
+use devgroup\dropzone\UploadedFiles;
 use richardfan\sortable\SortableAction;
 use Yii;
 use yii\web\View;
@@ -176,5 +178,16 @@ class Block extends Item implements BlockInterface
     public function render(View $view, $project)
     {
         return '';
+    }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        if ($this->image)
+            (new UploadedFiles(BlockController::$imgDir, $this->image, BlockController::$imageOptions))->removeAll(true);
+
+        if ($this->video)
+            (new UploadedFiles(BlockController::$videoDir, $this->video))->removeAll(true);
     }
 }

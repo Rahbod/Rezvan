@@ -6,6 +6,7 @@ use app\components\AuthController;
 use app\components\customWidgets\CustomCaptchaAction;
 use app\components\MultiLangActiveRecord;
 use app\components\Setting;
+use app\models\Block;
 use app\models\ContactForm;
 use app\models\Item;
 use app\models\Message;
@@ -19,9 +20,12 @@ use app\models\projects\OtherConstructionSearch;
 use app\models\Request;
 use app\models\Service;
 use app\models\Slide;
+use app\models\Unit;
+use kartik\mpdf\Pdf;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\web\HttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
 
@@ -276,8 +280,104 @@ class SiteController extends AuthController
     {
         $this->setTheme('default');
 
-        app()->html2pdf
-            ->render('//request/view', ['model' => Request::find()->one(), 'pdf_mode' => true])
-            ->saveAs('@webroot/uploads/pdf/output.pdf');
+        $content = $this->renderPartial('//request/view', ['model' => Request::find()->one(), 'pdf_mode' => true]);
+
+        // setup kartik\mpdf\Pdf component
+        $pdf = new Pdf([
+            // set to use core fonts only
+            'mode' => Pdf::MODE_CORE,
+            // A4 paper format
+            'format' => Pdf::FORMAT_A4,
+            // portrait orientation
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            // stream to browser inline
+            'destination' => Pdf::DEST_BROWSER,
+            // your html content input
+            'content' => $content,
+            // format content from your own css file if needed or use the
+            // enhanced bootstrap css built by Krajee for mPDF formatting
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+            // any css to be embedded if required
+            'cssInline' => '.kv-heading-1{font-size:18px}',
+            // set mPDF properties on the fly
+            'options' => ['title' => 'Krajee Report Title'],
+            // call mPDF methods on the fly
+            'methods' => [
+                'SetHeader' => ['Krajee Report Header'],
+                'SetFooter' => ['{PAGENO}'],
+            ]
+        ]);
+
+        // return the pdf output as per the destination setting
+        return $pdf->render();
+    }
+
+    public function actionClearFiles()
+    {
+        $folder = \request()->get('folder');
+        $path = alias('@webroot/uploads/'.$folder.'/');
+        if(!is_dir($path))
+            throw new HttpException(500, 'Folder not exits.');
+
+        $valid = [];
+        $notValid = [];
+        foreach (scandir($path) as $item) {
+            if ($item == '.' || $item == '..' || $item == 'thumbs')
+                continue;
+            $ext = pathinfo($item, PATHINFO_EXTENSION);
+            if (in_array($ext, ['png', 'jpg', 'jpeg'])) {
+                /** @var Block $block */
+                $block = Block::find()->andWhere([Block::columnGetString('image') => $item])->one();
+                if ($block && ($block->project || $block->unit))
+                    $valid[] = $item;
+                else
+                    unlink($path . $item);
+            }else if (in_array($ext, ['mp4'])) {
+                /** @var Block $block */
+                $block = Block::find()->andWhere([Block::columnGetString('video') => $item])->one();
+                if ($block && ($block->project || $block->unit))
+                    $valid[] = $item;
+                else
+                    unlink($path . $item);
+            }
+        }
+
+        dd(count(scandir($path)) - 3, $valid, scandir($path));
+    }
+
+    public function actionDeleteBlocks()
+    {
+        /** @var Block $block */
+        $valid = [];
+        $invalid = [];
+        foreach (Block::find()->all() as $block) {
+            if ($block && ($block->project || $block->unit))
+                $valid[] = ['id' => $block->id, 'itemID' =>$block->itemID, 'type' => $block->project?'pr':($block->unit?'un':'na')];
+            else
+            {
+                $invalid[] = ['id' => $block->id, 'itemID' =>$block->itemID];
+                $block->delete();
+            }
+        }
+
+        dd(Block::find()->count(), $valid, $invalid);
+    }
+
+    public function actionDeleteUnits()
+    {
+        $valid = [];
+        $invalid = [];
+        /** @var Unit $block */
+        foreach (Unit::find()->all() as $block) {
+            if ($block && $block->project)
+                $valid[] = ['id' => $block->id, 'itemID' =>$block->itemID];
+            else
+            {
+                $invalid[] = ['id' => $block->id, 'itemID' =>$block->itemID];
+                $block->delete();
+            }
+        }
+
+        dd(Unit::find()->count(), $valid, $invalid);
     }
 }

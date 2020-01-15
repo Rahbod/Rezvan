@@ -538,4 +538,15 @@ JS
 
         return parent::beforeSave($insert);
     }
+
+    public function afterDelete()
+    {
+        parent::afterDelete();
+
+        foreach ($this->blocks as $block)
+            $block->delete();
+
+        foreach ($this->units as $unit)
+            $unit->delete();
+    }
 }
