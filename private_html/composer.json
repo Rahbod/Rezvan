@@ -30,7 +30,8 @@
         "faravaghi/yii2-jalali-datepicker": "*",
         "moonlandsoft/yii2-phpexcel": "*",
         "linslin/yii2-curl": "*",
-        "kartik-v/yii2-mpdf": "dev-master"
+        "kartik-v/yii2-mpdf": "dev-master",
+        "google/cloud": "^0.123.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

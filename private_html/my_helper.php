@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 
-
 /**
  * @param $vars
  */

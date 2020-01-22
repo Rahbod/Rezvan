@@ -8,15 +8,11 @@ use app\components\MultiLangActiveRecord;
 use app\components\Setting;
 use app\models\Block;
 use app\models\ContactForm;
-use app\models\Item;
 use app\models\Message;
-use app\models\Page;
 use app\models\projects\Apartment;
 use app\models\projects\ApartmentSearch;
 use app\models\projects\Investment;
-use app\models\projects\InvestmentSearch;
 use app\models\projects\OtherConstruction;
-use app\models\projects\OtherConstructionSearch;
 use app\models\Request;
 use app\models\Service;
 use app\models\Slide;
@@ -25,9 +21,21 @@ use kartik\mpdf\Pdf;
 use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
+use yii\helpers\Html;
 use yii\web\HttpException;
 use yii\web\Response;
 use yii\widgets\ActiveForm;
+
+use Google\Cloud\Storage\StorageClient;
+use Google\Cloud\Vision\V1\AnnotateFileResponse;
+use Google\Cloud\Vision\V1\AsyncAnnotateFileRequest;
+use Google\Cloud\Vision\V1\Feature;
+use Google\Cloud\Vision\V1\Feature\Type;
+use Google\Cloud\Vision\V1\GcsDestination;
+use Google\Cloud\Vision\V1\GcsSource;
+use Google\Cloud\Vision\V1\ImageAnnotatorClient;
+use Google\Cloud\Vision\V1\InputConfig;
+use Google\Cloud\Vision\V1\OutputConfig;
 
 //use Symfony\Component\EventDispatcher\Tests\Service;
 
@@ -276,108 +284,149 @@ class SiteController extends AuthController
         return $this->render('info');
     }
 
-    public function actionPdf()
+    public function actionOcr()
     {
-        $this->setTheme('default');
-
-        $content = $this->renderPartial('//request/view', ['model' => Request::find()->one(), 'pdf_mode' => true]);
-
-        // setup kartik\mpdf\Pdf component
-        $pdf = new Pdf([
-            // set to use core fonts only
-            'mode' => Pdf::MODE_CORE,
-            // A4 paper format
-            'format' => Pdf::FORMAT_A4,
-            // portrait orientation
-            'orientation' => Pdf::ORIENT_PORTRAIT,
-            // stream to browser inline
-            'destination' => Pdf::DEST_BROWSER,
-            // your html content input
-            'content' => $content,
-            // format content from your own css file if needed or use the
-            // enhanced bootstrap css built by Krajee for mPDF formatting
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
-            // any css to be embedded if required
-            'cssInline' => '.kv-heading-1{font-size:18px}',
-            // set mPDF properties on the fly
-            'options' => ['title' => 'Krajee Report Title'],
-            // call mPDF methods on the fly
-            'methods' => [
-                'SetHeader' => ['Krajee Report Header'],
-                'SetFooter' => ['{PAGENO}'],
-            ]
-        ]);
-
-        // return the pdf output as per the destination setting
-        return $pdf->render();
+//        $this->setTheme('default');
+//
+//        $path = 'gs://path/to/your/document.pdf';
+//        $output = 'gs://path/to/store/results/';
+//
+//        # select ocr feature
+//        $feature = (new Feature())
+//            ->setType(Type::DOCUMENT_TEXT_DETECTION);
+//
+//        # set $path (file to OCR) as source
+//        $gcsSource = (new GcsSource())
+//            ->setUri($path);
+//        # supported mime_types are: 'application/pdf' and 'image/tiff'
+//        $mimeType = 'application/pdf';
+//        $inputConfig = (new InputConfig())
+//            ->setGcsSource($gcsSource)
+//            ->setMimeType($mimeType);
+//
+//        # set $output as destination
+//        $gcsDestination = (new GcsDestination())
+//            ->setUri($output);
+//        # how many pages should be grouped into each json output file.
+//        $batchSize = 2;
+//        $outputConfig = (new OutputConfig())
+//            ->setGcsDestination($gcsDestination)
+//            ->setBatchSize($batchSize);
+//
+//        # prepare request using configs set above
+//        $request = (new AsyncAnnotateFileRequest())
+//            ->setFeatures([$feature])
+//            ->setInputConfig($inputConfig)
+//            ->setOutputConfig($outputConfig);
+//        $requests = [$request];
+//
+//        # make request
+//        $imageAnnotator = new ImageAnnotatorClient();
+//        $operation = $imageAnnotator->asyncBatchAnnotateFiles($requests);
+//        print('Waiting for operation to finish.' . PHP_EOL);
+//        $operation->pollUntilComplete();
+//
+//        # once the request has completed and the output has been
+//        # written to GCS, we can list all the output files.
+//        preg_match('/^gs:\/\/([a-zA-Z0-9\._\-]+)\/?(\S+)?$/', $output, $match);
+//        $bucketName = $match[1];
+//        $prefix = isset($match[2]) ? $match[2] : '';
+//
+//        $storage = new StorageClient();
+//        $bucket = $storage->bucket($bucketName);
+//        $options = ['prefix' => $prefix];
+//        $objects = $bucket->objects($options);
+//
+//        # save first object for sample below
+//        $objects->next();
+//        $firstObject = $objects->current();
+//
+//        # list objects with the given prefix.
+//        print('Output files:' . PHP_EOL);
+//        foreach ($objects as $object) {
+//            print($object->name() . PHP_EOL);
+//        }
+//
+//        # process the first output file from GCS.
+//        # since we specified batch_size=2, the first response contains
+//        # the first two pages of the input file.
+//        $jsonString = $firstObject->downloadAsString();
+//        $firstBatch = new AnnotateFileResponse();
+//        $firstBatch->mergeFromJsonString($jsonString);
+//
+//        # get annotation and print text
+//        foreach ($firstBatch->getResponses() as $response) {
+//            $annotation = $response->getFullTextAnnotation();
+//            print($annotation->getText());
+//        }
+//
+//        $imageAnnotator->close();
     }
 
-    public function actionClearFiles()
-    {
-        $folder = \request()->get('folder');
-        $path = alias('@webroot/uploads/'.$folder.'/');
-        if(!is_dir($path))
-            throw new HttpException(500, 'Folder not exits.');
-
-        $valid = [];
-        $notValid = [];
-        foreach (scandir($path) as $item) {
-            if ($item == '.' || $item == '..' || $item == 'thumbs')
-                continue;
-            $ext = pathinfo($item, PATHINFO_EXTENSION);
-            if (in_array($ext, ['png', 'jpg', 'jpeg'])) {
-                /** @var Block $block */
-                $block = Block::find()->andWhere([Block::columnGetString('image') => $item])->one();
-                if ($block && ($block->project || $block->unit))
-                    $valid[] = $item;
-                else
-                    unlink($path . $item);
-            }else if (in_array($ext, ['mp4'])) {
-                /** @var Block $block */
-                $block = Block::find()->andWhere([Block::columnGetString('video') => $item])->one();
-                if ($block && ($block->project || $block->unit))
-                    $valid[] = $item;
-                else
-                    unlink($path . $item);
-            }
-        }
-
-        dd(count(scandir($path)) - 3, $valid, scandir($path));
-    }
-
-    public function actionDeleteBlocks()
-    {
-        /** @var Block $block */
-        $valid = [];
-        $invalid = [];
-        foreach (Block::find()->all() as $block) {
-            if ($block && ($block->project || $block->unit))
-                $valid[] = ['id' => $block->id, 'itemID' =>$block->itemID, 'type' => $block->project?'pr':($block->unit?'un':'na')];
-            else
-            {
-                $invalid[] = ['id' => $block->id, 'itemID' =>$block->itemID];
-                $block->delete();
-            }
-        }
-
-        dd(Block::find()->count(), $valid, $invalid);
-    }
-
-    public function actionDeleteUnits()
-    {
-        $valid = [];
-        $invalid = [];
-        /** @var Unit $block */
-        foreach (Unit::find()->all() as $block) {
-            if ($block && $block->project)
-                $valid[] = ['id' => $block->id, 'itemID' =>$block->itemID];
-            else
-            {
-                $invalid[] = ['id' => $block->id, 'itemID' =>$block->itemID];
-                $block->delete();
-            }
-        }
-
-        dd(Unit::find()->count(), $valid, $invalid);
-    }
+//    public function actionClearFiles()
+//    {
+//        $folder = \request()->get('folder');
+//        $path = alias('@webroot/uploads/' . $folder . '/');
+//        if (!is_dir($path))
+//            throw new HttpException(500, 'Folder not exits.');
+//
+//        $valid = [];
+//        $notValid = [];
+//        foreach (scandir($path) as $item) {
+//            if ($item == '.' || $item == '..' || $item == 'thumbs')
+//                continue;
+//            $ext = pathinfo($item, PATHINFO_EXTENSION);
+//            if (in_array($ext, ['png', 'jpg', 'jpeg'])) {
+//                /** @var Block $block */
+//                $block = Block::find()->andWhere([Block::columnGetString('image') => $item])->one();
+//                if ($block && ($block->project || $block->unit))
+//                    $valid[] = $item;
+//                else
+//                    unlink($path . $item);
+//            } else if (in_array($ext, ['mp4'])) {
+//                /** @var Block $block */
+//                $block = Block::find()->andWhere([Block::columnGetString('video') => $item])->one();
+//                if ($block && ($block->project || $block->unit))
+//                    $valid[] = $item;
+//                else
+//                    unlink($path . $item);
+//            }
+//        }
+//
+//        dd(count(scandir($path)) - 3, $valid, scandir($path));
+//    }
+//
+//    public function actionDeleteBlocks()
+//    {
+//        /** @var Block $block */
+//        $valid = [];
+//        $invalid = [];
+//        foreach (Block::find()->all() as $block) {
+//            if ($block && ($block->project || $block->unit))
+//                $valid[] = ['id' => $block->id, 'itemID' => $block->itemID, 'type' => $block->project ? 'pr' : ($block->unit ? 'un' : 'na')];
+//            else {
+//                $invalid[] = ['id' => $block->id, 'itemID' => $block->itemID];
+//                $block->delete();
+//            }
+//        }
+//
+//        dd(Block::find()->count(), $valid, $invalid);
+//    }
+//
+//    public function actionDeleteUnits()
+//    {
+//        $valid = [];
+//        $invalid = [];
+//        /** @var Unit $block */
+//        foreach (Unit::find()->all() as $block) {
+//            if ($block && $block->project)
+//                $valid[] = ['id' => $block->id, 'itemID' => $block->itemID];
+//            else {
+//                $invalid[] = ['id' => $block->id, 'itemID' => $block->itemID];
+//                $block->delete();
+//            }
+//        }
+//
+//        dd(Unit::find()->count(), $valid, $invalid);
+//    }
 }

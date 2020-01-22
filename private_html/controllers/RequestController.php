@@ -9,6 +9,7 @@ use app\components\Setting;
 use app\models\ContactForm;
 use app\models\Request;
 use app\components\AuthController;
+use kartik\mpdf\Pdf;
 use Yii;
 use yii\swiftmailer\Mailer;
 use yii\web\NotFoundHttpException;
@@ -36,7 +37,8 @@ class RequestController extends AuthController implements CrudControllerInterfac
     {
         return array_merge(parent::getSystemActions(), [
             'new',
-            'captcha'
+            'captcha',
+            'pdf'
         ]);
     }
 
@@ -79,7 +81,7 @@ class RequestController extends AuthController implements CrudControllerInterfac
             $model->status = Request::STATUS_PENDING;
             $model->save();
         }
-        if(is_null($model->user_lang)){
+        if (is_null($model->user_lang)) {
             $model->user_lang = 'ar';
             $model->save();
         }
@@ -123,7 +125,7 @@ class RequestController extends AuthController implements CrudControllerInterfac
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
-        
+
         $this->bodyClass = 'more-one list';
         $this->mainTag = 'main-submit-page';
 
@@ -142,8 +144,13 @@ class RequestController extends AuthController implements CrudControllerInterfac
                 if (Setting::get('request_email')) {
                     Yii::$app->mailer->compose('layouts/request_mail', ['model' => $model])
                         ->setTo(Setting::get('request_email'))
+//                        ->setTo('yusef.mobasheri@gmail.com')
                         ->setFrom(['noreply@rezvan.info' => $model->name])
                         ->setSubject('درخواست جدید')
+                        ->attach($model->getPdf(true),[
+                            'fileName' => 'Request Details',
+                            'contentType' => 'application/pdf'
+                        ])
                         ->send();
                 }
 
@@ -156,5 +163,14 @@ class RequestController extends AuthController implements CrudControllerInterfac
         return $this->render('new', [
             'model' => $model,
         ]);
+    }
+
+    public function actionPdf($id)
+    {
+        $model = Request::findOne($id);
+        if (!$model)
+            return $this->redirect(['/']);
+
+        return $model->getPdf();
     }
 }

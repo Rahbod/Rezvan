@@ -4,6 +4,7 @@ use app\models\Request;
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
 use yii\widgets\Pjax;
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\RequestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -39,33 +40,50 @@ $this->params['breadcrumbs'][] = $this->title;
                         'email',
                         [
                             'attribute' => 'mobile',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return "<span dir='auto'>{$model->mobile}</span>";
                             },
                             'format' => 'raw',
                         ],
                         [
                             'attribute' => 'phone',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return "<span dir='auto'>{$model->phone}</";
                             },
                             'format' => 'raw',
                         ],
                         [
                             'attribute' => 'created',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return jDateTime::date('Y/m/d', $model->created);
                             }
                         ],
                         [
                             'attribute' => 'status',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return $model->getStatusLabels($model->status, true);
                             },
                             'format' => 'raw',
                             'filter' => Request::getStatusFilter()
                         ],
-                        ['class' => 'app\components\customWidgets\CustomActionColumn', 'template' => '{view} {delete}']
+                        [
+                            'class' => 'app\components\customWidgets\CustomActionColumn',
+                            'template' => '{pdf} {view} {delete}',
+                            'buttons' => [
+                                'pdf' => function ($url, $model, $key) {
+                                    return Html::a('<span class="far fa-file-pdf text-danger" ></span >',
+                                        ['pdf', 'id' => $model->id],
+                                        [
+                                            'class' => '',
+                                            'title' => "خروجی pdf",
+                                            'aria-label' => "خروجی pdf",
+                                            'data-pjax' => 0
+
+                                        ]
+                                    );
+                                },
+                            ]
+                        ]
                     ],
                 ]); ?>
             </div>

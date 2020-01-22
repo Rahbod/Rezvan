@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'columns' => [
                         'name',
                         'tel',
-                        'subject',
+//                        'subject',
                         [
                             'attribute' => 'type',
                             'value' => function ($model) {
