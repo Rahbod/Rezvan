@@ -401,6 +401,9 @@ select.form-control.radius {
 input.form-control {
     padding-right: 5px!important;
 }
+.submit, .captcha {
+    float: left;
+}
 .buttons {
     text-align: left;
     padding-left: 15px;

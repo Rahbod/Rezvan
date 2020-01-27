@@ -31,6 +31,7 @@ AppAsset::register($this);
     <?php if (app()->language != 'en'): ?>
         <link href="<?= $this->theme->baseUrl . '/rtl.css' ?>" rel="stylesheet">
     <?php endif; ?>
+    <link href="<?= $this->theme->baseUrl . '/responsive.css' ?>" rel="stylesheet">
     <link href="<?= $this->theme->baseUrl . '/custom.css' ?>" rel="stylesheet">
 </head>
 <?php
