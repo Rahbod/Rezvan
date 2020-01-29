@@ -56,3 +56,17 @@ function alias($alias, $throwException = true)
 {
     return Yii::getAlias($alias, $throwException);
 }
+
+/**
+ * @param string $name , mobile|tablet|desktop
+ * @return bool
+ */
+function isDevice($name)
+{
+    return isset(app()->params['devicedetect']['is' . ucfirst($name)]) ? app()->params['devicedetect']['is' . ucfirst($name)] : false;
+}
+
+function isDesktop()
+{
+    return isDevice('desktop');
+}

@@ -416,9 +416,4 @@ class SiteController extends AuthController
 //        dd(Unit::find()->count(), $valid, $invalid);
 //    }
 
-    public function actionTest()
-    {
-        dd(app()->devicedetect);
-    }
-
 }
