@@ -19,7 +19,10 @@ $config = [
     'basePath' => dirname(__DIR__),
     'language' => 'ar',
     'timeZone' => Setting::get('timeZone'),
-//    'bootstrap' => ['log'],
+    'bootstrap' => [
+//        'log',
+        'devicedetect'
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -46,6 +49,9 @@ $config = [
                     ]
                 ]
             ],
+        ],
+        'devicedetect' => [
+            'class' => 'alexandernst\devicedetect\DeviceDetect'
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation

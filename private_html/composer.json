@@ -31,7 +31,7 @@
         "moonlandsoft/yii2-phpexcel": "*",
         "linslin/yii2-curl": "*",
         "kartik-v/yii2-mpdf": "dev-master",
-        "google/cloud": "^0.123.0"
+        "alexandernst/yii2-device-detect": "0.0.8"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

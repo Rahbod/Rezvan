@@ -138,4 +138,13 @@ return array (
       '@kartik/mpdf' => $vendorDir . '/kartik-v/yii2-mpdf/src',
     ),
   ),
+  'alexandernst/yii2-device-detect' => 
+  array (
+    'name' => 'alexandernst/yii2-device-detect',
+    'version' => '0.0.8.0',
+    'alias' => 
+    array (
+      '@alexandernst/devicedetect' => $vendorDir . '/alexandernst/yii2-device-detect',
+    ),
+  ),
 );
