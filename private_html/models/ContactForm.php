@@ -50,9 +50,9 @@ class ContactForm extends Model implements FormRendererDefinition
         return [
             'name' => trans('words', 'First name and Last name'),
             'email' => trans('words', 'E-Mail'),
-            'tel' => trans('words', 'MOBILE NUMBER'),
-            'body' => trans('words', 'MESSAGE TEXT'),
-            'subject' => trans('words', 'SUBJECT'),
+            'tel' => trans('words', 'Mobile Number'),
+            'body' => trans('words', 'Message Text'),
+            'subject' => trans('words', 'Subject'),
 
             'department_id' => trans('words', 'Department ID'),
             'verifyCode' => trans('words', 'Verify Code'),

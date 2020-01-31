@@ -2,6 +2,7 @@
 /** @var $this View */
 
 /** @var $block OtherUnits */
+
 /** @var $units Unit[] */
 
 use app\models\blocks\OtherUnits;
@@ -21,27 +22,49 @@ $baseUrl = $this->theme->baseUrl;
                 </div>
                 <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
                     <div class="carousel-inner">
-                        <?php for ($i = 0; $i <= count($units); $i = $i + 4): ?>
-                            <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
-                                <div class="posts">
-                                    <div class="row">
-                                        <?php for ($j = $i; $j < $i+ 4; $j++):
-                                            if (!isset($units[$j]))
-                                                break;
-                                            $unit = $units[$j]; ?>
+                        <?php if (isDesktop()): ?>
+                            <?php for ($i = 0; $i <= count($units); $i = $i + 4): ?>
+                                <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                                    <div class="posts">
+                                        <div class="row">
+                                            <?php for ($j = $i; $j < $i + 4; $j++):
+                                                if (!isset($units[$j]))
+                                                    break;
+                                                $unit = $units[$j]; ?>
+                                                <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                                    <a href="<?= $unit->getUrl() ?>">
+                                                        <img src="<?= $unit->getModelImage(true) ?>"
+                                                             alt="<?= $unit->getName() ?>">
+                                                        <h2 class="item-title"><?= $unit->getName() ?></h2>
+                                                        <span class="description"><?= $unit->getSubtitleStr() ?><?= $unit->getSubtitle2Str() ? ' / ' : '' ?></span>
+                                                        <span class="description-2"><?= $unit->getSubtitle2Str() ?></span>
+                                                    </a>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endfor; ?>
+                        <?php else: ?>
+                            <?php for ($i = 0; $i <= count($units); $i++): if (!isset($units[$i])) continue; ?>
+                                <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                                    <div class="posts">
+                                        <div class="row">
+                                            <?php $unit = $units[$i]; ?>
                                             <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                                 <a href="<?= $unit->getUrl() ?>">
-                                                    <img src="<?= $unit->getModelImage(true) ?>" alt="<?= $unit->getName() ?>">
+                                                    <img src="<?= $unit->getModelImage(true) ?>"
+                                                         alt="<?= $unit->getName() ?>">
                                                     <h2 class="item-title"><?= $unit->getName() ?></h2>
-                                                    <span class="description"><?= $unit->getSubtitleStr() ?><?= $unit->getSubtitle2Str()?' / ':'' ?></span>
+                                                    <span class="description"><?= $unit->getSubtitleStr() ?><?= $unit->getSubtitle2Str() ? ' / ' : '' ?></span>
                                                     <span class="description-2"><?= $unit->getSubtitle2Str() ?></span>
                                                 </a>
                                             </div>
-                                        <?php endfor; ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endfor; ?>
+                            <?php endfor; ?>
+                        <?php endif; ?>
                     </div>
                     <a class="carousel-control-prev" href="#order-post" data-slide="prev">
                         <i class="fas fa-angle-left"></i>

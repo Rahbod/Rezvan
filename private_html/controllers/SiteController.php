@@ -185,7 +185,7 @@ class SiteController extends AuthController
 //            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
             ->all();
 
-        return $this->render('index', compact(['slides', 'apartmentCounts', 'investmentCounts',
+        return $this->render(isDesktop()?'index':'index_mobile', compact(['slides', 'apartmentCounts', 'investmentCounts',
             'constructionCounts', 'availableApartments', 'availableInvestments', 'availableConstructions', 'services']));
     }
 

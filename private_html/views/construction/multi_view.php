@@ -23,7 +23,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                     <img src="<?= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">
                     <div class="text">
                         <span class="slide"><strong><?= $project->getName() ?></strong></span><br>
-                        <h2 class="slide"><?= trans('words', '<strong>available </strong> construction').' / '.$project->getSubtitleStr() ?></h2>
+                        <h2 class="slide"><?= trans('words', '<strong>available </strong> construction') . ' / ' . $project->getSubtitleStr() ?></h2>
                     </div>
                 </div>
                 <div class="title-right">
@@ -35,28 +35,69 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                     </p>
                 </div>
             </div>
-            <div class="bg-slide" <?= $project->banner && is_file(alias('@webroot') . DIRECTORY_SEPARATOR . ConstructionController::$imgDir . DIRECTORY_SEPARATOR . $project->banner) ? 'style="background: url(\'' . alias('@web') . '/' . ConstructionController::$imgDir . '/' . $project->banner . '\') no-repeat center bottom;background-size:cover"' : '' ?>>
-                <div class="bg-logo-slider">
-                </div>
-                <div class="center-title">
-                    <h1 class="center-text"><?= $project->getName() ?></h1>
-                    <h2 class="center-text"><?= $project->getSubtitleStr() ?></h2>
-                </div>
-                <div class="container-fluid">
-                    <div class="row">
-                        <ul class="icon-list-slider">
-                            <?= $this->render('//site/_project_side', ['model' => $project]) ?>
-                        </ul>
+            <?php if (isDesktop()): ?>
+                <div class="bg-slide" <?= $project->banner && is_file(alias('@webroot') . DIRECTORY_SEPARATOR . ConstructionController::$imgDir . DIRECTORY_SEPARATOR . $project->banner) ? 'style="background: url(\'' . alias('@web') . '/' . ConstructionController::$imgDir . '/' . $project->banner . '\') no-repeat center bottom;background-size:cover"' : '' ?>>
+                    <div class="bg-logo-slider">
                     </div>
-                </div>
-                <?php if ($pdf_url = $project->getPdfUrl(ConstructionController::$pdfDir)): ?>
-                    <div class="download">
-                        <a href="<?= $pdf_url ?>">
-                            <p><?= trans('words', 'Download As<br><strong>PDF</strong>') ?></p>
-                        </a>
+                    <div class="center-title">
+                        <h1 class="center-text"><?= $project->getName() ?></h1>
+                        <h2 class="center-text"><?= $project->getSubtitleStr() ?></h2>
                     </div>
-                <?php endif; ?>
-            </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <ul class="icon-list-slider">
+                                <?= $this->render('//site/_project_side', ['model' => $project]) ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php if ($pdf_url = $project->getPdfUrl(ConstructionController::$pdfDir)): ?>
+                        <div class="download">
+                            <a href="<?= $pdf_url ?>">
+                                <p><?= trans('words', 'Download As<br><strong>PDF</strong>') ?></p>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            <?php else: ?>
+                <div class="more-slide">
+                    <div class="center-title">
+                        <h1 class="center-text"><?= $project->getName() ?></h1>
+                        <span class="description"><?= $project->getLocationStr() ?> / </span>
+                        <h2 class="center-text"><?= $project->getSubtitleStr() ?></h2>
+                    </div>
+                    <div class="share-icon">
+                        <a href="#"><img src="<?= $baseUrl ?>/images/share.png" alt="share"></a>
+                    </div>
+                    <div class="pic-slide">
+                        <img src="<?= alias('@web') . '/' . ConstructionController::$imgDir . '/' . $project->banner ?>"
+                             alt="<?= $project->getName() ?>">
+                    </div>
+                    <div class="cat-text">
+                        <span><?= trans('words', 'Other constructions') ?></span>
+                    </div>
+                    <div class="container-fluid">
+                        <div class="row">
+                            <ul class="icon-list-slider">
+                                <?= $this->render('//site/_project_side', ['model' => $project, 'withValue' => true]) ?>
+                            </ul>
+                        </div>
+                    </div>
+                    <?php if ($pdf_url = $project->getPdfUrl(ConstructionController::$pdfDir)): ?>
+                        <div class="download">
+                            <a href="<?= $pdf_url ?>">
+                                <p><?= trans('words', 'Download As<br><strong>PDF</strong>') ?></p>
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="desc-title">
+                    <p>
+                        <span class="available-desc"><?= trans('words', '<span class="green"><strong>{count} unit </span>free </strong>', ['count' => $project->unit_count]) ?></span>
+                        /
+                        <span class="sold-desc"><?= trans('words', '<span class="red"><strong>{count} unit</strong></span> SOLD', ['count' => $project->unit_count]) ?></span>
+                    </p>
+                </div>
+            <?php endif; ?>
         </div>
     </div>
     <div class="content">
@@ -69,11 +110,14 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                         </div>
                         <div class="item-inner">
                             <?php foreach ($free as $unit): ?>
-                                <div class="items collapsed" data-toggle="collapse" data-target="#item-<?= $unit->id ?>">
+                                <div class="items collapsed" data-toggle="collapse"
+                                     data-target="#item-<?= $unit->id ?>">
                                     <?= $this->render('//unit/_unit_items', ['model' => $unit]) ?>
-                                    <div class="item link-more">
-                                        <a class="more"><?= trans('words', 'More ...') ?></a>
-                                    </div>
+                                    <?php if (isDesktop()): ?>
+                                        <div class="item link-more">
+                                            <a class="more"><?= trans('words', 'More ...') ?></a>
+                                        </div>
+                                    <?php endif; ?>
                                     <div id="item-<?= $unit->id ?>" class="item-list w-100 collapse" style="">
                                         <?= $this->render('//unit/_unit_details', ['model' => $unit]) ?>
 
@@ -98,11 +142,14 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                         </div>
                         <div class="item-inner">
                             <?php foreach ($sold as $unit): ?>
-                                <div class="items collapsed" data-toggle="collapse" data-target="#item-<?= $unit->id ?>">
+                                <div class="items collapsed" data-toggle="collapse"
+                                     data-target="#item-<?= $unit->id ?>">
                                     <?= $this->render('//unit/_unit_items', ['model' => $unit, 'sold' => true]) ?>
-                                    <div class="item link-more">
-                                        <a class="more"><?= trans('words', 'More ...') ?></a>
-                                    </div>
+                                    <?php if (isDesktop()): ?>
+                                        <div class="item link-more">
+                                            <a class="more"><?= trans('words', 'More ...') ?></a>
+                                        </div>
+                                    <?php endif; ?>
                                     <div id="item-<?= $unit->id ?>" class="item-list w-100 collapse" style="">
                                         <?= $this->render('//unit/_unit_details', ['model' => $unit]) ?>
 

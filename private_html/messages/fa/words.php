@@ -541,7 +541,7 @@ return [
     'E-Mail' => 'پست الکترونیکی',
     'Mobile Number' => 'شماره موبایل',
     'Phone Number' => 'شماره تلفن',
-    'Details' => 'توضیحات',
+    'Message Text' => 'توضیحات',
     'Special Project' => 'پروژه شاخص',
     'From' => 'از',
     'To' => 'تا',

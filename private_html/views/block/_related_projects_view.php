@@ -38,15 +38,36 @@ switch ($project->type) {
                 </div>
                 <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
                     <div class="carousel-inner">
-                        <?php for ($i = 0; $i <= count($projects); $i = $i + 4): ?>
-                            <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
-                                <div class="posts">
-                                    <div class="row">
-                                        <?php for ($j = $i; $j < $i + 4; $j++):
-                                            if (!isset($projects[$j]))
-                                                break;
-                                            $apartment = $projects[$j]; ?>
-                                            <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                        <?php if (isDesktop()): ?>
+                            <?php for ($i = 0; $i <= count($projects); $i = $i + 4): ?>
+                                <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                                    <div class="posts">
+                                        <div class="row">
+                                            <?php for ($j = $i; $j < $i + 4; $j++):
+                                                if (!isset($projects[$j]))
+                                                    break;
+                                                $apartment = $projects[$j]; ?>
+                                                <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                                    <a href="<?= $apartment->getUrl() ?>">
+                                                        <img src="<?= $baseUrl . $apartment->image ?>"
+                                                             alt="<?= $apartment->getName() ?>">
+                                                        <h2 class="item-title"><?= $apartment->getName() ?></h2>
+                                                        <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                                        <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
+                                                    </a>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endfor; ?>
+                        <?php else: ?>
+                            <?php for ($i = 0; $i <= count($projects); $i++): if (!isset($projects[$i])) continue; ?>
+                                <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                                    <div class="posts">
+                                        <div class="row">
+                                            <?php $apartment = $projects[$i]; ?>
+                                            <div class="grid little-post col-sm-12 col-xs-12">
                                                 <a href="<?= $apartment->getUrl() ?>">
                                                     <img src="<?= $baseUrl . $apartment->image ?>"
                                                          alt="<?= $apartment->getName() ?>">
@@ -55,11 +76,11 @@ switch ($project->type) {
                                                     <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
                                                 </a>
                                             </div>
-                                        <?php endfor; ?>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <?php endfor; ?>
+                            <?php endfor; ?>
+                        <?php endif; ?>
                     </div>
                     <a class="carousel-control-prev" href="#order-post" data-slide="prev">
                         <i class="fas fa-angle-left"></i>

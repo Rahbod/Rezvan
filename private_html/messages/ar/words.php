@@ -264,7 +264,7 @@ return [
   'E-Mail' => 'البريد الإلكتروني',
   'Mobile Number' => 'رقم الهاتف المحمول',
   'Phone Number' => 'رقم الهاتف',
-  'Details' => 'توضحيات',
+  'Message Text' => 'توضحيات',
   'Special Project' => 'مشروع خاص',
   'From' => 'من',
   'To' => 'إلى',
@@ -288,4 +288,5 @@ return [
   'Request Status' => 'حالة الطلب',
   '<strong>CONTACT</strong> US' => '<strong> الاتصال </strong> بنا',
   'contact_us_text' => 'لا تتردد في الاتصال بنا عبر النموذج أدناه إذا كنت ترغب في الاتصال بمجموعة رضوان ، أو إذا كان لديك أي نقد أو اقتراحات.',
+  'Verify Code' => 'کلمة التحقق',
 ];

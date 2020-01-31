@@ -44,22 +44,24 @@ $this->registerJs("
                     <?= $model->formRenderer($form,'{field}', 'col-lg-3') ?>
                     <?= $this->render('//layouts/_socials') ?>
                 </div>
-                <div class="buttons">
-                    <div class="captcha">
-                        <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
-                            'captchaAction' => ['/site/captcha'],
-                            'template' => '{image}{url}{input}',
-                            'linkOptions' => ['label' => trans('words', 'CAPTCHA'), 'class' => 'btn btn-primary capatcha-button'],
-                            'options' => [
-                                'class' => 'input',
-                                'placeholder' => trans('words', 'Verify Code'),
-                                'tabindex' => ++FormRendererTrait::$tabindex,
-                                'autocomplete' => 'off'
-                            ],
-                        ])->label(false)->hint(false) ?>
-                    </div>
-                    <div class="submit">
-                        <?= Html::submitButton(trans('words', 'Submit'), ['class' => 'btn btn-primary submit-button']) ?>
+                <div class="row">
+                    <div class="buttons">
+                        <div class="captcha">
+                            <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [
+                                'captchaAction' => ['/site/captcha'],
+                                'template' => '{image}{input}',
+                                'linkOptions' => ['label' => trans('words', 'CAPTCHA'), 'class' => 'btn btn-primary capatcha-button'],
+                                'options' => [
+                                    'class' => 'input',
+                                    'placeholder' => trans('words', 'Verify Code'),
+                                    'tabindex' => ++FormRendererTrait::$tabindex,
+                                    'autocomplete' => 'off'
+                                ],
+                            ])->label(false)->hint(false) ?>
+                        </div>
+                        <div class="submit">
+                            <?= Html::submitButton(trans('words', 'Submit'), ['class' => 'btn btn-primary submit-button']) ?>
+                        </div>
                     </div>
                 </div>
             </div>
