@@ -643,6 +643,7 @@
     .col-xs-12.col-sm-12.center-section, .col-lg-12.bottom-section {
         padding: 0;
         margin: 0 4vw;
+        width: auto;
     }
 
     .col-lg-12.bottom-section {
@@ -753,12 +754,20 @@
     }
 
     .submit-page .captcha {
-        float: right;
-        width: 60%;
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .submit-page .captcha .input{
+        background-color: transparent;
+        border: 1px solid #ddd;
+        font-size: 3vw;
+        border-radius: 10px;
+        padding: 10px;
     }
 
     .submit-page .bottom-section .submit {
-        margin-left: 0;
+        margin: 0;
         display: inline-block;
         width: 40%;
     }
@@ -772,6 +781,10 @@
     .submit-page .captcha img {
         height: auto;
         width: 44%;
+    }
+
+    .submit-page .form-group {
+        margin-bottom: 0 !important;
     }
 
     .submit-page button.btn.btn-primary.capatcha-button {

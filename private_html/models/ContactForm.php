@@ -87,13 +87,38 @@ class ContactForm extends Model implements FormRendererDefinition
     public function formAttributes()
     {
         return [
-            [['name', 'email', 'tel', 'subject'], [
+            'name' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('name')],
                 'fieldOptions' => [
                     'inputOptions' => ['class' => 'input'],
                     'labelOptions' => ['class' => 'register-label'],
                 ]
-            ]],
+            ],
+            'email' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('email')],
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ],
+            'tel' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('tel')],
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ],
+            'subject' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('subject')],
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ],
             'body' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
                 'containerCssClass' => 'col-lg-12',

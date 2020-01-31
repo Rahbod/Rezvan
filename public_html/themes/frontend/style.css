@@ -1025,7 +1025,7 @@ a.carousel-control-prev i.fas, a.carousel-control-next i.fas {
  **/
 
 .main-section-page {
-    padding: 0 8%;
+    /*padding: 0 8%;*/
 	width: 100%;
 }
 .text-page .main-text-page {
@@ -2250,6 +2250,7 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
 .captcha img {
     height: 38px;
     width: auto;
+    border-radius: 4px;
 }
 .form-control-feedback {
     font-size: 0.8rem;
@@ -2261,9 +2262,10 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
     font-weight: 700;
     font-size: 18px;
     line-height: 1.9;
-    margin-left: 15px;
+    margin-left: 5px;
     padding-left: 5px;
-    width: auto;
+    width: 130px;
+    border-radius: 4px;
     vertical-align: middle;
 }
 .bottom-section .submit {

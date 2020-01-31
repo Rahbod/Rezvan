@@ -198,7 +198,7 @@ class SiteController extends AuthController
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
-        $this->bodyClass = 'more-one list';
+        $this->bodyClass = isDesktop()?'more-one list':'submit-page';
         $this->mainTag = 'main-submit-page';
 
         $model = new ContactForm();
