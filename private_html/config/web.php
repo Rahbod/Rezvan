@@ -88,7 +88,7 @@ $config = [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'server380.bertina.biz',
                 'username' => 'noreply@rezvan.info',
-                'password' => ',4E8JZ*#;OD=',
+                'password' => '1.AQG&e8,}aSoG%&lp',
                 'port' => '587',
                 'encryption' => 'tls',
             ],

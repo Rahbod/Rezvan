@@ -7,6 +7,7 @@
 use app\controllers\BlockController;
 use app\models\blocks\Banner;
 use app\models\Project;
+use app\models\Unit;
 use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
@@ -33,7 +34,7 @@ $imageUrl = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $bl
                         <a href="#"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>" alt="share"></a>
                     </div>
                 <?php endif; ?>
-                <?php if ($project->type != Project::TYPE_INVESTMENT): ?>
+                <?php if ($project->type != Project::TYPE_INVESTMENT && get_class($project) != Unit::className()): ?>
                     <div class="container-fluid">
                         <div class="row">
                             <ul class="icon-list-slider">

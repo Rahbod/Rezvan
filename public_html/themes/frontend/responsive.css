@@ -646,6 +646,12 @@
         width: auto;
     }
 
+    .request-new .col-lg-12.bottom-section,
+    .request-new .col-xs-12.col-sm-12.center-section{
+        width: 100% !important;
+    }
+
+
     .col-lg-12.bottom-section {
         padding-top: 20px;
     }
@@ -666,8 +672,12 @@
     }
 
     .switch label {
-        width: 13vw;
+        width: auto;
         height: 5vw;
+    }
+
+    .switch label.switch{
+        width: auto;
     }
 
     .switch label:after {

@@ -11,7 +11,6 @@ $this->title = trans('words', 'Update block: {name}', [
 $this->params['breadcrumbs'][] = ['label' => trans('words', 'Blocks'), 'url' => ['index', 'id' => $model->itemID]];
 $this->params['breadcrumbs'][] = $model->name;
 $this->params['breadcrumbs'][] = trans('words', 'Update');
-dd($model->project, $model->unit);
 ?>
 
 

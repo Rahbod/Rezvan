@@ -19,28 +19,47 @@ $this->registerJs("
 ?>
 
 <section class="main-submit">
-    <div class="slide-title">
-        <div class="title-left">
-            <!--<img src="<?//= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">-->
-            <div class="text">
-                <h2 class="slide"><strong><?= trans('words', 'REGISTER YOUR REQUEST') ?></strong></h2>
-            </div>
-        </div>
-    </div>
-    <div class="title-page d-none">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="title">
-                    <i></i>
-                    <h1><strong><?= trans('words', 'REGISTER YOUR REQUEST') ?></strong></h1>
+    <?php if (isDesktop()): ?>
+        <div class="slide-title">
+            <div class="title-left">
+                <div class="text">
+                    <h2 class="slide"><strong><?= trans('words', 'REGISTER YOUR REQUEST') ?></strong></h2>
                 </div>
             </div>
         </div>
-    </div>
+        <div class="title-page d-none">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="title">
+                        <i></i>
+                        <h1><strong><?= trans('words', 'REGISTER YOUR REQUEST') ?></strong></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php else: ?>
+        <div class="title-page">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="title">
+                        <div class="text-title">
+                            <h1><?= trans('words', 'REGISTER YOUR REQUEST') ?></h1>
+                            <span>تسجیل تفاصیل</span>
+                        </div>
+                        <div class="share-icon">
+                            <a href="#"><img src="<?= $this->theme->baseUrl ?>/images/share.png" alt="share"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
     <div class="main-section-page container-fluid" style="padding: 0 15px">
         <div class="register-text row">
             <div class="col-lg-6 top-section">
-                <h2><?= trans('words', '<strong>REGISTER</strong> YOUR PROPERTY DETAILS') ?></h2>
+                <?php if (isDesktop()): ?>
+                    <h2><?= trans('words', '<strong>REGISTER</strong> YOUR PROPERTY DETAILS') ?></h2>
+                <?php endif; ?>
                 <p><?= trans('words', 'register_your_property_details_text') ?></p>
             </div>
         </div>
@@ -56,7 +75,7 @@ $this->registerJs("
             <div class="col-lg-12 title-center">
                 <h2><?= trans('words', '<strong>GENERAL</strong> PROPERTY SPECIFICATIONS') ?></h2></div>
 
-            <div class="col-lg-7 center-section">
+            <div class="col-lg-7 col-xs-12 col-sm-12 center-section">
                 <div class="back-general-post switch row">
                     <div class="col-lg-6">
                         <?= $model->formRenderer($form, '{field}', 'switch-item', 'formGeneralAttributesLeft') ?>
@@ -115,7 +134,7 @@ $this->registerJs("
                                     <?= Html::textInput(Html::getInputName($model, 'area_from'), $model->$field, ['class' => 'form-control select-inline', 'placeholder' => trans('words', 'From')]); ?>
                                     <?= Html::textInput(Html::getInputName($model, 'area_to'), $model->area_to, ['class' => 'form-control select-inline', 'placeholder' => trans('words', 'To')]); ?>
                                     <?= Html::dropDownList(Html::getInputName($model, 'area_unit'), $model->area_unit, $items, ['class' => 'form-control select-inline']); ?>
-                                <?php else:?>
+                                <?php else: ?>
                                     <?= Html::textInput(Html::getInputName($model, $field), $model->$field, ['class' => 'form-control']); ?>
                                 <?php
                                 endif;
@@ -160,7 +179,7 @@ $this->registerJs("
 
 
 <style>
-    .form-group{
+    .form-group {
         margin-bottom: 5px;
     }
 </style>
