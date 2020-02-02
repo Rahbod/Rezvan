@@ -55,6 +55,18 @@ class NearbyAccess extends Block
         'restaurant' => 'resturant.png',
     ];
 
+    public static $darkIconsName = [
+        'shrine' => 'imam-reza-dark.png',
+        'shopping' => 'shoping-dark.png',
+        'hospital' => 'hospital-dark.png',
+        'metro' => 'metro-dark.png',
+        'laundry' => 'laundry-dark.png',
+        'airport' => 'airport-dark.png',
+        'gas' => 'gas-dark.png',
+        'bank' => 'bank-dark.png',
+        'restaurant' => 'resturant-dark.png',
+    ];
+
     public function init()
     {
         parent::init();

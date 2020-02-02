@@ -68,14 +68,18 @@ use yii\helpers\Url; ?>
                                 <?php endforeach; ?>
                             </ul>
                             <ul id="main-button" class="main-button">
-                                <li class="menu-button-item"><a href="#"><img src="<?= $this->theme->baseUrl.'/images/apartment-icon-w.png' ?>"
-                                                                              alt="menu-button"></a></li>
-                                <li class="menu-button-item"><a href="#"><img src="<?= $this->theme->baseUrl.'/images/menu-button-1.png' ?>"
-                                                                              alt="menu-button"></a></li>
-                                <li class="menu-button-item"><a href="#"><img src="<?= $this->theme->baseUrl.'/images/menu-button-2.png' ?>"
-                                                                              alt="menu-button"></a></li>
-                                <li class="menu-button-item"><a href="#"><img src="<?= $this->theme->baseUrl.'/images/menu-button-3.png' ?>"
-                                                                              alt="menu-button"></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/']) ?>"><img
+                                                src="<?= $this->theme->baseUrl . '/images/menu-button-1.png' ?>"
+                                                alt="menu-button"></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/apartment/list']) ?>"><img
+                                                src="<?= $this->theme->baseUrl . '/images/apartment-icon-w.png' ?>"
+                                                alt="menu-button"></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/investment/list']) ?>"><img
+                                                src="<?= $this->theme->baseUrl . '/images/menu-button-2.png' ?>"
+                                                alt="menu-button"></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/construction/list']) ?>"><img
+                                                src="<?= $this->theme->baseUrl . '/images/menu-button-3.png' ?>"
+                                                alt="menu-button"></a></li>
                             </ul>
                             <!-- #main-navigation -->
                         </nav>
@@ -85,41 +89,4 @@ use yii\helpers\Url; ?>
             </div>
         </div>
     </div>
-<!--    --><?php //if ($this->context->breadcrumbs): ?>
-<!--        <div class="header-bottom">-->
-<!--            <div class="container-fluid">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-lg-6">-->
-<!--                        <p class="breadcrumbs">--><?//= $this->context->breadcrumbs[0] ?><!--/</p>-->
-<!--                        <p class="breadcrumbs-desc">-->
-<!--                            <strong>--><?//= $this->context->breadcrumbs[1] ?><!--</strong> --><?//= $this->context->breadcrumbs[2] ?>
-<!--                        </p>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="col-lg-6 right">-->
-<!--                        --><?php //if (isset($this->context->submenu['gallery']) && $this->context->submenu['gallery']): ?>
-<!--                            <a href="#gallery---><?//= $this->context->submenu['gallery']->id ?><!--"-->
-<!--                               class="unit lazy-scroll">--><?//= trans('words', 'gallery') ?><!--</a>-->
-<!--                        --><?php //endif; ?>
-<!--                        --><?php //if (isset($this->context->submenu['video']) && $this->context->submenu['video']): ?>
-<!--                            <a href="#video-section---><?//= $this->context->submenu['video']->id ?><!--"-->
-<!--                               class="unit lazy-scroll">--><?//= trans('words', 'video') ?><!--</a>-->
-<!--                        --><?php //endif; ?>
-<!--                        --><?php //if (isset($this->context->submenu['unit']) && $this->context->submenu['unit']): ?>
-<!--                            <a href="#unit-section" class="unit lazy-scroll">--><?//= trans('words', 'unit') ?><!--</a>-->
-<!--                        --><?php //endif; ?>
-<!--                        --><?php //if (isset($this->context->submenu['map']) && $this->context->submenu['map']): ?>
-<!--                            <a href="#map-section" class="on-map lazy-scroll">--><?//= trans('words', 'on map') ?><!--</a>-->
-<!--                        --><?php //endif; ?>
-<!--                        --><?php //if (isset($this->context->submenu['nearby']) && $this->context->submenu['nearby']): ?>
-<!--                            <a href="#nearby-section" class="near-you lazy-scroll">--><?//= trans('words', 'near you') ?><!--</a>-->
-<!--                        --><?php //endif; ?>
-<!--                        --><?php //if (isset($this->context->submenu['contact']) && $this->context->submenu['contact']): ?>
-<!--                            <a href="#contact-section" class="near-you lazy-scroll">--><?//= trans('words', 'Contact') ?><!--</a>-->
-<!--                        --><?php //endif; ?>
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    --><?php //endif; ?>
 </header>

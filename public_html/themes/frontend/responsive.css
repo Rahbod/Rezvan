@@ -642,11 +642,15 @@
     /*    margin: 15px 0;*/
     /*    padding: 5px;*/
     /*}*/
+    .final-project-view.special #unit-section .content {
+        padding: 30px 0 !important;
+    }
 
     .more-one .sold .items.collapsed:hover,
     .more-one .available .items:not(.collapsed):hover {
         background-color: #ededed !important;
     }
+
     .more-one .sold .collapse-link-more a.more,
     .sold .item p.item-1:nth-child(1),
     .more-one .sold .items:not(.collapsed):hover .item-1 {
@@ -797,7 +801,6 @@
     }
 
     .submit-page .buttons {
-        padding-right: 0;
         padding-top: 10px;
     }
 
@@ -817,12 +820,12 @@
     .submit-page .bottom-section .submit {
         margin: 0;
         display: inline-block;
-        width: 40%;
+        width: 100%;
     }
 
     .submit-page button.btn.btn-primary.submit-button {
         padding-right: 10px;
-        font-size: 2.5vw;
+        /*font-size: 2.5vw;*/
         width: 100%;
     }
 
@@ -850,16 +853,34 @@
     }
 
     .final-project-view .slide-3 {
-        /*background: none;*/
+        background: none;
         min-height: auto;
         position: static;
-        padding-top: 100px;
-        margin-top: -100px;
+        padding-top: 30px;
+    }
+
+    .list .project-list {
+        min-height: auto;
+    }
+
+    .more-one.list button.btn.btn-primary.section-button {
+        margin-bottom: 0;
+        display: none;
+    }
+
+    .slide-4 .available,
+    .slide-4 .sold {
+        width: auto;
     }
 
     .final-project-view .slide-title {
         padding: 5vw;
         display: block;
+    }
+
+    .massage.back-general-post .col-lg-3 input,
+    .massage.back-general-post .col-lg-12 textarea {
+        padding: 15px 10px;
     }
 
     .final-project-view .slide-3 .slide-title .title-right {

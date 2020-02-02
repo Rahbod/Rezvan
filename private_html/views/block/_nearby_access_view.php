@@ -25,21 +25,41 @@ $baseUrl = $this->theme->baseUrl;
     <div class="container">
         <div class="row">
             <?php foreach (NearbyAccess::$fields as $field): ?>
-                <div class="col-lg-4 building-access">
-                    <?php if ($block->{$field . '_link'}): ?><a href="<?= $block->{$field . '_link'} ?>"><?php endif; ?>
-                        <div class="row">
-                            <div class="col-lg-2 thumb">
-                                <img class="img-building-access"
-                                     src="<?= $baseUrl . '/images/' . NearbyAccess::$iconsName[$field] ?>"
-                                     alt="<?= $field ?>">
+                <?php if (isDesktop()): ?>
+                    <div class="col-lg-4 building-access">
+                        <?php if ($block->{$field . '_link'}): ?><a
+                                href="<?= $block->{$field . '_link'} ?>"><?php endif; ?>
+                            <div class="row">
+                                <div class="col-lg-2 thumb">
+                                    <img class="img-building-access"
+                                         src="<?= $baseUrl . '/images/' . NearbyAccess::$iconsName[$field] ?>"
+                                         alt="<?= $field ?>">
+                                </div>
+                                <div class="col-lg-10 right">
+                                    <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>
+                                    <p class="desc-building-access"><?= $block->getDistance($field); ?></p>
+                                </div>
                             </div>
-                            <div class="col-lg-10 right">
-                                <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>
-                                <p class="desc-building-access"><?= $block->getDistance($field); ?></p>
+                            <?php if ($block->{$field . '_link'}): ?></a><?php endif; ?>
+                    </div>
+                <?php else: if ($field == 'gas') continue; ?>
+                    <div class="col-6 building-access">
+                        <?php if ($block->{$field . '_link'}): ?><a
+                                href="<?= $block->{$field . '_link'} ?>"><?php endif; ?>
+                            <div class="row">
+                                <div class="col-3 thumb">
+                                    <img class="img-building-access"
+                                         src="<?= $baseUrl . '/images/' . NearbyAccess::$darkIconsName[$field] ?>"
+                                         alt="<?= $field ?>">
+                                </div>
+                                <div class="col-9 right">
+                                    <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>
+                                    <p class="desc-building-access"><?= $block->getDistance($field); ?></p>
+                                </div>
                             </div>
-                        </div>
-                    <?php if ($block->{$field . '_link'}): ?></a><?php endif; ?>
-                </div>
+                            <?php if ($block->{$field . '_link'}): ?></a><?php endif; ?>
+                    </div>
+                <?php endif; ?>
             <?php endforeach; ?>
         </div>
     </div>

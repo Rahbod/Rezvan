@@ -244,20 +244,49 @@ class Request extends Item
     public function formAttributes()
     {
         return [
-            [['name', 'email', 'mobile', 'phone'], [
+            'name' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('name')],
                 'fieldOptions' => [
                     'inputOptions' => ['class' => 'input'],
                     'labelOptions' => ['class' => 'register-label'],
                 ]
-            ]],
+            ],
+            'email' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('email')],
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ],
+            'mobile' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('mobile')],
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ],
+            'phone' => [
+                'type' => self::FORM_FIELD_TYPE_TEXT,
+                'options' => ['placeholder' => $this->getAttributeLabel('phone')],
+                'fieldOptions' => [
+                    'inputOptions' => ['class' => 'input'],
+                    'labelOptions' => ['class' => 'register-label'],
+                ]
+            ],
             'details' => [
                 'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
                 'containerCssClass' => 'col-lg-12',
                 'fieldOptions' => [
                     'labelOptions' => ['class' => 'register-label'],
                 ],
-                'options' => ['class' => 'message-input', 'rows' => 10]
+                'options' => [
+                    'placeholder' => $this->getAttributeLabel('details'),
+                    'class' => 'message-input',
+                    'rows' => 10
+                ]
             ],
         ];
     }
