@@ -10,6 +10,7 @@ use app\models\Lists;
 use app\models\Request;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 
 $this->registerJs("
@@ -174,6 +175,17 @@ $this->registerJs("
             </div>
         </div>
         <?php CustomActiveForm::end(); ?>
+
+        <?php if (!isDesktop()): ?>
+            <div class="container-fluid">
+                <div class="back-button">
+                    <a href="<?= Url::to(['/']) ?>">
+                        <p><strong><?= trans('words', 'Back') ?></strong></br>
+                            <?= trans('words', 'Available Apartments') ?></p>
+                    </a>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 

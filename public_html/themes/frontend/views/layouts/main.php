@@ -66,12 +66,10 @@ else
 </main>
 
 <?php
-if (isDesktop()) {
     if (app()->controller->innerPage)
-        echo $this->render('_inner_footer');
+        echo $this->render(isDesktop()?'_inner_footer':'_mobile_footer');
     else
-        echo $this->render('_footer');
-}
+        echo $this->render(isDesktop()?'_footer':'_mobile_footer');
 ?>
 
 <?php echo $this->render('_public_alert'); ?>

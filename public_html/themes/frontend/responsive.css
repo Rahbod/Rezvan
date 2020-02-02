@@ -142,6 +142,16 @@
         right: 15vw;
         bottom: unset;
         line-height: 4vw;
+        padding-top: 2px;
+    }
+
+    .final-project-view section.order-post {
+        bottom: 0;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none;
     }
 
     .grid h2.item-title, .grid span.first-title {
@@ -151,7 +161,7 @@
     }
 
     .grid span.description, .grid span.description-2 {
-        font-size: 2vw !important;
+        font-size: 2.4vw !important;
         color: #454545 !important;
     }
 
@@ -296,7 +306,7 @@
         width: 5vw;
         height: auto;
         border-radius: 0;
-		margin-top: 8px;
+        margin-top: 8px;
     }
 
     .more-slide h1.center-text, .more-slide h2.center-text, .final-project-view h1.center-text, .final-project-view h2.center-text {
@@ -610,7 +620,7 @@
     }
 
     .txt-post-page-test {
-        padding: 30px 0;
+        padding: 30px;
     }
 
     .register-text .title-center {
@@ -619,6 +629,34 @@
 
     .text-page .title-page .title {
         padding-right: 5vw;
+        position: relative;
+    }
+
+    .text-page .title-page .share-icon {
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /*.final-project-view .col-lg-4.building-access {*/
+    /*    width: 50%;*/
+    /*    margin: 15px 0;*/
+    /*    padding: 5px;*/
+    /*}*/
+
+    .more-one .sold .items.collapsed:hover,
+    .more-one .available .items:not(.collapsed):hover {
+        background-color: #ededed !important;
+    }
+    .more-one .sold .collapse-link-more a.more,
+    .sold .item p.item-1:nth-child(1),
+    .more-one .sold .items:not(.collapsed):hover .item-1 {
+        color: #fff !important;
+    }
+
+    .text-page .title-page .share-icon a,
+    .text-page .title-page .share-icon a img {
+        display: inline-block;
+        float: left;
     }
 
     .header-style-2 .header-inner {
@@ -647,7 +685,7 @@
     }
 
     .request-new .col-lg-12.bottom-section,
-    .request-new .col-xs-12.col-sm-12.center-section{
+    .request-new .col-xs-12.col-sm-12.center-section {
         width: 100% !important;
     }
 
@@ -676,7 +714,7 @@
         height: 5vw;
     }
 
-    .switch label.switch{
+    .switch label.switch {
         width: auto;
     }
 
@@ -768,7 +806,7 @@
         margin-bottom: 5px;
     }
 
-    .submit-page .captcha .input{
+    .submit-page .captcha .input {
         background-color: transparent;
         border: 1px solid #ddd;
         font-size: 3vw;
@@ -812,9 +850,11 @@
     }
 
     .final-project-view .slide-3 {
-        background: none;
+        /*background: none;*/
         min-height: auto;
         position: static;
+        padding-top: 100px;
+        margin-top: -100px;
     }
 
     .final-project-view .slide-title {
