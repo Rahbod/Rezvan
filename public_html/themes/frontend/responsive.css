@@ -802,6 +802,7 @@
 
     .submit-page .buttons {
         padding-top: 10px;
+        width: 100%;
     }
 
     .submit-page .captcha {
@@ -815,6 +816,7 @@
         font-size: 3vw;
         border-radius: 10px;
         padding: 10px;
+        margin-left: 0;
     }
 
     .submit-page .bottom-section .submit {
@@ -832,6 +834,7 @@
     .submit-page .captcha img {
         height: auto;
         width: 44%;
+        float: right;
     }
 
     .submit-page .form-group {
