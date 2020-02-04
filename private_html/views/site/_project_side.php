@@ -17,105 +17,113 @@ $withValue = isset($withValue) ? $withValue : false;
     </div>
     <?php if ($model->hasField('elevator')): ?>
         <div class="item item-1">
-        <img src="<?= $baseUrl . '/images/item-1-w.png' ?>"
-             alt="item-1">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('parking')): ?>
+            <i class="svg-icon-elevator"></i>
+        </div>
+    <?php endif; ?>
+    <?php if ($model->hasField('floor_number')): ?>
         <div class="item item-2">
-        <img src="<?= $baseUrl . '/images/item-2-w.png' ?>"
-             alt="item-2">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+            <i class="svg-icon-floors"></i>
+        </div>
+    <?php endif; ?>
+    <?php if ($model->hasField('unit_count')): ?>
         <div class="item item-3">
-        <img src="<?= $baseUrl . '/images/item-3-w.png' ?>"
-             alt="item-3">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+            <i class="svg-icon-units"></i>
+        </div>
+    <?php endif; ?>
+    <?php if ($model->hasField('parking')): ?>
         <div class="item item-4">
-        <img src="<?= $baseUrl . '/images/item-4-w.png' ?>"
-             alt="item-4">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+            <i class="svg-icon-parking"></i>
+        </div>
+    <?php endif; ?>
+<!--    --><?php //if ($model->hasField('fire_alarm')): ?>
         <div class="item item-5">
-        <img src="<?= $baseUrl . '/images/item-5-w.png' ?>"
-             alt="item-5">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+            <i class="svg-icon-fire-alarm"></i>
+        </div>
+<!--    --><?php //endif; ?>
+<!--    --><?php //if ($model->hasField('lobby')): ?>
         <div class="item item-6">
-        <img src="<?= $baseUrl . '/images/item-6-w.png' ?>"
-             alt="item-6">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+            <i class="svg-icon-lobby"></i>
+        </div>
+<!--    --><?php //endif; ?>
+<!--    --><?php //if ($model->hasField('guard')): ?>
         <div class="item item-7">
-        <img src="<?= $baseUrl . '/images/item-7-w.png' ?>"
-             alt="item-7">
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+            <i class="svg-icon-guard"></i>
+        </div>
+<!--    --><?php //endif; ?>
+<!--    --><?php //if ($model->hasField('cctv')): ?>
         <div class="item item-8">
-        <img src="<?= $baseUrl . '/images/item-8-w.png' ?>"
-             alt="item-8">
-        </div><?php endif; ?>
+            <i class="svg-icon-cctv"></i>
+        </div>
+<!--    --><?php //endif; ?>
 <?php else: ?>
     <?php if ($model->hasField('elevator')): ?>
         <div class="item item-1">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-7.png' ?>" alt="item-7">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->elevator ?></p>
+                <i class="svg-icon-elevator"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
-    <?php if ($model->hasField('parking')): ?>
+    <?php endif; ?>
+    <?php if ($model->hasField('floor_number')): ?>
         <div class="item item-2">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-4.png' ?>" alt="item-3">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->floor_number ?></p>
+                <i class="svg-icon-floors"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+    <?php endif; ?>
+    <?php if ($model->hasField('unit_count')): ?>
         <div class="item item-3">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-6.png' ?>" alt="item-6">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->unit_count ?></p>
+                <i class="svg-icon-units"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+    <?php endif; ?>
+    <?php if ($model->hasField('parking')): ?>
         <div class="item item-4">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-5.png' ?>" alt="item-4">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->parking ?></p>
+                <i class="svg-icon-parking"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
+    <?php endif; ?>
     <div class="item center-icon">
         <div class="inner">
             <p class="title-center-icon-1"><?= $model->area_size ?></p>
             <p class="title-center-icon-2"><?= trans('words', 'Meters') ?></p>
         </div>
     </div>
-    <?php if ($model->hasField('')): ?>
+<!--    --><?php //if ($model->hasField('fire_alarm')): ?>
         <div class="item item-5">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-2.png' ?>" alt="item-2">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->fire_alarm ?></p>
+                <i class="svg-icon-fire-alarm"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+<!--    --><?php //endif; ?>
+<!--    --><?php //if ($model->hasField('lobby')): ?>
         <div class="item item-6">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-9.png' ?>" alt="item-9">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->lobby ?></p>
+                <i class="svg-icon-lobby"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+<!--    --><?php //endif; ?>
+<!--    --><?php //if ($model->hasField('guard')): ?>
         <div class="item item-7">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-3.png' ?>" alt="item-3">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->guard ?></p>
+                <i class="svg-icon-guard"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
-    <?php if ($model->hasField('')): ?>
+<!--    --><?php //endif; ?>
+<!--    --><?php //if ($model->hasField('cctv')): ?>
         <div class="item item-8">
-        <div class="inner">
-            <p class="item-text-hover"><?= '1' ?></p>
-            <img src="<?= $baseUrl . '/images/item-10.png' ?>" alt="item-10">
+            <div class="inner">
+                <p class="item-text-hover"><?= $model->cctv ?></p>
+                <i class="svg-icon-cctv"></i>
+            </div>
         </div>
-        </div><?php endif; ?>
+<!--    --><?php //endif; ?>
 <?php endif; ?>

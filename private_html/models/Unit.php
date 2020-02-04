@@ -610,4 +610,12 @@ class Unit extends Item
         foreach ($this->blocks as $block)
             $block->delete();
     }
+
+    public function hasField($name)
+    {
+        if (empty($name))
+            return false;
+        $fields = array_keys($this->dynaDefaults);
+        return in_array($name, $fields) && $this->$name !== null;
+    }
 }

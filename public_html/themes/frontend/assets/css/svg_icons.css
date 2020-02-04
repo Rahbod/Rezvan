@@ -12,9 +12,23 @@
     opacity: 0.5;
 }
 
+.icon-list-slider [class^="svg-icon"],
+.fade.show [class^="svg-icon"] {
+    width: 45px;
+    height: 45px;
+    display: block;
+    background-size: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .main-menu li:hover [class^="svg-icon"] {
     cursor: pointer;
     opacity: 1;
+}
+
+.fixed-menu .main-menu li [class^="svg-icon"] {
+    display: none;
 }
 
 .svg-icon-about {
@@ -130,3 +144,60 @@
     width: 60px;
     height: 60px;
 }
+
+.svg-icon-elevator {
+    background: url("../../svg/apartment/elevator2.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-floors {
+    background: url("../../svg/apartment/floors.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-units {
+    background: url("../../svg/apartment/units.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-parking {
+    background: url("../../svg/apartment/parking1.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-fire-alarm {
+    background: url("../../svg/apartment/fire-alarm.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-lobby {
+    background: url("../../svg/apartment/lobby.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-guard {
+    background: url("../../svg/apartment/building-guard.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-cctv {
+    background: url("../../svg/apartment/cctv.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-unit-number {
+    background: url("../../svg/apartment/units.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-wc {
+    background: url("../../svg/unit/thin/wc.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-toilet {
+    background: url("../../svg/unit/thin/toilet.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-bathroom {
+    background: url("../../svg/unit/thin/bathroom.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-heating-system {
+    background: url("../../svg/unit/thin/heating-radiator.svg") no-repeat scroll center transparent;
+}
+
+.svg-icon-cooling-system {
+    background: url("../../svg/unit/thin/air-conditioner.svg") no-repeat scroll center transparent;
+}
+

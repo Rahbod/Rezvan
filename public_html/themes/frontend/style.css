@@ -1730,9 +1730,10 @@ table.item-list-view {
     font-weight: 700;
 	position: absolute;
     top: 6px;
-    right: 30px;
+    left:50%;
     display: none;
     color: #fff;
+    transform: translateX(-50%);
 }
 .bg-slide .item:hover .inner img {
 	display: none;

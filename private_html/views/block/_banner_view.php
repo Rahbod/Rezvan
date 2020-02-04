@@ -34,11 +34,15 @@ $imageUrl = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $bl
                         <a href="#"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>" alt="share"></a>
                     </div>
                 <?php endif; ?>
-                <?php if ($project->type != Project::TYPE_INVESTMENT && get_class($project) != Unit::className()): ?>
+                <?php if ($project->type != Project::TYPE_INVESTMENT): ?>
                     <div class="container-fluid">
                         <div class="row">
                             <ul class="icon-list-slider">
-                                <?= $this->render('//site/_project_side', ['model' => $project, 'withValue' => true]) ?>
+                                <?php if (get_class($project) != Unit::className()): ?>
+                                    <?= $this->render('//site/_project_side', ['model' => $project, 'withValue' => true]) ?>
+                                <?php else: ?>
+                                    <?= $this->render('//site/_unit_side', ['model' => $project, 'withValue' => true]) ?>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
