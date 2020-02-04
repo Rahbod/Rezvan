@@ -76,7 +76,7 @@ use yii\helpers\Url; ?>
                                 /** @var Menu $menu */
 
                                 foreach (app()->controller->menus as $menu): ?>
-                                    <li class="menu-item"><i class="sprite <?= $menu->icon_class ?>"></i><a
+                                    <li class="menu-item"><i class="<?= $menu->icon_class ?>"></i><a
                                                 href="<?= $menu->getUrl() ?>"><?= $menu->getName() ?></a></li>
                                 <?php endforeach; ?>
                             </ul>

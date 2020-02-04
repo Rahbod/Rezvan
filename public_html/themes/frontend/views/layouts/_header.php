@@ -27,6 +27,10 @@ $baseUrl = $this->theme->baseUrl;
                                         <img id="site-logo" src="<?= $baseUrl . '/images/logo.png' ?>" alt="<?= app()->name ?>">
                                         <img id="site-logo-2" src="<?= $baseUrl . '/images/logo-02.png' ?>" alt="<?= app()->name ?>">
                                     <?php endif;?>
+
+<!--                                    <div id="site-logo" class="svg-icon-logo--><?//=app()->language == 'ar'?'-ar':''?><!--"></div>-->
+<!--                                    <div id="site-logo-2" class="svg-icon-logo-landscape--><?//=app()->language == 'ar'?'-ar':''?><!--"></div>-->
+
                                     <span class="site-title"><?= app()->name ?></span>
                                 </a>
                             </h1>
@@ -76,7 +80,7 @@ $baseUrl = $this->theme->baseUrl;
                                 /** @var Menu $menu */
 
                                 foreach (app()->controller->menus as $menu): ?>
-                                    <li class="menu-item"><i class="sprite <?= $menu->icon_class ?>"></i><a
+                                    <li class="menu-item"><i class="<?= $menu->icon_class ?>"></i><a
                                                 href="<?= $menu->getUrl()?>"><?= $menu->getName() ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
