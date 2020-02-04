@@ -1,8 +1,8 @@
-[class^="svg-icon"]{
+[class^="svg-icon"] {
     display: inline-block;
 }
 
-.main-menu [class^="svg-icon"]{
+.main-menu [class^="svg-icon"] {
     width: 29px;
     height: 29px;
     display: block;
@@ -12,91 +12,121 @@
     opacity: 0.5;
 }
 
-.main-menu li:hover [class^="svg-icon"]{
+.main-menu li:hover [class^="svg-icon"] {
     cursor: pointer;
     opacity: 1;
 }
 
-.svg-icon-about{
+.svg-icon-about {
     background: url("../../svg/menu/about.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-about{
+
+.main-menu li:hover .svg-icon-about {
     background-image: url("../../svg/menu/about_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-apartment{
+.svg-icon-apartment {
     background: url("../../svg/menu/apartment.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-apartment{
+
+.svg-icon-apartment-w {
+    background: url("../../svg/menu/apartment_white.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.main-menu li:hover .svg-icon-apartment {
     background-image: url("../../svg/menu/apartment_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-services{
+.svg-icon-services {
     background: url("../../svg/menu/services.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-services{
+
+.main-menu li:hover .svg-icon-services {
     background-image: url("../../svg/menu/services_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-contact{
+.svg-icon-contact {
     background: url("../../svg/menu/contact.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-contact{
+
+.svg-icon-contact-w {
+    background: url("../../svg/menu/contact_white.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.main-menu li:hover .svg-icon-contact {
     background-image: url("../../svg/menu/contact_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-investment{
+.svg-icon-investment {
     background: url("../../svg/menu/investment.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-investment{
+
+.svg-icon-investment-w {
+    background: url("../../svg/menu/investment_white.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.main-menu li:hover .svg-icon-investment {
     background-image: url("../../svg/menu/investment_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-how-owner{
+.svg-icon-how-owner {
     background: url("../../svg/menu/how-owner.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-how-owner{
+
+.main-menu li:hover .svg-icon-how-owner {
     background-image: url("../../svg/menu/how-owner_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-request{
+.svg-icon-request {
     background: url("../../svg/menu/request.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.main-menu li:hover .svg-icon-request{
+
+.main-menu li:hover .svg-icon-request {
     background-image: url("../../svg/menu/request_brown.svg");
     background-size: cover;
 }
 
-.svg-icon-logo{
+.svg-icon-logo {
     background: url("../../svg/menu/logo-en.svg") no-repeat scroll center transparent;
     background-size: cover;
     width: 612px;
     height: 30vw;
 }
-.svg-icon-logo-ar{
+
+.svg-icon-logo-ar {
     background: url("../../svg/menu/logo-ar.svg") no-repeat scroll center transparent;
     background-size: cover;
     width: 20vw;
     height: 30vw;
 }
-.svg-icon-logo-landscape{
+
+.svg-icon-logo-landscape {
     background: url("../../svg/menu/logo-base.svg") no-repeat scroll center transparent;
     background-size: cover;
 }
-.svg-icon-logo-landscape-ar{
+
+.svg-icon-logo-landscape-ar {
     background: url("../../svg/menu/logo-landscape.svg") no-repeat scroll center transparent;
     background-size: cover;
+}
+
+.title-left [class^="svg-icon"] {
+    width: 60px;
+    height: 60px;
 }

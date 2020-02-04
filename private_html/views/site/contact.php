@@ -21,7 +21,7 @@ $this->registerJs("
     <?php if (isDesktop()): ?>
         <div class="slide-title">
             <div class="title-left">
-                <!--<img src="<? //= $baseUrl ?>/images/apartment-icon-w.png" alt="apartment-icon">-->
+                <i class="svg-icon-contact-w"></i>
                 <div class="text">
                     <h2 class="slide"><strong><?= trans('words', 'CONTACT US') ?></strong></h2>
                 </div>

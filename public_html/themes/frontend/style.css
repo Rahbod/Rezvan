@@ -1682,11 +1682,11 @@ table.item-list-view {
 }
 .final-project-view .sold .item p.item-1:nth-child(2) {
     color: #989797;
-}
-.final-project-view section.order-post {
-    position: relative;
-    bottom: 100px;
-}
+}.final-project-view section.order-post {
+     position: relative;
+     bottom: 100px;
+ }
+
 
 .final-project-view #order-post {
     padding-left: 5%;

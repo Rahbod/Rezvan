@@ -20,7 +20,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl ?>/images/investment.png" alt="investment-icon">
+                        <i class="svg-icon-investment-w"></i>
                         <div class="text">
                             <h2 class="slide"><?= trans('words', '<strong>available </strong> investment') ?></h2>
                         </div>

@@ -20,7 +20,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl ?>/images/apartment-icon-w.png" alt="construction-icon">
+                        <i class="svg-icon-apartment-w"></i>
                         <div class="text">
                             <h2 class="slide"><?= trans('words', '<strong>available </strong> construction') ?></h2>
                         </div>

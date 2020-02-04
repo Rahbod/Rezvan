@@ -70,8 +70,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= alias('@web/themes/frontend/images/apartment-icon.png') ?>"
-                             alt="apartment-icon">
+                        <i class="svg-icon-apartment"></i>
                         <h2 class="slide"><?= trans('words', '<strong>available </strong> apartment') ?></h2>
                     </div>
                     <div class="title-right">

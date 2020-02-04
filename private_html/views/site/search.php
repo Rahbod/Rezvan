@@ -15,7 +15,7 @@ if ($apartmentProvider->totalCount): ?>
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl ?>. /images/apartment-icon-w.png" alt="apartment-icon">
+                        <i class="svg-icon-apartment"></i>
                         <div class="text">
                             <h2 class="slide"><strong>found </strong> apartment</h2>
                         </div>
