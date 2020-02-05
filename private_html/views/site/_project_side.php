@@ -17,42 +17,42 @@ $withValue = isset($withValue) ? $withValue : false;
     </div>
     <?php if ($model->hasField('elevator')): ?>
         <div class="item item-1">
-            <i class="svg-icon-elevator"></i>
+            <i class="svg-icon-elevator-w"></i>
         </div>
     <?php endif; ?>
     <?php if ($model->hasField('floor_number')): ?>
         <div class="item item-2">
-            <i class="svg-icon-floors"></i>
+            <i class="svg-icon-floors-w"></i>
         </div>
     <?php endif; ?>
     <?php if ($model->hasField('unit_count')): ?>
         <div class="item item-3">
-            <i class="svg-icon-units"></i>
+            <i class="svg-icon-units-w"></i>
         </div>
     <?php endif; ?>
     <?php if ($model->hasField('parking')): ?>
         <div class="item item-4">
-            <i class="svg-icon-parking"></i>
+            <i class="svg-icon-parking-w"></i>
         </div>
     <?php endif; ?>
 <!--    --><?php //if ($model->hasField('fire_alarm')): ?>
         <div class="item item-5">
-            <i class="svg-icon-fire-alarm"></i>
+            <i class="svg-icon-fire-alarm-w"></i>
         </div>
 <!--    --><?php //endif; ?>
 <!--    --><?php //if ($model->hasField('lobby')): ?>
         <div class="item item-6">
-            <i class="svg-icon-lobby"></i>
+            <i class="svg-icon-lobby-w"></i>
         </div>
 <!--    --><?php //endif; ?>
 <!--    --><?php //if ($model->hasField('guard')): ?>
         <div class="item item-7">
-            <i class="svg-icon-guard"></i>
+            <i class="svg-icon-guard-w"></i>
         </div>
 <!--    --><?php //endif; ?>
 <!--    --><?php //if ($model->hasField('cctv')): ?>
         <div class="item item-8">
-            <i class="svg-icon-cctv"></i>
+            <i class="svg-icon-cctv-w"></i>
         </div>
 <!--    --><?php //endif; ?>
 <?php else: ?>

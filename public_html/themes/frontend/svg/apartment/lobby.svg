@@ -1,9 +1,31 @@
-<?xml version="1.0" ?><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
+<?xml version="1.0" ?>
+<svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512" xml:space="preserve"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><style type="text/css">
 	.st0{display:none;}
-	.st1{display:inline;opacity:0.82;}
-	.st2{fill:none;stroke:#808080;}
-	.st3{fill:none;stroke:#AEDEE4;}
-	.st4{fill:none;stroke:#00AFD7;}
-	.st5{fill:none;stroke:#221F1F;stroke-linecap:round;stroke-linejoin:round;}
-	.st6{fill:none;stroke:#000000;stroke-width:8;stroke-miterlimit:10;}
-</style><g class="st0" id="Layer_1"><g class="st1" id="XMLID_1_"><g id="XMLID_10_"><line class="st2" id="XMLID_9_" x1="32" x2="480" y1="256" y2="256"/><g id="XMLID_15_"><rect class="st3" height="512" id="XMLID_8_" width="512"/><rect class="st3" height="448" id="XMLID_7_" width="448" x="32" y="32"/></g><rect class="st4" height="384" id="XMLID_6_" width="384" x="64" y="64"/><rect class="st4" height="384" id="XMLID_5_" width="320" x="96" y="64"/><rect class="st4" height="320" id="XMLID_4_" width="384" x="64" y="96"/><line class="st2" id="XMLID_3_" x1="256" x2="256" y1="480" y2="32"/></g><path class="st5" d="M256,256" id="XMLID_2_"/></g></g><g id="Apple"><g id="XMLID_11_"><g id="XMLID_19_"><path d="M440,423.1v16H72v-16H440 M448,415.1H64v32h384V415.1L448,415.1z" id="XMLID_105_"/></g><g id="XMLID_18_"><path d="M403.4,292.9c11.3,0,21.6,4.1,27.5,10.9c2.4,2.8,5.2,7.4,4.3,13.2l-14.2,97.9H90.9L76.7,317     c-0.9-6.2,1.8-10.8,4.2-13.5c5.7-6.6,16-10.5,27.6-10.5H403.4 M403.4,284.9H108.6c-24.5,0-42.4,15-39.8,33.2L84,422.9h344     l15.2-104.8C445.8,300.4,427.2,284.9,403.4,284.9L403.4,284.9z" id="XMLID_100_"/></g><g id="XMLID_17_"><path d="M394.8,81l26.6,69H315.9l28.2-69H395 M400.2,73h-61.4L304,158h129L400.2,73L400.2,73z" id="XMLID_95_"/></g><line class="st6" id="XMLID_16_" x1="368.5" x2="368.5" y1="156.1" y2="288.1"/><g id="XMLID_30_"><path d="M398,292.9v52c0,17.6-14.4,32-32,32H146c-17.6,0-32-14.4-32-32v-52H398 M406,284.9H106v60     c0,22.1,17.9,40,40,40h220c22.1,0,40-17.9,40-40V284.9L406,284.9z" id="XMLID_90_"/></g><g id="XMLID_14_"><path d="M298,292.9v84h-84v-84H298 M306,284.9H206v100h100V284.9L306,284.9z" id="XMLID_94_"/></g><rect class="st6" height="66" id="XMLID_13_" width="66" x="109" y="147.1"/><rect class="st6" height="66" id="XMLID_12_" width="66" x="205" y="147.1"/></g></g></svg>
+	.st1{display:inline;}
+	.st2{fill:none;stroke:#000;}
+	.st3{fill:none;stroke:#000;}
+	.st4{fill:none;stroke:#000;}
+	.st5{fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;}
+	.st6{fill:none;stroke:#000;stroke-width:8;stroke-miterlimit:10;}
+</style>
+    <g class="st0" id="Layer_1"><g class="st1" id="XMLID_1_"><g id="XMLID_10_"><line class="st2" id="XMLID_9_" x1="32" x2="480" y1="256" y2="256"/><g
+            id="XMLID_15_"><rect class="st3" height="512" id="XMLID_8_" width="512"/>
+        <rect class="st3" height="448" id="XMLID_7_" width="448" x="32" y="32"/></g><rect class="st4" height="384"
+                                                                                          id="XMLID_6_" width="384"
+                                                                                          x="64" y="64"/><rect
+            class="st4" height="384" id="XMLID_5_" width="320" x="96" y="64"/><rect class="st4" height="320"
+                                                                                    id="XMLID_4_" width="384" x="64"
+                                                                                    y="96"/><line class="st2"
+                                                                                                  id="XMLID_3_" x1="256"
+                                                                                                  x2="256" y1="480"
+                                                                                                  y2="32"/></g><path
+            class="st5" d="M256,256" id="XMLID_2_"/></g></g>
+    <g id="Apple"><g id="XMLID_11_"><g id="XMLID_19_"><path d="M440,423.1v16H72v-16H440 M448,415.1H64v32h384V415.1L448,415.1z" id="XMLID_105_"/></g><g
+            id="XMLID_18_"><path d="M403.4,292.9c11.3,0,21.6,4.1,27.5,10.9c2.4,2.8,5.2,7.4,4.3,13.2l-14.2,97.9H90.9L76.7,317     c-0.9-6.2,1.8-10.8,4.2-13.5c5.7-6.6,16-10.5,27.6-10.5H403.4 M403.4,284.9H108.6c-24.5,0-42.4,15-39.8,33.2L84,422.9h344     l15.2-104.8C445.8,300.4,427.2,284.9,403.4,284.9L403.4,284.9z" id="XMLID_100_"/></g><g
+            id="XMLID_17_"><path d="M394.8,81l26.6,69H315.9l28.2-69H395 M400.2,73h-61.4L304,158h129L400.2,73L400.2,73z" id="XMLID_95_"/></g><line
+            class="st6" id="XMLID_16_" x1="368.5" x2="368.5" y1="156.1" y2="288.1"/><g id="XMLID_30_"><path d="M398,292.9v52c0,17.6-14.4,32-32,32H146c-17.6,0-32-14.4-32-32v-52H398 M406,284.9H106v60     c0,22.1,17.9,40,40,40h220c22.1,0,40-17.9,40-40V284.9L406,284.9z" id="XMLID_90_"/></g><g
+            id="XMLID_14_"><path d="M298,292.9v84h-84v-84H298 M306,284.9H206v100h100V284.9L306,284.9z" id="XMLID_94_"/></g><rect
+            class="st6" height="66" id="XMLID_13_" width="66" x="109" y="147.1"/><rect class="st6" height="66"
+                                                                                       id="XMLID_12_" width="66" x="205"
+                                                                                       y="147.1"/></g></g></svg>

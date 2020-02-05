@@ -33,7 +33,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
             <div class="container-fluid">
                 <div class="row available">
                     <div class="available-left-title col-lg-3">
-                        <img src="<?= $baseUrl.'/images/door-icon.png' ?>" alt="door">
+                        <i class="svg-icon-units"></i>
                         <div class="title-unit">
                             <p><?= trans('words', '<span class="green"><strong>{count} unit </span>free </strong>', ['count' => count($free)]) ?></p>
                             <p><?= trans('words', 'from {total_count} unit', ['total_count' => count($sold) + count($free)]) ?> </p>

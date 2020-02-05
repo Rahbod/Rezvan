@@ -23,28 +23,28 @@ $this->context->breadcrumbs = [
             <p class="title-2"><?= trans('words', 'Meters') ?></p>
         </div>
         <div class="item item-1">
-            <img src="<?= $baseUrl ?>/images/item-1-w.png" alt="item-1">
+            <i class="svg-icon-bold-floor-w"></i>
         </div>
         <div class="item item-2">
-            <img src="<?= $baseUrl ?>/images/item-2-w.png" alt="item-2">
+            <i class="svg-icon-bold-rooms-w"></i>
         </div>
         <div class="item item-3">
-            <img src="<?= $baseUrl ?>/images/item-3-w.png" alt="item-3">
+            <i class="svg-icon-bold-toilet-w"></i>
         </div>
         <div class="item item-4">
-            <img src="<?= $baseUrl ?>/images/item-4-w.png" alt="item-4">
+            <i class="svg-icon-bold-master-w"></i>
         </div>
         <div class="item item-5">
-            <img src="<?= $baseUrl ?>/images/item-5-w.png" alt="item-5">
+            <i class="svg-icon-bold-heating-system-w"></i>
         </div>
         <div class="item item-6">
-            <img src="<?= $baseUrl ?>/images/item-6-w.png" alt="item-6">
+            <i class="svg-icon-bold-cooling-system-w"></i>
         </div>
         <div class="item item-7">
-            <img src="<?= $baseUrl ?>/images/item-7-w.png" alt="item-7">
+            <i class="svg-icon-bold-furnished-w"></i>
         </div>
         <div class="item item-8">
-            <img src="<?= $baseUrl ?>/images/item-8-w.png" alt="item-8">
+            <i class="svg-icon-bold-parking-w"></i>
         </div>
     </div>
     <?php if ($pdf_url = $model->project->getPdfUrl(ApartmentController::$pdfDir)): ?>

@@ -14,32 +14,36 @@ $baseUrl = $this->theme->baseUrl;
         <p class="item-1"><?= $model->area_size ?> <?= trans('words', 'Meters') ?></p>
     </div>
     <div class="item item-2">
-        <img src="<?= $baseUrl . '/images/item-2-l.png' ?>" alt="item-2">
+        <i class="svg-icon-bold-floor-w"></i>
         <span class="item-2"><?= $model->getFloorNumberStr() ?></span>
     </div>
     <div class="item item-3">
-        <img src="<?= $baseUrl . '/images/item-3-l.png' ?>" alt="item-3">
+        <i class="svg-icon-bold-rooms-w"></i>
         <span class="item-2"><?= $model->getBedRoomStr(true) ?></span>
     </div>
     <div class="item item-4">
-        <img src="<?= $baseUrl . '/images/item-4-l.png' ?>" alt="item-4">
-        <span class="item-2"><?= $model->getAirConditionerStr(true) ?></span>
+        <i class="svg-icon-bold-toilet-w"></i>
+        <span class="item-2"><?= $model->getToiletStr() ?></span>
     </div>
     <div class="item item-5">
-        <img src="<?= $baseUrl . '/images/item-5-l.png' ?>" alt="item-5">
-        <span class="item-2"><?= $model->getWcStr(true) ?></span>
-    </div>
-    <div class="item item-6">
-        <img src="<?= $baseUrl . '/images/item-6-l.png' ?>" alt="item-6">
+        <i class="svg-icon-bold-master-w"></i>
         <span class="item-2"><?= $model->getBathRoomStr(true) ?></span>
     </div>
+    <div class="item item-6">
+        <i class="svg-icon-bold-heating-system-w"></i>
+        <span class="item-2"><?= $model->getListValueStr('heating_system') ?></span>
+    </div>
     <div class="item item-7">
-        <img src="<?= $baseUrl . '/images/item-7-l.png' ?>" alt="item-7">
-        <span class="item-2"><?= $model->getParkingStr(true) ?></span>
+        <i class="svg-icon-bold-cooling-system-w"></i>
+        <span class="item-2"><?= $model->getListValueStr('cooling_system') ?></span>
     </div>
     <div class="item item-8">
-        <img src="<?= $baseUrl . '/images/item-8-l.png' ?>" alt="item-8">
-        <span class="item-2"><?= $model->getRadiatorStr(true) ?></span>
+        <i class="svg-icon-bold-furnished-w"></i>
+<!--        <span class="item-2">--><?//= $model->getRadiatorStr(true) ?><!--</span>-->
+    </div>
+    <div class="item item-9">
+        <i class="svg-icon-bold-parking-w"></i>
+        <span class="item-2"><?= $model->getParkingStr(true) ?></span>
     </div>
 
 <?php else: ?>
@@ -48,31 +52,35 @@ $baseUrl = $this->theme->baseUrl;
         <p class="item-1"><?= $model->area_size ?> <?= trans('words', 'Meters') ?></p>
     </div>
     <div class="item item-2">
-        <img src="<?= $baseUrl . '/images/item-2.png' ?>" alt="item-2">
+        <i class="svg-icon-bold-floor"></i>
         <span class="item-2"><?= $model->getFloorNumberStr() ?></span>
     </div>
     <div class="item item-3">
-        <img src="<?= $baseUrl . '/images/item-3.png' ?>" alt="item-3">
+        <i class="svg-icon-bold-rooms"></i>
         <span class="item-2"><?= $model->getBedRoomStr(true) ?></span>
     </div>
     <div class="item item-4">
-        <img src="<?= $baseUrl . '/images/item-4.png' ?>" alt="item-4">
-        <span class="item-2"><?= $model->getAirConditionerStr(true) ?></span>
+        <i class="svg-icon-bold-toilet"></i>
+        <span class="item-2"><?= $model->getToiletStr() ?></span>
     </div>
     <div class="item item-5">
-        <img src="<?= $baseUrl . '/images/item-5.png' ?>" alt="item-5">
-        <span class="item-2"><?= $model->getWcStr(true) ?></span>
-    </div>
-    <div class="item item-6">
-        <img src="<?= $baseUrl . '/images/item-6.png' ?>" alt="item-6">
+        <i class="svg-icon-bold-master"></i>
         <span class="item-2"><?= $model->getBathRoomStr(true) ?></span>
     </div>
+    <div class="item item-6">
+        <i class="svg-icon-bold-heating-system"></i>
+        <span class="item-2"><?= $model->getListValueStr('heating_system') ?></span>
+    </div>
     <div class="item item-7">
-        <img src="<?= $baseUrl . '/images/item-7.png' ?>" alt="item-7">
-        <span class="item-2"><?= $model->getParkingStr(true) ?></span>
+        <i class="svg-icon-bold-cooling-system"></i>
+        <span class="item-2"><?= $model->getListValueStr('cooling_system') ?></span>
     </div>
     <div class="item item-8">
-        <img src="<?= $baseUrl . '/images/item-8.png' ?>" alt="item-8">
-        <span class="item-2"><?= $model->getRadiatorStr(true) ?></span>
+        <i class="svg-icon-bold-furnished"></i>
+<!--        <span class="item-2">--><?//= $model->getRadiatorStr(true) ?><!--</span>-->
+    </div>
+    <div class="item item-9">
+        <i class="svg-icon-bold-parking"></i>
+        <span class="item-2"><?= $model->getParkingStr(true) ?></span>
     </div>
 <?php endif;

@@ -17,7 +17,7 @@ $unit = $block->getUnit();
                     <div class="title-left">
                         <p class="slide"><?= trans('words','<strong>Current status</strong><br> of the UNIT {unit_number}',['unit_number' => $unit->unit_number]) ?></p>
                     </div>
-                    <img src="<?= $baseUrl .'/images/door-icon.png' ?>" alt="door">
+                    <i class="svg-icon-units"></i>
                     <div class="title-unit">
                         <div class="title-unit">
                             <p><?= trans('words', '<span class="green"><strong>unit {unit_number}</strong></span> <strong>available</strong>', ['unit_number' => $unit->unit_number]) ?></p>

@@ -22,6 +22,24 @@
     margin-left: auto;
 }
 
+.fade.show .overly [class^="svg-icon"] {
+    width: 25px;
+    height: 42px;
+    display: block;
+    background-size: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.grid .overly [class^="svg-icon"] {
+    width: 25px;
+    height: 42px;
+    display: block;
+    background-size: 100%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
 .main-menu li:hover [class^="svg-icon"] {
     cursor: pointer;
     opacity: 1;
@@ -29,6 +47,11 @@
 
 .fixed-menu .main-menu li [class^="svg-icon"] {
     display: none;
+}
+
+.item-inner [class^="svg-icon"] {
+    width: 38px;
+    height: 38px;
 }
 
 .svg-icon-about {
@@ -147,57 +170,212 @@
 
 .svg-icon-elevator {
     background: url("../../svg/apartment/elevator2.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-floors {
     background: url("../../svg/apartment/floors.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-units {
     background: url("../../svg/apartment/units.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-parking {
     background: url("../../svg/apartment/parking1.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-fire-alarm {
     background: url("../../svg/apartment/fire-alarm.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-lobby {
     background: url("../../svg/apartment/lobby.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-guard {
     background: url("../../svg/apartment/building-guard.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-cctv {
     background: url("../../svg/apartment/cctv.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-unit-number {
     background: url("../../svg/apartment/units.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
+
+.svg-icon-elevator-w {
+    background: url("../../svg/apartment/elevator2-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-floors-w {
+    background: url("../../svg/apartment/floors-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-units-w {
+    background: url("../../svg/apartment/units-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-parking-w {
+    background: url("../../svg/apartment/parking1-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-fire-alarm-w {
+    background: url("../../svg/apartment/fire-alarm-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-lobby-w {
+    background: url("../../svg/apartment/lobby-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-guard-w {
+    background: url("../../svg/apartment/building-guard-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-cctv-w {
+    background: url("../../svg/apartment/cctv-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-unit-number-w {
+    background: url("../../svg/apartment/units-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
 
 .svg-icon-wc {
     background: url("../../svg/unit/thin/wc.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-toilet {
     background: url("../../svg/unit/thin/toilet.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-bathroom {
     background: url("../../svg/unit/thin/bathroom.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-heating-system {
     background: url("../../svg/unit/thin/heating-radiator.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
 .svg-icon-cooling-system {
     background: url("../../svg/unit/thin/air-conditioner.svg") no-repeat scroll center transparent;
+    background-size: cover;
 }
 
+.svg-icon-bold-master {
+    background: url("../../svg/unit/bold/master.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-floor {
+    background: url("../../svg/unit/bold/floor.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-parking {
+    background: url("../../svg/unit/bold/parking.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-furnished {
+    background: url("../../svg/unit/bold/furnished.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-rooms {
+    background: url("../../svg/unit/bold/rooms.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-heating-system {
+    background: url("../../svg/unit/bold/heating-radiator.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-cooling-system {
+    background: url("../../svg/unit/bold/cooling-water.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-wc {
+    background: url("../../svg/unit/bold/wc.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-toilet {
+    background: url("../../svg/unit/bold/toilet.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-master-w {
+    background: url("../../svg/unit/bold/master-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-floor-w {
+    background: url("../../svg/unit/bold/floor-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-parking-w {
+    background: url("../../svg/unit/bold/parking-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-furnished-w {
+    background: url("../../svg/unit/bold/furnished-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-rooms-w {
+    background: url("../../svg/unit/bold/rooms-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-heating-system-w {
+    background: url("../../svg/unit/bold/heating-radiator-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-cooling-system-w {
+    background: url("../../svg/unit/bold/cooling-water-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-wc-w {
+    background: url("../../svg/unit/bold/wc-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.svg-icon-bold-toilet-w {
+    background: url("../../svg/unit/bold/toilet-w.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+#unit-section .svg-icon-units {
+    width: 60px;
+    position: absolute;
+    height: 60px;
+}
