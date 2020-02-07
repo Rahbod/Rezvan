@@ -380,6 +380,51 @@
     background-size: cover;
 }
 
+.items.collapsed .svg-icon-bold-master-w {
+    background: url("../../svg/unit/bold/master.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-floor-w {
+    background: url("../../svg/unit/bold/floor.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-parking-w {
+    background: url("../../svg/unit/bold/parking.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-furnished-w {
+    background: url("../../svg/unit/bold/furnished.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-rooms-w {
+    background: url("../../svg/unit/bold/rooms.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-heating-system-w {
+    background: url("../../svg/unit/bold/heating-radiator.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-cooling-system-w {
+    background: url("../../svg/unit/bold/cooling-water.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-wc-w {
+    background: url("../../svg/unit/bold/wc.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
+.items.collapsed .svg-icon-bold-toilet-w {
+    background: url("../../svg/unit/bold/toilet.svg") no-repeat scroll center transparent;
+    background-size: cover;
+}
+
 @media (max-width: 768px) {
     .main-menu [class^="svg-icon"] {
         width: 7vw;
