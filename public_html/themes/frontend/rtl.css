@@ -1,4 +1,9 @@
 @import "assets/css/droidarabickufi.css";
+
+*{
+    letter-spacing: 0 !important;
+}
+
 html {
 	direction: rtl;
 }

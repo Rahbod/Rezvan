@@ -177,8 +177,21 @@
         line-height: 4vw;
     }
 
+    .final-project-view .carousel-inner,
+    .final-project-view #order-post {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .grid.little-post h2.item-title, .grid.little-post span.description {
-        padding: 0;
+        padding: 0 15px 0 0;
+    }
+
+    .final-project-view #order-post img{
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        margin-bottom: 10px;
     }
 
     .top-title::before, .grid-title::before, .center-title::before {
