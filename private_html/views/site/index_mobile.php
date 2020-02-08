@@ -56,7 +56,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         class="sold-icon">SOLD!</span><?php endif; ?>
                                 <div class="top-title">
                                     <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                    <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
+                                    <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?> / </span>
                                     <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                 </div>
                                 <div class="share-icon">
@@ -84,7 +84,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                  alt="<?= Html::encode($apartment->getName()) ?>">
                                             <div class="grid-title">
                                                 <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
+                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?> / </span>
                                                 <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                             </div>
                                             <div class="share-icon">
@@ -120,7 +120,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         class="sold-icon">SOLD!</span><?php endif; ?>
                                 <div class="top-title">
                                     <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                    <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
+                                    <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?> / </span>
                                     <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                 </div>
                                 <div class="share-icon">
@@ -148,7 +148,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                  alt="<?= Html::encode($apartment->getName()) ?>">
                                             <div class="grid-title">
                                                 <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
+                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?> / </span>
                                                 <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                             </div>
                                             <div class="share-icon">
@@ -184,7 +184,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                         class="sold-icon">SOLD!</span><?php endif; ?>
                                 <div class="top-title">
                                     <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                    <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
+                                    <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?> / </span>
                                     <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                 </div>
                                 <div class="share-icon">
@@ -212,7 +212,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                  alt="<?= Html::encode($apartment->getName()) ?>">
                                             <div class="grid-title">
                                                 <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
-                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
+                                                <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?> / </span>
                                                 <span class="description"><?= Html::encode($apartment->getLocationStr()) ?></span>
                                             </div>
                                             <div class="share-icon">

@@ -44,7 +44,7 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                                          alt="<?= Html::encode($projects[0]->getName()) ?>">
                                     <div class="top-title">
                                         <h2 class="item-title"><?= Html::encode($projects[0]->getName()) ?></h2>
-                                        <span class="first-title"><?= $projects[0]->getLocationStr() ?></span>
+                                        <span class="first-title"><?= $projects[0]->getLocationStr() ?><?php if (!isDesktop()): ?> / <?php endif; ?></span>
                                         <span class="description"><?= $projects[0]->getLocationTwoStr() ?></span>
                                     </div>
                                     <?php if (!isDesktop()): ?>

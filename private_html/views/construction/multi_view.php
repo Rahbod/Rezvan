@@ -10,6 +10,7 @@ $baseUrl = $this->theme->baseUrl;
 use app\controllers\ConstructionController;
 use app\models\projects\OtherConstruction;
 use app\models\Unit;
+use yii\helpers\Url;
 
 $sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
 $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
@@ -162,6 +163,16 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                             <?php endforeach; ?>
                         </div>
                     </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if (!isDesktop()): ?>
+            <div class="container-fluid">
+                <div class="back-button">
+                    <a href="<?= Url::to(['/']) ?>">
+                        <p><strong><?= trans('words', 'Back') ?></strong></br>
+                            <?= trans('words', 'Available Apartments') ?></p>
+                    </a>
                 </div>
             </div>
         <?php endif; ?>

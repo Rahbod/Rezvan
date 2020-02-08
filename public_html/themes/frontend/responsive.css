@@ -38,12 +38,17 @@
         padding-right: 20px;
     }
 
+    .grid.first-post span.first-title {
+        padding-left: 0;
+    }
+
     #menu-main ul.main-menu {
         background-color: #fff;
         padding-top: 50px;
         padding-bottom: 20px;
         margin-top: 13.1vw;
         width: 100%;
+        height: 100vh;
     }
 
     #menu-main button.navbar-toggler {
@@ -142,7 +147,25 @@
         right: 15vw;
         bottom: unset;
         line-height: 4vw;
-        padding-top: 2px;
+        padding-top: 7px;
+    }
+
+    .carousel-indicators {
+        display: inline-block;
+        margin: 2%;
+        text-align: center;
+        padding: 0;
+    }
+
+    .carousel-indicators li {
+        display: inline-block;
+        margin: 0;
+        width: 5px;
+        border-radius: 50% !important;
+    }
+
+    .final-project-view .title-order-post {
+        padding: 15px 5%;
     }
 
     .final-project-view section.order-post {
@@ -152,6 +175,16 @@
     .carousel-control-prev,
     .carousel-control-next {
         display: none;
+    }
+
+    #order-post .carousel-control-prev,
+    #order-post .carousel-control-next {
+        display: flex;
+    }
+
+    #order-post a.carousel-control-prev i.fas,
+    #order-post a.carousel-control-next i.fas {
+        font-size: 28px;
     }
 
     .grid h2.item-title, .grid span.first-title {
@@ -183,11 +216,34 @@
         padding-left: 0;
     }
 
-    .grid.little-post h2.item-title, .grid.little-post span.description {
+    .grid.little-post h2.item-title,
+    .grid.little-post span.description {
         padding: 0 15px 0 0;
     }
 
-    .final-project-view #order-post img{
+    #order-post .grid.little-post span.description,
+    #order-post .grid.little-post span.description-2 {
+        float: right;
+        line-height: 1;
+    }
+
+    #order-post .grid.little-post span.description-2 {
+        padding-right: 5px;
+    }
+
+    .full-slide .grid h2.item-title {
+        display: block;
+        width: 100%;
+        line-height: 1;
+    }
+
+    .full-slide .grid h2.item-title,
+    .full-slide .grid span.description {
+        padding: 0 !important;
+        position: static;
+    }
+
+    .final-project-view #order-post img {
         width: 100%;
         height: auto;
         border-radius: 0;
@@ -243,7 +299,13 @@
         height: 100%;
         min-height: 50vw;
         width: 100%;
-        margin-top: 4vw;
+        margin-top: 3vw;
+    }
+    .more-slide {
+        height: 100%;
+        min-height: 50vw;
+        width: 100%;
+        margin-top: 3vw;
     }
 
     .desc-title {
@@ -271,6 +333,7 @@
         width: fit-content;
         right: 14vw;
         display: inline-block;
+        margin-bottom: 2vw;
     }
 
     .final-project-view .full-slide .center-title {
@@ -315,6 +378,7 @@
         top: 5vw;
     }
 
+    .more-slide .share-icon img,
     .project-list .grid .share-icon img {
         width: 5vw;
         height: auto;
@@ -338,6 +402,7 @@
         margin: 0;
         padding: 0;
         float: right;
+        line-height: 1;
     }
 
     .pic-slide img {
@@ -660,7 +725,7 @@
         padding: 30px 0 !important;
     }
 
-    #unit-section .item-1{
+    #unit-section .item-1 {
         color: #000 !important;
     }
 
@@ -937,9 +1002,10 @@
     }
 
     .img-building-access {
-        padding-bottom: 10px;
-        height: 12vw;
+        padding-bottom: 0;
+        height: 10vw;
         padding-right: 2vw;
+        padding-top: 2vw;
     }
 
     .img-building-access.shoping {
@@ -993,10 +1059,6 @@
         height: 4vw;
     }
 
-    .more-slide h1.center-text, .more-slide h2.center-text {
-        line-height: 0.5;
-    }
-
     select.form-control.radius, .back-general-post select, input.form-control {
         height: 7vw;
     }
@@ -1035,9 +1097,5 @@
 
     .center-title::before {
         top: -1vw;
-    }
-
-    .more-slide h1.center-text, .more-slide h2.center-text {
-        line-height: 0;
     }
 }

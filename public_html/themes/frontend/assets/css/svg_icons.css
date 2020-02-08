@@ -61,9 +61,9 @@
     opacity: 1;
 }
 
-.fixed-menu .main-menu li [class^="svg-icon"] {
-    display: none;
-}
+/*.fixed-menu .main-menu li [class^="svg-icon"] {*/
+/*    display: none;*/
+/*}*/
 
 .svg-icon-about {
     background: url("../../svg/menu/about.svg") no-repeat scroll center transparent;
