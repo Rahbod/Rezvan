@@ -31,9 +31,13 @@ $baseUrl = $this->theme->baseUrl;
                                 href="<?= $block->{$field . '_link'} ?>"><?php endif; ?>
                             <div class="row">
                                 <div class="col-lg-2 thumb">
-                                    <img class="img-building-access"
-                                         src="<?= $baseUrl . '/images/' . NearbyAccess::$iconsName[$field] ?>"
-                                         alt="<?= $field ?>">
+                                    <?php if ($field == 'gas'): ?>
+                                        <img class="img-building-access"
+                                             src="<?= $baseUrl . '/images/' . NearbyAccess::$iconsName[$field] ?>"
+                                             alt="<?= $field ?>">
+                                    <?php else: ?>
+                                        <i class="<?= NearbyAccess::$iconsName[$field] ?>"></i>
+                                    <?php endif; ?>
                                 </div>
                                 <div class="col-lg-10 right">
                                     <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>
@@ -48,9 +52,7 @@ $baseUrl = $this->theme->baseUrl;
                                 href="<?= $block->{$field . '_link'} ?>"><?php endif; ?>
                             <div class="row">
                                 <div class="col-3 thumb">
-                                    <img class="img-building-access"
-                                         src="<?= $baseUrl . '/images/' . NearbyAccess::$darkIconsName[$field] ?>"
-                                         alt="<?= $field ?>">
+                                    <i class="<?= NearbyAccess::$darkIconsName[$field] ?>"></i>
                                 </div>
                                 <div class="col-9 right">
                                     <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>

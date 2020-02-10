@@ -63,8 +63,8 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                 <div class="more-slide">
                     <div class="center-title">
                         <h1 class="center-text"><?= $project->getName() ?></h1>
-                        <span class="description"><?= $project->getLocationStr() ?> / </span>
-                        <h2 class="center-text"><?= $project->getSubtitleStr() ?></h2>
+                        <h2 class="center-text"><?= $project->getSubtitleStr() ?> / </h2>
+                        <span class="description"><?= $project->getLocationStr() ?></span>
                     </div>
                     <div class="share-icon">
                         <a href="#"><img src="<?= $baseUrl ?>/images/share.png" alt="share"></a>
@@ -93,9 +93,9 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                 </div>
                 <div class="desc-title">
                     <p>
-                        <span class="available-desc"><?= trans('words', '<span class="green"><strong>{count} unit </span>free </strong>', ['count' => $project->unit_count]) ?></span>
+                        <span class="available-desc"><?= trans('words', '<span class="green"><strong>{count} unit </span>free </strong>', ['count' => $project->free_count]) ?></span>
                         /
-                        <span class="sold-desc"><?= trans('words', '<span class="red"><strong>{count} unit</strong></span> SOLD', ['count' => $project->unit_count]) ?></span>
+                        <span class="sold-desc"><?= trans('words', '<span class="red"><strong>{count} unit</strong></span> SOLD', ['count' => $project->sold_count]) ?></span>
                     </p>
                 </div>
             <?php endif; ?>

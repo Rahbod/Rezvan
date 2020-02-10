@@ -71,15 +71,12 @@ use yii\helpers\Url; ?>
                                 <li class="menu-button-item"><a href="<?= Url::to(['/']) ?>"><img
                                                 src="<?= $this->theme->baseUrl . '/images/menu-button-1.png' ?>"
                                                 alt="menu-button"></a></li>
-                                <li class="menu-button-item"><a href="<?= Url::to(['/apartment/list']) ?>"><img
-                                                src="<?= $this->theme->baseUrl . '/images/apartment-icon-w.png' ?>"
-                                                alt="menu-button"></a></li>
-                                <li class="menu-button-item"><a href="<?= Url::to(['/investment/list']) ?>"><img
-                                                src="<?= $this->theme->baseUrl . '/images/menu-button-2.png' ?>"
-                                                alt="menu-button"></a></li>
-                                <li class="menu-button-item"><a href="<?= Url::to(['/construction/list']) ?>"><img
-                                                src="<?= $this->theme->baseUrl . '/images/menu-button-3.png' ?>"
-                                                alt="menu-button"></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/apartment/list']) ?>"><i
+                                                class="svg-icon-apartment-w"></i></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/investment/list']) ?>"><i
+                                                class="svg-icon-investment-w"></i></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/construction/list']) ?>"><i
+                                                class="svg-icon-services-w"></i></a></li>
                             </ul>
                             <!-- #main-navigation -->
                         </nav>

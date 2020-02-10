@@ -23,6 +23,7 @@ $this->registerJs("
     <?php if (isDesktop()): ?>
         <div class="slide-title">
             <div class="title-left">
+                <i class="svg-icon-request-w"></i>
                 <div class="text">
                     <h2 class="slide"><strong><?= trans('words', 'REGISTER YOUR REQUEST') ?></strong></h2>
                 </div>
@@ -152,7 +153,7 @@ $this->registerJs("
                     <div class="error col-12 form-control-feedback"><?= $form->errorSummary($model); ?></div>
                     <?= $model->formRenderer($form, '{field}', 'col-lg-3') ?>
                 </div>
-                <div class="row">
+                <div class="row flex-end">
                     <div class="buttons">
                         <div class="captcha">
                             <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [

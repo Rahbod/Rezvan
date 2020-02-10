@@ -68,7 +68,7 @@ $this->registerJs("
                         <?= $this->render('//layouts/_socials') ?>
                     <?php endif; ?>
                 </div>
-                <div class="row">
+                <div class="row flex-end">
                     <div class="buttons">
                         <div class="captcha">
                             <?= $form->field($model, 'verifyCode')->widget(\app\components\customWidgets\CustomCaptcha::className(), [

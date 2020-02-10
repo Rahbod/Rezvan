@@ -19,6 +19,7 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
         <?php if (isDesktop()): ?>
             <div class="slide-title">
                 <div class="title-left">
+                    <i class="<?= $model->icon ?>"></i>
                     <div class="text">
                         <h2 class="slide"><strong><?= $this->title ?></strong></h2>
                     </div>

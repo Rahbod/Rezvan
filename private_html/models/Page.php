@@ -39,6 +39,7 @@ class Page extends Item
             'en_body' => ['CHAR', ''],
             'ar_body' => ['CHAR', ''],
             'image' => ['CHAR', ''],
+            'icon' => ['CHAR', ''],
         ]);
     }
 
@@ -49,7 +50,7 @@ class Page extends Item
     {
         return array_merge(parent::rules(), [
             [['body'], 'required'],
-            [['image', 'en_body', 'ar_body'], 'string'],
+            [['image', 'en_body', 'ar_body', 'icon'], 'string'],
             [['type'], 'default', 'value' => static::$typeName],
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
         ]);
@@ -65,6 +66,7 @@ class Page extends Item
             'ar_body' => trans('words', 'Ar Body'),
             'en_body' => trans('words', 'En Body'),
             'image' => trans('words', 'Image'),
+            'icon' => trans('words', 'Icon'),
         ]);
     }
 
@@ -91,6 +93,7 @@ class Page extends Item
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
+            'icon' => static::FORM_FIELD_TYPE_TEXT,
             'image' => [
                 'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                 'containerCssClass' => 'col-sm-12',
@@ -122,7 +125,7 @@ class Page extends Item
                 'options' => [
                     'options' => ['rows' => 30]
                 ]
-            ]],
+            ]]
             /* 'gallery' => [
                  'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
                  'containerCssClass' => 'col-sm-12',

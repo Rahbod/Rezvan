@@ -44,27 +44,27 @@ class NearbyAccess extends Block
     ];
 
     public static $iconsName = [
-        'shrine' => 'imam-reza.png',
-        'shopping' => 'shoping.png',
-        'hospital' => 'hospital.png',
-        'metro' => 'metro.png',
-        'laundry' => 'laundry.png',
-        'airport' => 'airport.png',
+        'shrine' => 'svg-icon-near-shrine-w',
+        'shopping' => 'svg-icon-near-shopping-w',
+        'hospital' => 'svg-icon-near-hospital-w',
+        'metro' => 'svg-icon-near-metro-w',
+        'laundry' => 'svg-icon-near-laundry-w',
+        'airport' => 'svg-icon-near-airplane-w',
         'gas' => 'gas.png',
-        'bank' => 'bank.png',
-        'restaurant' => 'resturant.png',
+        'bank' => 'svg-icon-near-bank-w',
+        'restaurant' => 'svg-icon-near-restaurant-w',
     ];
 
     public static $darkIconsName = [
-        'shrine' => 'imam-reza-dark.png',
-        'shopping' => 'shoping-dark.png',
-        'hospital' => 'hospital-dark.png',
-        'metro' => 'metro-dark.png',
-        'laundry' => 'laundry-dark.png',
-        'airport' => 'airport-dark.png',
+        'shrine' => 'svg-icon-near-shrine',
+        'shopping' => 'svg-icon-near-shopping',
+        'hospital' => 'svg-icon-near-hospital',
+        'metro' => 'svg-icon-near-metro',
+        'laundry' => 'svg-icon-near-laundry',
+        'airport' => 'svg-icon-near-airplane',
         'gas' => 'gas-dark.png',
-        'bank' => 'bank-dark.png',
-        'restaurant' => 'resturant-dark.png',
+        'bank' => 'svg-icon-near-bank',
+        'restaurant' => 'svg-icon-near-restaurant',
     ];
 
     public function init()

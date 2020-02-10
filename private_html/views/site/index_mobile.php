@@ -47,7 +47,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         if (!isset($availableApartments[$i]))
                             break;
                         ?>
-                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                        <div class="grid first-post apartment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                             <a href="<?= $apartment->getUrl() ?>"
                                title="<?= Html::encode($apartment->getName()) ?>">
                                 <img src="<?= $apartment->getModelImage() ?>"
@@ -77,7 +77,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <?php if (!isset($availableApartments[$j]))
                                         break;
                                     $apartment = $availableApartments[$j]; ?>
-                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                    <div class="grid little-post apartment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                         <a href="<?= $apartment->getUrl() ?>"
                                            title="<?= Html::encode($apartment->getName()) ?>">
                                             <img src="<?= $apartment->getModelImage() ?>"
@@ -111,7 +111,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         if (!isset($availableInvestments[$i]))
                             break;
                         ?>
-                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                        <div class="grid first-post investment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                             <a href="<?= $apartment->getUrl() ?>"
                                title="<?= Html::encode($apartment->getName()) ?>">
                                 <img src="<?= $apartment->getModelImage() ?>"
@@ -141,7 +141,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <?php if (!isset($availableInvestments[$j]))
                                         break;
                                     $apartment = $availableInvestments[$j]; ?>
-                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                    <div class="grid little-post investment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                         <a href="<?= $apartment->getUrl() ?>"
                                            title="<?= Html::encode($apartment->getName()) ?>">
                                             <img src="<?= $apartment->getModelImage() ?>"
@@ -175,7 +175,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                         if (!isset($availableConstructions[$i]))
                             break;
                         ?>
-                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                        <div class="grid first-post services col-lg-6 col-md-6  col-sm-12 col-xs-12">
                             <a href="<?= $apartment->getUrl() ?>"
                                title="<?= Html::encode($apartment->getName()) ?>">
                                 <img src="<?= $apartment->getModelImage() ?>"
@@ -205,7 +205,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                     <?php if (!isset($availableConstructions[$j]))
                                         break;
                                     $apartment = $availableConstructions[$j]; ?>
-                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                    <div class="grid little-post services col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                         <a href="<?= $apartment->getUrl() ?>"
                                            title="<?= Html::encode($apartment->getName()) ?>">
                                             <img src="<?= $apartment->getModelImage() ?>"

@@ -38,7 +38,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
                 <div class="container-fluid project-list">
                     <div class="row">
                         <?php if (isset($projects[0])): ?>
-                            <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                            <div class="grid first-post services col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                 <a title="<?= Html::encode($projects[0]->getName()) ?>"
                                    href="<?= $projects[0]->getUrl() ?>">
                                     <img src="<?= $projects[0]->getModelImage() ?>"
@@ -68,7 +68,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
                             <div class="row">
                                 <?php foreach ($projects as $key => $project):
                                     if ($key && $key > 0 && $key < 5) : ?>
-                                        <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                        <div class="grid little-post services col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <a title="<?= Html::encode($project->getName()) ?>"
                                                href="<?= $project->getUrl() ?>">
                                                 <img src="<?= $project->getModelImage() ?>"
@@ -104,7 +104,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
 
                         <?php foreach ($projects as $key => $project):
                             if ($key && $key > 4) : ?>
-                                <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                <div class="grid little-post services col-lg-3 col-md-6  col-sm-12 col-xs-12">
                                     <a title="<?= Html::encode($project->getName()) ?>"
                                        href="<?= $project->getUrl() ?>">
                                         <img src="<?= $project->getModelImage() ?>"
