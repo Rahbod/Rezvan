@@ -34,6 +34,8 @@ $(document).ready(function () {
 });
 
 $(window).resize(function () {
+    window.location.reload();
+
     var newwidth = $('#way');
     //replace the width
     $('#way').css("min-width", +$(".infography").outerWidth());

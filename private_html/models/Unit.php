@@ -3,6 +3,7 @@
 namespace app\models;
 
 use app\components\MainController;
+use app\controllers\ApartmentController;
 use app\controllers\UnitController;
 use app\models\blocks\Contact;
 use app\models\blocks\NearbyAccess;
@@ -31,6 +32,7 @@ use yii\web\View;
  * @property int location
  * @property int bed_room
  * @property int $sort
+ * @property string pdf_file
  *
  * @property Block[] $blocks
  * @property Project $project
@@ -71,6 +73,7 @@ class Unit extends Item
             'elevator' => ['INTEGER', ''],
             'sold' => ['INTEGER', ''],
             'project_blocks' => ['INTEGER', ''],
+            'pdf_file' => ['CHAR', ''],
             // unit sort field
             'sort' => ['INTEGER', ''],
 
@@ -125,7 +128,7 @@ class Unit extends Item
         return array_merge(parent::rules(), [
             ['modelID', 'default', 'value' => isset(Yii::$app->controller->models[self::$modelName]) ? Yii::$app->controller->models[self::$modelName] : null],
             [['itemID'], 'required', 'except' => 'clone'],
-            [['image', 'description', 'ar_description', 'en_description'], 'string'],
+            [['image', 'description', 'ar_description', 'en_description', 'pdf_file'], 'string'],
             [
                 ['itemID', 'unit_number', 'floor_number', 'area_size', 'sort',
                     'air_conditioner', 'wc', 'toilet', 'parking', 'bath_room', 'radiator', 'location', 'sold', 'bed_room', 'master_bed_room']
@@ -153,6 +156,7 @@ class Unit extends Item
             'image' => trans('words', 'Image'),
             'itemID' => trans('words', 'Project ID'),
             'sort' => trans('words', 'Sort'),
+            'pdf_file' => trans('words', 'Pdf file'),
             'unit_number' => trans('words', 'Unit number'),
             'floor_number' => trans('words', 'Floor number'),
             'area_size' => trans('words', 'Area size'),
@@ -296,6 +300,32 @@ class Unit extends Item
                         'acceptedFiles' => 'png, jpeg, jpg',
                         'maxFiles' => 1,
                         'maxFileSize' => 0.5,
+                    ],
+                ]
+            ],
+
+            'pdf_file' => [
+                'type' => static::FORM_FIELD_TYPE_DROP_ZONE,
+                'containerCssClass' => 'col-sm-6',
+                'temp' => MainController::$tempDir,
+                'path' => UnitController::$pdfDir,
+                'filesOptions' => [],
+                'options' => [
+                    'url' => Url::to(['upload-pdf']),
+                    'removeUrl' => Url::to(['delete-pdf']),
+                    'sortable' => false, // sortable flag
+                    'sortableOptions' => [], // sortable options
+                    'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new self(), 'pdf_file')],
+                    'options' => [
+                        'createImageThumbnails' => false,
+                        'addRemoveLinks' => true,
+                        'dictRemoveFile' => 'حذف',
+                        'addViewLinks' => true,
+                        'dictViewFile' => '',
+                        'dictDefaultMessage' => 'جهت آپلود فایل Pdf کلیک کنید',
+                        'acceptedFiles' => 'pdf',
+                        'maxFiles' => 1,
+                        'maxFileSize' => 50,
                     ],
                 ]
             ],
@@ -617,5 +647,13 @@ class Unit extends Item
             return false;
         $fields = array_keys($this->dynaDefaults);
         return in_array($name, $fields) && $this->$name !== null;
+    }
+
+    public function getPdfUrl($dir)
+    {
+        $path = alias('@webroot') . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $this->pdf_file;
+        if ($this->pdf_file and is_file($path))
+            return alias('@web/') . $dir . '/' . $this->pdf_file;
+        return $this->project->getPdfUrl();
     }
 }

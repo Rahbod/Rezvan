@@ -378,42 +378,6 @@
     background-image: url("../../svg/unit/bold/toilet-w.svg");
 }
 
-.items.collapsed .svg-icon-bold-master-w {
-    background-image: url("../../svg/unit/bold/master.svg");
-}
-
-.items.collapsed .svg-icon-bold-floor-w {
-    background-image: url("../../svg/unit/bold/floor.svg");
-}
-
-.items.collapsed .svg-icon-bold-parking-w {
-    background-image: url("../../svg/unit/bold/parking.svg");
-}
-
-.items.collapsed .svg-icon-bold-furnished-w {
-    background-image: url("../../svg/unit/bold/furnished.svg");
-}
-
-.items.collapsed .svg-icon-bold-rooms-w {
-    background-image: url("../../svg/unit/bold/rooms.svg");
-}
-
-.items.collapsed .svg-icon-bold-heating-system-w {
-    background-image: url("../../svg/unit/bold/heating-radiator.svg");
-}
-
-.items.collapsed .svg-icon-bold-cooling-system-w {
-    background-image: url("../../svg/unit/bold/cooling-water.svg");
-}
-
-.items.collapsed .svg-icon-bold-wc-w {
-    background-image: url("../../svg/unit/bold/wc.svg");
-}
-
-.items.collapsed .svg-icon-bold-toilet-w {
-    background-image: url("../../svg/unit/bold/toilet.svg");
-}
-
 .svg-icon-near-airplane {
     background-image: url("../../svg/nearby/airplane.svg");
     width: 14vw !important;
@@ -625,5 +589,41 @@
     .svg-icon-logo,
     .svg-icon-logo-ar {
         background-image: url("../../svg/menu/logo-header-mobile.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-master-w {
+        background-image: url("../../svg/unit/bold/master.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-floor-w {
+        background-image: url("../../svg/unit/bold/floor.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-parking-w {
+        background-image: url("../../svg/unit/bold/parking.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-furnished-w {
+        background-image: url("../../svg/unit/bold/furnished.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-rooms-w {
+        background-image: url("../../svg/unit/bold/rooms.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-heating-system-w {
+        background-image: url("../../svg/unit/bold/heating-radiator.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-cooling-system-w {
+        background-image: url("../../svg/unit/bold/cooling-water.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-wc-w {
+        background-image: url("../../svg/unit/bold/wc.svg");
+    }
+
+    .items.collapsed .svg-icon-bold-toilet-w {
+        background-image: url("../../svg/unit/bold/toilet.svg");
     }
 }

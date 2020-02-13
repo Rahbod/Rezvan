@@ -66,14 +66,14 @@ else
 </main>
 
 <?php
-    if (app()->controller->innerPage)
-        echo $this->render(isDesktop()?'_inner_footer':'_mobile_footer');
-    else
-        echo $this->render(isDesktop()?'_footer':'_mobile_footer');
+if (app()->controller->innerPage)
+    echo $this->render(isDesktop() ? '_inner_footer' : '_mobile_footer');
+else
+    echo $this->render(isDesktop() ? '_footer' : '_mobile_footer');
 ?>
 
 <?php echo $this->render('_public_alert'); ?>
-<?php echo $this->render('_social_share_modal'); ?>
+<?php if (!isDesktop()) echo $this->render('_social_share_modal'); ?>
 <?php $this->endBody(); ?>
 
 <!--<script src="--><? //= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?><!--"></script>-->

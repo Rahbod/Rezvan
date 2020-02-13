@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\ApartmentController;
+use app\controllers\UnitController;
 use app\models\projects\Apartment;
 use app\models\Unit;
 use yii\web\View;
@@ -47,7 +48,7 @@ $this->context->breadcrumbs = [
             <i class="svg-icon-bold-parking-w"></i>
         </div>
     </div>
-    <?php if ($pdf_url = $model->project->getPdfUrl(ApartmentController::$pdfDir)): ?>
+    <?php if ($pdf_url = $model->getPdfUrl(UnitController::$pdfDir)): ?>
         <div class="download">
             <a href="<?= $pdf_url ?>">
                 <p><?= trans('words', 'Download As<br><strong>PDF</strong>') ?></p>

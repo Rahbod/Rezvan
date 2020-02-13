@@ -263,6 +263,10 @@ nav#menu-main {
     padding-right: 10px;
 }
 
+.fixed-menu #menu-main a {
+    line-height: 60px;
+}
+
 #menu-main li:hover a {
     color: #ba8c65;
     text-decoration: none;

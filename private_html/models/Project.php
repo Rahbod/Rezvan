@@ -4,6 +4,8 @@ namespace app\models;
 
 use app\components\MainController;
 use app\controllers\ApartmentController;
+use app\controllers\ConstructionController;
+use app\controllers\InvestmentController;
 use app\models\blocks\Contact;
 use app\models\blocks\OtherUnits;
 use app\models\blocks\RelatedProjects;
@@ -437,7 +439,7 @@ JS
             $output .= $block->render($view);
 
             // render contact block
-            if($contactBlock)
+            if ($contactBlock)
                 $output .= $contactBlock->render($view, $project);
 
             // render other units
@@ -449,7 +451,7 @@ JS
             $output .= $block->render($view, $this);
 
             // render contact block
-            if($contactBlock)
+            if ($contactBlock)
                 $output .= $contactBlock->render($view, $project);
 
             // render related projects
@@ -496,8 +498,20 @@ JS
         return $this->location;
     }
 
-    public function getPdfUrl($dir)
+    public function getPdfUrl($dir = false)
     {
+        switch ($this->type) {
+            case self::TYPE_AVAILABLE_APARTMENT:
+                $dir = ApartmentController::$pdfDir;
+                break;
+            case self::TYPE_INVESTMENT:
+                $dir = InvestmentController::$pdfDir;
+                break;
+            case self::TYPE_OTHER_CONSTRUCTION:
+                $dir = ConstructionController::$pdfDir;
+                break;
+        }
+
         $path = alias('@webroot') . DIRECTORY_SEPARATOR . $dir . DIRECTORY_SEPARATOR . $this->pdf_file;
         if ($this->pdf_file and is_file($path))
             return alias('@web/') . $dir . '/' . $this->pdf_file;

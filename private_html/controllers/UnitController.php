@@ -27,6 +27,7 @@ class UnitController extends AuthController
 
     public static $imgDir = 'uploads/unit';
     public static $imageOptions = ['thumbnail' => ['width' => 260, 'height' => 130]];
+    public static $pdfDir = 'uploads/unit/pdf';
 
     public function getModelName()
     {
@@ -35,12 +36,18 @@ class UnitController extends AuthController
 
     public function getSystemActions()
     {
-        return ['show'];
+        return ['show', 'upload-pdf', 'delete-pdf'];
     }
 
     public function uploaderAttributes()
     {
-        return ['image' => ['dir' => self::$imgDir, 'options' => self::$imageOptions]];
+        return [
+            'image' => ['dir' => self::$imgDir, 'options' => self::$imageOptions],
+            'pdf_file' => [
+                'dir' => self::$pdfDir,
+                'options' => []
+            ]
+        ];
     }
 
     public function actions()
@@ -61,6 +68,22 @@ class UnitController extends AuthController
                 'model' => new Unit(),
                 'attribute' => 'image',
                 'options' => static::$imageOptions
+            ],
+            'upload-pdf' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Unit(), 'pdf_file'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('pdf')
+                )
+            ],
+            'delete-pdf' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$pdfDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Unit(),
+                'attribute' => 'pdf_file',
+                'options' => []
             ],
         ];
     }
