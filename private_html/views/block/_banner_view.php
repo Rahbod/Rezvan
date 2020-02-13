@@ -30,7 +30,8 @@ $imageUrl = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $bl
                         <h2 class="center-text"><?= $project->getSubtitleStr() ?></h2>
                     </div>
                     <div class="share-icon">
-                        <a href="#"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>" alt="share"></a>
+                        <a href="#" data-url="<?= $project->getUrl() ?>"><img
+                                    src="<?= $this->theme->baseUrl . '/images/share.png' ?>" alt="share"></a>
                     </div>
                 <?php endif; ?>
                 <?php if ($project->type != Project::TYPE_INVESTMENT): ?>

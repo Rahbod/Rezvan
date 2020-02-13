@@ -50,7 +50,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
                                     </div>
                                     <?php if (!isDesktop()): ?>
                                         <div class="share-icon">
-                                            <a href="#"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
+                                            <a href="#" data-url="<?= $projects[0]->getUrl() ?>"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
                                                              alt="share"></a>
                                         </div>
                                         <div class="cat-text">
@@ -84,7 +84,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
                                                         <span class="description"><?= $project->getLocationTwoStr() ?></span>
                                                     </div>
                                                     <div class="share-icon">
-                                                        <a href="#"><img
+                                                        <a href="#" data-url="<?= $project->getUrl() ?>"><img
                                                                     src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
                                                                     alt="share"></a>
                                                     </div>
@@ -120,7 +120,7 @@ $constructionCounts = isset($projects) ? count($projects) : 0;
                                                 <span class="description"><?= $project->getLocationTwoStr() ?></span>
                                             </div>
                                             <div class="share-icon">
-                                                <a href="#"><img
+                                                <a href="#" data-url="<?= $project->getUrl() ?>"><img
                                                             src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
                                                             alt="share"></a>
                                             </div>

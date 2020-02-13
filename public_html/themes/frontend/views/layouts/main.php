@@ -73,6 +73,7 @@ else
 ?>
 
 <?php echo $this->render('_public_alert'); ?>
+<?php echo $this->render('_social_share_modal'); ?>
 <?php $this->endBody(); ?>
 
 <!--<script src="--><? //= $this->theme->baseUrl . '/assets/js/jquery.min.js' ?><!--"></script>-->

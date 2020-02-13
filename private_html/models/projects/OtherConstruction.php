@@ -88,6 +88,6 @@ class OtherConstruction extends Project
 
     public function getUrl()
     {
-        return Url::to(['/construction/show', 'id' => $this->id]);
+        return Url::to(['/construction/show', 'id' => $this->id], true);
     }
 }

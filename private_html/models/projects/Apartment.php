@@ -35,6 +35,6 @@ class Apartment extends Project
 
     public function getUrl()
     {
-        return Url::to(['/apartment/show', 'id' => $this->id]);
+        return Url::to(['/apartment/show', 'id' => $this->id], true);
     }
 }

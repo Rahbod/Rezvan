@@ -971,6 +971,10 @@
         display: none !important;
     }
 
+    [class^="modal"].fade.show {
+        display: block !important;
+    }
+
     .final-project-view .slide-3 {
         background: none;
         min-height: auto;

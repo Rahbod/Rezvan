@@ -88,6 +88,6 @@ class Investment extends Project
 
     public function getUrl()
     {
-        return Url::to(['/investment/show', 'id' => $this->id]);
+        return Url::to(['/investment/show', 'id' => $this->id], true);
     }
 }

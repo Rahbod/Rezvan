@@ -380,12 +380,17 @@ span.site-title {
     margin-left: auto;
     display: block;
     max-height: 130px;
+    width: 100%;
+    background-size: contain;
 }
 
 #site-logo-2 {
     margin-right: auto;
     margin-left: auto;
     display: none;
+    width: 50vw;
+    background-size: auto 100%;
+    background-position: right;
 }
 
 /* Social Icon */
@@ -430,7 +435,7 @@ li.social-item {
     #header.fixed-menu {
         position: fixed !important;
         background-color: #4b4843 !important;
-        z-index: 2000 !important;
+        z-index: 1000 !important;
         width: 100%;
         border: 0;
         transition: 0.3s;
@@ -1804,7 +1809,7 @@ h3.title-building-access {
     line-height: 1;
 }
 
-.final-project-view .col-lg-4.building-access {
+.final-project-view .col-lg-4.building-accessmodal-backdrop fade show {
     margin-bottom: 30px;
     margin-top: 20px;
 }
@@ -2076,6 +2081,10 @@ table.item-list-view {
 
 .fade {
     display: none;
+}
+
+[class^="modal"].fade.show {
+    display: block;
 }
 
 .final-project-view .item.unit {

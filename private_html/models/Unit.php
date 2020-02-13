@@ -352,7 +352,7 @@ class Unit extends Item
 
         // render default nearby accesses
         /** @var NearbyAccess $block */
-        if(!$have_nearby) {
+        if (!$have_nearby) {
             $block = NearbyAccess::find()->andWhere([Block::columnGetString('itemID') => $this->itemID])->one();
             if ($block)
                 $output .= $block->render($view, $this->project);
@@ -365,7 +365,7 @@ class Unit extends Item
         // render contact block
         /** @var Contact $contactBlock */
         $contactBlock = Contact::find()->andWhere([Block::columnGetString('itemID') => $this->id])->orderBy([Block::columnGetString('sort') => SORT_ASC])->one();
-        if($contactBlock)
+        if ($contactBlock)
             $output .= $contactBlock->render($view);
 
         // render other units
@@ -519,7 +519,7 @@ class Unit extends Item
 
     public function getUrl()
     {
-        return Url::to(['/unit/show', 'id' => $this->id]);
+        return Url::to(['/unit/show', 'id' => $this->id], true);
     }
 
     public function getWaterPointStr()
