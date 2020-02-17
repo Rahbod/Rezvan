@@ -49,7 +49,8 @@ $this->registerJs("
                             <span>تسجیل تفاصیل</span>
                         </div>
                         <div class="share-icon">
-                            <a href="#"><img src="<?= $this->theme->baseUrl ?>/images/share.png" alt="share"></a>
+                            <a href="#" data-url="<?= Url::to(['/request/new']) ?>"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
+                                                                                      alt="share"></a>
                         </div>
                     </div>
                 </div>

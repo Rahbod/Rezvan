@@ -31,13 +31,13 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                     <div class="row">
                         <div class="title">
                             <div class="text-title">
-                                <h1><?= $this->title ?></h1>
+                                <h1><i class="<?= str_replace('-w','',$model->icon) ?>"></i><?= $this->title ?></h1>
                                 <!--                            <span>-->
                                 <? //= trans('words', 'CONTACT US') ?><!--</span>-->
                             </div>
-                            <div class="share-icon">
-                                <a href="#"><img src="<?= $this->theme->baseUrl ?>/images/share.png" alt="share"></a>
-                            </div>
+<!--                            <div class="share-icon">-->
+<!--                                <a href="#"><img src="--><?//= $this->theme->baseUrl ?><!--/images/share.png" alt="share"></a>-->
+<!--                            </div>-->
                         </div>
                     </div>
                 </div>

@@ -92,10 +92,6 @@ $baseUrl = $this->theme->baseUrl;
                         <div class="col-8"><?= $model->area_size ?> <?= trans('words', 'Meters') ?></div>
                     </div>
                     <div class="row">
-                        <div class="col-4"><?= trans('words', 'Foundation') ?></div>
-                        <div class="col-8"><?= $model->area_size ?> <?= trans('words', 'Meters') ?></div>
-                    </div>
-                    <div class="row">
                         <div class="col-4"><?= trans('words', 'wc') ?></div>
                         <div class="col-8"><?= $model->getWcStr() ?></div>
                     </div>

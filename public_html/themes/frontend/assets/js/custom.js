@@ -6,7 +6,7 @@ $(document).scroll(function () {
         $('.fade').fadeOut();
     }
 
-    if (y > $("#header").height()) {
+    if ($(window).width() > 768 && y > $("#header").height()) {
         $('.site-header').addClass('fixed-menu');
     } else {
         $('.site-header').removeClass('fixed-menu');
@@ -61,7 +61,6 @@ $(function () {
         var url = $(this).data("url");
         var modalEl = $("#social-share-modal");
         modalEl.find(".social-share-link").each(function () {
-            alert($(this).data('url') + url);
             $(this).attr('href', $(this).data('url') + url);
         });
         modalEl.modal("show");

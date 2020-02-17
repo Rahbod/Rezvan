@@ -1,7 +1,9 @@
 <?php
 
 use app\controllers\ApartmentController;
+use app\models\Project;
 use app\models\projects\Apartment;
+use yii\helpers\Url;
 use yii\web\View;
 
 /** @var View $this */
@@ -23,3 +25,18 @@ $baseUrl = $this->theme->baseUrl;
 </div>
 <?= $model->render($this) ?>
 
+
+<?php if ($model->project_type == Project::SINGLE_VIEW && !isDesktop()): ?>
+    <section>
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="back-button">
+                    <a href="<?= Url::to(['/']) ?>">
+                        <p><strong><?= trans('words', 'Back') ?></strong></br>
+                            <?= trans('words', 'Available Apartments') ?></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>

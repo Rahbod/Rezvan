@@ -12,8 +12,15 @@ use yii\web\View;
 
 $baseUrl = $this->theme->baseUrl;
 $imageUrl = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $block->image;
+
+$type = 'apartment';
+if ($project->type == Project::TYPE_INVESTMENT)
+    $type = 'investment';
+else if ($project->type == Project::TYPE_OTHER_CONSTRUCTION)
+    $type = 'services';
 ?>
-<section class="full-slide" style="background: url('<?= $imageUrl ?>') no-repeat center bottom;background-size: cover">
+<section class="full-slide <?= $type ?>"
+         style="background: url('<?= $imageUrl ?>') no-repeat center bottom;background-size: cover">
     <div class="container-fluid">
         <div class="row">
             <div class="bg-slide">

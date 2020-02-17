@@ -15,13 +15,13 @@ $unit = $block->getUnit();
             <div class="row available">
                 <div class="available-left-title col-lg-3">
                     <div class="title-left">
-                        <p class="slide"><?= trans('words','<strong>Current status</strong><br> of the UNIT {unit_number}',['unit_number' => $unit->unit_number]) ?></p>
+                        <p class="slide"><?= trans('words', '<strong>Current status</strong><br> of the UNIT {unit_number}', ['unit_number' => $unit->unit_number]) ?></p>
                     </div>
                     <i class="svg-icon-units"></i>
                     <div class="title-unit">
                         <div class="title-unit">
                             <p><?= trans('words', '<span class="green"><strong>unit {unit_number}</strong></span> <strong>available</strong>', ['unit_number' => $unit->unit_number]) ?></p>
-                            <p><?= trans('words', 'from {all_units} units / ON FLOOR {floor}', ['all_units' => $unit->number_of_units,'floor'=>$unit->floor_number]) ?> </p>
+                            <p><?= trans('words', 'from {all_units} units / ON FLOOR {floor}', ['all_units' => $unit->number_of_units, 'floor' => $unit->floor_number]) ?> </p>
                         </div>
                     </div>
                     <div class="desc-unit">

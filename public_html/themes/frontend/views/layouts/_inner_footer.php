@@ -10,8 +10,7 @@ use yii\helpers\Url; ?>
             <div class="col-lg-5 col-md-5  col-sm-12 col-xs-12 footer-left">
                 <div class="row">
                     <div class="col-lg-4 col-md-4  col-sm-12 col-xs-12 logo-footer">
-                        <img class="logo-img" src="<?= $baseUrl . '/images/logo-footer-1.png' ?>"
-                             alt="<?= app()->name ?>">
+                        <i class="svg-icon-logo-footer"></i>
                     </div>
                     <div class="col-lg-8 col-md-8  col-sm-12 col-xs-12 text-footer">
                         <div class="footer-title">

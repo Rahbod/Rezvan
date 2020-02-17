@@ -4,6 +4,7 @@ use app\controllers\ApartmentController;
 use app\controllers\UnitController;
 use app\models\projects\Apartment;
 use app\models\Unit;
+use yii\helpers\Url;
 use yii\web\View;
 
 /** @var View $this */
@@ -57,4 +58,20 @@ $this->context->breadcrumbs = [
     <?php endif; ?>
 </div>
 <?= $model->render($this) ?>
+
+
+<?php if (!isDesktop()): ?>
+    <section>
+        <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="back-button">
+                    <a href="<?= Url::to(['/apartment/show', 'id' => $model->itemID]) ?>">
+                        <p><strong><?= trans('words', 'Back') ?></strong></br>
+                            <?= trans('words', 'Available Apartments') ?></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php endif; ?>
 

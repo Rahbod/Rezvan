@@ -33,12 +33,11 @@ $this->registerJs("
                 <div class="row">
                     <div class="title">
                         <div class="text-title">
-                            <h1><?= trans('words', 'CONTACT US') ?></h1>
-                            <span><?= trans('words', 'CONTACT US') ?></span>
+                            <h1><i class="svg-icon-contact"></i><?= trans('words', 'CONTACT US') ?></h1>
                         </div>
-                        <div class="share-icon">
-                            <a href="#"><img src="<?= $this->theme->baseUrl ?>/images/share.png" alt="share"></a>
-                        </div>
+<!--                        <div class="share-icon">-->
+<!--                            <a href="#"><img src="--><?//= $this->theme->baseUrl ?><!--/images/share.png" alt="share"></a>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

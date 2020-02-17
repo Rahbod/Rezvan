@@ -1,4 +1,19 @@
 @media (max-width: 768px) {
+    .fixed-menu #menu-main a{
+        line-height: inherit;
+    }
+    .final-project-view .available-left-title {
+        padding-right: 15px;
+    }
+
+    .title-right .slide {
+        margin-top: 0;
+    }
+
+    .final-project-view .slide-3 .slide-title {
+        padding-top: 0;
+    }
+
     .header-top, #header {
         height: 15vw;
     }
@@ -9,7 +24,11 @@
         top: 0;
         right: 0;
         margin: 0 !important;
-        z-index: 5002;
+        z-index: 1;
+    }
+
+    .logo-col + div {
+        z-index: 2;
     }
 
     #site-logo-2 {
@@ -195,6 +214,12 @@
         font-weight: bold;
     }
 
+    #order-post .grid h2.item-title,
+    #order-post .grid span.first-title {
+        font-size: 3.5vw !important;
+        margin-bottom: 5px;
+    }
+
     .grid span.description, .grid span.description-2 {
         font-size: 2.4vw !important;
         color: #454545 !important;
@@ -357,7 +382,7 @@
     }
 
     .final-project-view .full-slide .center-title {
-        top: 18vw;
+        top: 2vw;
         right: 14vw;
     }
 
@@ -760,6 +785,23 @@
     #unit-section .item-1 {
         color: #000 !important;
         white-space: nowrap;
+        font-size: 3vw !important;
+    }
+
+    .available-right-title .link-more {
+        display: none !important;
+    }
+
+    .final-project-view.special .title-left p.slide {
+        font-size: 1.4rem !important;
+    }
+
+    .final-project-view.special .title-left p.slide br {
+        display: none;
+    }
+
+    .title-unit .title-unit {
+        padding-right: 0 !important;
     }
 
     .more-one .sold .items.collapsed:hover,
@@ -1082,6 +1124,9 @@
         margin-bottom: 0;
     }
 
+    .visible-xs {
+        display: block !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1106,7 +1151,7 @@
     }
 
     .final-project-view .bg-slide {
-        height: 30vw;
+        height: 15vw;
         width: 100%;
         background: #fff;
         min-height: auto;
@@ -1114,7 +1159,7 @@
 
     .final-project-view .share-icon {
         left: 5vw;
-        top: 20vw;
+        top: 4vw;
     }
 
     .bg-slide ul.icon-list-slider {

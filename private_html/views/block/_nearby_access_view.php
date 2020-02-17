@@ -15,7 +15,7 @@ $baseUrl = $this->theme->baseUrl;
 <section class="slide-3" id="nearby-section">
     <div class="container-fluid">
         <div class="row">
-            <div class="slide-title">
+            <div class="slide-title visible-xs">
                 <div class="title-right">
                     <p class="slide"><?= trans('words', '<strong>Building </strong> access<br>Near you') ?></p>
                 </div>

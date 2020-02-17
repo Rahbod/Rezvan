@@ -8,14 +8,21 @@
 $baseUrl = $this->theme->baseUrl;
 
 use app\controllers\ApartmentController;
+use app\models\Project;
 use app\models\projects\Apartment;
 use app\models\Unit;
 use yii\helpers\Url;
 
 $sold = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 1])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
 $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->orderBy([Unit::columnGetString('sort') => SORT_ASC])->all();
+
+$type = 'apartment';
+if ($project->type == Project::TYPE_INVESTMENT)
+    $type = 'investment';
+else if ($project->type == Project::TYPE_OTHER_CONSTRUCTION)
+    $type = 'services';
 ?>
-<section class="full-slide">
+<section class="full-slide <?= $type ?>">
     <div class="container-fluid">
         <div class="row">
             <div class="slide-title">
@@ -176,4 +183,3 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
         <?php endif; ?>
     </div>
 </section>
-
