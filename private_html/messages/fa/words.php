@@ -7,6 +7,7 @@ return [
     'ar' => 'عربی',
     'Ar Name' => 'نام عربی',
     'En Name' => 'نام انگلیسی',
+    'Are you sure delete this selected items?' => 'آیا از حذف موارد انتخاب شده اطمینان دارید؟',
     'base.successMsg' => 'اطلاعات با موفقیت ثبت شد.',
     'base.dangerMsg' => 'در ثبت اطلاعات خطایی رخ داده است.',
     'base.deleteSuccessMsg' => 'عملیات حذف با موفقیت انجام شد.',

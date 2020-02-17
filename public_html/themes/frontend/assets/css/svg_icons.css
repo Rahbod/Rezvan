@@ -418,7 +418,10 @@
 }
 
 .svg-icon-near-shrine {
-    background-image: url("../../svg/nearby/shrine2.svg");
+    background-image: url("../../svg/nearby/shrine.svg");
+    width: 16vw !important;
+    height: 16vw !important;
+    margin: -1vw -3vw;
 }
 
 .svg-icon-near-airplane-w {
@@ -465,7 +468,7 @@
 }
 
 .svg-icon-near-shrine-w {
-    background-image: url("../../svg/nearby/shrine2-w.svg");
+    background-image: url("../../svg/nearby/shrine-w.svg");
 }
 
 /*Social*/

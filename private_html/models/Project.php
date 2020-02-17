@@ -224,13 +224,14 @@ class Project extends Item implements ProjectInterface
     public function formAttributes()
     {
         return array_merge(parent::formAttributes(), [
-            'hr' => self::FORM_SEPARATOR,
+            [['subtitle', 'ar_subtitle', 'en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
+            [['location', 'ar_location', 'en_location', 'location_two', 'ar_location_two', 'en_location_two'], self::FORM_FIELD_TYPE_TEXT],
             [['description', 'ar_description', 'en_description'],
                 [
                     'type' => self::FORM_FIELD_TYPE_TEXT_AREA,
                     'options' => ['dir' => 'auto', 'rows' => 5]
                 ]],
-            [['subtitle', 'ar_subtitle', 'en_subtitle'], self::FORM_FIELD_TYPE_TEXT],
+            'hr' => self::FORM_SEPARATOR,
             'project_type' => [
                 'type' => self::FORM_FIELD_TYPE_SELECT,
                 'items' => self::getProjectTypeLabels(),
@@ -255,7 +256,6 @@ class Project extends Item implements ProjectInterface
 //                    ]
 //                ]
             ],
-            [['location', 'ar_location', 'en_location', 'location_two', 'ar_location_two', 'en_location_two'], self::FORM_FIELD_TYPE_TEXT],
             'area_size' => ['type' => self::FORM_FIELD_TYPE_TEXT, 'hint' => 'متر'],
             'unit_count' => self::FORM_FIELD_TYPE_TEXT,
             'free_count' => self::FORM_FIELD_TYPE_TEXT,

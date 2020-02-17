@@ -6,7 +6,7 @@ $(document).scroll(function () {
         $('.fade').fadeOut();
     }
 
-    if (y > 100) {
+    if (y > $("#header").height()) {
         $('.site-header').addClass('fixed-menu');
     } else {
         $('.site-header').removeClass('fixed-menu');

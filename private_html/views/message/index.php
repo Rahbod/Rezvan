@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use \app\components\customWidgets\CustomGridView;
+use yii\helpers\Url;
 use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
@@ -10,10 +11,36 @@ use yii\widgets\Pjax;
 
 $this->title = trans('words', 'Messages');
 $this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJs('
+
+$("body").on("click","#delete-selected-btn",function(){
+    var url = $(this).data("url");
+    var grid = $(this).data("grid");                                                            
+    var keys = $(grid).yiiGridView("getSelectedRows");
+    var pjaxContainer = "#messages-pjax";
+   
+    if(keys.length !== 0) {
+        if(confirm($(this).data("confirm-text")))
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: {ids: keys},
+                dataType: "json",
+                error: function(xhr, status, error) {
+                    alert(\'There was an error with your request.\' + xhr.responseText);
+                }
+            }).done(function(data) {
+                console.log(data);
+                $.pjax.reload($.trim(pjaxContainer), {timeout: 3000});
+            });
+    }
+});
+')
 ?>
 <div class="message-index">
 
-    <?php Pjax::begin(); ?>
+    <?php Pjax::begin(['id' => 'messages-pjax']); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <div class="m-portlet m-portlet--mobile">
@@ -42,11 +69,26 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="m-portlet__body">
             <div class="m-form__content"><?= $this->render('//layouts/_flash_message') ?></div>
             <!--begin: Datatable -->
+            <div class="row">
+                <div class="col-sm-3 float-right mb-3">
+                    <button type="button" class="btn btn-sm btn-danger" id="delete-selected-btn"
+                            data-url="<?= Url::to(['delete-selected']) ?>"
+                            data-confirm-text="<?= trans('words', 'Are you sure delete this selected items?') ?>"
+                            data-grid="#grid-view">
+                        حذف انتخاب شده ها
+                    </button>
+                </div>
+            </div>
             <div id="m_table_1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                 <?= CustomGridView::widget([
+                    'id' => 'grid-view',
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
+                        [
+                            'class' => 'yii\grid\CheckboxColumn',
+                            // you may configure additional properties here
+                        ],
                         'name',
                         'tel',
 //                        'subject',
@@ -61,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                         [
                             'attribute' => 'created',
-                            'value' => function($model){
+                            'value' => function ($model) {
                                 return jDateTime::date('Y/m/d', $model->created);
                             }
                         ],

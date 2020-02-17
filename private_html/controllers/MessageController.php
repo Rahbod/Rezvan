@@ -20,8 +20,8 @@ use yii\widgets\ActiveForm;
 class MessageController extends AuthController
 {
     /**
-    * for set admin theme
-    */
+     * for set admin theme
+     */
     public function init()
     {
         $this->setTheme('default');
@@ -51,10 +51,11 @@ class MessageController extends AuthController
     public function actionIndex()
     {
         $searchModel = new MessageSearch();
-        if(Yii::$app->request->getQueryParam('id'))
+        if (Yii::$app->request->getQueryParam('id'))
             $searchModel->department_id = Yii::$app->request->getQueryParam('id');
 
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider->pagination->pageSize = 100;
 
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -70,8 +71,8 @@ class MessageController extends AuthController
      */
     public function actionView($id)
     {
-        $model =$this->findModel($id);
-        if($model->type == Message::STATUS_UNREAD){
+        $model = $this->findModel($id);
+        if ($model->type == Message::STATUS_UNREAD) {
             $model->type = Message::STATUS_PENDING;
             $model->save();
         }
@@ -101,7 +102,7 @@ class MessageController extends AuthController
             $model->load(app()->request->post());
             if ($model->save()) {
                 app()->session->setFlash('alert', ['type' => 'success', 'message' => Yii::t('words', 'base.successMsg')]);
-                return $this->redirect(app()->request->post('return') == 'view'?['view', 'id' => $model->id]:['index']);
+                return $this->redirect(app()->request->post('return') == 'view' ? ['view', 'id' => $model->id] : ['index']);
             } else
                 app()->session->setFlash('alert', ['type' => 'danger', 'message' => Yii::t('words', 'base.dangerMsg')]);
         }
@@ -126,12 +127,12 @@ class MessageController extends AuthController
             return ActiveForm::validate($model);
         }
 
-        if (Yii::$app->request->post()){
+        if (Yii::$app->request->post()) {
             $model->load(Yii::$app->request->post());
             if ($model->save()) {
                 Yii::$app->session->setFlash('alert', ['type' => 'success', 'message' => trans('words', 'base.successMsg')]);
                 return $this->redirect(['view', 'id' => $model->id]);
-            }else
+            } else
                 Yii::$app->session->setFlash('alert', ['type' => 'danger', 'message' => trans('words', 'base.dangerMsg')]);
         }
 
@@ -153,6 +154,18 @@ class MessageController extends AuthController
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionDeleteSelected()
+    {
+        \response()->format = Response::FORMAT_JSON;
+        if (\request()->post()) {
+            $ids = \request()->post('ids');
+            foreach ($ids as $id)
+                $this->findModel($id)->delete();
+            return ['status' => true];
+        }
+        return ['status' => false];
     }
 
     /**

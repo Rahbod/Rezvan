@@ -10,6 +10,8 @@ use app\models\blocks\Image;
 use yii\helpers\Html;
 use yii\web\View;
 
+$link = $block->link ?" href='{$block->link}' target='_blank'": false;
+
 if (!is_array($block->image)):
     $path = alias('@webroot') . DIRECTORY_SEPARATOR . BlockController::$imgDir . DIRECTORY_SEPARATOR . $block->image;
     $url = request()->getBaseUrl() . '/' . BlockController::$imgDir . '/' . $block->image;
@@ -17,7 +19,9 @@ if (!is_array($block->image)):
         ?>
         <section class="slide-4" id="contact-section">
             <div class="picture-slide-1">
-                <img src="<?= $url ?>" alt="<?= Html::encode($block->name) ?>">
+                <a<?= $link ?>>
+                    <img src="<?= $url ?>" alt="<?= Html::encode($block->name) ?>">
+                </a>
             </div>
         </section>
     <?php
