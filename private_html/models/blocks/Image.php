@@ -68,7 +68,7 @@ class Image extends Block
                     'name' => Html::getInputName(new Block(), 'image'),
                     'url' => Url::to(['upload-image']),
                     'removeUrl' => Url::to(['delete-image']),
-                    'sortable' => false, // sortable flag
+                    'sortable' => true, // sortable flag
                     'sortableOptions' => [], // sortable options
                     'htmlOptions' => ['class' => '', 'id' => Html::getInputId(new Block(), 'image')],
                     'options' => [

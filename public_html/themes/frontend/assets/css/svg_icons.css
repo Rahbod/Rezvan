@@ -91,8 +91,8 @@
 }
 
 .main-button [class^="svg-icon"] {
-    width: 15px;
-    height: 15px;
+    width: 5vw;
+    height: 5vw;
     float: right;
 }
 
@@ -414,23 +414,26 @@
 
 .svg-icon-near-hospital {
     background-image: url("../../svg/nearby/hospital.svg");
+    margin: 2vw 0;
 }
 
 .svg-icon-near-laundry {
     background-image: url("../../svg/nearby/laundry.svg");
+    margin: 2vw 0;
 }
 
 .svg-icon-near-metro {
     background-image: url("../../svg/nearby/metro.svg");
     width: 14vw !important;
     height: 14vw !important;
+    margin: 2vw 0;
 }
 
 .svg-icon-near-restaurant {
     background-image: url("../../svg/nearby/restaurant.svg");
     width: 14vw !important;
     height: 14vw !important;
-    margin: -1vw -2vw;
+    margin: 1vw -2vw;
 }
 
 .svg-icon-near-shopping {

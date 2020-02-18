@@ -1072,7 +1072,12 @@
     }
 
     .building-access {
-        padding: 0;
+        padding: 0 30px;
+    }
+
+    .building-access .right{
+        padding: 10px !important;
+        white-space: nowrap;
     }
 
     .col-6.building-access {
