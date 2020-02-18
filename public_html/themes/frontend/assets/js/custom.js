@@ -1,3 +1,5 @@
+var w = $(window).width();
+
 $(document).scroll(function () {
     var y = $(this).scrollTop();
     if (y > 800) {
@@ -34,7 +36,10 @@ $(document).ready(function () {
 });
 
 $(window).resize(function () {
-    window.location.reload();
+    if($(window).width() !== w) {
+        w = $(window).width();
+        window.location.reload();
+    }
 
     var newwidth = $('#way');
     //replace the width

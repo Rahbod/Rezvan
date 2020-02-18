@@ -70,9 +70,8 @@ use yii\helpers\Url; ?>
                                 <?php endforeach; ?>
                             </ul>
                             <ul id="main-button" class="main-button">
-                                <li class="menu-button-item"><a href="<?= Url::to(['/']) ?>"><img
-                                                src="<?= $this->theme->baseUrl . '/images/menu-button-1.png' ?>"
-                                                alt="menu-button"></a></li>
+                                <li class="menu-button-item"><a href="<?= Url::to(['/']) ?>"><i
+                                                class="svg-icon-rezvan-w"></i></a></li>
                                 <li class="menu-button-item"><a href="<?= Url::to(['/apartment/list']) ?>"><i
                                                 class="svg-icon-apartment-w"></i></a></li>
                                 <li class="menu-button-item"><a href="<?= Url::to(['/investment/list']) ?>"><i

@@ -1,7 +1,8 @@
 @media (max-width: 768px) {
-    .fixed-menu #menu-main a{
+    .fixed-menu #menu-main a {
         line-height: inherit;
     }
+
     .final-project-view .available-left-title {
         padding-right: 15px;
     }
@@ -24,7 +25,9 @@
         top: 0;
         right: 0;
         margin: 0 !important;
-        z-index: 1;
+        z-index: 3;
+        max-width: 40%;
+        overflow: hidden;
     }
 
     .logo-col + div {
@@ -34,6 +37,7 @@
     #site-logo-2 {
         display: block;
         height: 10vw;
+        max-width: 100%;
     }
 
     #site-logo {
@@ -641,7 +645,7 @@
         padding: 0 !important;
     }
 
-    .item-list-view .col-10, .item-list-view .col-8 {
+    .item-list-view .col-10, .item-list-view .col-4 {
         font-weight: 600;
         font-size: 2.5vw;
     }
@@ -1065,6 +1069,10 @@
         color: #000;
         font-size: 3vw;
         margin-bottom: 0;
+    }
+
+    .building-access {
+        padding: 0;
     }
 
     .col-6.building-access {

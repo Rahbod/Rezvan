@@ -109,7 +109,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                        <div class="grid first-post apartment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                             <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
                                                title="<?= Html::encode($apartment->getName()) ?>">
                                                 <img src="<?= $apartment->getModelImage() ?>"
@@ -132,7 +132,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <?php if (!isset($availableApartments[$j]))
                                                         break;
                                                     $apartment = $availableApartments[$j]; ?>
-                                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                                    <div class="grid little-post apartment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                         <a href="<?= Url::to(['/apartment/show/', 'id' => $apartment->id]) ?>"
                                                            title="<?= Html::encode($apartment->getName()) ?>">
                                                             <img src="<?= $apartment->getModelImage() ?>"
@@ -176,8 +176,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= alias('@web/themes/frontend/images/investment.png') ?>"
-                             alt="apartment-icon">
+                        <i class="svg-icon-investment-w"></i>
                         <h2 class="slide"><?= trans('words', '<strong>available </strong> investment') ?></h2>
                     </div>
                     <div class="title-right">
@@ -213,7 +212,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                             <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
                                 <div class="posts">
                                     <div class="row">
-                                        <div class="grid first-post col-lg-6 col-md-6  col-sm-12 col-xs-12 order-12">
+                                        <div class="grid first-post investment col-lg-6 col-md-6  col-sm-12 col-xs-12 order-12">
                                             <a href="<?= $investment->getUrl() ?>"
                                                title="<?= Html::encode($investment->getName()) ?>">
                                                 <img src="<?= $investment->getModelImage() ?>"
@@ -236,7 +235,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                     <?php if (!isset($availableInvestments[$j]))
                                                         break;
                                                     $investment = $availableInvestments[$j]; ?>
-                                                    <div class="grid little-post col-lg-6 col-md-6  col-sm-12 col-xs-12">
+                                                    <div class="grid little-post investment col-lg-6 col-md-6  col-sm-12 col-xs-12">
                                                         <a href="<?= $investment->getUrl() ?>"
                                                            title="<?= Html::encode($investment->getName()) ?>">
                                                             <img src="<?= $investment->getModelImage() ?>"
@@ -338,7 +337,7 @@ $serviceCounts = isset($services) ? count($services) : null;
             <div class="row">
                 <div class="slide-title">
                     <div class="title-left">
-                        <img src="<?= $baseUrl . '/images/services.png' ?>" alt="services-icon">
+                        <i class="svg-icon-services-b"></i>
                         <h2 class="slide">
                             <strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
                     </div>

@@ -69,4 +69,5 @@ function isDevice($name)
 function isDesktop()
 {
     return isDevice('desktop');
+    return true;
 }

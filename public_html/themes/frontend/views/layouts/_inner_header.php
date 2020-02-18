@@ -78,8 +78,8 @@ use yii\helpers\Url; ?>
                                 /** @var Menu $menu */
 
                                 foreach (app()->controller->menus as $menu): ?>
-                                    <li class="menu-item"><i class="<?= $menu->icon_class ?>"></i><a
-                                                href="<?= $menu->getUrl() ?>"><?= $menu->getName() ?></a></li>
+                                    <li class="menu-item"><a
+                                                href="<?= $menu->getUrl() ?>"><i class="<?= $menu->icon_class ?>"></i> <?= $menu->getName() ?></a></li>
                                 <?php endforeach; ?>
                             </ul>
                             <!-- #main-navigation -->

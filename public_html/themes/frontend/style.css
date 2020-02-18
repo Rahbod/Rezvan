@@ -124,7 +124,6 @@ body {
 
 #header {
     height: 210px;
-    transition: 0.5s;
 }
 
 .home #header {
@@ -265,6 +264,10 @@ nav#menu-main {
 
 .fixed-menu #menu-main a {
     line-height: 60px;
+}
+
+.fixed-menu li.menu-item {
+    height: 48px;
 }
 
 #menu-main li:hover a {
@@ -442,7 +445,6 @@ li.social-item {
         z-index: 1000 !important;
         width: 100%;
         border: 0;
-        transition: 0.3s;
         height: 65px;
     }
 
@@ -470,7 +472,7 @@ li.social-item {
 
     #header.fixed-menu ul.main-menu, #header.fixed-menu ul#main-navigation {
         margin-bottom: 0 !important;
-        height: 25px;
+        height: 48px;
     }
 
     #header.fixed-menu #menu-main {
@@ -1789,6 +1791,10 @@ span.sold-icon {
     text-align: right;
 }
 
+.building-access {
+    padding: 30px 0;
+}
+
 .building-access .col-lg-10.right, .building-access .col-lg-2.thumb {
     margin-top: auto;
     margin-bottom: auto;
@@ -2703,6 +2709,16 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
     vertical-align: top;
 }
 
+.services .overly,
+.investment .overly{
+    display: none;
+}
+
+.posts {
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
 /* Respansive */
 
 @media (min-width: 1700px) {
@@ -2813,7 +2829,7 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
     }
 
     .final-project-view .available .item p.item-1:nth-child(1) {
-        font-size: 1.5vw;
+        font-size: 1.5rem;
     }
 
     .final-project-view .title-unit p:nth-child(2) {
@@ -2826,7 +2842,7 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
 }
 
 @media (max-width: 768px) {
-    header{
+    header {
         position: fixed !important;
         right: 0;
         left: 0;
@@ -2835,7 +2851,7 @@ button.btn.btn-primary.submit-button:not(:disabled):not(.disabled):focus, .btn.b
         z-index: 1000;
     }
 
-    main{
+    main {
         margin-top: 48px;
     }
 

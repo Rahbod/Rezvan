@@ -169,6 +169,7 @@ class Page extends Item
     {
         if (isset($this->image) && is_file(Yii::getAlias('@webroot/uploads/page/') . $this->image))
             return Yii::getAlias('@web/uploads/page/') . $this->image;
+        return null;
         return Yii::getAlias('@webapp/public_html/themes/frontend/images/default.jpg');
     }
 }

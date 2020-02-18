@@ -31,13 +31,14 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                     <div class="row">
                         <div class="title">
                             <div class="text-title">
-                                <h1><i class="<?= str_replace('-w','',$model->icon) ?>"></i><?= $this->title ?></h1>
+                                <h1><i class="<?= str_replace('-w', '', $model->icon) ?>"></i><?= $this->title ?></h1>
                                 <!--                            <span>-->
                                 <? //= trans('words', 'CONTACT US') ?><!--</span>-->
                             </div>
-<!--                            <div class="share-icon">-->
-<!--                                <a href="#"><img src="--><?//= $this->theme->baseUrl ?><!--/images/share.png" alt="share"></a>-->
-<!--                            </div>-->
+                            <!--                            <div class="share-icon">-->
+                            <!--                                <a href="#"><img src="-->
+                            <? //= $this->theme->baseUrl ?><!--/images/share.png" alt="share"></a>-->
+                            <!--                            </div>-->
                         </div>
                     </div>
                 </div>
@@ -49,7 +50,8 @@ $apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0
                     <div class="main-section-page">
                         <div class="txt-post-page-test">
                             <p><strong><?= $model->getName() ?></strong></p>
-                            <img src="<?= $model->getModelImage() ?>" alt="">
+                            <?php if ($model->getModelImage()): ?><img src="<?= $model->getModelImage() ?>"
+                                                                       alt=""><?php endif; ?>
                             <p><?= Html::decode($model->getBodyStr()) ?></p>
                         </div>
                     </div>

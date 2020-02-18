@@ -393,6 +393,8 @@ li.menu-item {
 
     #header.fixed-menu #site-logo-2 {
         margin-right: 0;
+        height: 48px;
+        width: 20vw;
     }
 
     .header-bottom .right a {

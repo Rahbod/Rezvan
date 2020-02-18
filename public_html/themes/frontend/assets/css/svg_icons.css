@@ -79,9 +79,9 @@
 }
 
 #unit-section .svg-icon-units {
-    width: 60px;
+    width: 40px;
     position: absolute;
-    height: 60px;
+    height: 40px;
 }
 
 .title-left [class^="svg-icon"] {
@@ -152,6 +152,10 @@
     background-image: url("../../svg/menu/services-w.svg");
 }
 
+.svg-icon-services-b {
+    background-image: url("../../svg/menu/services_brown.svg");
+}
+
 .main-menu li:hover .svg-icon-services {
     background-image: url("../../svg/menu/services_brown.svg");
 }
@@ -174,6 +178,10 @@
 
 .svg-icon-investment-w {
     background-image: url("../../svg/menu/investment_white.svg");
+}
+
+.svg-icon-rezvan-w {
+    background-image: url("../../svg/menu/logo_base.svg");
 }
 
 .main-menu li:hover .svg-icon-investment {
