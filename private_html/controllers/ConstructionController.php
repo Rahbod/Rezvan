@@ -154,14 +154,14 @@ class ConstructionController extends AuthController
                 $model->getSubtitleStr(),
             ];
 
-            $this->submenu = [
-                'gallery' => $model->hasBlock(Block::TYPE_GALLERY),
-                'video' => $model->hasBlock(Block::TYPE_VIDEO),
-                'unit' => true,
-                'map' => $model->hasBlock(Block::TYPE_MAP_VIEW),
-                'nearby' => $model->hasBlock(Block::TYPE_NEARBY_ACCESS),
-                'contact' => $model->hasBlock(Block::TYPE_CONTACT),
-            ];
+//            $this->submenu = [
+//                'gallery' => $model->hasBlock(Block::TYPE_GALLERY),
+//                'video' => $model->hasBlock(Block::TYPE_VIDEO),
+//                'unit' => true,
+//                'map' => $model->hasBlock(Block::TYPE_MAP_VIEW),
+//                'nearby' => $model->hasBlock(Block::TYPE_NEARBY_ACCESS),
+//                'contact' => $model->hasBlock(Block::TYPE_CONTACT),
+//            ];
         } else
             $this->bodyClass = 'more-one';
 

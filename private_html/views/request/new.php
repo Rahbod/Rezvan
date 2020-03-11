@@ -48,10 +48,10 @@ $this->registerJs("
                             <h1><?= trans('words', 'REGISTER YOUR REQUEST') ?></h1>
                             <span>تسجیل تفاصیل</span>
                         </div>
-                        <div class="share-icon">
-                            <a href="#" data-url="<?= Url::to(['/request/new']) ?>"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
-                                                                                      alt="share"></a>
-                        </div>
+<!--                        <div class="share-icon">-->
+<!--                            <a href="#" data-url="--><?//= Url::to(['/request/new']) ?><!--"><img src="--><?//= $this->theme->baseUrl . '/images/share.png' ?><!--"-->
+<!--                                                                                      alt="share"></a>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

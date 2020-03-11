@@ -11,7 +11,7 @@ use yii\web\View;
 $baseUrl = $this->theme->baseUrl;
 ?>
 <div class="fade show">
-    <div class="overly">
+    <div class="overly d-none">
         <?= $this->render('//site/_project_side', compact('model')) ?>
     </div>
     <?php if ($pdf_url = $model->getPdfUrl(InvestmentController::$pdfDir)): ?>
