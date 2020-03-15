@@ -142,10 +142,10 @@ class RequestController extends AuthController implements CrudControllerInterfac
             $model->load(app()->request->post());
             if ($model->save()) {
                 if (Setting::get('request_email')) {
-                    Yii::$app->mailer->compose('layouts/request_mail', ['model' => $model])
+                    $s=Yii::$app->mailer->compose('layouts/request_mail', ['model' => $model])
                         ->setTo(Setting::get('request_email'))
 //                        ->setTo('yusef.mobasheri@gmail.com')
-                        ->setFrom(['noreply@rezvan.info' => $model->name])
+                        ->setFrom(['no-reply@rezvan.info' => $model->name])
                         ->setSubject('درخواست جدید')
                         ->attach($model->getPdf(true),[
                             'fileName' => 'Request Details',

@@ -402,12 +402,43 @@ class Request extends Item
             'destination' => $to_file ? Pdf::DEST_FILE : Pdf::DEST_DOWNLOAD,
             'content' => $content,
             'cssFile' => '@vendor/bower-asset/bootstrap/dist/css/bootstrap.css',
+            'cssInline' => '*,body{direction:rtl;font-family:iransans;font-size:12pt;}th,td{text-align:right;padding:5px 15px;}td{color:#777}th{font-size:13pt}',
             'methods' => [
                 'SetHeader' => ['Request Details'],
                 'SetFooter' => ['{Rezvan}']
             ]
         ]);
 
+        /**
+         * Add new custom font in Mpdf library
+         * link: https://mpdf.github.io/fonts-languages/fonts-in-mpdf-7-x.html
+         */
+        $defaultConfig = (new \Mpdf\Config\ConfigVariables())->getDefaults();
+        $fontDirs = $defaultConfig['fontDir'];
+
+        $defaultFontConfig = (new \Mpdf\Config\FontVariables())->getDefaults();
+        $fontData = $defaultFontConfig['fontdata'];
+
+        /**
+         * We set more options as showing in "vendors/kartik-v/yii2-mpdf/src/Pdf.php/Pdf/options" method
+         * What we do, we merge the options array to the existing one.
+         */
+        $pdf->options = array_merge($pdf->options , [
+            'fontDir' => array_merge($fontDirs, [ Yii::$app->basePath . '/themes/frontend/assets/fonts']),  // make sure you refer the right physical path
+            'fontdata' => array_merge($fontData, [
+                'droidkufi' => [
+                    'R' => 'DroidKufi-Regular.ttf',
+                    'B' => 'DroidKufi-Bold.ttf',
+                ],
+                'iransans' => [
+                    'R' => 'IRANSansWeb.ttf',
+                    'useOTL' => 0xFF,
+                    'useKashida' => 75,
+                ]
+            ])
+        ]);
+
+//        dd($pdf->options['fontdata']);
         if ($to_file) {
             if (!is_dir(alias('@webroot/uploads/pdf/')))
                 mkdir(alias('@webroot/uploads/pdf/'), 0777, true);

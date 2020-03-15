@@ -15,7 +15,7 @@ use yii\widgets\DetailView; ?>
     <?php
     ?>
 
-    <body class="rtl">
+    <body class="rtl" dir="rtl">
     <?php $this->beginBody(); ?>
     <main>
         <div class="container">
@@ -48,7 +48,7 @@ use yii\widgets\DetailView; ?>
             ]) ?>
             <hr>
             <h4>مشخصات عمومی</h4>
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <?php
                 $i = 0;
                 foreach ($model->dynaDefaults as $key => $config):
@@ -71,10 +71,10 @@ use yii\widgets\DetailView; ?>
                 endforeach; ?>
             </table>
             <hr>
-            <table class="table table-bordered">
+            <table class="table table-striped">
                 <?php
-                $otherFields = ['heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit',
-                    'price_from', 'area_from', 'building_old', 'unit_room'];
+                $otherFields = ['city', 'type_of_buy', 'type_of_unit',
+                    'price_from', 'area_from', 'building_old', 'unit_room','heating_system', 'cooling_system'];
                 $i = 0;
                 foreach ($otherFields as $field):
                     if (in_array($field, ['building_old', 'heating_system', 'cooling_system', 'city', 'type_of_buy', 'type_of_unit'])) {
@@ -93,10 +93,10 @@ use yii\widgets\DetailView; ?>
                     } else
                         $text = $model->$field;
                     ?>
-                    <?php if ($i % 3 === 0): ?><tr><?php endif; ?>
-                    <th><?= $model->getAttributeLabel($key) ?></th>
+                    <?php if ($i % 2 === 0): ?><tr><?php endif; ?>
+                    <th><?= $model->getAttributeLabel($field) ?></th>
                     <td><?= $text ?></td>
-                    <?php if ($i % 3 === 0): ?></tr><?php endif; ?>
+                    <?php if ($i % 2 === 0): ?></tr><?php endif; ?>
                     <?php
                     $i++;
                 endforeach; ?>
