@@ -370,4 +370,8 @@ class Item extends MultiLangActiveRecord
         return $this->name;
     }
 
+    public function viewColumns()
+    {
+        return [];
+    }
 }

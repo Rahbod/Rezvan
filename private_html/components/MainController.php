@@ -322,6 +322,11 @@ class MainController extends Controller implements CrudControllerInterface
                     ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
                 ]
             ],
+            [
+                'label' => '<i class="m-menu__link-icon fa fa-user-plus"></i><span class="m-menu__link-text">' . trans('words', 'Register Section') . '</span>',
+                'url' => ['/section/index'],
+                'visible' => $permissions || app()->user->can('sectionIndex')
+            ],
 //            [
 //                'label' => '<i class="m-menu__link-icon fa fa-images"></i><span class="m-menu__link-text">' . trans('words', 'Gallery') . '</span>',
 //                'items' => [

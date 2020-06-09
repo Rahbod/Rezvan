@@ -1,4 +1,5 @@
 ﻿@import "svg_icons.css";
+
 /*!
  * Font Awesome Pro 5.11.2 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Commercial License)
@@ -83,7 +84,7 @@
     padding-left: 0
 }
 
-.fa-ul>li {
+.fa-ul > li {
     position: relative
 }
 
@@ -15935,4 +15936,123 @@
 .fas {
     font-family: "Font Awesome 5 Pro";
     font-weight: 900
+}
+
+.infography .title {
+    padding: 50px;
+}
+
+.infography .title h2 {
+    font-weight: bold;
+}
+
+.infography .title h2 small {
+    font-weight: normal;
+    display: block;
+}
+
+.infography .title .line {
+    width: 50%;
+    height: 2px;
+    border-radius: 2px;
+    background: #ba8d65;
+    display: block;
+    margin: 15px 0;
+}
+
+.infography .title .desc {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.infography .right-box {
+    background: #fff;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 0 10px;
+}
+
+.infography-menu{
+    list-style: none;
+    padding: 0 50px 50px 0;
+    width: 110%;
+}
+
+.infography-menu li{
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.infography-menu .num{
+    border-radius: 8px;
+    line-height: 30px;
+    width:30px;
+    text-align: center;
+    background: #4b4843;
+    color: #ded9d5;
+    font-weight: bolder;
+    position: absolute;
+    top: 20px;
+}
+.infography-menu .active:hover .num,
+.infography-menu .active .num{
+    background: #ded9d5;
+    color: #4b4843;
+}
+.infography-menu li:hover .num{
+    background: #ba8d66;
+    color: #ded9d5;
+}
+
+.infography-menu .section-content{
+    margin-right: 15px;
+    padding: 10px 30px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.infography-menu li:hover .section-content{
+    background: #ded9d5;
+}
+
+.infography-menu .active:hover .section-content,
+.infography-menu .active .section-content{
+    background: #4b4843;
+}
+
+.infography-menu .section-icon{
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-left: 15px;
+}
+
+.infography-menu .section-title{
+    height: 50px;
+    float: right;
+    padding: 5px 0;
+}
+.infography-menu .section-title small,
+.infography-menu .section-title b{
+    line-height: 20px;
+    display: block;
+    color: #4b4843;
+}
+.infography-menu .active .section-title small,
+.infography-menu .active .section-title b{
+    color: #ded9d5;
+}
+.infography-menu .section-title small{
+    font-size: 0.7rem;
+}
+.infography-menu .icon-arrow{
+    width: 30px;
+    height: 50px;
+    float: left;
+    background: url('../../svg/left-b.svg') no-repeat center;
+    background-size: 30px;
+}
+.infography-menu .active .icon-arrow{
+    background: url('../../svg/left-w.svg') no-repeat center;
+    background-size: 30px;
 }

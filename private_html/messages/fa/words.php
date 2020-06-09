@@ -568,4 +568,15 @@ return [
     // contact
     '<strong>CONTACT</strong> US' => '<strong>تماس</strong> با ما',
     'contact_us_text' => 'contact_us_text',
+
+    'Register Section' => 'مراحل ثبت نام',
+    'Create Section' => 'افزودن مرحله جدید',
+    'Update Section: {name}' => 'ویرایش بخش: {name}',
+    'View Section: {name}' => 'نمایش بخش: {name}',
+    'Description' => 'توضیحات',
+    'Icon Hover' => 'آیکون در حالت Hover',
+
+    'How to own?' => 'چگونه مالک شویم؟',
+    'A foreigner does not own a company registration in Iran' => 'یک خارجی در ایران نمی تواند شرکت ثبت کند',
+    'Here are the steps to register a company' => 'در اینجا مراحل ثبت شرکت ذکر شده است',
 ];
