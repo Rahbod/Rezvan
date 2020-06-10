@@ -144,6 +144,11 @@ section.slide-1 {
     background-size: 100%;
 }
 
+.text-page.bg-ltr .main-content {
+    background: url(images/background-1.png) center top no-repeat;
+    background-size: 100%;
+}
+
 footer {
     background: url(images/bg-footer-rtl.jpg) no-repeat center center;
     background-size: cover;

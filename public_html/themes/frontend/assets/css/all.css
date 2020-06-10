@@ -16049,10 +16049,64 @@
     width: 30px;
     height: 50px;
     float: left;
+    background: transparent;
+}
+.infography-menu li:hover .icon-arrow{
     background: url('../../svg/left-b.svg') no-repeat center;
     background-size: 30px;
 }
+.infography-menu li:hover .active .icon-arrow,
 .infography-menu .active .icon-arrow{
     background: url('../../svg/left-w.svg') no-repeat center;
     background-size: 30px;
+}
+.infography .section-container{
+    display: none;
+    padding: 100px 80px;
+    color: #4b4843;
+    overflow: hidden;
+}
+.infography .section-container.active{
+    display: block;
+}
+.infography .section-container .info,
+.infography .section-container .image{
+    float: right;
+    width: 50%;
+}
+.infography .section-container .info{
+    padding-right: 30px;
+}
+.infography .section-container .image img{
+    border-radius: 10px;
+    max-width: 100%;
+}
+.infography .section-container .title{
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 0;
+    line-height: 60px;
+}
+.infography .section-container .num{
+    font-size: 6rem;
+    font-family: "Open Sans";
+    font-weight: 700;
+    color: #ba8d66;
+    letter-spacing: -10px !important;
+}
+.infography .section-container .desc{
+    font-size: 1.6rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.infography .section-container .text{
+    text-align: justify;
+}
+.infography .videos{
+    margin: 100px auto;
+    text-align: center;
+}
+.infography .videos video{
+    border-radius: 10px;
 }

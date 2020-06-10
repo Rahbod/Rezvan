@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+use devgroup\dropzone\UploadedFiles;
+use Yii;
+use app\components\Setting;
 use devgroup\dropzone\RemoveAction;
 use devgroup\dropzone\UploadAction;
 use app\models\ProjectSection;
@@ -9,6 +12,7 @@ use app\components\AuthController;
 use yii\helpers\Html;
 use app\components\CrudControllerTrait;
 use app\components\CrudControllerInterface;
+use yii\helpers\Url;
 
 /**
  * SectionController implements the CRUD actions for ProjectSection model.
@@ -24,6 +28,7 @@ class SectionController extends AuthController implements CrudControllerInterfac
 
     public static $iconDir = 'uploads/register/section';
     public static $imageDir = 'uploads/register/section';
+    public static $videoDir = 'uploads/register/video';
     public static $iconOptions = [];
     public static $imageOptions = [];
 
@@ -59,6 +64,21 @@ class SectionController extends AuthController implements CrudControllerInterfac
     public function actions()
     {
         return [
+                'upload-video' => [
+                    'class' => UploadAction::className(),
+                    'fileName' => 'sectionVideo',
+                    'rename' => UploadAction::RENAME_UNIQUE,
+                    'validateOptions' => array(
+                        'acceptedTypes' => array('mp4')
+                    )
+                ],
+                'delete-video' => [
+                    'class' => RemoveAction::className(),
+                    'upload' => self::$videoDir,
+                    'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                    'options' => []
+                ],
+
                 'upload-icon' => [
                     'class' => UploadAction::className(),
                     'fileName' => Html::getInputName(new ProjectSection(), 'icon'),

@@ -13,6 +13,7 @@ use app\models\projects\ApartmentSearch;
 use app\models\projects\Investment;
 use app\models\projects\OtherConstruction;
 use app\models\ProjectSection;
+use app\models\ProjectSectionVideo;
 use app\models\Service;
 use app\models\Slide;
 use Yii;
@@ -272,14 +273,16 @@ class SiteController extends AuthController
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
-        $this->bodyClass = isDesktop()?'text-page more-one list':'text-page';
+        $this->bodyClass = isDesktop()?'text-page more-one list bg-ltr':'text-page';
         $this->headerClass = 'header-style-2';
         $this->mainTag = 'main-text-page';
 
         $models = ProjectSection::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
+        $videos = ProjectSectionVideo::find()->valid()->all();
 
         return $this->render('info2', [
             'sections' => $models,
+            'videos' => $videos,
         ]);
     }
 

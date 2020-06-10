@@ -69,5 +69,13 @@ $(function () {
             $(this).attr('href', $(this).data('url') + url);
         });
         modalEl.modal("show");
-    })
+    }).on("click", ".section-trigger", function (e) {
+        e.preventDefault();
+        var target = $(this).data('target');
+
+        $('.section-trigger').removeClass('active');
+        $('.section-container').removeClass('active');
+        $(this).addClass('active');
+        $(target).addClass('active');
+    });
 });

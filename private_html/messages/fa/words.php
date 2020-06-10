@@ -573,6 +573,12 @@ return [
     'Create Section' => 'افزودن مرحله جدید',
     'Update Section: {name}' => 'ویرایش بخش: {name}',
     'View Section: {name}' => 'نمایش بخش: {name}',
+
+    'Section Video' => 'فیلم راهنمای مراحل ثبت نام',
+    'Create Video' => 'افزودن فیلم جدید',
+    'Update Video: {name}' => 'ویرایش فیلم: {name}',
+    'View Video: {name}' => 'نمایش فیلم: {name}',
+
     'Description' => 'توضیحات',
     'Icon Hover' => 'آیکون در حالت Hover',
 
