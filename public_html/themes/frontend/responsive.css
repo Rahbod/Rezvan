@@ -1075,7 +1075,7 @@
         padding: 0 30px;
     }
 
-    .building-access .right{
+    .building-access .right {
         padding: 10px !important;
         white-space: nowrap;
     }
@@ -1139,6 +1139,104 @@
 
     .visible-xs {
         display: block !important;
+    }
+
+    .infography .right-box {
+        border: none;
+        border-radius: 0;
+    }
+
+    .infography .title {
+        padding: 30px 15px;
+    }
+
+    .infography .title h2 {
+        font-size: 1.7rem;
+    }
+
+    .infography .title .desc,
+    .infography .title .line {
+        display: none;
+    }
+
+    .infography-menu {
+        padding: 0 15px;
+        width: auto;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        margin-bottom: 0;
+    }
+
+    .infography-menu li {
+        display: inline-block;
+        width: auto;
+        margin-left: 10px;
+        margin-bottom: 0;
+    }
+
+    .infography-menu .icon-arrow {
+        display: none;
+    }
+
+    .infography-menu .section-icon {
+        width: 30px;
+        height: 30px;
+        background-size: 30px;
+        float: none;
+        display: block;
+        margin-left: 0;
+    }
+
+    .infography-menu .section-title {
+        height: auto;
+        float: none;
+        padding: 10px 0 0;
+    }
+
+    .infography-menu .section-title small{
+        display: none;
+    }
+
+    .infography-menu .num {
+        top: 50%;
+        transform: translateY(-50%);
+        background: #ba8d66;
+        color: #ded9d5;
+    }
+
+    .infography-menu .section-content {
+        background: #ded9d5;
+        padding-left: 15px;
+    }
+
+    .infography .section-container{
+        padding: 15px;
+    }
+
+    .infography .section-container .info,
+    .infography .section-container .image {
+        float: none;
+        width: auto;
+        margin-bottom: 15px;
+    }
+
+    .infography .section-container .info {
+        padding-right: 0;
+    }
+
+    .infography .section-container .title{
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .infography .section-container .desc {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .infography .section-container .num{
+        font-size: 4rem;
     }
 }
 

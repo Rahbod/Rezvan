@@ -34,8 +34,7 @@ use yii\helpers\Url;
                                             .section-icon-' . $section->id . ' {
                                                 background-image: url("'.$src.'");
                                             }
-                                            .infography-menu > li.active .section-icon-' . $section->id . ',
-                                            .infography-menu > li:hover .section-icon-' . $section->id . ' {
+                                            .infography-menu > li .active .section-icon-' . $section->id . ' {
                                                 background-image: url("'.$srcHover.'");
                                             }', [], 'section-style-'.$section->id);
                                     }?>
