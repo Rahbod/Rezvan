@@ -19,7 +19,7 @@ use yii\helpers\Url;
         <div class="container-fluid">
             <div class="row">
                 <div class="main-section-page">
-                    <div class="row">
+                    <div class="row" style="padding-bottom: 50px;">
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 right-box">
                             <div class="title">
                                 <h2><?= trans('words', 'How to own?')?><small><?= trans('words', 'A foreigner does not own a company registration in Iran')?></small></h2>
@@ -53,6 +53,19 @@ use yii\helpers\Url;
                                     </li>
                                 <?php endforeach;?>
                             </ul>
+                            <?php if(isDesktop()):?>
+                                <div class="videos">
+                                    <?php foreach ($videos as $video):?>
+                                        <!--                        <div class="row">-->
+                                        <!--                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-0">-->
+                                        <video controls class="center-block">
+                                            <source src="<?= $video->getVideoSrc()?>">
+                                        </video>
+                                        <!--                            </div>-->
+                                        <!--                        </div>-->
+                                    <?php endforeach;?>
+                                </div>
+                            <?php endif;?>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <?php $i = 0; foreach ($sections as $section): ?>
@@ -67,18 +80,20 @@ use yii\helpers\Url;
                                     </div>
                                 </div>
                             <?php endforeach; ?>
+                            <?php if(!isDesktop()):?>
+                                <div class="videos visible-xs">
+                                    <?php foreach ($videos as $video):?>
+                                        <!--                        <div class="row">-->
+                                        <!--                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-0">-->
+                                        <video controls class="center-block">
+                                            <source src="<?= $video->getVideoSrc()?>">
+                                        </video>
+                                        <!--                            </div>-->
+                                        <!--                        </div>-->
+                                    <?php endforeach;?>
+                                </div>
+                            <?php endif;?>
                         </div>
-                    </div>
-                    <div class="videos">
-                    <?php foreach ($videos as $video):?>
-<!--                        <div class="row">-->
-<!--                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-0">-->
-                                <video controls class="center-block">
-                                    <source src="<?= $video->getVideoSrc()?>">
-                                </video>
-<!--                            </div>-->
-<!--                        </div>-->
-                    <?php endforeach;?>
                     </div>
                 </div>
             </div>
