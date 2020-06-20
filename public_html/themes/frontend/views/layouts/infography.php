@@ -12,6 +12,15 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html dir="rtl" lang="<?= Yii::$app->language; ?>">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-169336352-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-169336352-1');
+    </script>
+
     <?php $this->head(); ?>
     <meta charset="<?= Yii::$app->charset; ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
