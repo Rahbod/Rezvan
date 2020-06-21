@@ -157,7 +157,7 @@
     .project-list .grid.col-sm-12.col-xs-12 {
         height: 100%;
         overflow: visible;
-        margin-top: 13vw;
+        margin-top: 15vw;
         padding: 0;
         margin-bottom: 0;
     }
@@ -1259,6 +1259,7 @@
 
     .final-project-view .full-slide {
         min-height: auto;
+        margin-top: 2vw;
     }
 
     .final-project-view .bg-slide {

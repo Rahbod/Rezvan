@@ -50,7 +50,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                                     </div>
                                     <?php if (!isDesktop()): ?>
                                         <div class="share-icon">
-                                            <a href="#"><img src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
+                                            <a href="#"><img src="<?= $this->theme->baseUrl . '/images/share.svg' ?>"
                                                              alt="share"></a>
                                         </div>
                                         <div class="cat-text">
@@ -85,7 +85,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                                                     </div>
                                                     <div class="share-icon">
                                                         <a href="#"><img
-                                                                    src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
+                                                                    src="<?= $this->theme->baseUrl . '/images/share.svg' ?>"
                                                                     alt="share"></a>
                                                     </div>
                                                     <div class="cat-text">
@@ -120,7 +120,7 @@ $investmentCounts = isset($projects) ? count($projects) : 0;
                                             </div>
                                             <div class="share-icon">
                                                 <a href="#"><img
-                                                            src="<?= $this->theme->baseUrl . '/images/share.png' ?>"
+                                                            src="<?= $this->theme->baseUrl . '/images/share.svg' ?>"
                                                             alt="share"></a>
                                             </div>
                                             <div class="cat-text">

@@ -41,7 +41,7 @@ use yii\helpers\Url; ?>
                             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse"
                                     data-target="#main-navigation" aria-controls="main-navigation" aria-expanded="false"
                                     aria-label="Toggle navigation">
-                                <img src="<?= $this->theme->baseUrl . '/images/menu-icon.png' ?>" alt="menu-button">
+                                <img src="<?= $this->theme->baseUrl . '/images/menu-icon.svg' ?>" alt="menu-button">
                             </button>
                             <nav id="main-navigation" class="navbar navbar-expand-lg collapse">
                                 <div class="navbar-collapse" id="language">

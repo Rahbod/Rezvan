@@ -38,7 +38,7 @@ else if ($project->type == Project::TYPE_OTHER_CONSTRUCTION)
                     </div>
                     <div class="share-icon">
                         <a href="#" data-url="<?= $project->getUrl() ?>"><img
-                                    src="<?= $this->theme->baseUrl . '/images/share.png' ?>" alt="share"></a>
+                                    src="<?= $this->theme->baseUrl . '/images/share.svg' ?>" alt="share"></a>
                     </div>
                 <?php endif; ?>
                 <?php if ($project->type != Project::TYPE_INVESTMENT): ?>

@@ -73,7 +73,7 @@ else if ($project->type == Project::TYPE_OTHER_CONSTRUCTION)
                         <span class="description"><?= $project->getLocationStr() ?></span>
                     </div>
                     <div class="share-icon">
-                        <a href="#"><img src="<?= $baseUrl ?>/images/share.png" alt="share"></a>
+                        <a href="#"><img src="<?= $baseUrl ?>/images/share.svg" alt="share"></a>
                     </div>
                     <div class="pic-slide">
                         <img src="<?= alias('@web') . '/' . ConstructionController::$imgDir . '/' . $project->banner ?>"
