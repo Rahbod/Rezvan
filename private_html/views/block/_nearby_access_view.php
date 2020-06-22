@@ -31,13 +31,14 @@ $baseUrl = $this->theme->baseUrl;
                                 href="<?= $block->{$field . '_link'} ?>"><?php endif; ?>
                             <div class="row">
                                 <div class="col-lg-2 thumb">
-                                    <?php if ($field == 'gas'): ?>
+                                    <!-- <?php if ($field == 'gas'): ?>
                                         <img class="img-building-access"
                                              src="<?= $baseUrl . '/images/' . NearbyAccess::$iconsName[$field] ?>"
                                              alt="<?= $field ?>">
                                     <?php else: ?>
                                         <i class="<?= NearbyAccess::$iconsName[$field] ?>"></i>
-                                    <?php endif; ?>
+                                    <?php endif; ?> -->
+                                    <i class="<?= NearbyAccess::$iconsName[$field] ?>"></i>
                                 </div>
                                 <div class="col-lg-10 right">
                                     <h3 class="title-building-access"><?= $block->getAttributeLabel($field) ?></h3>

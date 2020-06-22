@@ -456,6 +456,10 @@
     margin: -16px -16px;
 }
 
+.svg-icon-near-mosque-w {
+    background-image: url("../../svg/nearby/mosque-w.svg");
+}
+
 .svg-icon-near-bank-w {
     background-image: url("../../svg/nearby/bank-w.svg");
     width: 80px !important;
@@ -494,6 +498,7 @@
 
 .svg-icon-near-shrine-w {
     background-image: url("../../svg/nearby/shrine-w.svg");
+    background-size: 88px;
 }
 
 /*Social*/

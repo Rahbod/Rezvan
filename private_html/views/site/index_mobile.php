@@ -232,6 +232,72 @@ $serviceCounts = isset($services) ? count($services) : null;
                             </div>
                         </div>
                     <?php endfor; ?>
+
+                    <!--Services-->
+                    <?php if (isset($services) && $serviceCounts > 0): ?>
+                        <section class="slide-3">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="slide-title">
+                                        <div class="title-left">
+                                            <i class="svg-icon-services-b"></i>
+                                            <h2 class="slide">
+                                                <strong><?= trans('words', 'available') ?></strong> <?= trans('words', 'services') ?></h2>
+                                        </div>
+                                    </div>
+                                    <div id="slide-3" class="carousel slide w-100" data-ride="carousel">
+                                        <ul class="carousel-indicators">
+                                            <?php $pageNumber = 1;
+
+                                            for ($i = 0; $i < $serviceCounts; $i++): ?>
+                                                <?php if ($serviceCounts / 4 > 1 && $i % 4 == 0): ?>
+                                                    <li data-target="#slide-3" data-slide-to="<?php echo $pageNumber - 1 ?>"
+                                                        class="<?= $i / 4 == 1 && $i % 4 == 0 ? 'active' : '' ?>"><span
+                                                                class="indicators"><?= trans('words', 'page') ?><?php echo $pageNumber++ ?></span>
+                                                    </li>
+                                                <?php endif; endfor; ?>
+
+                                        </ul>
+                                        <div class="carousel-inner row w-100 mx-auto" role="listbox">
+                                            <?php for ($i = 0; $i < $serviceCounts; $i = $i + 3): ?>
+                                                <div class="carousel-item col-lg-12 col-md-12 col-sm-12 col-xs-12 <?= $i == 0 ? 'active' : '' ?>">
+                                                    <div class="row">
+                                                        <?php for ($j = $i; $j < $i + 3; $j++): ?>
+                                                            <?php
+                                                            if (!isset($services[$j])) break;
+                                                            $service = $services[$j];
+                                                            ?>
+                                                            <div class="col-sm-12 col-md-4 col-lg-4">
+                                                                <a href="<?= $service->getUrl() ?>"
+                                                                   title="<?= Html::encode($service->getName()) ?>">
+                                                                    <h2 class="item-title"><?= $service->getName() ?></h2>
+                                                                </a>
+                                                                <p class="description"><?= Html::encode($service->getDescriptionStr()) ?></p>
+                                                                <a href="<?= $service->getUrl() ?>"
+                                                                   title="<?= Html::encode($service->getName()) ?>">
+                                                                    <button type="button" class="btn btn-primary slider-button">
+                                                                        <?= trans('words', 'View More') ?>
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        <?php endfor; ?>
+                                                    </div>
+                                                </div>
+                                            <?php endfor; ?>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#slide-3" role="button" data-slide="prev">
+                                            <i class="fal fa-chevron-left"></i>
+                                            <span class="sr-only"><?= trans('words', 'Previous') ?></span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#slide-3" role="button" data-slide="next">
+                                            <i class="fal fa-chevron-right"></i>
+                                            <span class="sr-only"><?= trans('words', 'Next') ?></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

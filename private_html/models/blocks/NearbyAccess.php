@@ -50,7 +50,7 @@ class NearbyAccess extends Block
         'metro' => 'svg-icon-near-metro-w',
         'laundry' => 'svg-icon-near-laundry-w',
         'airport' => 'svg-icon-near-airplane-w',
-        'gas' => 'gas.png',
+        'gas' => 'svg-icon-near-mosque-w',
         'bank' => 'svg-icon-near-bank-w',
         'restaurant' => 'svg-icon-near-restaurant-w',
     ];
@@ -122,7 +122,7 @@ class NearbyAccess extends Block
             'metro_distance' => trans('words', 'Metro distance'),
             'laundry_distance' => trans('words', 'Laundry distance'),
             'airport_distance' => trans('words', 'Airport distance'),
-            'gas_distance' => trans('words', 'Gas station distance'),
+            'gas_distance' => trans('words', 'Mosque distance'),
             'bank_distance' => trans('words', 'Bank distance'),
             'restaurant_distance' => trans('words', 'Restaurant distance'),
 
@@ -133,7 +133,7 @@ class NearbyAccess extends Block
             'metro'=> trans('words', 'metro'),
             'laundry'=> trans('words', 'laundry'),
             'airport'=> trans('words', 'Airport'),
-            'gas'=> trans('words', 'gas'),
+            'gas'=> trans('words', 'mosque'),
             'bank'=> trans('words', 'bank'),
             'restaurant'=> trans('words', 'Restaurant'),
         ]);

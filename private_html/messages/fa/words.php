@@ -252,6 +252,7 @@ return [
     'Airport distance' => 'فاصله تا فرودگاه',
     'Airport' => 'فرودگاه',
     'Gas station distance' => 'فاصله تا پمپ بنزین',
+    'Mosque distance' => 'فاصله تا مسجد',
     'Bank distance' => 'فاصله تا بانک',
     'Restaurant distance' => 'فاصله تا رستوران',
 
@@ -435,6 +436,7 @@ return [
     'bank' => 'بانک',
     'gas / oil' => 'گاز / بنزین',
     'gas' => 'پمپ بنزین',
+    'mosque' => 'مسجد',
     'Current status' => 'وضعیت فعلی',
     'of the UNIT' => 'واحد',
     'from' => 'از',
