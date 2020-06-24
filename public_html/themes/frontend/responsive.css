@@ -1194,7 +1194,7 @@
         padding: 10px 0 0;
     }
 
-    .infography-menu .section-title small{
+    .infography-menu .section-title small {
         display: none;
     }
 
@@ -1210,7 +1210,7 @@
         padding-left: 15px;
     }
 
-    .infography .section-container{
+    .infography .section-container {
         padding: 15px;
     }
 
@@ -1225,7 +1225,7 @@
         padding-right: 0;
     }
 
-    .infography .section-container .title{
+    .infography .section-container .title {
         font-size: 2rem;
         margin-bottom: 10px;
     }
@@ -1235,7 +1235,7 @@
         margin-bottom: 10px;
     }
 
-    .infography .section-container .num{
+    .infography .section-container .num {
         font-size: 4rem;
     }
 }
@@ -1276,6 +1276,28 @@
 
     .bg-slide ul.icon-list-slider {
         display: none;
+    }
+
+    #slide-3 .carousel-item .col-sm-12.col-md-4.col-lg-4 button.btn.btn-primary.slider-button {
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+    }
+
+    #slide-3 .carousel-item .col-sm-12.col-md-4.col-lg-4 {
+        padding: 0;
+    }
+
+    .home section.slide-3 > .container-fluid {
+        background: none;
+        min-height: auto;
+    }
+
+    .home section.slide-3 {
+        padding-bottom: 100px;
     }
 }
 
