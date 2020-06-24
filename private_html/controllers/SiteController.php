@@ -181,8 +181,10 @@ class SiteController extends AuthController
         $services = Service::find()->all();
         $slides = Slide::find()->valid()->orderBy(['id' => SORT_ASC])->all();
 
-        $availableApartments = Apartment::find()->valid()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-        $availableInvestments = Investment::find()->valid()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
+//        $availableApartments = Apartment::find()->valid()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+        $availableApartments = Apartment::find()->valid()->orderBy([Apartment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->all();
+//        $availableInvestments = Investment::find()->valid()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->andWhere(['>', Investment::columnGetString('free_count'), 0])->all();
+        $availableInvestments = Investment::find()->valid()->orderBy([Investment::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])->all();
         $availableConstructions = OtherConstruction::find()->valid()->orderBy([OtherConstruction::columnGetString('special') => SORT_DESC, 'id' => SORT_DESC])
 //            ->andWhere(['>', OtherConstruction::columnGetString('free_count'), 0])
             ->all();

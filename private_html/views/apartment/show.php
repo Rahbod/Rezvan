@@ -40,3 +40,13 @@ $baseUrl = $this->theme->baseUrl;
         </div>
     </section>
 <?php endif; ?>
+
+<?php if(!isDesktop()):?>
+    <?php if ($pdf_url = $model->getPdfUrl(ApartmentController::$pdfDir)): ?>
+        <div class="download">
+            <a href="<?= $pdf_url ?>">
+                <p>PDF</p>
+            </a>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

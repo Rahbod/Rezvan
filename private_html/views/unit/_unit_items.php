@@ -30,11 +30,11 @@ $baseUrl = $this->theme->baseUrl;
         <span class="item-2"><?= $model->getBathRoomStr(true) ?></span>
     </div>
     <div class="item item-6">
-        <i class="svg-icon-bold-heating-system-w"></i>
+        <i class="svg-icon-bold-list-<?= $model->heating_system?>-w"></i>
         <span class="item-2"><?= $model->getListValueStr('heating_system') ?></span>
     </div>
     <div class="item item-7">
-        <i class="svg-icon-bold-cooling-system-w"></i>
+        <i class="svg-icon-bold-list-<?= $model->cooling_system?>-w"></i>
         <span class="item-2"><?= $model->getListValueStr('cooling_system') ?></span>
     </div>
     <div class="item item-8">
@@ -68,11 +68,11 @@ $baseUrl = $this->theme->baseUrl;
         <span class="item-2"><?= $model->getBathRoomStr(true) ?></span>
     </div>
     <div class="item item-6">
-        <i class="svg-icon-bold-heating-system"></i>
+        <i class="svg-icon-bold-list-<?= $model->heating_system?>"></i>
         <span class="item-2"><?= $model->getListValueStr('heating_system') ?></span>
     </div>
     <div class="item item-7">
-        <i class="svg-icon-bold-cooling-system"></i>
+        <i class="svg-icon-bold-list-<?= $model->cooling_system?>"></i>
         <span class="item-2"><?= $model->getListValueStr('cooling_system') ?></span>
     </div>
     <div class="item item-8">

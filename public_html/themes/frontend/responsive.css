@@ -144,7 +144,6 @@
         display: none !important;
     }
 
-
     .container-fluid.project-list {
         padding: 0 15px !important;
         background-image: none;
@@ -326,7 +325,6 @@
         right: 0;
     }
 
-
     .content {
         padding: 60px 3vw 100px;
     }
@@ -479,8 +477,31 @@
         text-indent: 5vw;
     }
 
-    .more-one .more-slide ul.icon-list-slider, .download {
+    .more-one .more-slide ul.icon-list-slider {
         display: none;
+    }
+
+    .download {
+        position: fixed !important;
+        bottom: 15px;
+        top: auto !important;
+        left: 15px;
+        padding: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+
+    .download a {
+        line-height: 50px;
+    }
+
+    .download p {
+        line-height: 50px;
+        text-align: center;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 0;
     }
 
     .content .items {
@@ -854,7 +875,6 @@
     .request-new .col-xs-12.col-sm-12.center-section {
         width: 100% !important;
     }
-
 
     .col-lg-12.bottom-section {
         padding-top: 20px;
@@ -1237,6 +1257,10 @@
 
     .infography .section-container .num {
         font-size: 4rem;
+    }
+
+    #slide-3 .carousel-item .col-sm-12.col-md-4.col-lg-4 {
+        text-align: right;
     }
 }
 

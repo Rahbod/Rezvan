@@ -42,6 +42,9 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                                    href="<?= $projects[0]->getUrl() ?>">
                                     <img src="<?= $projects[0]->getModelImage() ?>"
                                          alt="<?= Html::encode($projects[0]->getName()) ?>">
+                                    <?php if ($projects[0]->free_count == 0): ?>
+                                        <span class="sold-icon"><?php echo trans('words', 'Sold')?></span>
+                                    <?php endif; ?>
                                     <div class="top-title">
                                         <h2 class="item-title"><?= Html::encode($projects[0]->getName()) ?></h2>
                                         <span class="first-title"><?= $projects[0]->getLocationStr() ?><?php if (!isDesktop()): ?> / <?php endif; ?></span>
@@ -73,6 +76,9 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                                                 <img src="<?= $project->getModelImage() ?>"
                                                      alt="<?= Html::encode($project->getName()) ?> ">
                                                 <?php if (isDesktop()): ?>
+                                                    <?php if ($project->free_count == 0): ?>
+                                                        <span class="sold-icon"><?php echo trans('words', 'Sold')?></span>
+                                                    <?php endif; ?>
                                                     <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                                     <span class="description"><?= $project->getLocationStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
                                                     <span class="description-2"><?= $project->getLocationTwoStr() ?></span>
@@ -109,6 +115,9 @@ $apartmentCounts = isset($projects) ? count($projects) : 0;
                                         <img src="<?= $project->getModelImage() ?>"
                                              alt="<?= Html::encode($project->getName()) ?> ">
                                         <?php if (isDesktop()): ?>
+                                            <?php if ($project->free_count == 0): ?>
+                                                <span class="sold-icon"><?php echo trans('words', 'Sold')?></span>
+                                            <?php endif; ?>
                                             <h2 class="item-title"><?= Html::encode($project->getName()) ?></h2>
                                             <span class="description"><?= $project->getLocationStr() ?><?= $project->getLocationTwoStr() ? ' / ' : '' ?></span>
                                             <span class="description-2"><?= $project->getLocationTwoStr() ?></span>

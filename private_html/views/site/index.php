@@ -115,7 +115,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <img src="<?= $apartment->getModelImage() ?>"
                                                      alt="<?= Html::encode($apartment->getName()) ?>">
                                                 <?php if ($apartment->free_count == 0): ?><span
-                                                        class="sold-icon">SOLD!</span><?php endif; ?>
+                                                        class="sold-icon"><?php echo trans('words', 'Sold')?></span><?php endif; ?>
                                                 <div class="top-title">
                                                     <h2 class="item-title"><?= Html::encode($apartment->getName()) ?></h2>
                                                     <span class="first-title"><?= Html::encode($apartment->getSubtitleStr()) ?></span>
@@ -137,6 +137,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                            title="<?= Html::encode($apartment->getName()) ?>">
                                                             <img src="<?= $apartment->getModelImage() ?>"
                                                                  alt="<?= Html::encode($apartment->getName()) ?>">
+                                                            <?php if ($apartment->free_count == 0): ?>
+                                                                <span class="sold-icon"><?php echo trans('words', 'Sold')?></span>
+                                                            <?php endif;?>
                                                             <h2 class="item-title">
                                                                 <?= Html::encode($apartment->getName()) ?></h2>
                                                             <span class="description"><?= Html::encode($apartment->getLocationStr()) ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
@@ -218,7 +221,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                 <img src="<?= $investment->getModelImage() ?>"
                                                      alt="<?= Html::encode($investment->getName()) ?>">
                                                 <?php if ($investment->free_count == 0): ?><span
-                                                        class="sold-icon">SOLD!</span><?php endif; ?>
+                                                        class="sold-icon"><?php echo trans('words', 'Sold')?></span><?php endif; ?>
                                                 <div class="top-title">
                                                     <h2 class="item-title"><?= Html::encode($investment->getName()) ?></h2>
                                                     <span class="first-title"><?= Html::encode($investment->getSubtitleStr()) ?></span>
@@ -240,6 +243,9 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                            title="<?= Html::encode($investment->getName()) ?>">
                                                             <img src="<?= $investment->getModelImage() ?>"
                                                                  alt="<?= Html::encode($investment->getName()) ?>">
+                                                            <?php if ($investment->free_count == 0): ?>
+                                                                <span class="sold-icon"><?php echo trans('words', 'Sold')?></span>
+                                                            <?php endif; ?>
                                                             <h2 class="item-title">
                                                                 <?= Html::encode($investment->getName()) ?></h2>
                                                             <span class="description"><?= Html::encode($investment->getLocationStr()) ?><?= $investment->getLocationTwoStr() ? ' / ' : '' ?></span>
@@ -280,7 +286,7 @@ $serviceCounts = isset($services) ? count($services) : null;
                                                         <img src="<?= $investment->getModelImage() ?>"
                                                              alt="<?= $investment->getName() ?>">
                                                         <?php if ($investment->free_count == 0): ?><span
-                                                                class="sold-icon">SOLD!</span><?php endif; ?>
+                                                                class="sold-icon"><?php echo trans('words', 'Sold')?></span><?php endif; ?>
                                                         <a href="<?= $investment->getUrl(); ?>">
                                                             <h2 class="item-title"><?= $investment->getName() ?></h2>
                                                         </a>
