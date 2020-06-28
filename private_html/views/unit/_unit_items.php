@@ -39,7 +39,7 @@ $baseUrl = $this->theme->baseUrl;
     </div>
     <div class="item item-8">
         <i class="svg-icon-bold-furnished-w"></i>
-<!--        <span class="item-2">--><?//= $model->getRadiatorStr(true) ?><!--</span>-->
+        <span class="item-2"><?= trans('words', 'Age of the building') ?></span>
     </div>
     <div class="item item-9">
         <i class="svg-icon-bold-parking-w"></i>
@@ -77,7 +77,7 @@ $baseUrl = $this->theme->baseUrl;
     </div>
     <div class="item item-8">
         <i class="svg-icon-bold-furnished"></i>
-<!--        <span class="item-2">--><?//= $model->getRadiatorStr(true) ?><!--</span>-->
+        <span class="item-2"><?= trans('words', 'Age of the building') ?></span>
     </div>
     <div class="item item-9">
         <i class="svg-icon-bold-parking"></i>

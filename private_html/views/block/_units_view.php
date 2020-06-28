@@ -45,7 +45,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                     <div class="available-right-title col-lg-9">
                         <div class="item-inner row">
                             <?php foreach ($free as $item): ?>
-                                <div class="items col-lg-11 collapsible collapsed" data-toggle="collapse"
+                                <div class="items col-lg-12 collapsible collapsed" data-toggle="collapse"
                                      data-target="#item-<?= $item->id ?>" aria-expanded="false">
                                     <?= $this->render('//unit/_unit_items', ['model' => $item]) ?>
                                     <div class="item link-more">
@@ -56,9 +56,9 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                                         <?= $this->render('//unit/_unit_details', ['model' => $item]) ?>
                                     </div>
                                 </div>
-                                <div class="col-lg-1">
+                                <!-- <div class="col-lg-1">
                                     <p class="free-text"><?= trans('words', 'free') ?></p>
-                                </div>
+                                </div> -->
 
                             <?php endforeach; ?>
                         </div>
@@ -77,7 +77,7 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                     <div class="sold-right-title col-lg-9">
                         <div class="item-inner row">
                             <?php foreach ($sold as $item): ?>
-                                <div class="items col-lg-11 collapsible collapsed" data-toggle="collapse"
+                                <div class="items col-lg-12 collapsible collapsed" data-toggle="collapse"
                                      data-target="#item-<?= $item->id ?>" aria-expanded="false">
                                     <?= $this->render('//unit/_unit_items', ['model' => $item, 'sold' => true]) ?>
                                     <div class="item link-more">
@@ -88,9 +88,9 @@ $free = $project->getUnits()->andWhere([Unit::columnGetString('sold') => 0])->or
                                         <?= $this->render('//unit/_unit_details', ['model' => $item]) ?>
                                     </div>
                                 </div>
-                                <div class="col-lg-1">
+                                <!-- <div class="col-lg-1">
                                     <p class="sold-text"><?= trans('words', 'sold') ?></p>
-                                </div>
+                                </div> -->
                             <?php endforeach; ?>
                         </div>
                     </div>
