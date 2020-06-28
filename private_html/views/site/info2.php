@@ -2,10 +2,14 @@
 /** @var $this View */
 /** @var $sections \app\models\ProjectSection[] */
 /** @var $videos \app\models\ProjectSectionVideo[] */
+/* @var $apartment Apartment */
 
+use app\models\projects\Apartment;
 use yii\web\View;
 use yii\helpers\Url;
 
+$baseUrl = $this->theme->baseUrl;
+$apartmentCounts = isset($availableApartments) ? count($availableApartments) : 0;
 ?>
 <section class="main-text infography">
     <div class="slide-title">
@@ -53,7 +57,7 @@ use yii\helpers\Url;
                                     </li>
                                 <?php endforeach;?>
                             </ul>
-                            <?php if(isDesktop()):?>
+                            <?php /*if(isDesktop()):?>
                                 <div class="videos">
                                     <?php foreach ($videos as $video):?>
                                         <!--                        <div class="row">-->
@@ -65,7 +69,7 @@ use yii\helpers\Url;
                                         <!--                        </div>-->
                                     <?php endforeach;?>
                                 </div>
-                            <?php endif;?>
+                            <?php endif;*/?>
                         </div>
                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                             <?php $i = 0; foreach ($sections as $section): ?>
@@ -80,8 +84,8 @@ use yii\helpers\Url;
                                     </div>
                                 </div>
                             <?php endforeach; ?>
-                            <?php if(!isDesktop()):?>
-                                <div class="videos visible-xs">
+                            <?php /*if(!isDesktop()):?>
+                                <div class="videos visible-xs hidden">
                                     <?php foreach ($videos as $video):?>
                                         <!--                        <div class="row">-->
                                         <!--                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-0">-->
@@ -92,7 +96,7 @@ use yii\helpers\Url;
                                         <!--                        </div>-->
                                     <?php endforeach;?>
                                 </div>
-                            <?php endif;?>
+                            <?php endif;*/?>
                         </div>
                     </div>
                 </div>
@@ -100,3 +104,58 @@ use yii\helpers\Url;
         </div>
     </div>
 </section>
+
+<?php if (isDesktop()): ?>
+    <section class="order-post">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="title-order-post">
+                    <h2 id="txt-order-post">
+                        <strong><?= trans('words', 'projects') ?></strong>
+                    </h2>
+                </div>
+                <div id="order-post" class="carousel slide col-lg-12" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <?php for ($i = 0; $i < $apartmentCounts; $i = $i + 4): ?>
+                            <div class="carousel-item <?= $i == 0 ? 'active' : '' ?>">
+                                <div class="posts">
+                                    <div class="row">
+                                        <?php for ($j = $i; $j < $i + 4; $j++):
+                                            if (!isset($availableApartments[$j]))
+                                                break;
+                                            $apartment = $availableApartments[$j]; ?>
+                                            <div class="grid little-post col-lg-3 col-md-6  col-sm-12 col-xs-12">
+                                                <a href="<?= $apartment->getUrl() ?>">
+                                                    <img src="<?= $apartment->getModelImage() ?>"
+                                                         alt="<?= $apartment->getName() ?>">
+                                                    <h2 class="item-title"><?= $apartment->getName() ?></h2>
+                                                    <span class="description"><?= $apartment->getLocationStr() ?><?= $apartment->getLocationTwoStr() ? ' / ' : '' ?></span>
+                                                    <span class="description-2"><?= $apartment->getLocationTwoStr() ?></span>
+                                                </a>
+                                            </div>
+                                        <?php endfor; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                        <a class="carousel-control-prev" href="#order-post" data-slide="prev">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#order-post" data-slide="next">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<?php else: ?>
+    <div class="container-fluid">
+        <div class="back-button">
+            <a href="<?= Url::to(['/']) ?>">
+                <p><strong><?= trans('words', 'Back') ?></strong></br>
+                    <?= trans('words', 'Available Apartments') ?></p>
+            </a>
+        </div>
+    </div>
+<?php endif;

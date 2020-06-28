@@ -282,9 +282,12 @@ class SiteController extends AuthController
         $models = ProjectSection::find()->orderBy(['item.id' => SORT_ASC])->valid()->all();
         $videos = ProjectSectionVideo::find()->valid()->all();
 
+        $availableApartments = Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
+
         return $this->render('info2', [
             'sections' => $models,
             'videos' => $videos,
+            'availableApartments' => $availableApartments,
         ]);
     }
 
