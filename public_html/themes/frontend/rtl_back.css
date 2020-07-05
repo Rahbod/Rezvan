@@ -1,11 +1,13 @@
 @import "assets/css/droidarabickufi.css";
+@import "assets/css/hacen-maghreb.css";
 html {
 	direction: rtl;
 }
 
 body {
     text-align: right;
-	font-family:Droid Arabic Kufi!important;
+	/*font-family:Droid Arabic Kufi!important;*/
+	font-family:"Hacen Maghreb" !important;
     letter-spacing: 0;
 }
 .offset-10 {
