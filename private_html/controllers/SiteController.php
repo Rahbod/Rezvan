@@ -263,15 +263,15 @@ class SiteController extends AuthController
         return Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
     }
 
-    public function actionInfography()
+    /*public function actionInfography()
     {
         $this->setTheme('frontend');
         $this->layout = 'infography';
 
         return $this->render('info');
-    }
+    }*/
 
-    public function actionInfography2()
+    public function actionInfography()
     {
         $this->setTheme('frontend');
         $this->innerPage = true;
