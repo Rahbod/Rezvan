@@ -1,10 +1,8 @@
 <?php
 /** @var $this View */
-/** @var $sections \app\models\ProjectSection[] */
-/** @var $videos \app\models\ProjectSectionVideo[] */
-/* @var $apartment Apartment */
+/** @var $models \app\models\Service[] */
 
-use app\models\projects\Apartment;
+
 use yii\web\View;
 use yii\helpers\Url;
 

@@ -6,8 +6,8 @@ html {
 
 body {
     text-align: right;
-	/*font-family:Droid Arabic Kufi!important;*/
-	font-family:"Hacen Maghreb" !important;
+    font-family: Droid Arabic Kufi, serif !important;
+	/*font-family:"Hacen Maghreb" !important;*/
     letter-spacing: 0;
 }
 .offset-10 {

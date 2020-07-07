@@ -207,9 +207,12 @@ class ServiceController extends AuthController
         $model->seen++;
         $model->save(false);
 
+        $models = Service::find()->valid()->all();
+
         $availableApartments = Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
         return $this->render('show', [
             'model' => $model,
+            'models' => $models,
             'availableApartments' => $availableApartments,
         ]);
     }
