@@ -587,4 +587,5 @@ return [
     'How to own?' => 'چگونه مالک شویم؟',
     'A foreigner does not own a company registration in Iran' => 'یک خارجی در ایران نمی تواند شرکت ثبت کند',
     'Here are the steps to register a company' => 'در اینجا مراحل ثبت شرکت ذکر شده است',
+    'services_page_description' => 'توضیحات عنوان صفحه خدمات',
 ];

@@ -1689,6 +1689,10 @@ span.sold-icon {
     transition: 0.3s;
 }
 
+.first-post span.sold-icon {
+    right: 0;
+}
+
 .grid:hover span.sold-icon {
     transform: translateX(-4px);
     transition: 0.3s;

@@ -30,6 +30,8 @@ class ServiceController extends AuthController
     public static $imageDir = 'uploads/pages';
     public static $imageOptions = [];
     public static $galleryOptions = ['thumbnail' => ['width' => 200, 'height' => 200]];
+    public static $iconDir = 'uploads/service';
+    public static $iconOptions = [];
 
     /**
      * @return string
@@ -83,6 +85,39 @@ class ServiceController extends AuthController
                 'model' => new Attachment(),
                 'attribute' => 'file',
                 'options' => self::$galleryOptions
+            ],
+            'upload-icon' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Service(), 'icon'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('svg')
+                )
+            ],
+            'delete-icon' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$iconDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Service(),
+                'attribute' => 'icon',
+                'options' => static::$iconOptions
+            ],
+
+            'upload-icon-hover' => [
+                'class' => UploadAction::className(),
+                'fileName' => Html::getInputName(new Service(), 'icon_hover'),
+                'rename' => UploadAction::RENAME_UNIQUE,
+                'validateOptions' => array(
+                    'acceptedTypes' => array('svg')
+                )
+            ],
+            'delete-icon-hover' => [
+                'class' => RemoveAction::className(),
+                'upload' => self::$iconDir,
+                'storedMode' => RemoveAction::STORED_DYNA_FIELD_MODE,
+                'model' => new Service(),
+                'attribute' => 'icon_hover',
+                'options' => static::$iconOptions
             ],
         ];
     }
@@ -210,7 +245,7 @@ class ServiceController extends AuthController
         $models = Service::find()->valid()->all();
 
         $availableApartments = Apartment::find()->valid()->andWhere(['>', Apartment::columnGetString('free_count'), 0])->all();
-        return $this->render('show', [
+        return $this->render('show2', [
             'model' => $model,
             'models' => $models,
             'availableApartments' => $availableApartments,

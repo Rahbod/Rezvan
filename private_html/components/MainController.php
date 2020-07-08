@@ -317,6 +317,7 @@ class MainController extends Controller implements CrudControllerInterface
                 'label' => '<i class="m-menu__link-icon fa fa-server"></i><span class="m-menu__link-text">' . trans('words', 'Items') . '</span>',
                 'items' => [
 //                    ['label' => trans('words', 'Slides'), 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
+                    ['label' => 'اسلاید', 'url' => ['/slide/index'], 'visible' => $permissions || app()->user->can('slideIndex')],
                     ['label' => trans('words', 'Pages'), 'url' => ['/page/index'], 'visible' => $permissions || app()->user->can('pageIndex')],
                     ['label' => trans('words', 'Services'), 'url' => ['/service/index'], 'visible' => $permissions || app()->user->can('serviceIndex')],
                     ['label' => trans('words', 'Lists'), 'url' => ['/list/index'], 'visible' => $permissions || app()->user->can('listIndex')],
